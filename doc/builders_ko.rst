@@ -6,7 +6,7 @@ Available builders
 .. module:: sphinx.builders
    :synopsis: Available built-in builder classes.
 
-이것들은 빌트인(built-in) 스핑크스(Sphinx) 빌더(builders)이다.
+이것들은 내장(built-in) 스핑크스(Sphinx) 빌더(builders)이다.
 :ref:`extensions <extensions>` 를 통해서 빌더를 추가할 수 있다.
 
 빌더를 선택하기 위해서는 빌더의 이름이 :program:`sphinx-build` 의 **-b**
@@ -48,7 +48,7 @@ Available builders
 
    이것은 모든 프로젝트를 하나의 출력 파일로 결합시켜주는 HTML 빌더다.
    (이 것은 오로지 작은 프로젝트로 이루어 졌을 때만 작동한다. 파일 이름은
-   마스터 문서와 같다. 색인은 생성되지 않는다.
+   마스터 문서와 같다. 색인(index)은 생성되지 않는다.
 
    .. autoattribute:: name
 
@@ -268,12 +268,12 @@ Available builders
 .. currentmodule:: sphinx.builders.html
 .. class:: SerializingHTMLBuilder
 
-   This builder uses a module that implements the Python serialization API
-   (`pickle`, `simplejson`, `phpserialize`, and others) to dump the generated
-   HTML documentation.  The pickle builder is a subclass of it.
+   이 빌더는 생성된 HTML 문서를 덤프(dump)하기 위한 Python serialization API
+   (`pickle`, `simplejson`, `phpserialize` 등)을 실행하는 모듈을 사용한다.
+   Pickle 빌더는 이 빌더의 하위 클래스다.
 
-   A concrete subclass of this builder serializing to the `PHP serialization`_
-   format could look like this::
+   `PHP serialization`_ 포맷으로 직렬화(serialize)하는 이 빌더의 구체적인(concrete)
+   하위클래스는 아래와 같이 생겼다::
 
         import phpserialize
 
@@ -288,56 +288,54 @@ Available builders
 
    .. attribute:: implementation
 
-      A module that implements `dump()`, `load()`, `dumps()` and `loads()`
-      functions that conform to the functions with the same names from the
-      pickle module.  Known modules implementing this interface are
-      `simplejson`, `phpserialize`, `plistlib`, and others.
+      pickle 모듈에 있는 같은 이름의 함수 `dump()`, `load()`, `dumps()`,
+      `loads()` 을 구현한 모듈. 이런 인터페이스를 구현한 알려진 모듈은 `simplejson`,
+      `phpserialize`, `plistlib` 등이 있다.
 
    .. attribute:: out_suffix
 
-      The suffix for all regular files.
+      모든 일반 파일에 대한 접미사(suffix).
 
    .. attribute:: globalcontext_filename
 
-      The filename for the file that contains the "global context".  This
-      is a dict with some general configuration values such as the name
-      of the project.
+      "global context"를 포함하는 파일에 대한 파일 이름. 프로젝트의 이름 같은
+      몇몇 일반 설정 값을 가진 사전이다.
 
    .. attribute:: searchindex_filename
 
-      The filename for the search index Sphinx generates.
+      Sphinx가 생성한 검색 색인을 위한 파일 이름.
 
 
-   See :ref:`serialization-details` for details about the output format.
+   출력 포맷에 대한 자세한 내용은 :ref:`serialization-details` 를 참고하라.
 
    .. versionadded:: 0.5
 
 .. class:: PickleHTMLBuilder
 
-   This builder produces a directory with pickle files containing mostly HTML
-   fragments and TOC information, for use of a web application (or custom
-   postprocessing tool) that doesn't use the standard HTML templates.
+   이 빌더는 표준 HTML 템플릿(templates)을 사용하지 않는 웹 어플리케이션이나
+   커스텀 후처리 툴을 이용하기 위해서 대부분의 HTML 단편(fragments)과 TOC 정보를
+   포함한 pickle 파일이 있는 디렉토리를 생성한다.
 
-   See :ref:`serialization-details` for details about the output format.
+   출력 포맷에 대한 자세한 내용은 :ref:`serialization-details` 를 참고하라.
 
    .. autoattribute:: name
 
-      The old name ``web`` still works as well.
+      예전 이름의 ``web`` 도 잘 작동함.
 
    .. autoattribute:: format
 
    .. autoattribute:: supported_image_types
 
-   The file suffix is ``.fpickle``.  The global context is called
-   ``globalcontext.pickle``, the search index ``searchindex.pickle``.
+   파일 접미사는 ``.fpickle`` 이다. global context는 ``globalcontext.pickle``,
+   검색 색인은 ``searchindex.pickle``이다.
 
 .. class:: JSONHTMLBuilder
 
-   This builder produces a directory with JSON files containing mostly HTML
-   fragments and TOC information, for use of a web application (or custom
-   postprocessing tool) that doesn't use the standard HTML templates.
+   이 빌더는 표준 HTML 템플릿(templates)을 사용하지 않는 웹 어플리케이션이나
+   커스텀 후처리 툴을 이용하기 위해서 대부분의 HTML 단편과 TOC 정보를 포함한
+   JSON 파일이 있는 디렉토리를 생성한다.
 
-   See :ref:`serialization-details` for details about the output format.
+   출력 포맷에 대한 자세한 내용은 :ref:`serialization-details` 를 참고하라.
 
    .. autoattribute:: name
 
@@ -345,18 +343,18 @@ Available builders
 
    .. autoattribute:: supported_image_types
 
-   The file suffix is ``.fjson``.  The global context is called
-   ``globalcontext.json``, the search index ``searchindex.json``.
+   파일 접미사는 ``.fjson`` 이다. global context는 ``globalcontext.json``,
+   검색 색인은 ``searchindex.json``이다.
 
    .. versionadded:: 0.5
 
 .. module:: sphinx.builders.gettext
 .. class:: MessageCatalogBuilder
 
-   This builder produces gettext-style message catalogs.  Each top-level file or
-   subdirectory grows a single ``.pot`` catalog template.
+   이 빌더는 gettext 스타일 메세지 카탈로그를 생성한다.
+   각 최상위 레벨 파일이나 하위 디렉토리는 단일 ``.pot`` 카탈로그 템플릿을 생성한다.
 
-   See the documentation on :ref:`intl` for further reference.
+   추가적인 정보는 :ref:`intl` 에 있는 문서를 참고하라.
 
    .. autoattribute:: name
 
@@ -369,10 +367,9 @@ Available builders
 .. module:: sphinx.builders.changes
 .. class:: ChangesBuilder
 
-   This builder produces an HTML overview of all :rst:dir:`versionadded`,
-   :rst:dir:`versionchanged` and :rst:dir:`deprecated` directives for the
-   current :confval:`version`.  This is useful to generate a ChangeLog file, for
-   example.
+   이 빌더는 현재 :confval:`version` 에 맞는 모든 :rst:dir:`versionadded`,
+   :rst:dir:`versionchanged`, :rst:dir:`deprecated` 명령어(directive)에
+   대한 HTML 개관을 생성한다. 예를들어, 이 빌더는 ChageLog를 생성할 때 유용하다.
 
    .. autoattribute:: name
 
@@ -383,8 +380,8 @@ Available builders
 .. module:: sphinx.builders.dummy
 .. class:: DummyBuilder
 
-   This builder produces no output.  The input is only parsed and checked for
-   consistency.  This is useful for linting purposes.
+   이 빌더는 출력물을 생성하지 않는다. 입력은 파싱된 다음 일관성 확인만 이루어진다.
+   이 빌더는 linting 목적으로 사용할 때 유용하다.
 
    .. autoattribute:: name
 
@@ -395,9 +392,9 @@ Available builders
 .. module:: sphinx.builders.linkcheck
 .. class:: CheckExternalLinksBuilder
 
-   This builder scans all documents for external links, tries to open them with
-   :mod:`urllib2`, and writes an overview which ones are broken and redirected
-   to standard output and to :file:`output.txt` in the output directory.
+   이 빌더는 모든 문서의 외부 링크를 스캔(scan)하고 :mod:`urllib2`로 링크를 열어
+   본다. 그리고 어떤 링크가 끊어졌고 리다이렉트(redirect)되었는지에 대한 개관을
+   출력 디렉토리에있는 기존 출력물과 :file:`output.txt` 에 작성한다.
 
    .. autoattribute:: name
 
@@ -408,9 +405,8 @@ Available builders
 .. module:: sphinx.builders.xml
 .. class:: XMLBuilder
 
-   This builder produces Docutils-native XML files.  The output can be
-   transformed with standard XML tools such as XSLT processors into arbitrary
-   final forms.
+   이 빌더는 Docutils-native XML 파일을 생성한다. 출력물은 XSLT 프로세서 같은 표준
+   XML 툴을 통해서 임의의 최종 형태로 변환된다.
 
    .. autoattribute:: name
 
@@ -422,11 +418,11 @@ Available builders
 
 .. class:: PseudoXMLBuilder
 
-   This builder is used for debugging the Sphinx/Docutils "Reader to Transform
-   to Writer" pipeline. It produces compact pretty-printed "pseudo-XML", files
-   where nesting is indicated by indentation (no end-tags). External
-   attributes for all elements are output, and internal attributes for any
-   leftover "pending" elements are also given.
+   이 빌더는 Sphinx/Docutils "Reader to Transform to Writer"
+   파이프라인(pipeline)을 디버깅(debugging)하기 위해서 사용된다. 이 빌더는
+   end-tag 없이 들여쓰기로 네스팅(nesting)이 표시된 압축된
+   pretty-printed "pseudo-XML" 파일을 생성한다. 모든 요소에 대한 외부적 특성과
+   나머지 "보류" 요소에 대한 내부적 특성이 출력된다.
 
    .. autoattribute:: name
 
@@ -437,7 +433,7 @@ Available builders
    .. versionadded:: 1.2
 
 
-Built-in Sphinx extensions that offer more builders are:
+더 많은 빌더를 제공하는 내장 Sphinx extensions은 아래에 있다:
 
 * :mod:`~sphinx.ext.doctest`
 * :mod:`~sphinx.ext.coverage`
@@ -448,80 +444,72 @@ Built-in Sphinx extensions that offer more builders are:
 Serialization builder details
 -----------------------------
 
-All serialization builders outputs one file per source file and a few special
-files.  They also copy the reST source files in the directory ``_sources``
-under the output directory.
+모든 직렬화 빌더는 소스 파일에 대한 하나의 파일과 여러 개의 특수 파일을 출력한다.
+빌더는 출력 디렉토리에 있는 ``_sources`` 디렉토리에 reST 소스 파일을 복사한다.
 
-The :class:`.PickleHTMLBuilder` is a builtin subclass that implements the pickle
-serialization interface.
+:class:`.PickleHTMLBuilder` 는 pickle 직렬화 인터페이스를 구현한 내장 하위클래스다.
 
-The files per source file have the extensions of
-:attr:`~.SerializingHTMLBuilder.out_suffix`, and are arranged in directories
-just as the source files are.  They unserialize to a dictionary (or dictionary
-like structure) with these keys:
+각 소스 파일에 대한 파일은 :attr:`~.SerializingHTMLBuilder.out_suffix` 확장자를
+가지고 있고 소스 파일과 똑같은 디렉토리에 위치해 있다. 파일들은 아래의 키(key)를
+가진 사전(혹은 사전과 유사한 구조)으로 역직렬화(unserialize) 된다:
 
 ``body``
-   The HTML "body" (that is, the HTML rendering of the source file), as rendered
-   by the HTML translator.
+   HTML 해석기에 의해 렌더링 된 HTML "body" (소스 파일에 대한 HTML 렌더링).
 
 ``title``
-   The title of the document, as HTML (may contain markup).
+   HTML 문서의 제목(마크업을 포함할 수 있음).
 
 ``toc``
-   The table of contents for the file, rendered as an HTML ``<ul>``.
+   HTML ``<ul>`` 로 렌더링 된 파일의 목차 테이블.
 
 ``display_toc``
-   A boolean that is ``True`` if the ``toc`` contains more than one entry.
+   ``toc`` 가 하나 이상의 엔트리(entry)를 포함하고있으면 ``True`` 인 불리언.
 
 ``current_page_name``
    The document name of the current file.
 
 ``parents``, ``prev`` and ``next``
-   Information about related chapters in the TOC tree.  Each relation is a
-   dictionary with the keys ``link`` (HREF for the relation) and ``title``
-   (title of the related document, as HTML).  ``parents`` is a list of
-   relations, while ``prev`` and ``next`` are a single relation.
+   TOC tree에 있는 연관된 챕터에 대한 정보. 각 릴레이션(relation)은
+   ``link`` (릴레이션을 위한HREF)와 ``title`` (연관된 문서의 HTML 제목) 키를
+   가진 사전이다. ``parents`` 는 ``prev`` 와 ``next`` 가 단일 릴레이션일 때,
+   릴레이션의 리스트이다.
 
 ``sourcename``
-   The name of the source file under ``_sources``.
+   ``_sources`` 에 있는 소스 파일 이름.
 
-The special files are located in the root output directory.  They are:
+아래의 특수 파일은 루트(root) 출력 디렉토리에 있다:
 
 :attr:`.SerializingHTMLBuilder.globalcontext_filename`
-   A pickled dict with these keys:
+   아래의 키를 가진 pickled 사전:
 
    ``project``, ``copyright``, ``release``, ``version``
-      The same values as given in the configuration file.
+      설정 파일에 제공된 설정 값과 같음.
 
    ``style``
       :confval:`html_style`.
 
    ``last_updated``
-      Date of last build.
+      최신 빌드 날짜.
 
    ``builder``
-      Name of the used builder, in the case of pickles this is always
-      ``'pickle'``.
+      사용된 빌더의 이름, pickle의 경우 항상 ``'pickle'`` 이다.
 
    ``titles``
-      A dictionary of all documents' titles, as HTML strings.
+      HTML string으로 된 모든 문서의 제목 사전.
 
 :attr:`.SerializingHTMLBuilder.searchindex_filename`
-   An index that can be used for searching the documentation.  It is a pickled
-   list with these entries:
+   문서 검색에 사용되는 색인. 아래의 엔트리를 가진 pickled 리스트다:
 
-   * A list of indexed docnames.
-   * A list of document titles, as HTML strings, in the same order as the first
-     list.
-   * A dict mapping word roots (processed by an English-language stemmer) to a
-     list of integers, which are indices into the first list.
+   * 색인된 문서 이름 리스트.
+   * 첫 번째 리스트와 같은 순서인 HTML string으로 된 문서 제목 리스트.
+   * (English-language stemmer로 처리된) 단어 루트(root)를 첫 번째 리스트에
+     대한 색인인 정수 리스트에 맵핑(mapping)한 사전.
 
 ``environment.pickle``
-   The build environment.  This is always a pickle file, independent of the
-   builder and a copy of the environment that was used when the builder was
-   started.
+   빌드 환경. 항상 pickle 파일이며, 빌더에 독립적이고 빌더가 시작될 때 사용되었던
+   환경의 복사본이다.
 
    .. todo:: Document common members.
 
-   Unlike the other pickle files this pickle file requires that the ``sphinx``
-   package is available on unpickling.
+   다른 pickle 파일과 다르게 이 pickle 파일은 unpickling할 때
+   ``sphinx`` 패키지가 사용 가능해야 한다.
