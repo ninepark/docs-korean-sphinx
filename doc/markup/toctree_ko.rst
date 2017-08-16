@@ -148,14 +148,12 @@ toctree에서 "sitemap"을 생성하고자 할 때 유용하다.
 발견하면 경고 메시지를 내보낸다. 이는 표준 파일 탐색을 통해 파일에 접근 할 수 없다는
 뜻이기 때문이다.
 
-   Use :confval:`exclude_patterns` to explicitly exclude documents or
-   directories from building completely.  Use :ref:`the "orphan" metadata
-   <metadata>` to let a document be built, but notify Sphinx that it is not
-   reachable via a toctree.
+   문서나 디렉토리를 빌드에서 완전히 제외시키기 위해서는 :confval:`exclude_patterns`
+를 사용한다. 빌드는 하지만 Sphinx에 toctree를 통해 도달 할 수 없다는 것을 알리기
+위해서는 :ref:`the "orphan" metadata <metadata>` 를 사용한다.
 
-   The "master document" (selected by :confval:`master_doc`) is the "root" of
-   the TOC tree hierarchy.  It can be used as the documentation's main page, or
-   as a "full table of contents" if you don't give a ``maxdepth`` option.
+   TOC tree의 구조에서 "root"에 해당하는 것은 (:confval:`master_doc` 에 의해 선택 된) "master document" 이다. 이는 문서의 메인 페이지로 사용하거나, ``maxdepth`` 옵션을
+주지 않고 "전체 목차"로 사용할 수 있다.
 
    .. versionchanged:: 0.3
       Added "globbing" option.
@@ -176,52 +174,47 @@ toctree에서 "sitemap"을 생성하고자 할 때 유용하다.
    .. versionchanged:: 1.3
       Added "caption" and "name" option.
 
-Special names
+특수 이름
 -------------
 
-Sphinx reserves some document names for its own use; you should not try to
-create documents with these names -- it will cause problems.
+Sphinx는 자체 사용을 위해 특정 문서 이름들을 지정해 놓았으며, 이러한 이름을
+사용해서는 안된다.
 
-The special document names (and pages generated for them) are:
+특수 문서 이름(및 그에 의해 생성 된 페이지)은 다음과 같다:
 
 * ``genindex``, ``modindex``, ``search``
 
-  These are used for the general index, the Python module index, and the search
-  page, respectively.
+  이들은 각각 general index, Python module index, 검색 페이지에 사용된다.
 
-  The general index is populated with entries from modules, all index-generating
-  :ref:`object descriptions <basic-domain-markup>`, and from :rst:dir:`index`
-  directives.
+  General index는 module들의 항목들, index를 생성하는 모든 :ref:`object descriptions
+<basic-domain-markup>`, 그리고 :rst:dir:`index` directive를 포함한다.
 
-  The Python module index contains one entry per :rst:dir:`py:module` directive.
+  Python module index는 각 :rst:dir:`py:module` directive 당 하나의 항목을 포함한다.
 
-  The search page contains a form that uses the generated JSON search index and
-  JavaScript to full-text search the generated documents for search words; it
-  should work on every major browser that supports modern JavaScript.
+  검색 페이지에는  생성 된 JSON 검색 index와 JavaScript를 사용, 생성 된 문서에 대해
+full-text 검색을 하는 양식이 포함되어 있다. 이는 최신 자바 스크립트를 지원하는 모든
+주요 브라우저에서 지원한다.
 
-* every name beginning with ``_``
+* ``_`` 로 시작하는 모든 이름
 
-  Though only few such names are currently used by Sphinx, you should not create
-  documents or document-containing directories with such names.  (Using ``_`` as
-  a prefix for a custom template directory is fine.)
+  현재 Sphinx에서는 이러한 이름을 거의 사용하지 않지만, 이런 이름으로 문서나 문서가
+포함된 폴더를 만들면 안된다. (사용자 정의 템플릿 디렉토리의 접두어로 ``_`` 를 사용하는
+것 제외)
 
 .. warning::
 
-   Be careful with unusual characters in filenames.  Some formats may interpret
-   these characters in unexpected ways:
+   파일 이름에 특수문자가 있는 경우 조심해라. 일부 형식은 이러한 문자를 잘 못 해석 할
+수도 있다.
 
-   * Do not use the colon ``:`` for HTML based formats.  Links to other parts
-     may not work.
+   * HTML 기반 형식에 ``:`` 을 사용하면 안된다. 링크가 작동하지 않을 수도 있다.
 
-   * Do not use the plus ``+`` for the ePub format.  Some resources may not be
-     found.
+   * ePub 형식에 ``+`` 를 사용하면 안된다. 일부 자원을 찾지 못할 수도 있다.
 
 .. rubric:: Footnotes
 
-.. [#] The LaTeX writer only refers the ``maxdepth`` option of first toctree
-       directive in the document.
+.. [#] LaTeX 작성기는 문서에서 첫번째 toctree directive의 ``maxdepth`` 옵션만을
+참조한다.
 
-.. [#] A note on available globbing syntax: you can use the standard shell
-       constructs ``*``, ``?``, ``[...]`` and ``[!...]`` with the feature that
-       these all don't match slashes.  A double star ``**`` can be used to match
-       any sequence of characters *including* slashes.
+.. [#] 사용 가능한 globbing syntax: ``*``, ``?``, ``[...]``, ``[!...]`` 과 같은 standard
+shell의 일반적인 구문. 단 슬래시와는 매치되지 않는다. *슬래시*를 포함한 모든 문자열을
+매치시키는 데는 ``**`` 를 사용한다.
