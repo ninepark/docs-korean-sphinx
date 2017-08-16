@@ -194,37 +194,35 @@ directive를 사용하고 적절한 스타일을 추가해라.
    .. versionchanged:: 1.4
       Index key for glossary term should be considered *experimental*.
 
-문법 제작 표시
+Grammar production 표시
 ---------------------------
 
-Special markup is available for displaying the productions of a formal grammar.
-The markup is simple and does not attempt to model all aspects of BNF (or any
-derived forms), but provides enough to allow context-free grammars to be
-displayed in a way that causes uses of a symbol to be rendered as hyperlinks to
-the definition of the symbol.  There is this directive:
+Formal grammar의 production을 표시하기 위해 특수한 마크업이 사용 가능하다.
+이 마크업은 간단하며, BNF(또는 BNF에서 파생 된 형식)의 모든 측면을 모델링
+하지는 않지만, 심볼 사용을 정의에 대한 하이퍼링크로 렌더링하는 방식으로
+context-free grammar를 표시 할 수 있도록 충분한 기능을 제공한다. 이를 위해서는
+다음 directive가 있다:
 
 .. rst:directive:: .. productionlist:: [name]
 
-   This directive is used to enclose a group of productions.  Each production is
-   given on a single line and consists of a name, separated by a colon from the
-   following definition.  If the definition spans multiple lines, each
-   continuation line must begin with a colon placed at the same column as in the
-   first line.
+   이 directive는 production group을 묶는 데 사용된다. 각 production은 한 줄로
+주어지며, 콜론으로 구분 된 이름과 정의로 구성된다. 정의가 여러 행에 걸쳐있는 경우,
+각 연속되는 행은 첫​​째 행의 콜론에서와 동일한 column에서 콜론으로 시작해야 한다.
 
-   The argument to :rst:dir:`productionlist` serves to distinguish different
-   sets of production lists that belong to different grammars.
+   :rst:dir:`productionlist` 의 argument는 서로 다른 grammar에 속하는 서로 다른
+production list의 집합들을 구별하는 역할을 한다.
 
-   Blank lines are not allowed within ``productionlist`` directive arguments.
+   Blank line은 ``productionlist`` directive arguments 내에서 허용되지 않는다.
 
-   The definition can contain token names which are marked as interpreted text
-   (e.g. ``sum ::= `integer` "+" `integer```) -- this generates cross-references
-   to the productions of these tokens.  Outside of the production list, you can
-   reference to token productions using :rst:role:`token`.
+   정의는 interpreted text로 표시된 토큰 이름을 포함 할 수 있다. (예: ``sum ::= `integer`
+"+" `integer```) 이는 토큰의 production에 대한 cross-reference를 생성한다.
+Production 목록 외부에서는 :rst:role:`token` 을 사용하여 토큰 production을
+참조 할 수 있다.
 
-   Note that no further reST parsing is done in the production, so that you
-   don't have to escape ``*`` or ``|`` characters.
+   Production에서는 더이상 reST parsing이 수행되지 않으므로, ``*`` or ``|`` 문자들을
+escape 할 필요가 없다.
 
-The following is an example taken from the Python Reference Manual::
+다음은 Python Reference Manual에서 가져온 예제이다::
 
    .. productionlist::
       try_stmt: try1_stmt | try2_stmt
