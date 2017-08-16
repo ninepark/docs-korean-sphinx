@@ -10,89 +10,93 @@ reST에는 여러 문서를 서로 연결하거나 문서를 여러 출력 파�
 
 .. note::
 
-   하나의 파일에 다른 파일을 간단하게 "포함"시키는 것은 :dudir:`include` directive로 가능하다.
+   하나의 파일에 다른 파일을 간단하게 "include(포함)"하는 것은 :dudir:`include` directive로 가능하다.
 
 .. rst:directive:: toctree
 
-   이 directive는 directive 본문에 지정된 문서의 개별 TOC("sub-TOC tree" 포함)를 사용하여 현재 위치에 "TOC tree"를 삽입한다. 문서의 상대적 이름(슬래시로 시작하지 않음)은 directive가 있는 문서에 대해 상대적이며, 절대적 이름은 소스 디렉토리에 대해 상대적이다. 숫자 ``maxdepth`` 옵션은 트리의 깊이를 나타내기 위해 지정할 수 있다. 기본적으로는 모든 레벨이 포함된다. [#]_
+   이 directive는 directive 본문에 지정된 문서의 개별 TOC("sub-TOC tree" 포함)를
+사용하여 현재 위치에 "TOC tree"를 삽입한다. 문서의 상대적 이름(슬래시로 시작하지
+않음)은 directive가 있는 문서에 대해 상대적이며, 절대적 이름은 소스 디렉토리에 대해
+상대적이다. 숫자 ``maxdepth`` 옵션은 트리의 깊이를 나타내기 위해 지정할 수 있다.
+기본적으로는 모든 레벨이 포함된다. [#]_
 
    다음 예제를 고려해보자(Python 문서의 library reference index에서 가져옴)::
 
       .. toctree::
          :maxdepth: 2
 
-         intro
+                  intro
          strings
          datatypes
          numeric
          (many more documents listed here)
 
-   이것은 다음 두 가지를 수행한다 :
+   이것은 다음 두 가지를 수행한다:
 
-   * 연관된 문서들에 있는 ``toctree`` directive 또한 고려하여, 모든 문서의 깊이 2까지의 목차를 삽입한다.
-* Sphinx는 문서의 ``intro``, ``string`` 등의 상대적인 순서를 알고 있으며, 현재 문서(library index)의 하위 항목임을 알고 있다. 이 정보를 이용하여 "다음 장", "이전 장" 및 "상위 장" 링크를 생성한다.
+   * 연관된 문서들에 있는 ``toctree`` directive 또한 고려하여, 모든 문서의 깊이 2까지의
+  목차를 삽입한다.
+* Sphinx는 문서의 ``intro``, ``string`` 등의 상대적인 순서를 알고 있으며, 현재
+문서(library index)의 하위 항목임을 알고 있다. 이 정보를 이용하여 "다음 장", "이전 장"
+및 "상위 장" 링크를 생성한다.
 
-   **Entries**
+   **항목**
 
-   Document titles in the :rst:dir:`toctree` will be automatically read from the
-   title of the referenced document. If that isn't what you want, you can
-   specify an explicit title and target using a similar syntax to reST
-   hyperlinks (and Sphinx's :ref:`cross-referencing syntax <xref-syntax>`). This
-   looks like::
+   :rst:dir:`toctree` 안의 문서 제목들은 참조되는 문서의 제목에서 자동으로 읽혀진다.
+만약 이것이 원하는 것이 아니라면, reST 하이퍼링크와 유사한 syntax(및 Sphinx의
+:ref:`cross-referencing syntax <xref-syntax>`)를 사용하여 제목과 대상을 지정할
+수 있다. 이것은 다음과 같이 사용한다::
 
        .. toctree::
 
-          intro
-          All about strings <strings>
-          datatypes
+                   intro
+         All about strings <strings>
+         datatypes
 
-   The second line above will link to the ``strings`` document, but will use the
-   title "All about strings" instead of the title of the ``strings`` document.
+   위의 두번째 줄은 ``strings`` 문서에 링크 할 것이지만, ``strings`` 문서의 제목 대신에
+"All about strings"라는 제목을 사용한다.
 
-   You can also add external links, by giving an HTTP URL instead of a document
-   name.
+   문서 이름 대신 HTTP 주소를 제공하여 외부 링크를 추가 할 수도 있다.
 
-   **Section numbering**
+   **섹션 번호**
 
-   If you want to have section numbers even in HTML output, give the
-   **toplevel** toctree a ``numbered`` option.  For example::
+   HTML 출력에서도 섹션 번호를 원하면 **toplevel** toctree에 ``numbered`` 옵션을
+지정한다. 예를 들면::
 
       .. toctree::
          :numbered:
 
-         foo
+                  foo
          bar
 
-   Numbering then starts at the heading of ``foo``.  Sub-toctrees are
-   automatically numbered (don't give the ``numbered`` flag to those).
+   번호 매김은 ``foo`` 의 표제에서 시작된다. Sub-toctrees는 자동적으로 번호가 매겨지므로
+``numbered`` 플래그를 사용하면 안된다.
 
-   Numbering up to a specific depth is also possible, by giving the depth as a
-   numeric argument to ``numbered``.
+   ``numbered`` 에 숫자 argument를 지정함으로써 특정한 깊이까지 번호를 매기는
+것도 가능하다.
 
-   **Additional options**
+   **추가 옵션**
 
-   You can use ``caption`` option to provide a toctree caption and you can use
-   ``name`` option to provide implicit target name that can be referenced by
-   using :rst:role:`ref`::
+   ``caption`` 옵션을 사용하면 toctree 설명을 제공 할 수 있다. ``name`` 옵션을 사용하면
+:rst:role:`ref` 에 의헤 참조 될 수 있는 암시적 대상 이름을 제공 할 수 있다::
 
       .. toctree::
          :caption: Table of Contents
          :name: mastertoc
 
-         foo
+                  foo
 
-   If you want only the titles of documents in the tree to show up, not other
-   headings of the same level, you can use the ``titlesonly`` option::
+   같은 레벨의 다른 표제가 아닌, 트리의 문서 제목만 나타나게 하려면 ``titlesonly`` 옵션을
+사용하면 된다::
 
       .. toctree::
          :titlesonly:
 
-         foo
+                  foo
          bar
 
-   You can use "globbing" in toctree directives, by giving the ``glob`` flag
-   option.  All entries are then matched against the list of available
-   documents, and matches are inserted into the list alphabetically.  Example::
+   ``glob`` 플래그 옵션을 줌으로써 toctree directive에 "globbing"을 사용할 수 있다.
+그러면 모든 항목이 사용 가능한 문서 목록과 대조되고, 일치하는 항목들이 사전 순으로
+목록에 삽입된다. 예::
 
       .. toctree::
          :glob:
@@ -101,25 +105,22 @@ reST에는 여러 문서를 서로 연결하거나 문서를 여러 출력 파�
          recipe/*
          *
 
-   This includes first all documents whose names start with ``intro``, then all
-   documents in the ``recipe`` folder, then all remaining documents (except the
-   one containing the directive, of course.) [#]_
+   여기에는 이름이 ``intro`` 로 시작하는 모든 문서들과 ``recipe`` 폴더에 있는 모든 문서들,
+그리고 나머지 모든 문서들(directive를 포함하고있는 문서를 제외하고) 순으로 포함된다.
 
-   The special entry name ``self`` stands for the document containing the
-   toctree directive.  This is useful if you want to generate a "sitemap" from
-   the toctree.
+   특수 항목 이름 ``self`` 는 toctree directive를 포함하는 문서를 가르킨다. 이것은
+toctree에서 "sitemap"을 생성하고자 할 때 유용하다.
 
-   You can use the ``reversed`` flag option to reverse the order of the entries
-   in the list. This can be useful when using the ``glob`` flag option to
-   reverse the ordering of the files.  Example::
+   ``reversed`` 플래그 옵션을 사용하여 목록의 항목 순서를 뒤집을 수 있다. 이것은
+``glob`` 플래그 옵션을 사용하여 파일의 순서를 뒤집을 때 유용 할 수 있다. 예::
 
       .. toctree::
          :glob:
          :reversed:
 
-         recipe/*
+                  recipe/*
 
-   You can also give a "hidden" option to the directive, like this::
+   다음과 같이 지시문에 "hidden" 옵션을 지정할 수도 있다.
 
       .. toctree::
          :hidden:
@@ -127,14 +128,12 @@ reST에는 여러 문서를 서로 연결하거나 문서를 여러 출력 파�
          doc_1
          doc_2
 
-   This will still notify Sphinx of the document hierarchy, but not insert links
-   into the document at the location of the directive -- this makes sense if you
-   intend to insert these links yourself, in a different style, or in the HTML
-   sidebar.
+   이것은 Sphynx에 문서 계층을 알리지만 directive의 위치에 문서의 링크를 삽입하지
+않는다. 이러한 링크를 직접, 다른 스타일 또는 HTML 사이드바에 삽입하려는 경우에
+의미가 있다.
 
-   In cases where you want to have only one top-level toctree and hide all other
-   lower level toctrees you can add the "includehidden" option to the top-level
-   toctree entry::
+   단 하나의 최상위 레벨의 toctree를 가지며 다른 모든 하위 레벨의 toctree를 숨기려면
+최상위 레벨의 toctree 항목에 "includehidden" 옵션을 추가하면 된다.
 
       .. toctree::
          :includehidden:
@@ -142,12 +141,12 @@ reST에는 여러 문서를 서로 연결하거나 문서를 여러 출력 파�
          doc_1
          doc_2
 
-   All other toctree entries can then be eliminated by the "hidden" option.
+   그리고 나서 다른 모든 toctree 항목은 "hidden" 옵션으로 제거 할 수 있다.
 
-   In the end, all documents in the :term:`source directory` (or subdirectories)
-   must occur in some ``toctree`` directive; Sphinx will emit a warning if it
-   finds a file that is not included, because that means that this file will not
-   be reachable through standard navigation.
+   결국, :term:`source directory` (또는 하위 디렉토리들)에 있는 모든 문서들은 적어도
+하나의 ``toctree`` directive 안에 나타나야만 한다. Sphinx는 포함되지 않은 파일을
+발견하면 경고 메시지를 내보낸다. 이는 표준 파일 탐색을 통해 파일에 접근 할 수 없다는
+뜻이기 때문이다.
 
    Use :confval:`exclude_patterns` to explicitly exclude documents or
    directories from building completely.  Use :ref:`the "orphan" metadata
