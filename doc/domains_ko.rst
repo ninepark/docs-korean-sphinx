@@ -7,35 +7,19 @@ Sphinx Domains
 
 .. versionadded:: 1.0
 
-What is a Domain?
------------------
+도메인이란 무엇인가?
+----------------------
 
-Originally, Sphinx was conceived for a single project, the documentation of the
-Python language.  Shortly afterwards, it was made available for everyone as a
-documentation tool, but the documentation of Python modules remained deeply
-built in -- the most fundamental directives, like ``function``, were designed
-for Python objects.  Since Sphinx has become somewhat popular, interest
-developed in using it for many different purposes: C/C++ projects, JavaScript,
-or even reStructuredText markup (like in this documentation).
+원래, 스핑크스는 하나의 프로젝트와 파이썬 문서화를 위해 만들어졌다. 그 후 문서화 tool 로써 모든 사람이 사용 가능하게 만들어졌다. 하지만, 파이썬 모듈의 문서화는 빌트인 상태로 남게 되었고, ``function`` 같은 가장 기초적인 directives는 파이썬 object를 위해 고안되어졌다. 스핑크스가 유명해진 후에, C/C++, 자바스크립트, reStructuredText 마크업 등의 다양한 목적으로 개발되어지고고 있다. 
 
-While this was always possible, it is now much easier to easily support
-documentation of projects using different programming languages or even ones not
-supported by the main Sphinx distribution, by providing a **domain** for every
-such purpose.
+이제는 모든 목적에 맞는 **domain** 을 제공함으로써 다른 프로그래밍 언어를 사용하는 프로젝트 또는 스핑크스에서 지원하지 않는 프로젝트의 문서화를 더 쉽게 지원할 수 있다. 
 
-A domain is a collection of markup (reStructuredText :term:`directive`\ s and
-:term:`role`\ s) to describe and link to :term:`object`\ s belonging together,
-e.g. elements of a programming language.  Directive and role names in a domain
-have names like ``domain:name``, e.g. ``py:function``.  Domains can also provide
-custom indices (like the Python Module Index).
+도메인은 :term:`object`\ 를 설명하고 연결하기 위한 markup(reStructuredText :term:`directive`\ s 과:term:`role`\ s) 컬렉션이다. (예를 들면, 프로그래밍 언어의 요소) 
+도메인에서 directive와 role names는 ``domain:name`` 과 같은 이름을 가진다. (예를 들면, ``py:function``) 도메인은 또한 파이썬 모듈 인덱스 같은 커스텀 인덱스들을 제공할 수 있다.
 
-Having domains means that there are no naming problems when one set of
-documentation wants to refer to e.g. C++ and Python classes.  It also means that
-extensions that support the documentation of whole new languages are much easier
-to write.
+도메인을 가지는 것은 예를 들어 문서화된 한 세트가 C++, 파이썬 클래스를 참조하고자 할 때, 네이밍 문제가 없다는 것을 의미한다. 또한 새로운 언어의 문서화를 지원해주는 확장을 작성하기가 훨씬 더 쉬워졌다는 것을 의미한다.
 
-This section describes what the domains that are included with Sphinx provide.
-The domain API is documented as well, in the section :ref:`domain-api`.
+이 섹션은 스핑크스에 포함된 도메인이 무엇을 제공하는지를 설명해준다. 도메인 API는 문서화가 잘되어있다 :ref:`domain-api`.
 
 
 .. _basic-domain-markup:
@@ -43,55 +27,42 @@ The domain API is documented as well, in the section :ref:`domain-api`.
 Basic Markup
 ------------
 
-Most domains provide a number of :dfn:`object description directives`, used to
-describe specific objects provided by modules.  Each directive requires one or
-more signatures to provide basic information about what is being described, and
-the content should be the description.  The basic version makes entries in the
-general index; if no index entry is desired, you can give the directive option
-flag ``:noindex:``.  An example using a Python domain directive::
+대부분의 도메인은 많은 :dfn:`object description directives` 를 제공하고, 이러한 것들은 모듈에 의해 제공된 구체적인 object를 설명하기 위해 사용되어 진다. 
+각각의 directive는 설명할 것들에 대해 기본적인 정보를 제공하기 위해 하나 이상의 signature를 요구한다. 그리고 내용을 설명해야 한다. 기본 버젼은 일반적인 인덱스 내에서 엔트리를 만든다. 인덱스가 없는 엔트리가 요구되면, directive option flag 인 ``:noindex:`` 를 줄 수 있다. 아래는 파이썬 도메인 directive를 사용한 예이다. ::
 
    .. py:function:: spam(eggs)
                     ham(eggs)
 
       Spam or ham the foo.
 
-This describes the two Python functions ``spam`` and ``ham``.  (Note that when
-signatures become too long, you can break them if you add a backslash to lines
-that are continued in the next line.  Example::
+이는 두 개의 파이썬 함수 ``spam`` 과 ``ham`` 을 설명한다. signature가 너무 길어질 때, 다음 줄까지 이어지는 줄에 backslash를 추가한다면 signature를 깰 수 있다. 예를 들면::
 
    .. py:function:: filterwarnings(action, message='', category=Warning, \
                                    module='', lineno=0, append=False)
       :noindex:
 
-(This example also shows how to use the ``:noindex:`` flag.)
+(이 예는 또한 ``:noindex:`` flag를 사용하는 방법을 보여준다.)
 
-The domains also provide roles that link back to these object descriptions.  For
-example, to link to one of the functions described in the example above, you
-could say ::
+도메인은 또한 이러한 object 설명들로 돌아갈 수 있게 연결해주는 역할을 한다.
+예를 들면, 위의 예에서 설명된 함수중 하나에 연결하기 위해, 이렇게 할 수 있다. ::
 
    The function :py:func:`spam` does a similar thing.
 
-As you can see, both directive and role names contain the domain name and the
-directive name.
+위에서 볼 수 있듯이, directives와 role 이름 모두는 그 도메인 이름과 그 directive 네임을 포함 한다.
 
 .. rubric:: Default Domain
 
-For documentation describing objects from solely one domain, authors will not
-have to state again its name at each directive, role, etc... after
-having specified a default. This can be done either via the config
-value :confval:`primary_domain` or via this directive:
+하나의 도메인으로부터 object를 설명하는 문서화를 위해서, 저자는 각각의 directive, role, 기타 등에 대해서 구체적인 디폴트를 지정한 후에는 다시 명시할 필요가 없다.
+이는 config value :confval:`primary_domain` 또는 directive를 통해 수행할 수 있다.
+
 
 .. rst:directive:: .. default-domain:: name
 
-   Select a new default domain.  While the :confval:`primary_domain` selects a
-   global default, this only has an effect within the same file.
+   새로운 디폴트 도메인을 선택해라. :confval:`primary_domain` 가 전역 디폴트를 선택하는 반면, 이는 같은 파일 내에서만 효과를 가진다.
 
-If no other default is selected, the Python domain (named ``py``) is the default
-one, mostly for compatibility with documentation written for older versions of
-Sphinx.
+다른 디폴트가 선택되지 않는다면, 대부분 스핑크스의 이전 버젼용으로 작성된 문서와의 호환성을 위해 파이썬 도메인 (named ``py``) 가 디폴트가 된다.
 
-Directives and roles that belong to the default domain can be mentioned without
-giving the domain name, i.e. ::
+디폴트 도메인에 속하는 Directives와 roles은 도메인 이름을 주지 않고 언급되어질 수 있다. 예를 들면 ::
 
    .. function:: pyfunc()
 
@@ -103,100 +74,74 @@ giving the domain name, i.e. ::
 Cross-referencing syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-For cross-reference roles provided by domains, the same facilities exist as for
-general cross-references.  See :ref:`xref-syntax`.
+도메인에 의해 제공된 상호 참조 role의 경우, 일반적인 상호 참조를 위해 같은 기능이 존재한다. :ref:`xref-syntax` 를 보자.
 
-In short:
+간략하게 :
 
-* You may supply an explicit title and reference target: ``:role:`title
-  <target>``` will refer to *target*, but the link text will be *title*.
+* 명시적인 제목과 참조 타겟을 제공할 수도 있다. : ``:role:`title
+  <target>``` 는 *target* 을 참조할 것이지만, 연결문은 *title* 일 것이다.
 
-* If you prefix the content with ``!``, no reference/hyperlink will be created.
+* ``!`` 가 있는 컨텐츠를 앞에 놓는다면, 어떠한 참조나 하이퍼링크도 만들어지지 않을 것이다.
 
-* If you prefix the content with ``~``, the link text will only be the last
-  component of the target.  For example, ``:py:meth:`~Queue.Queue.get``` will
-  refer to ``Queue.Queue.get`` but only display ``get`` as the link text.
+* ``~`` 가 있는 컨텐츠를 앞에 놓는다면, 연결문은 단지 타겟의 마지막 구성요소일 것이다. 예를 들면, ``:py:meth:`~Queue.Queue.get`` 는 ``Queue.Queue.get`` 를 참조할 것이지만, 단지 연결문으로서 ``get`` 을 보여준다.
 
 
 The Python Domain
 -----------------
 
-The Python domain (name **py**) provides the following directives for module
-declarations:
+파이썬 도메인(name **py**)은 모듈 선언을 위해 다음의 directives를 제공한다.:
 
 .. rst:directive:: .. py:module:: name
 
-   This directive marks the beginning of the description of a module (or package
-   submodule, in which case the name should be fully qualified, including the
-   package name).  It does not create content (like e.g. :rst:dir:`py:class`
-   does).
+   
+   이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모듈)에 대한 설명을 시작을 나타낸다. 이는 content를 만들지 않는다. (예를 들면 :rst:dir:`py:class` )
 
-   This directive will also cause an entry in the global module index.
+   또한 이 directive는 전역 모듈 인덱스 내에서 인덱스의 원인이 된다.
 
-   The ``platform`` option, if present, is a comma-separated list of the
-   platforms on which the module is available (if it is available on all
-   platforms, the option should be omitted).  The keys are short identifiers;
-   examples that are in use include "IRIX", "Mac", "Windows", and "Unix".  It is
-   important to use a key which has already been used when applicable.
+   ``platform`` 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다.(    모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
+   키들은 짧은 식별자이다. 사용중인 예는 "IRIX", "Mac", "Windows", 와 "Unix"를 포함   한다. 적용이 가능할 때, 이미 사용된 키를 사용하는 것은 중요하다. 
 
-   The ``synopsis`` option should consist of one sentence describing the
-   module's purpose -- it is currently only used in the Global Module Index.
+   ``synopsis`` 옵션은 모듈의 목적을 설명하는 하나의 문장으로 구성 되어야 한다. 이는 현재 전역 모듈 인덱스로 사용되어 진다.
 
-   The ``deprecated`` option can be given (with no value) to mark a module as
-   deprecated; it will be designated as such in various locations then.
+   ``deprecated`` 옵션은 module이 deprecated이라는 것을 나타내기 위해 사용할 수 있다. 그리고 다양한 위치에 지정 되어질 것이다.
 
 
 .. rst:directive:: .. py:currentmodule:: name
 
-   This directive tells Sphinx that the classes, functions etc. documented from
-   here are in the given module (like :rst:dir:`py:module`), but it will not
-   create index entries, an entry in the Global Module Index, or a link target
-   for :rst:role:`py:mod`.  This is helpful in situations where documentation
-   for things in a module is spread over multiple files or sections -- one
-   location has the :rst:dir:`py:module` directive, the others only
-   :rst:dir:`py:currentmodule`.
+   이 directive는 클래스, 함수, 문서화 등이 주어진 모듈에 있는지를 스핑크스에게 알려준다. ( :rst:dir:`py:module`), 그러나 그것은 :rst:role:`py:mod` 에 대한 인덱스 엔트리, 전역 모듈 인덱스 내의 엔트리 도는 연결 타겟을 만들지 않을 것이다. 이는 모듈에 있는 것들에 대한 문서화가 여러 개의 파일 또는 섹션을 통해 확산되는 상황에서 도움이 된다. 하나의 위치는 :rst:dir:`py:module` directive를 가지고, 다른 위치들은 단지
+   :rst:dir:`py:currentmodule` 를 가진다.
 
 
-The following directives are provided for module and class contents:
+다음의 directive들은 모듈과 클래스 컨텐츠를 위해 제공 되어 진다.
 
 .. rst:directive:: .. py:function:: name(parameters)
 
-   Describes a module-level function.  The signature should include the
-   parameters as given in the Python function definition, see :ref:`signatures`.
-   For example::
+   모듈 레벨의 함수를 설명한다. signature는 파이썬 함수 정의에서 주어진 파라미터를 포함 해야한다. :ref:`signatures` 를 보자.
+   예시::
 
       .. py:function:: Timer.repeat(repeat=3, number=1000000)
 
-   For methods you should use :rst:dir:`py:method`.
+   사용해야하는 메소드의 경우 :rst:dir:`py:method`.
 
-   The description normally includes information about the parameters required
-   and how they are used (especially whether mutable objects passed as
-   parameters are modified), side effects, and possible exceptions.
+   일반적으로 설명은 요구되어지는 파라미터, 어떻게 그들이 사용 되어지는지 , 부작용그리고  가능한 예외에 대한 정보를 포함해야 한다. 
 
-   This information can (in any ``py`` directive) optionally be given in a
-   structured form, see :ref:`info-field-lists`.
+   이 정보는 (in any ``py`` directive) 선택적으로 구조화된 형태로 주어진다. :ref:`info-field-lists` 를 봐라.
 
 .. rst:directive:: .. py:data:: name
 
-   Describes global data in a module, including both variables and values used
-   as "defined constants."  Class and object attributes are not documented
-   using this environment.
+   모듈에 있는 "dfined constants"로 사용되는 변수와 값을 모두 포함하는 전역 데이터를 설명한다. 클래스와 object 특징들은 이 환경을 사용해서 문서화 되지 않는다.
 
 .. rst:directive:: .. py:exception:: name
 
-   Describes an exception class.  The signature can, but need not include
-   parentheses with constructor arguments.
+   예외 클래스를 설명한다. Signature는 constructor arguments를 가진 괄호를 포함할 필요는 없다.
 
 .. rst:directive:: .. py:class:: name
                    .. py:class:: name(parameters)
 
-   Describes a class.  The signature can optionally include parentheses with
-   parameters which will be shown as the constructor arguments.  See also
-   :ref:`signatures`.
+   클래스를 설명한다. Signature는 선택적으로 constructor arguments로 보여지는 파라미터를 가진 괄호를 포함할 수 있다.
+   :ref:`signatures` 를 보자.
 
-   Methods and attributes belonging to the class should be placed in this
-   directive's body.  If they are placed outside, the supplied name should
-   contain the class name so that cross-references still work.  Example::
+   클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면, 제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다. 예::
 
       .. py:class:: Foo
 
@@ -208,38 +153,32 @@ The following directives are provided for module and class contents:
 
       .. py:method:: Bar.quux()
 
-   The first way is the preferred one.
+   첫번째 방법이 선호되는 방법이다.
 
 .. rst:directive:: .. py:attribute:: name
 
-   Describes an object data attribute.  The description should include
-   information about the type of the data to be expected and whether it may be
-   changed directly.
+   object 데이터 특성을 설명한다. 설명은 데이터 타입에 대한 정보를 포함해야하고, 데이터가 변경 여부에 대한 정보 또한 포함해야한다.
 
 .. rst:directive:: .. py:method:: name(parameters)
 
-   Describes an object method.  The parameters should not include the ``self``
-   parameter.  The description should include similar information to that
-   described for ``function``.  See also :ref:`signatures` and
-   :ref:`info-field-lists`.
+   Object 메소드를 설명한다. 파라미터는 ``self`` 를 포함하지 않아도 된다. 설명은 ``function``에 대한 설명과 유사한 정보를 포함해야한다.  :ref:`signatures` 와 :ref:`info-field-lists` 를 보자.
 
 .. rst:directive:: .. py:staticmethod:: name(parameters)
 
-   Like :rst:dir:`py:method`, but indicates that the method is a static method.
+   :rst:dir:`py:method` 와 같지만, 메소드가 static 메소드이다.
 
    .. versionadded:: 0.4
 
 .. rst:directive:: .. py:classmethod:: name(parameters)
 
-   Like :rst:dir:`py:method`, but indicates that the method is a class method.
+   :rst:dir:`py:method` 와 같지만, 메소드가 클래스 메소드이다.
 
    .. versionadded:: 0.6
 
 .. rst:directive:: .. py:decorator:: name
                    .. py:decorator:: name(parameters)
 
-   Describes a decorator function.  The signature should represent the usage as
-   a decorator.  For example, given the functions
+   Decorator 함수를 설명한다. Signature는 decorator의 사용법을 표시해야한다. 예를 들면, 주어진 함수에서
 
    .. code-block:: python
 
@@ -253,27 +192,26 @@ The following directives are provided for module and class contents:
               return func
           return decorator
 
-   the descriptions should look like this::
+   설명은 이렇게 보여야 한다.::
 
       .. py:decorator:: removename
 
-         Remove name of the decorated function.
+         Decorated 함수의 이름을 제거해라.
 
       .. py:decorator:: setnewname(name)
 
-         Set name of the decorated function to *name*.
+         Decorated function의 이름을 *name*로 설정한다.
 
    (as opposed to ``.. py:decorator:: removename(func)``.)
 
-   There is no ``py:deco`` role to link to a decorator that is marked up with
-   this directive; rather, use the :rst:role:`py:func` role.
+   이 directive와 함께 나타내는 decorator에 연결하는 ``py:deco`` role이 없다. 오히려 :rst:role:`py:func` role를 사용한다.
 
 .. rst:directive:: .. py:decoratormethod:: name
                    .. py:decoratormethod:: name(signature)
 
-   Same as :rst:dir:`py:decorator`, but for decorators that are methods.
+   :rst:dir:`py:decorator` 와 같지만, 메소드인 decorator를 위한 것이다.
 
-   Refer to a decorator method using the :rst:role:`py:meth` role.
+   :rst:role:`py:meth` role를 사용해서 decorator 메소드를 참조해라.
 
 
 .. _signatures:
@@ -281,22 +219,17 @@ The following directives are provided for module and class contents:
 Python Signatures
 ~~~~~~~~~~~~~~~~~
 
-Signatures of functions, methods and class constructors can be given like they
-would be written in Python.
+함수, 메소드와 클래스 constuctor의 Signatures는 그들이 파이썬에서 쓰여지는 것처럼 주어질 수 있다.
 
-Default values for optional arguments can be given (but if they contain commas,
-they will confuse the signature parser).  Python 3-style argument annotations
-can also be given as well as return type annotations::
+선택적인 argument에 대한 기본값은 주어질 수 있다.(하지만 콤마를 포함한다면, signature parser를 혼동할 것이다. 파이썬의 3가지 스타일의 주석 또한 주어질 것이고 또한 타입 주석을 리턴할 수 있다.::
 
    .. py:function:: compile(source : string, filename, symbol='file') -> ast object
 
-For functions with optional parameters that don't have default values (typically
-functions implemented in C extension modules without keyword argument support),
-you can use brackets to specify the optional parts:
+기본값이 없는 선택적인 파라미터를 가진 함수(일반적으로 키워드 argument 지원없이 C의 확장 모듈에서 구현되어진 함수)에 대해 선택적인 부분을 명확히 하기 위해 괄호를 사용할 수 있다.:
 
    .. py:function:: compile(source[, filename[, symbol]])
 
-It is customary to put the opening bracket before the comma.
+콤마 전에 여는 괄호를 넣는 것이 일반적인 관례이다.
 
 
 .. _info-field-lists:
@@ -306,27 +239,24 @@ Info field lists
 
 .. versionadded:: 0.4
 
-Inside Python object description directives, reST field lists with these fields
+파이썬 object description directives 내에서, 이러한 field list를 가진 reST field lists는 잘 인식되어지고 포매팅 되어진다.
 are recognized and formatted nicely:
 
 * ``param``, ``parameter``, ``arg``, ``argument``, ``key``, ``keyword``:
-  Description of a parameter.
-* ``type``: Type of a parameter.  Creates a link if possible.
-* ``raises``, ``raise``, ``except``, ``exception``: That (and when) a specific
-  exception is raised.
-* ``var``, ``ivar``, ``cvar``: Description of a variable.
-* ``vartype``: Type of a variable.  Creates a link if possible.
-* ``returns``, ``return``: Description of the return value.
-* ``rtype``: Return type.  Creates a link if possible.
+  파라미터에 대한 설명.
+* ``type``: 파라미터의 타입. 가능하면 링크를 만든다.
+* ``raises``, ``raise``, ``except``, ``exception``: 특정 에러가 발생.
+* ``var``, ``ivar``, ``cvar``: 변수에 대한 설명.
+* ``vartype``: 변수의 타입. 가능하면 링크를 만든다.
+* ``returns``, ``return``: 반환값에 대한 설명.
+* ``rtype``: 반환값의 타입. 가능하면 링크를 만든다.
 
 .. note::
 
-   In current release, all ``var``, ``ivar`` and ``cvar`` are represented as "Variable".
-   There is no difference at all.
+   현재 버젼에서, 모든 ``var``, ``ivar`` 와 ``cvar`` 는 "Variable"로 표현된다.
+   그리고 차이점은 전혀 없다.
 
-The field names must consist of one of these keywords and an argument (except
-for ``returns`` and ``rtype``, which do not need an argument).  This is best
-explained by an example::
+The field names은 이러한 키워드 중 하나와 argument(argument를 필요로 하지 않는 ``returns`` 나 ``rtype`` 은 제외)로 구성되어야 한다. 이는 가장 잘 설명된 예시이다.::
 
    .. py:function:: send_message(sender, recipient, message_body, [priority=1])
 
@@ -342,7 +272,7 @@ explained by an example::
       :raises ValueError: if the message_body exceeds 160 characters
       :raises TypeError: if the message_body is not a basestring
 
-This will render like this:
+이는 이렇게 될 것이다.:
 
    .. py:function:: send_message(sender, recipient, message_body, [priority=1])
       :noindex:
@@ -359,16 +289,15 @@ This will render like this:
       :raises ValueError: if the message_body exceeds 160 characters
       :raises TypeError: if the message_body is not a basestring
 
-It is also possible to combine parameter type and description, if the type is a
-single word, like this::
+타입이 하나의 단어라면, 파라미터의 타입과 설명을 결합하는 것 또한 가능하다. 
+::
 
    :param int priority: The priority of the message, can be a number 1-5
 
 
 .. versionadded:: 1.5
 
-Container types such as lists and dictionaries can be linked automatically
-using the following syntax::
+리스트와 딕셔너리 같은 컨테이너 타입은 다음의 syntax를 통해 자동으로 연결될 수 있다.::
 
    :type priorities: list(int)
    :type priorities: list[int]
@@ -377,8 +306,7 @@ using the following syntax::
    :type point: tuple(float, float)
    :type point: tuple[float, float]
 
-Multiple types in a type field will be linked automatically if separated by
-the word "or"::
+타입 필드에서 다중 타입들은 "or"에 의해 구분 되어 진다면, 자동으로 연결될 수 있다.::
 
    :type an_arg: int or None
    :vartype a_var: str or int
@@ -389,81 +317,62 @@ the word "or"::
 Cross-referencing Python objects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following roles refer to objects in modules and are possibly hyperlinked if
-a matching identifier is found:
+다음의 role은 모듈 내에서 object를 참조하고 매칭이 되는 식별자를 발견한다면 하이퍼링크의 기능도 할 수 있다.:
 
 .. rst:role:: py:mod
 
-   Reference a module; a dotted name may be used.  This should also be used for
-   package names.
+   모듈 참조; 점이 있는 이름을 사용할 수도 있다.  이는 또한 패키지 이름으로도 사용되어져야 한다.
 
 .. rst:role:: py:func
 
-   Reference a Python function; dotted names may be used.  The role text needs
-   not include trailing parentheses to enhance readability; they will be added
-   automatically by Sphinx if the :confval:`add_function_parentheses` config
-   value is ``True`` (the default).
+   파이썬 함수 참조; 점이 있는 이름을 사용할 수도 있다. Role 텍스트는 가독성을 향상 시키기 위해 괄호를 추적하는 것을 할 필요가 없다.  :confval:`add_function_parentheses` config value 가 ``True`` (기본값)이라면 스핑크스에 의해 자동적으로 더해질 것이기 때문이다.
 
 .. rst:role:: py:data
 
-   Reference a module-level variable.
+   모듈 레벨의 변수 참조.
 
 .. rst:role:: py:const
 
-   Reference a "defined" constant.  This may be a Python variable that is not
-   intended to be changed.
+   "defined" constant 참조. 이는 변경되지 않는 파이썬 변수이다.
 
 .. rst:role:: py:class
 
-   Reference a class; a dotted name may be used.
+   클래스 참조; 점이 포함된 이름이 사용 가능하다.
 
 .. rst:role:: py:meth
 
-   Reference a method of an object.  The role text can include the type name and
-   the method name; if it occurs within the description of a type, the type name
-   can be omitted.  A dotted name may be used.
+   Object의 메소드 참조.  Role text는 타입 이름과 메소드 이름을 포함할 수 있다. 타입의 설명 중에 발생하는 경우, 타입 이름은 생략되어 질 수 있다. 점이 있는 이름 또한 사용 가능하다.
 
 .. rst:role:: py:attr
 
-   Reference a data attribute of an object.
+   Object의 데이터 특성 참조.
 
 .. rst:role:: py:exc
 
-   Reference an exception.  A dotted name may be used.
+   예외 참조.  점이 있는 이름도 사용 가능하다.
 
 .. rst:role:: py:obj
 
-   Reference an object of unspecified type.  Useful e.g. as the
+   구체화 되지 않은 타입의 object 참조. 유용한 예
    :confval:`default_role`.
 
    .. versionadded:: 0.4
 
-The name enclosed in this markup can include a module name and/or a class name.
-For example, ``:py:func:`filter``` could refer to a function named ``filter`` in
-the current module, or the built-in function of that name.  In contrast,
-``:py:func:`foo.filter``` clearly refers to the ``filter`` function in the
-``foo`` module.
 
-Normally, names in these roles are searched first without any further
-qualification, then with the current module name prepended, then with the
-current module and class name (if any) prepended.  If you prefix the name with a
-dot, this order is reversed.  For example, in the documentation of Python's
-:mod:`codecs` module, ``:py:func:`open``` always refers to the built-in
-function, while ``:py:func:`.open``` refers to :func:`codecs.open`.
+이 마크업에 둘러쌓인 이름은 모듈 이름과 클래스의 이름을 포함할 수 있다.
+예를 들면, ``:py:func:`filter``` 는 현재 모듈 또는 그 이름의 빌트인 함수 내에서 ``filter`` 라는 이름의 함수를 참조할 수 있다. 반대로
+``:py:func:`foo.filter``` 는 명확하게 ``foo`` 모듈 내에 있는 ``filter`` 함수를 참조한다. 
 
-A similar heuristic is used to determine whether the name is an attribute of the
-currently documented class.
+일반적으로, 이러한 role에 있는 이름들은 더 필요한 조건 없이 처음에 검색된다. 그리고 나서, 현재 모듈 이름 앞에 추가된다. 그리고 현재 모듈의 이름이나 클래스의 이름 앞에 추가된다. 만약 점을 포함한 이름을 앞에 둔다면, 이 순서는 반대가 된다. 예를 들면,   파이썬 도큐멘테이션에서 :mod:`codecs` module, ``:py:func:`open```  는 항상 빌트인 함수를 참조하는 반면, ``:py:func:`.open``` 는 :func:`codecs.open` 를 참조한다.
 
-Also, if the name is prefixed with a dot, and no exact match is found, the
-target is taken as a suffix and all object names with that suffix are
-searched.  For example, ``:py:meth:`.TarFile.close``` references the
-``tarfile.TarFile.close()`` function, even if the current module is not
-``tarfile``.  Since this can get ambiguous, if there is more than one possible
-match, you will get a warning from Sphinx.
+유사한 휴리스틱은 이름이 현재 문서화된 클래스의 특성인지 아닌지 여부를 결정하는데 사용된다.
 
-Note that you can combine the ``~`` and ``.`` prefixes:
-``:py:meth:`~.TarFile.close``` will reference the ``tarfile.TarFile.close()``
-method, but the visible link caption will only be ``close()``.
+또한, 점이 이름 앞에 오고, 정확한 짝을 찾지 못하는 경우, 타겟은 접미사처럼 취급되어 지고 접미사를 가진 모든 object의 이름이 검색되어진다. 예를 들면 현재 모듈이 ``tarfile`` 이 아닌데 ``:py:meth:`.TarFile.close``` 가
+``tarfile.TarFile.close()`` 함수를 참조한다.  이는 모호함을 발생시키기 때문에, 하나 이상의 가능한 짝이 있다면, 스핑크스로가 경고를 보여줄 것이다.
+
+``~`` 와 ``.`` 를 접두사로 결합할 수 있다.:
+``:py:meth:`~.TarFile.close``` 는  ``tarfile.TarFile.close()``
+메소드를 참조할 것이다. 하지만 눈에 보이는 링크 캡션은 단지 ``close()`` 일 것이다.
 
 
 .. _c-domain:
@@ -471,19 +380,17 @@ method, but the visible link caption will only be ``close()``.
 The C Domain
 ------------
 
-The C domain (name **c**) is suited for documentation of C API.
+C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
 
 .. rst:directive:: .. c:function:: type name(signature)
 
-   Describes a C function. The signature should be given as in C, e.g.::
+   C 함수를 설명한다. Signature는 C에서 제공되어진다. , 예::
 
       .. c:function:: PyObject* PyType_GenericAlloc(PyTypeObject *type, Py_ssize_t nitems)
 
-   This is also used to describe function-like preprocessor macros.  The names
-   of the arguments should be given so they may be used in the description.
+   이는 또한 Preprocessor macros 같은 함수를 설명한다. Argument의 이름은 그들이 설명 내에서 사용되어지게 하기 위해서 주어진다.
 
-   Note that you don't have to backslash-escape asterisks in the signature, as
-   it is not parsed by the reST inliner.
+   reST 인라이너에 의해 parse되지 않기 때문에, Signature에서 백슬래시 이스케이프 asterisk를 사용하지 마라. 
 
 .. rst:directive:: .. c:member:: type name
 
@@ -491,27 +398,21 @@ The C domain (name **c**) is suited for documentation of C API.
 
       .. c:member:: PyObject* PyTypeObject.tp_bases
 
-   The text of the description should include the range of values allowed, how
-   the value should be interpreted, and whether the value can be changed.
-   References to structure members in text should use the ``member`` role.
+   설명하는 텍스트는 허락되어진 값의 범위와, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다. 텍스트에서 구조 멤버에 대한 참조는 ``member`` role을 사용해야한다.
 
 .. rst:directive:: .. c:macro:: name
 
-   Describes a "simple" C macro.  Simple macros are macros which are used for
-   code expansion, but which do not take arguments so cannot be described as
-   functions.  This is a simple C-language ``#define``.  Examples of its use in
-   the Python documentation include :c:macro:`PyObject_HEAD` and
-   :c:macro:`Py_BEGIN_ALLOW_THREADS`.
+   간단한 C 매크로를 설명한다.  간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다. ``#define`` 는 간단한 C언어이다. 파이썬 문서에서 그것의 사용에 대한 예는 :c:macro:`PyObject_HEAD` 과
+   :c:macro:`Py_BEGIN_ALLOW_THREADS` 를 포함한다.
 
 .. rst:directive:: .. c:type:: name
 
-   Describes a C type (whether defined by a typedef or struct). The signature
-   should just be the type name.
+   C 타입을 설명한다.(typedef 또는 struct에 의해 정의 되어 졌는지 여부). Signature
+   는 타입 이름이어야 한다.
 
 .. rst:directive:: .. c:var:: type name
 
-   Describes a global C variable.  The signature should include the type, such
-   as::
+   전역 C 변수를 설명한다.  Signature는 다음과 같은 타입을 포함해야한다.::
 
       .. c:var:: PyObject* PyClass_Type
 
@@ -521,59 +422,57 @@ The C domain (name **c**) is suited for documentation of C API.
 Cross-referencing C constructs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following roles create cross-references to C-language constructs if they are
-defined in the documentation:
+다음의 role은 문서에서 정의되어졌다면,  C 언어 구조에서 상호 참조를 생성한다.:
 
 .. rst:role:: c:data
 
-   Reference a C-language variable.
+   C 언어 변수 참조.
 
 .. rst:role:: c:func
 
-   Reference a C-language function. Should include trailing parentheses.
+   C 언어 함수 참조. 괄호를 따라가는 것을 포함한다.
 
 .. rst:role:: c:macro
 
-   Reference a "simple" C macro, as defined above.
+   간단한 C 매크로 참조.
 
 .. rst:role:: c:type
 
-   Reference a C-language type.
+   C 언어 타입 참조.
 
 .. _cpp-domain:
 
 The C++ Domain
 --------------
 
-The C++ domain (name **cpp**) supports documenting C++ projects.
+C++ 도메인 (name **cpp**)은 C++ 프로젝트를 문서화 하는 것을 지원한다.
 
 
 Directives
 ~~~~~~~~~~
 
-The following directives are available. All declarations can start with
-a visibility statement (``public``, ``private`` or ``protected``).
+다음의 directive가 가능하다. 모든 선언은 ``public``, ``private`` 또는 ``protected``와 함께 시작할 수 있다.
 
 .. rst:directive:: .. cpp:class:: class specifier
 
-   Describe a class/struct, possibly with specification of inheritance, e.g.,::
+   클래스와 구조를 설명한다.(가능하면 상속에 대한 설명도 함께) 예,::
 
       .. cpp:class:: MyClass : public MyBase, MyOtherBase
 
-   The class can be directly declared inside a nested scope, e.g.,::
+   클래스는 중첩된 범위 안에서 직접적으로 선언된다. 예,::
 
       .. cpp:class:: OuterScope::MyClass : public MyBase, MyOtherBase
 
-   A class template can be declared::
+   클래스 템플릿이 선언되어 질 수 있다.::
 
       .. cpp:class:: template<typename T, std::size_t N> std::array
 
-   or with a line break::
+   줄 바꿈과 함께 사용할 수도 있다.::
 
       .. cpp:class:: template<typename T, std::size_t N> \
                      std::array
 
-   Full and partial template specialisations can be declared::
+   완전한 템플릿과 부분적인 템플릿 전문화가 선언되어 질 수 있다.::
 
       .. cpp:class:: template<> \
                       std::array<bool, 256>
@@ -584,38 +483,38 @@ a visibility statement (``public``, ``private`` or ``protected``).
 
 .. rst:directive:: .. cpp:function:: (member) function prototype
 
-   Describe a function or member function, e.g.,::
+   함수 또는 멤버 함수를 설명한다. 예,::
 
       .. cpp:function:: bool myMethod(int arg1, std::string arg2)
 
-         A function with parameters and types.
+         파라미터와 타입을 가진 함수.
 
       .. cpp:function:: bool myMethod(int, double)
 
-         A function with unnamed parameters.
+         이름이 없는 파라미터를 가진 함수.
 
       .. cpp:function:: const T &MyClass::operator[](std::size_t i) const
 
-         An overload for the indexing operator.
+         인덱싱 오퍼레이터에 대한 오버로드.
 
       .. cpp:function:: operator bool() const
 
-         A casting operator.
+         캐스팅 오퍼레이터.
 
       .. cpp:function:: constexpr void foo(std::string &bar[2]) noexcept
 
-         A constexpr function.
+         constexpr 함수.
 
       .. cpp:function:: MyClass::MyClass(const MyClass&) = default
 
-         A copy constructor with default implementation.
+         디폴트 구현의 생성자 복사.
 
-   Function templates can also be described::
+   함수 템플릿 또한 설명되어질 수 있다.::
 
       .. cpp:function:: template<typename U> \
                         void print(U &&u)
 
-   and function template specialisations::
+   함수 템플릿 전문화::
 
       .. cpp:function:: template<> \
                         void print(int i)
@@ -624,7 +523,7 @@ a visibility statement (``public``, ``private`` or ``protected``).
 .. rst:directive:: .. cpp:member:: (member) variable declaration
                    .. cpp:var:: (member) variable declaration
 
-   Describe a variable or member variable, e.g.,::
+   변수와 멤버 변수를 설명한다. 예,::
 
       .. cpp:member:: std::string MyClass::myMember
 
@@ -632,7 +531,7 @@ a visibility statement (``public``, ``private`` or ``protected``).
 
       .. cpp:member:: int a = 42
 
-   Variable templates can also be described::
+   변수 템플릿 또한 설명되어 질 수 있다.::
 
       .. cpp:member:: template<class T> \
                       constexpr T pi = T(3.1415926535897932385)
@@ -642,39 +541,39 @@ a visibility statement (``public``, ``private`` or ``protected``).
                    .. cpp:type:: name
                    .. cpp:type:: type alias declaration
 
-   Describe a type as in a typedef declaration, a type alias declaration,
-   or simply the name of a type with unspecified type, e.g.,::
+   typedef 선언, type 별명 선언,
+   또는 단순히 지정되지 않은 타입의 타입 이름으로 타입을 설명한다. e.g.,::
 
       .. cpp:type:: std::vector<int> MyList
 
-         A typedef-like declaration of a type.
+         typedef 방식의 타입 선언
 
       .. cpp:type:: MyContainer::const_iterator
 
-         Declaration of a type alias with unspecified type.
+         지정되지 않은 타입의 타입 별명 선언.
 
       .. cpp:type:: MyType = std::unordered_map<int, std::string>
 
-         Declaration of a type alias.
+         타입 별명 선언.
 
-   A type alias can also be templated::
+   타입 별명 또한 템플릿화 되어 질 수 있다.::
 
       .. cpp:type:: template<typename T> \
                     MyContainer = std::vector<T>
 
-   The example are rendered as follows.
+   다음 예시는 렌더링이 되어 진다.
 
    .. cpp:type:: std::vector<int> MyList
 
-      A typedef-like declaration of a type.
+      typedef 방식의 타입 선언.
 
    .. cpp:type:: MyContainer::const_iterator
 
-      Declaration of a type alias with unspecified type.
+      지정되지 않은 타입의 타입 별명 선언.
 
    .. cpp:type:: MyType = std::unordered_map<int, std::string>
 
-      Declaration of a type alias.
+      타입 별명 선언.
 
    .. cpp:type:: template<typename T> \
                  MyContainer = std::vector<T>
@@ -684,31 +583,31 @@ a visibility statement (``public``, ``private`` or ``protected``).
                    .. cpp:enum-struct:: scoped enum declaration
                    .. cpp:enum-class:: scoped enum declaration
 
-   Describe a (scoped) enum, possibly with the underlying type specified.
-   Any enumerators declared inside an unscoped enum will be declared both in the enum scope
-   and in the parent scope.
-   Examples::
+   가능하면 지정된 기본 타입과 함께 (scoped) 열거를 설명한다.
+   범위가 지정되지 않은 열거 내에서 선언된 enumerator는 enum scope와 parent scope 양 쪽 모두에서 선언된다.
+
+   예시::
 
       .. cpp:enum:: MyEnum
 
-         An unscoped enum.
+         범위가 지정되지 않은 열거.
 
       .. cpp:enum:: MySpecificEnum : long
 
-         An unscoped enum with specified underlying type.
+         지정된 기본 타입이 있고 범위가 지정되지 않은 열거.
 
       .. cpp:enum-class:: MyScopedEnum
 
-         A scoped enum.
+         범위가 지정된 열거.
 
       .. cpp:enum-struct:: protected MyScopedVisibilityEnum : std::underlying_type<MySpecificEnum>::type
 
-         A scoped enum with non-default visibility, and with a specified underlying type.
+         지정된 기본 타입이 있고 디폴트가 아닌 visibility가 있으며 범위가 지정된 열거.
 
 .. rst:directive:: .. cpp:enumerator:: name
                    .. cpp:enumerator:: name = constant
 
-   Describe an enumerator, optionally with its value defined, e.g.,::
+   임의로 정의된 값을 가진 Enumerator를 설명한다. 예,::
 
       .. cpp:enumerator:: MyEnum::myEnumerator
 
@@ -718,16 +617,14 @@ a visibility statement (``public``, ``private`` or ``protected``).
 .. rst:directive:: .. cpp:concept:: template-parameter-list name
                    .. cpp:concept:: template-parameter-list name()
 
-   .. warning:: The support for concepts is experimental. It is based on the
-      Concepts Technical Specification, and the features may change as the TS evolves.
+   .. 경고:: 컨셉에 대한 지원은 실험적이고,
+      Concepts Technical Specification에 기초를 두고 있다. 특징은 TS의 발전에 따라 변할 수 있다.
 
-   Describe a variable concept or a function concept. Both must have exactly 1
-   template parameter list. The name may be a nested name. Examples::
+   변수 컨셉과 함수 컨셉을 설명한다. 둘 다 정확하게 하나의 템플릿 파라미터 리스트를 가져야 한다. 이름은 중첩된 이름이어도 된다. 예시::
 
       .. cpp:concept:: template<typename It> std::Iterator
 
-         Proxy to an element of a notional sequence that can be compared,
-         indirected, or incremented.
+         비교되거나 증가될 수 있는 개념적인 시퀀스의 요소에 대한 Proxy.
 
          **Notation**
 
@@ -742,15 +639,13 @@ a visibility statement (``public``, ``private`` or ``protected``).
 
       .. cpp:concept:: template<typename Cont> std::Container()
 
-         Holder of elements, to which it can provide access via
-         :cpp:concept:`Iterator` s.
+         :cpp:concept:`Iterator` s 를 통해 접근할 수 있는 요소의 Holder
 
-   They will render as follows:
+   다음의 예시는 렌더링 되어 진다.:
 
    .. cpp:concept:: template<typename It> std::Iterator
 
-      Proxy to an element of a notional sequence that can be compared,
-      indirected, or incremented.
+      비교되거나 증가될 수 있는 개념적인 시퀀스의 요소에 대한 Proxy.
 
       **Notation**
 
@@ -765,13 +660,12 @@ a visibility statement (``public``, ``private`` or ``protected``).
 
    .. cpp:concept:: template<typename Cont> std::Container()
 
-      Holder of elements, to which it can provide access via
-      :cpp:concept:`Iterator` s.
+      :cpp:concept:`Iterator` s 를 통해 접근할 수 있는 요소의 Holder.
 
 Options
 .......
 
-Some directives support options:
+몇몇의 directive는 옵션을 지원한다.:
 
 - ``:noindex:``, see :ref:`basic-domain-markup`.
 - ``:tparam-line-spec:``, for templated declarations.
