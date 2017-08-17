@@ -136,15 +136,13 @@ Sphinx는 :ref:`domains` 에서 설명 된 것처럼 모든 객체(함수, 클�
 
 .. rst:role:: index
 
-   While the :rst:dir:`index` directive is a block-level markup and links to the
-   beginning of the next paragraph, there is also a corresponding role that sets
-   the link target directly where it is used.
+   :rst:dir:`index` directive는 다음 문단의 시작 부분에 연결되는 블록 레벨의 마크업이다.
+링크 대상이 사용되는 곳에 직접 링크 대상을 설정하는 역할도 있다.
 
-   The content of the role can be a simple phrase, which is then kept in the
-   text and used as an index entry.  It can also be a combination of text and
-   index entry, styled like with explicit targets of cross-references.  In that
-   case, the "target" part can be a full entry as described for the directive
-   above.  For example::
+   역할의 내용은 텍스트로 유지되고 색인 항목으로 사용되는 간단한 구절일 수 있다.
+또한 cross-reference의 명시적인 대상과 같은 스타일의 텍스트와 색인 항목의 조합일
+수도 있다. 이 경우 "target" 부분은 위의 directive에 대해 설명한대로 완전한 항목이
+될 수도 있다. 예를 들면 :
 
       This is a normal reST :index:`paragraph` that contains several
       :index:`index entries <pair: index; entry>`.
@@ -154,37 +152,33 @@ Sphinx는 :ref:`domains` 에서 설명 된 것처럼 모든 객체(함수, 클�
 
 .. _tags:
 
-Including content based on tags
--------------------------------
+태그를 기반으로 한 내용 포함
+-----------------------------------
 
 .. rst:directive:: .. only:: <expression>
 
-   Include the content of the directive only if the *expression* is true.  The
-   expression should consist of tags, like this::
+   *표현식* 이 true인 경우에만 directive의 내용을 포함한다. 표현식은 다음과 같이
+태그로 구성되어야 한다.
 
       .. only:: html and draft
 
-   Undefined tags are false, defined tags (via the ``-t`` command-line option or
-   within :file:`conf.py`, see :ref:`here <conf-tags>`) are true.  Boolean
-   expressions, also using parentheses (like ``html and (latex or draft)``) are
-   supported.
+   정의되지 않은 태그는 false, 정의 된 태그(``-t`` command-line 옵션을 통해 또는
+:file:`conf.py` 안에서 설정. :see:ref:`here <conf-tags>` 참조)는 true로 간주된다.
+``html and (latex or draft)`` 와 같은 괄호를 사용하는 boolean 표현식도 지원된다.
 
-   The *format* and the *name* of the current builder (``html``, ``latex`` or
-   ``text``) are always set as a tag [#]_.  To make the distinction between
-   format and name explicit, they are also added with the prefix ``format_`` and
-   ``builder_``, e.g. the epub builder defines the tags  ``html``, ``epub``,
-   ``format_html`` and ``builder_epub``.
+   현재 빌더(``html``, ``latex`` 또는 ``text``)의 *형식* 과 *이름* 은 항상 태그 [#]_ 로
+설정된다. 형식과 이름을 구별하기 위해서 접두사 ``format_`` 과 ``builder_`` 이
+추가된다. 예를 들어, epub 빌더는 ``html``, ``epub``, ``format_html`` 과 ``builder_epub``
+태그를 설정한다.
 
-   These standard tags are set *after* the configuration file is read, so they
-   are not available there.
+   이 표준 태그는 설정 파일을 읽은 *후에* 설정되므로 설정 파일에서 사용 할 수 없다.
 
-   All tags must follow the standard Python identifier syntax as set out in
-   the `Identifiers and keywords
-   <https://docs.python.org/2/reference/lexical_analysis.html#identifiers>`_
-   documentation.  That is, a tag expression may only consist of tags that
-   conform to the syntax of Python variables.  In ASCII, this consists of the
-   uppercase and lowercase letters ``A`` through ``Z``, the underscore ``_``
-   and, except for the first character, the digits ``0`` through ``9``.
+   모든 태그는 `Identifiers and keywords
+<https://docs.python.org/2/reference/lexical_analysis.html#identifiers>`
+에 설정된 표준 Python identifier syntax를 따라야 한다. 즉, 태그 표현식은 Python
+variable의 syntax를 따르는 태그로만 구성 될 수 있다. ASCII에서는 ``A`` 부터 ``Z``
+까지의 대문자와 소문자, 밑줄 ``_``, 그리고 첫 번째 문자를 제외하고 ``0`` 부터 ``9``
+까지의 숫자로 구성된다.
 
    .. versionadded:: 0.6
    .. versionchanged:: 1.2
@@ -192,40 +186,38 @@ Including content based on tags
 
    .. warning::
 
-      This directive is designed to control only content of document.  It could
-      not control sections, labels and so on.
+      이 directive는 문서의 내용 만 제어하도록 설계되었다. 섹션, 라벨 등은 제어 할 수
+없다.
 
 
 Tables
-------
+----------
 
-Use :ref:`reStructuredText tables <rst-tables>`, i.e. either
+:ref:`reStructuredText tables <rst-tables>` 를 사용하면 된다. 즉, 다음중 하나를
+사용한다.
 
 - grid table syntax (:duref:`ref <grid-tables>`),
 - simple table syntax (:duref:`ref <simple-tables>`),
 - :dudir:`csv-table` syntax,
-- or :dudir:`list-table` syntax.
+- :dudir:`list-table` syntax.
 
-The :dudir:`table` directive serves as optional wrapper of the *grid* and
-*simple* syntaxes.
+:dudir:`table` directive는 *grid* 와 *simple* syntaxe의 래퍼 역할을 한다.
 
-They work fine in
-HTML output, however there are some gotchas when using tables in LaTeX: the
-column width is hard to determine correctly automatically.  For this reason, the
-following directive exists:
+HTML 출력에서는 잘 작동하지만, LaTeX에서 테이블을 사용할 때에는 몇 가지 문제가 있다.
+예를 들면 column width를 자동으로 올바르게 판별하질 못한다. 이러한 이유로 다음
+directive가 존재한다.
 
 .. rst:directive:: .. tabularcolumns:: column spec
 
-   This directive gives a "column spec" for the next table occurring in the
-   source file.  The spec is the second argument to the LaTeX ``tabulary``
-   package's environment (which Sphinx uses to translate tables).  It can have
-   values like ::
+   이 directive는 소스 파일에서 나타나는 다음 테이블의 "column spec" 제공한다.
+여기서 spec은 Sphinx가 테이블 변환에 사용하는 LaTeX ``tabulary`` 패키지 환경에서
+사용하는 두번째 argument이다. 다음과 같은 값을 가질 수 있다::
 
       |l|l|l|
 
-   which means three left-adjusted, nonbreaking columns.  For columns with
-   longer text that should automatically be broken, use either the standard
-   ``p{width}`` construct, or tabulary's automatic specifiers:
+   이것은 left-adjuest된 세 개의 분할되지 않는 열을 의미한다. 긴 텍스트가 있어
+자동으로 분할되어야 하는 경우, 표준 ``p{width}`` 를 사용하거나 tabulary의 자동
+specifier를 사용한다:
 
    +-----+------------------------------------------+
    |``L``| flush left column with automatic width   |
@@ -237,11 +229,10 @@ following directive exists:
    |``J``| justified column with automatic width    |
    +-----+------------------------------------------+
 
-   The automatic widths of the ``LRCJ`` columns are attributed by ``tabulary``
-   in proportion to the observed shares in a first pass where the table cells
-   are rendered at their natural "horizontal" widths.
+   ``LRCJ`` column의 자동 너비는 ``tabulary`` 에 의해 셀의 자연스러운 "가로" 너비로 렌더링
+되도록 설정된다.
 
-   By default, Sphinx uses a table layout with ``J`` for every column.
+   디폴트로 Sphinx는 테이블 레이아웃에서 모든 column에 ``J`` 를 사용한다.
 
    .. versionadded:: 0.3
 
@@ -252,57 +243,50 @@ following directive exists:
 
    .. hint::
 
-      Sphinx actually uses ``T`` specifier having done ``\newcolumntype{T}{J}``.
-      To revert to previous default, insert ``\newcolumntype{T}{L}`` in the
-      LaTeX preamble (see :confval:`latex_elements`).
+      Sphinx는 실제로 ``T`` specifier 가 들어간 ``\newcolumntype{T}{J}`` 를 사용한다.
+이전 디폴트 값으로 되돌리려면 LaTeX preamble에 ``\newcolumntype{T}{L}``
+를 삽입하면 된다. (:confval:`latex_elements` 참조)
 
-      A frequent issue with tabulary is that columns with little contents are
-      "squeezed". The minimal column width is a tabulary parameter called
-      ``\tymin``. You may set it globally in the LaTeX preamble via
-      ``\setlength{\tymin}{40pt}`` for example.
+      Tabulary에서 자주 발생하는 문제로는, 내용이 거의 없는 column들은
+"압축"되어 진다는 것이다. 최소 column width는 ``\tymin`` 이라고
+불리는 tabulary parameter이다. 이는 LaTeX preamble에서
+``\setlength{\tymin}{40pt}`` 식으로 쓰는 걸로 global하게 설정 가능하다.
 
-      Else, use the :rst:dir:`tabularcolumns` directive with an explicit
-      ``p{40pt}`` (for example) for that column. You may use also ``l``
-      specifier but this makes the task of setting column widths more difficult
-      if some merged cell intersects that column.
+      그렇지 않으면, 그 column에 :rst:dir:`tabularcolumns` directive에 ``p{40pt}`` 식으로
+직접 명시하면 된다. ``l`` specifier를 사용할 수도 있지만, 만약 병합 된 셀이이 column과
+겹치게 된다면, column width를 설정하는 작업이 더 어려워진다.
 
    .. warning::
 
-      Tables with more than 30 rows are rendered using ``longtable``, not
-      ``tabulary``, in order to allow pagebreaks. The ``L``, ``R``, ... specifiers
-      do not work for these tables.
+      30개 이상의 행을 가진 테이블은 ``tabulary`` 를 사용하지 않고 ``longtable`` 을
+이용해서 렌더링 된다. 이는 페이지 분할을 위해서이다. 이 경우에는 ``L``, ``R``, 등의
+specifier는 작동하지 않는다.
 
-      Tables that contain list-like elements such as object descriptions,
-      blockquotes or any kind of lists cannot be set out of the box with
-      ``tabulary``. They are therefore set with the standard LaTeX ``tabular`` (or
-      ``longtable``) environment if you don't give a ``tabularcolumns`` directive.
-      If you do, the table will be set with ``tabulary`` but you must use the
-      ``p{width}`` construct (or Sphinx's ``\X`` and ``\Y`` specifiers described
-      below) for the columns containing these elements.
+      객체 설명, 블록 인용, 목록 등의 목록과 같은 요소를 포함하는 테이블은 ``tabulary`` 로
+바로 사용 할 수 없다. 따라서 이 경우에는 ``tabularcolumns`` directive를 제공하지 않는다면
+표준 LaTeX ``tabular`` (또는 ``longtable``) 환경으로 설정 된다. 만약 ``tabularcolumns``
+directive를 사용다면, 테이블은 ``tabulary`` 로 설정 될 것이지만, 이 경우 이러한 요소를
+포함한 column에는 ``p{width}`` construct (또는 아래에 기술된 스핑크스의 ``\X``
+와 ``\Y`` specifier)를 사용해야 한다.
 
-      Literal blocks do not work with ``tabulary`` at all, so tables containing
-      a literal block are always set with ``tabular``. The verbatim environment
-      used for literal blocks only works in ``p{width}`` (and ``\X`` or ``\Y``)
-      columns, hence Sphinx generates such column specs for tables containing
-      literal blocks.
+      Literal block은 ``tabulary`` 로는 사용할 수 없다. 따라서 literal block을 포함하는
+테이블은 항상 ``tabular`` 로 설정되어야 한다. Literal block에 사용되는 verbatim
+환경은 ``p{width}`` (및 ``\X`` 또는 ``\Y``) column에서만 작동하므로 Sphinx는
+literal block이 포함 된 테이블에 대해 이러한 column spec을 생성한다.
 
-   Since Sphinx 1.5, the ``\X{a}{b}`` specifier is used (there *is* a backslash
-   in the specifier letter). It is like ``p{width}`` with the width set to a
-   fraction ``a/b`` of the current line width. You can use it in the
-   :rst:dir:`tabularcolumns` (it is not a problem if some LaTeX macro is also
-   called ``\X``.)
+   Sphinx 1.5부터는 ``\X{a}{b}`` specifier가 사용된다 (specifier에 *백 슬래시* 가 있다).
+이것은 ``p{width}`` 와 비슷하지만 현재 행의 너비의 비율 ``a/b`` 로 설정된다.
+:rst:dir:`tabularcolumns` 에서도 사용 가능하다 (일부 LaTeX 매크로가 ``\X`` 라고
+사용 되는 경우에도 문제가 되지 않는다).
 
-   It is *not* needed for ``b`` to be the total number of columns, nor for the
-   sum of the fractions of the ``\X`` specifiers to add  up to one. For example
-   ``|\X{2}{5}|\X{1}{5}|\X{1}{5}|`` is legitimate and the table will occupy
-   80% of the line width, the first of its three columns having the same width
-   as the sum  of the next two.
+   ``b`` 는 총 column 수일 필요는 없으며, ``\X`` specifier의 분수 합계가 1이 되어야
+하는 것도 아니다. 예를 들어 ``|\X{2}{5}|\X{1}{5}|\X{1}{5}|`` 는 허용되는 표현이며
+표는 line width의 80%를 차지하게 된다.
 
-   This is used by the ``:widths:`` option of the :dudir:`table` directive.
+   이것은 :dudir:`table` directive의 ``:widths:`` 옵션에 의해 사용된다.
 
-   Since Sphinx 1.6, there is also the ``\Y{f}`` specifier which admits a
-   decimal argument, such has ``\Y{0.15}``: this would have the same effect as
-   ``\X{3}{20}``.
+   Sphinx 1.6 이후부터는 ``\Y{0.15}`` 와 같이 소수 표현을 허용하는 ``\Y{f}`` specifier도
+있다. 이것은 ``\X{3}{20}`` 와 같은 효과를 가진다.
 
    .. versionchanged:: 1.6
 
@@ -315,14 +299,13 @@ following directive exists:
 Math
 ----
 
-See :ref:`math-support`.
+:ref:`math-support` 참조.
 
 .. rubric:: Footnotes
 
-.. [#] For most builders name and format are the same. At the moment only
-       builders derived from the html builder distinguish between the builder
-       format and the builder name.
+.. [#] 대부분의 빌더는 이름과 형식이 동일하다. 현재에는 html 빌더에서 파생 된 빌더만
+빌더 형식과 빌더 이름을 구별한다.
 
-       Note that the current builder tag is not available in ``conf.py``, it is
-       only available after the builder is initialized.
+       현재 빌더 태그는 ``conf.py`` 에서 사용할 수 없으며, 빌더가 초기화 된 후에만
+​​사용할 수 있다.
 
