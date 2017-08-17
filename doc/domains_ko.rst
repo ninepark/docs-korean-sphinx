@@ -94,12 +94,14 @@ The Python Domain
 .. rst:directive:: .. py:module:: name
 
    
-   이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모듈)에 대한 설명을 시작을 나타낸다. 이는 content를 만들지 않는다. (예를 들면 :rst:dir:`py:class` )
+   이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모    듈)에 대한 설명을 시작을 나타낸다.
+   이는 content를 만들지 않는다. (예를 들면 :rst:dir:`py:class` )
 
    또한 이 directive는 전역 모듈 인덱스 내에서 인덱스의 원인이 된다.
 
-   ``platform`` 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다.(    모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
-   키들은 짧은 식별자이다. 사용중인 예는 "IRIX", "Mac", "Windows", 와 "Unix"를 포함   한다. 적용이 가능할 때, 이미 사용된 키를 사용하는 것은 중요하다. 
+   ``platform`` 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다   .(모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
+   키들은 짧은 식별자이다. 사용중인 예는 "IRIX", "Mac", "Windows", 와 "Unix"를     포함한다. 적용이 가능할 때,
+   이미 사용된 키를 사용하는 것은 중요하다. 
 
    ``synopsis`` 옵션은 모듈의 목적을 설명하는 하나의 문장으로 구성 되어야 한다. 이는 현재 전역 모듈 인덱스로 사용되어 진다.
 
@@ -108,7 +110,10 @@ The Python Domain
 
 .. rst:directive:: .. py:currentmodule:: name
 
-   이 directive는 클래스, 함수, 문서화 등이 주어진 모듈에 있는지를 스핑크스에게 알려준다. ( :rst:dir:`py:module`), 그러나 그것은 :rst:role:`py:mod` 에 대한 인덱스 엔트리, 전역 모듈 인덱스 내의 엔트리 도는 연결 타겟을 만들지 않을 것이다. 이는 모듈에 있는 것들에 대한 문서화가 여러 개의 파일 또는 섹션을 통해 확산되는 상황에서 도움이 된다. 하나의 위치는 :rst:dir:`py:module` directive를 가지고, 다른 위치들은 단지
+   이 directive는 클래스, 함수, 문서화 등이 주어진 모듈에 있는지를 스핑크스에게 알려준다. ( :rst:dir:`py:module`)
+   그러나 그것은 :rst:role:`py:mod` 에 대한 인덱스 엔트리, 전역 모듈 인덱스 내의 엔트리 도는 연결 타겟을 만들지 않을 것이다. 
+   이는 모듈에 있는 것들에 대한 문서화가 여러 개의 파일 또는 섹션을 통해 확산되는 상황에서 도움이 된다. 
+   하나의 위치는 :rst:dir:`py:module` directive를 가지고, 다른 위치들은 단지
    :rst:dir:`py:currentmodule` 를 가진다.
 
 
@@ -129,7 +134,8 @@ The Python Domain
 
 .. rst:directive:: .. py:data:: name
 
-   모듈에 있는 "dfined constants"로 사용되는 변수와 값을 모두 포함하는 전역 데이터를 설명한다. 클래스와 object 특징들은 이 환경을 사용해서 문서화 되지 않는다.
+   모듈에 있는 "defined constants"로 사용되는 변수와 값을 모두 포함하는 전역 데이터를 설명한다.
+    클래스와 object 특징들은 이 환경을 사용해서 문서화 되지 않는다.
 
 .. rst:directive:: .. py:exception:: name
 
@@ -141,7 +147,8 @@ The Python Domain
    클래스를 설명한다. Signature는 선택적으로 constructor arguments로 보여지는 파라미터를 가진 괄호를 포함할 수 있다.
    :ref:`signatures` 를 보자.
 
-   클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면, 제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다. 예::
+   클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면,
+    제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다. 예::
 
       .. py:class:: Foo
 
@@ -325,7 +332,8 @@ Cross-referencing Python objects
 
 .. rst:role:: py:func
 
-   파이썬 함수 참조; 점이 있는 이름을 사용할 수도 있다. Role 텍스트는 가독성을 향상 시키기 위해 괄호를 추적하는 것을 할 필요가 없다.  :confval:`add_function_parentheses` config value 가 ``True`` (기본값)이라면 스핑크스에 의해 자동적으로 더해질 것이기 때문이다.
+   파이썬 함수 참조; 점이 있는 이름을 사용할 수도 있다. Role 텍스트는 가독성을 향상 시키기 위해 괄호를 추적하는 것을 할 필요가 없다. 
+    :confval:`add_function_parentheses` config value 가 ``True`` (기본값)이라면 스핑크스에 의해 자동적으로 더해질 것이기 때문이다.
 
 .. rst:role:: py:data
 
@@ -341,7 +349,8 @@ Cross-referencing Python objects
 
 .. rst:role:: py:meth
 
-   Object의 메소드 참조.  Role text는 타입 이름과 메소드 이름을 포함할 수 있다. 타입의 설명 중에 발생하는 경우, 타입 이름은 생략되어 질 수 있다. 점이 있는 이름 또한 사용 가능하다.
+   Object의 메소드 참조.  Role text는 타입 이름과 메소드 이름을 포함할 수 있다. 타입의 설명 중에 발생하는 경우, 
+   타입 이름은 생략되어 질 수 있다. 점이 있는 이름 또한 사용 가능하다.
 
 .. rst:role:: py:attr
 
@@ -398,12 +407,14 @@ C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
 
       .. c:member:: PyObject* PyTypeObject.tp_bases
 
-   설명하는 텍스트는 허락되어진 값의 범위와, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다. 텍스트에서 구조 멤버에 대한 참조는 ``member`` role을 사용해야한다.
+   설명하는 텍스트는 허락되어진 값의 범위와, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다.
+   텍스트에서 구조 멤버에 대한 참조는 ``member`` role을 사용해야한다.
 
 .. rst:directive:: .. c:macro:: name
 
-   간단한 C 매크로를 설명한다.  간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다. ``#define`` 는 간단한 C언어이다. 파이썬 문서에서 그것의 사용에 대한 예는 :c:macro:`PyObject_HEAD` 과
-   :c:macro:`Py_BEGIN_ALLOW_THREADS` 를 포함한다.
+   간단한 C 매크로를 설명한다.  간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다.
+   ``#define`` 는 간단한 C언어이다. 파이썬 문서에서 그것의 사용에 대한 예는
+   :c:macro:`PyObject_HEAD` 과 :c:macro:`Py_BEGIN_ALLOW_THREADS` 를 포함한다.
 
 .. rst:directive:: .. c:type:: name
 
@@ -618,7 +629,8 @@ Directives
                    .. cpp:concept:: template-parameter-list name()
 
    .. 경고:: 컨셉에 대한 지원은 실험적이고,
-      Concepts Technical Specification에 기초를 두고 있다. 특징은 TS의 발전에 따라 변할 수 있다.
+      Concepts Technical Specification에 기초를 두고 있다. 
+      특징은 TS의 발전에 따라 변할 수 있다.
 
    변수 컨셉과 함수 컨셉을 설명한다. 둘 다 정확하게 하나의 템플릿 파라미터 리스트를 가져야 한다. 이름은 중첩된 이름이어도 된다. 예시::
 
@@ -674,7 +686,8 @@ Options
 Constrained Templates
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. 경고:: 제한된 템플릿에 대한 지원은 실험적이고 Concepts Technical Specification에 기초를 둔다. 그리고 특징은 TS가 발전하면서 변경될 수 있다.
+.. 경고:: 제한된 템플릿에 대한 지원은 실험적이고 Concepts Technical Specification에 기초를 둔다. 
+   그리고 특징은 TS가 발전하면서 변경될 수 있다.
 
 .. note:: 스핑크스는 현재 ``requires`` clauses 를 지원하지 않는다.
 
@@ -808,8 +821,8 @@ C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
 
    현재 scopes는 ``A::B`` (*not* ``A::B::C``) 이 될 것이다..
 
-   이전에 사용된 ``cpp:namespace-push`` directive가 없고, 단지 ``cpp:namespace`` directive가 있으면, 현재 scope는 전역 scope로 재설정 될 것이다.
-   즉, ``.. cpp:namespace:: A::B`` 과 같게 된다.::
+   이전에 사용된 ``cpp:namespace-push`` directive가 없고, 단지 ``cpp:namespace`` directive가 있으면, 
+   현재 scope는 전역 scope로 재설정 될 것이다. 즉, ``.. cpp:namespace:: A::B`` 과 같게 된다.::
 
       .. cpp:namespace:: nullptr
 
