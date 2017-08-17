@@ -198,7 +198,7 @@ Tables
 - :dudir:`csv-table` syntax,
 - :dudir:`list-table` syntax.
 
-:dudir:`table` directive는 *grid* 와 *simple* syntaxe의 wrapper 역할을 한다.
+:dudir:`table` directive는 *grid* 와 *simple* syntax의 wrapper 역할을 한다.
 
 위의 예시들은 HTML 출력에서는 잘 작동하지만, LaTeX에서 테이블을 사용할 때에는 몇 가지 문제가 생긴다.
 예를 들면 column width를 자동으로 올바르게 판별하질 못한다. 이러한 이유로 다음 directive가
