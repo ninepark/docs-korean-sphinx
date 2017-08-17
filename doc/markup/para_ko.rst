@@ -128,7 +128,7 @@ Paragraph-level markup
 Table-of-contents markup
 ----------------------------
 
-하위문서의 목차를 생성하는 :rst:dir:`toctree` directive는 ref:`toctree-directive`
+하위문서의 목차를 생성하는 :rst:dir:`toctree` directive는 :ref:`toctree-directive`
 에 설명되어 있다.
 
 로컬 목차의 경우, 표준 reST의 :dudir:`contents directive <table-of-contents>` 를
