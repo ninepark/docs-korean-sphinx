@@ -236,5 +236,4 @@ Dedent
 
 .. rubric:: Footnotes
 
-.. [1] 표준 ``.. include`` directive가 있지만 파일이 발견되지 않을 경우 에러를 내보낸다.
-여기에서 사용하는 directive는 경고만 발생시킨다.
+.. [1] 표준 ``.. include`` directive가 있지만 파일이 발견되지 않을 경우 에러를 내보낸다. 여기에서 사용하는 directive는 경고만 발생시킨다.
