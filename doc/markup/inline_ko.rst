@@ -46,15 +46,15 @@ cross-reference(상호참조)는 많은 semantic interpreted text role에 의해
 .. _any-role:
 
 Cross-referencing anything
---------------------------
+------------------------------
 
 .. rst:role:: any
 
    .. versionadded:: 1.3
 
-   이 convenience role은 reference text에 대해 유효한 target을 찾기 위해 최선을 다한다.
+   이 편리한 role은 reference text에 대해 유효한 target을 찾기 위해 최선을 다한다.
 
-   * 먼저, :rst:role:`doc`, :rst:role:`ref` 또는 :rst:role:`option` 에 의해
+   * 먼저, :rst:role:`doc`, :rst:role:`ref`, 또는 :rst:role:`option` 에 의해
      참조되는 표준 cross-reference target을 찾는것을 시도한다.
 
      그리고 extension에 의해 standard domain에 추가 된 사용자 정의 객체
@@ -68,8 +68,8 @@ Cross-referencing anything
    수 있다.
 
    이 role은 :confval:`default_role` 로 설정하기에 적합한 후보이다. markup overhead가
-   별로 없이 많은 cross-reference를 작성할 수 있기 때문이다. 예를 들어, 아래의 Python function
-   documentation에서::
+   별로 없이 많은 cross-reference를 작성할 수 있기 때문이다. 예를 들어, 아래의 Python
+   function documentation에서::
 
       .. function:: install()
 
@@ -84,8 +84,8 @@ Cross-referencing anything
    inventory도 검색된다.
 
 
-객체 상호참조
--------------------------
+Cross-referencing objects
+-----------------------------
 
 아래의 role들은 해당 domain과 함께 설명되어있다:
 
@@ -98,8 +98,8 @@ Cross-referencing anything
 
 .. _ref-role:
 
-임의의 위치 상호참조
--------------------------------------
+Cross-referencing arbitrary locations
+-----------------------------------------
 
 .. rst:role:: ref
 
@@ -148,8 +148,8 @@ Cross-referencing anything
    cross-reference를 지원하는 builder들과도 작동하기 때문이다.
 
 
-문서 상호참조
----------------------------
+Cross-referencing documents
+-------------------------------
 
 .. versionadded:: 0.6
 
@@ -166,8 +166,8 @@ Cross-referencing anything
    캡션은 주어진 문서의 제목이 된다.
 
 
-다운로드 가능한 파일 참조
-------------------------------
+Referencing downloadable files
+----------------------------------
 
 .. versionadded:: 0.6
 
@@ -194,8 +194,8 @@ Cross-referencing anything
 
          See :download:`this example script <../example.py>`.
 
-도표/삽화를 숫자로 상호참조
-------------------------------------------
+Cross-referencing figures by figure number
+----------------------------------------------
 
 .. versionadded:: 1.3
 
@@ -217,7 +217,7 @@ Cross-referencing anything
    만약 :confval:`numfig` 가 ``False`` 이면, figure는 번호가 매겨지지 않는다. 따라서 이
    role은 참조가 아니라 label이나 링크 텍스트를 삽입한다.
 
-주목할 만한 항목들에 대한 상호참조
+Cross-referencing other items of interest
 ------------------------------------------------------
 
 다음 role들은 cross-reference를 만들지만 객체를 참조하지는 않는다.
@@ -255,8 +255,8 @@ Cross-referencing anything
    만약 glossary에서 설명하지 않은 term을 사용한다면, 빌드 중에 warning이 표시된다.
 
 
-기타 semantic markup
-~~~~~~~~~~~~~~~~~~~~~
+Other semantic markup
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 다음 role들은 텍스트 서식을 지정하는 것 외에는 특별한 작업을 수행하지는 않는다.
 
@@ -389,7 +389,7 @@ Cross-referencing anything
 .. _default-substitutions:
 
 Substitutions
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 Documentation 시스템은 디폴트로 세 가지 substitution을 제공한다. 이는 빌드 설정 파일에 설정되어
 있다.
