@@ -125,77 +125,65 @@ Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 �
    파일 이름은 대개 현재 파일의 경로를 기준으로합니다. 그러나 절대 경로
 (``/`` 로 시작하는 경로)는 최상위 소스 디렉토리에 상대적이다.
 
-   Tabs in the input are expanded if you give a ``tab-width`` option with the
-   desired tab width.
+   ``tab-width`` 옵션과 함께 원하는 탭의 크기를 지정하면 input에서의 탭이 확장된다.
 
-   Like :rst:dir:`code-block`, the directive supports the ``linenos`` flag
-   option to switch on line numbers, the ``lineno-start`` option to select the
-   first line number, the ``emphasize-lines`` option to emphasize particular
-   lines, and a ``language`` option to select a language different from the
-   current file's standard language.  Example with options::
+   :rst:dir:`code-block` 과 같이, 이 directive는 ``linenos``, ``lineno-start``,
+``emphasize-lines`` 옵션들을 지원하고 현재 파일에서 지정된 언어와 다른
+언어를 지정하기 위한 ``language`` 옵션도 지원한다. 예::
 
       .. literalinclude:: example.rb
          :language: ruby
          :emphasize-lines: 12,15-18
          :linenos:
 
-   Include files are assumed to be encoded in the :confval:`source_encoding`.
-   If the file has a different encoding, you can specify it with the
-   ``encoding`` option::
+   포함되는 파일은 :confval:`source_encoding` 에 인코딩되어 있다고 가정합니다.
+파일의 인코딩이 다른 경우 ``encoding`` 옵션으로 지정할 수 있다::
 
       .. literalinclude:: example.py
          :encoding: latin-1
 
-   The directive also supports including only parts of the file.  If it is a
-   Python module, you can select a class, function or method to include using
-   the ``pyobject`` option::
+   이 directive는 파일의 일부만을 포함하는 것도 지원한다. 그것이 Python module인
+경우, ``pyobject`` 옵션을 사용하여 포함 할 class, function, method를 선택할 수 있다::
 
       .. literalinclude:: example.py
          :pyobject: Timer.start
 
-   This would only include the code lines belonging to the ``start()`` method in
-   the ``Timer`` class within the file.
+   이 경우 파일 내의 ``Timer`` class에 있는 ``start ()`` method에 속한 코드만을 포함한다.
 
-   Alternately, you can specify exactly which lines to include by giving a
-   ``lines`` option::
+   다른 방법으로는 ``lines`` 옵션을 사용하여 포함 할 행들만 정확히 지정할 수도 있다::
 
       .. literalinclude:: example.py
          :lines: 1,3,5-10,20-
 
-   This includes the lines 1, 3, 5 to 10 and lines 20 to the last line.
+   이 경우 1, 3, 5 ~ 10 행과 20 ~ 마지막 행까지만 포함된다.
 
-   Another way to control which part of the file is included is to use the
-   ``start-after`` and ``end-before`` options (or only one of them).  If
-   ``start-after`` is given as a string option, only lines that follow the first
-   line containing that string are included.  If ``end-before`` is given as a
-   string option, only lines that precede the first lines containing that string
-   are included.
+   파일의 어느 부분이 포함는지를 제어하는 ​​또 다른 방법은 ``start-after`` 와
+``end-before`` 옵션(또는 그 중 하나만)을 사용하는 것이다. ``start-after`` 가 string
+옵션으로 주어지면, 그 string을 포함하는 첫 번째 라인 다음의 라인들만 포함된다.
+``end-before`` 가 string 옵션으로 주어지면, 그 string을 포함하는 첫 번째 줄 이전
+줄들만 포함된다.
 
-   With lines selected using ``start-after`` it is still possible to use
-   ``lines``, the first allowed line having by convention the line number ``1``.
+   ``start-after`` 를 사용하였더라도 여전히 ``lines`` 를 사용 가능하다. 이 경우
+허용되는 첫번째 행은 규칙에 따라 줄 번호 ``1`` 을 가진다.
 
-   When lines have been selected in any of the ways described above, the
-   line numbers in ``emphasize-lines`` also refer to the selection, with the
-   first selected line having number ``1``.
+   위에서 설명한 방법으로 행들을 선택했을 때, ``emphasize-lines`` 의 줄 번호는
+선택된 텍스트에 대한 상대적 줄번호를 의미한다. 즉, 선택된 내용의 첫번째 줄의
+번호는 ``1`` 이다.
 
-   When specifying particular parts of a file to display, it can be useful to
-   display the original line numbers. This can be done using the
-   ``lineno-match`` option, which is however allowed only when the selection
-   consists of contiguous lines.
+   표시 할 파일의 특정 부분을 지정할 때, 원래의 줄 번호를 표시하는 것이 유용 할 수도 있다.
+이 경우 ``lineno-match`` 옵션을 사용하면 된다. 다만 이는 선택 항목이 연속적인 행들로
+구성되어 있을 때만 허용된다.
 
-   You can prepend and/or append a line to the included code, using the
-   ``prepend`` and ``append`` option, respectively.  This is useful e.g. for
-   highlighting PHP code that doesn't include the ``<?php``/``?>`` markers.
+   ``prepend`` 와 ``append`` 옵션을 사용하여 포함 된 코드 앞뒤에 행을 추가 할 수 있다.
+이는 예를 들면 ``<?php``/``?>`` 마커를 포함하지 않는 PHP 코드를 강조 할 때 유용하다.
 
 
-   If you want to show the diff of the code, you can specify the old
-   file by giving a ``diff`` option::
+   코드의 diff를 보여주고 싶다면 ``diff`` 옵션을 주어 이전 버전의 파일을 지정할 수 있다::
 
       .. literalinclude:: example.py
          :diff: example.py.orig
 
-   This shows the diff between example.py and example.py.orig with unified diff
-   format.
+   이 예제는 example.py와 example.py.orig의 diff를 unified diff format으로 보여준다.
 
    .. versionadded:: 0.4.3
       The ``encoding`` option.
@@ -211,15 +199,14 @@ Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 �
       With both ``start-after`` and ``lines`` in use, the first line as per
       ``start-after`` is considered to be with line number ``1`` for ``lines``.
 
-Caption and name
-^^^^^^^^^^^^^^^^
+캡션과 이름
+^^^^^^^^^^^^^^^^^^^
 
 .. versionadded:: 1.3
 
-A ``caption`` option can be given to show that name before the code block.
-A ``name`` option can be provided implicit target name that can be referenced
-by using :rst:role:`ref`.
-For example::
+``caption`` 옵션은 코드 블록 앞에 그 이름을 보여줄 수 있습니다. ``name`` 옵션은
+:rst:role:`ref` 를 사용하여 참조 할 수 있는 암시적인 대상의 이름이 제공 될 수 있다.
+예를 들면::
 
    .. code-block:: python
       :caption: this.py
@@ -228,28 +215,27 @@ For example::
       print 'Explicit is better than implicit.'
 
 
-:rst:dir:`literalinclude` also supports the ``caption`` and ``name`` option.
-``caption`` has an additional feature that if you leave the value empty, the shown
-filename will be exactly the one given as an argument.
+:rst:dir:`literalinclude` 또한 ``caption`` 과 ``name`` 옵션을 지원한다. 이 경우
+``caption`` 은 값을 비워두면 표시된 파일 이름이 argument로 주어진다.
 
 
 Dedent
-^^^^^^
+^^^^^^^^^^
 
 .. versionadded:: 1.3
 
-A ``dedent`` option can be given to strip indentation characters from the code
-block. For example::
+코드 블록에서 indent 문자들을 제거하기 위해서 ``dedent`` 옵션을 사용 할 수 있다.
+예를 들면::
 
    .. literalinclude:: example.rb
       :language: ruby
       :dedent: 4
       :lines: 10-15
 
-:rst:dir:`code-block` also supports the ``dedent`` option.
+:rst:dir:`code-block` 또한 ``dedent`` 옵션을 지원한다.
 
 
 .. rubric:: Footnotes
 
-.. [1] There is a standard ``.. include`` directive, but it raises errors if the
-       file is not found.  This one only emits a warning.
+.. [1] 표준 ``.. include`` directive가 있지만 파일이 발견되지 않을 경우 에러를
+내보낸다. 여기에서 사용하는 directive는 경고만 발생시킨다.
