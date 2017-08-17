@@ -68,34 +68,32 @@ Syntax 강조는 `Pygments <http://pygments.org>`_ 와 함께 현명게 처리�
 줄 번호
 ^^^^^^^^^^^^
 
-Pygments can generate line numbers for code blocks.  For
-automatically-highlighted blocks (those started by ``::``), line numbers must be
-switched on in a :rst:dir:`highlight` directive, with the ``linenothreshold``
-option::
+Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 강조되는 블록
+(``::`` 에 의해 시작된 블록)의 경우, 줄 번호는 :rst:dir:`highlight` directive에
+``linenothreshold`` 옵션과 함께 사용해서 활성화 해야 한다::
 
    .. highlight:: python
       :linenothreshold: 5
 
-This will produce line numbers for all code blocks longer than five lines.
+이렇게 하면 5줄 보다 긴 모든 코드 블록에 대해 줄 번호가 생성된다.
 
-For :rst:dir:`code-block` blocks, a ``linenos`` flag option can be given to
-switch on line numbers for the individual block::
+:rst:dir:`code-block` 블록의 경우, ``linenos`` 플래그 옵션을 사용하여 개별 블록의
+줄 번호를 활성화 할 수 있다 ::
 
    .. code-block:: ruby
       :linenos:
 
       Some more Ruby code.
 
-The first line number can be selected with the ``lineno-start`` option.  If
-present, ``linenos`` is automatically activated as well::
+첫 번째 줄의 번호는 ``lineno-start`` 옵션으로 지정할 수 있다. 이 경우
+``linenos`` 는 자동으로 활성화 된다::
 
    .. code-block:: ruby
       :lineno-start: 10
 
       Some more Ruby code, with line numbering starting at 10.
 
-Additionally, an ``emphasize-lines`` option can be given to have Pygments
-emphasize particular lines::
+또한, ``emphasize-lines`` 옵션은 Pygments가 특정 행을 강조하도록 할 수 있다::
 
     .. code-block:: python
        :emphasize-lines: 3,5
@@ -113,21 +111,19 @@ emphasize particular lines::
    ``lineno-start`` has been added.
 
 
-Includes
+포함
 ^^^^^^^^
 
 .. rst:directive:: .. literalinclude:: filename
 
-   Longer displays of verbatim text may be included by storing the example text
-   in an external file containing only plain text.  The file may be included
-   using the ``literalinclude`` directive. [1]_ For example, to include the
-   Python source file :file:`example.py`, use::
+   긴 예제 텍스트의 표시는 외부 파일에 plaintext로 저장하여 포함시킬 수 있다. 이 파일은
+``literalinclude`` directive를 사용하여 포함 할 수 있다. [1]_ 예를 들어, Python
+소스 파일 :file:`example.py` 를 사용하려면 다음과 같이 쓴다::
 
       .. literalinclude:: example.py
 
-   The file name is usually relative to the current file's path.  However, if it
-   is absolute (starting with ``/``), it is relative to the top source
-   directory.
+   파일 이름은 대개 현재 파일의 경로를 기준으로합니다. 그러나 절대 경로
+(``/`` 로 시작하는 경로)는 최상위 소스 디렉토리에 상대적이다.
 
    Tabs in the input are expanded if you give a ``tab-width`` option with the
    desired tab width.
