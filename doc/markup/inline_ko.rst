@@ -240,36 +240,33 @@ caption은 reference의 제목이 된다. 특수 문자로는 `%s` 와 `{number}
 
 .. rst:role:: option
 
-   A command-line option to an executable program.  This generates a link to
-   a :rst:dir:`option` directive, if it exists.
+   실행 가능한 프로그램에 대한 command-line 옵션. 이것은 :rst:dir:`option` directive가 있는
+경우 이에 대한 링크를 생성한다.
 
 
-The following role creates a cross-reference to a term in a
-:ref:`glossary <glossary-directive>`:
+다음 role은 :ref:`glossary <glossary-directive>` 에 있는 term에 대한 cross-reference를
+생성한다.
+:
 
 .. rst:role:: term
 
-   Reference to a term in a glossary.  A glossary is created using the
-   ``glossary`` directive containing a definition list with terms and
-   definitions.  It does not have to be in the same file as the ``term`` markup,
-   for example the Python docs have one global glossary in the ``glossary.rst``
-   file.
+   용어집의 용어에 대한 reference. 용어집은 ``glossary`` directive를 사용하여 만들어지며,
+용어들과 정의가있는 정의 목록을 포함한다. ``term`` markup과 같은 파일에 있을 필요는 없다.
+예를 들어 Python의 docs는 ``glossary.rst`` 파일에 글로벌 용어집 하나를 가지고 있다.
 
-   If you use a term that's not explained in a glossary, you'll get a warning
-   during build.
+   만약 glossary에서 설명하지 않은 term을 사용한다면, 빌드 중에 warning이 표시된다.
 
 
-Other semantic markup
+기타 semantic markup
 ~~~~~~~~~~~~~~~~~~~~~
 
-The following roles don't do anything special except formatting the text
-in a different style:
+다음 role들은 텍스트 서식을 지정하는것 외에는 특별한 작업을 수행하지는 않는다.
 
 .. rst:role:: abbr
 
-   An abbreviation.  If the role content contains a parenthesized explanation,
-   it will be treated specially: it will be shown in a tool-tip in HTML, and
-   output only once in LaTeX.
+   Abbreviation(약어). 만약 role의 내용에 괄호안에 들어간 설명이 포함되어 있으면,
+이는 특수하게 다루어진다. HTML에서는 tool-tip으로 표시되고 LaTeX에서는 한 번만
+출력된다.
 
    Example: ``:abbr:`LIFO (last-in, first-out)```.
 
@@ -281,27 +278,24 @@ in a different style:
 
 .. rst:role:: dfn
 
-   Mark the defining instance of a term in the text.  (No index entries are
-   generated.)
+   텍스트에서 term이 정의되는 부분을 표시해 준다. (색인 항목은 생성되지 않는다.)
 
 .. rst:role:: file
 
-   The name of a file or directory.  Within the contents, you can use curly
-   braces to indicate a "variable" part, for example::
+   파일 또는 디렉토리의 이름. 내용 안에서 중괄호를 사용하여 "변하는" 부분을 나타낼 수
+있다. 예::
 
       ... is installed in :file:`/usr/lib/python2.{x}/site-packages` ...
 
-   In the built documentation, the ``x`` will be displayed differently to
-   indicate that it is to be replaced by the Python minor version.
+   빌드 된 documentation에서는 ``x`` 는 Python의 마이너 버전 숫자로 대체된다.
 
 .. rst:role:: guilabel
 
-   Labels presented as part of an interactive user interface should be marked
-   using ``guilabel``.  This includes labels from text-based interfaces such as
-   those created using :mod:`curses` or other text-based libraries.  Any label
-   used in the interface should be marked with this role, including button
-   labels, window titles, field names, menu and menu selection names, and even
-   values in selection lists.
+   인터랙티브 사용자 인터페이스의 일부로 제공된 레이블은 ``guilabel`` 을 사용하여 나타내야 한다.
+여기에는 :mod:`curses` 또는 다른 텍스트 기반 라이브러리를 사용하여 만들어진 텍스트 기반
+인터페이스의 label이 포함된다. 인터페이스에 사용되는 모든 label에는 이 role로 표시해 주어야
+한다. 이는 단추 label, 창 제목, 필드 이름, 메뉴, 메뉴 선택 이름, 심지어 선택 목록내의 값도
+포함한다.
 
    .. versionchanged:: 1.0
       An accelerator key for the GUI label can be included using an ampersand;
@@ -310,102 +304,92 @@ in a different style:
 
 .. rst:role:: kbd
 
-   Mark a sequence of keystrokes.  What form the key sequence takes may depend
-   on platform- or application-specific conventions.  When there are no relevant
-   conventions, the names of modifier keys should be spelled out, to improve
-   accessibility for new users and non-native speakers.  For example, an
-   *xemacs* key sequence may be marked like ``:kbd:`C-x C-f```, but without
-   reference to a specific application or platform, the same sequence should be
-   marked as ``:kbd:`Control-x Control-f```.
+   키보드 입력을 표시. 무엇이 조합키를 이루는지는 플랫폼 또는 응용 프로그램 별로 규칙이 다를 수
+있다. 관련 규칙이 없으면 신규 사용자와 비 원어민의 사용 편의성을 높이기 위해 변환키를 이름대로
+써줘야 한다. 예를 들어, *xemacs* 의 키입력 시퀀스는 ``:kbd:`C-x C-f``` 와 같이 표시 될 수 있지만
+특정 응용 프로그램이나 플랫폼에 대한 언급이 없으면, 동일한 시퀀스는
+``:kbd:`Control-x Control-f``` 와 같이 써줘야 한다.
 
 .. rst:role:: mailheader
 
-   The name of an RFC 822-style mail header.  This markup does not imply that
-   the header is being used in an email message, but can be used to refer to any
-   header of the same "style."  This is also used for headers defined by the
-   various MIME specifications.  The header name should be entered in the same
-   way it would normally be found in practice, with the camel-casing conventions
-   being preferred where there is more than one common usage. For example:
-   ``:mailheader:`Content-Type```.
+   RFC 822 스타일의 메일 헤더 이름. 이 markup은 헤더가 이메일 메시지에 사용되고 있음을
+의미하지는 않지만, 동일한 "스타일"의 헤더를 나타내는 데 사용될 수 있다. 이것은 다양한
+MIME specification으로 정의 된 헤더에도 사용된다. 헤더 이름은 일반적으로 실제로 사용되는
+것과 동일한 방식으로 입력해야 한다. 일반적으로 camel-casing 방식이 선호된다. 예:
+``:mailheader:`Content-Type```.
 
 .. rst:role:: makevar
 
-   The name of a :command:`make` variable.
+   :command:`make` variable 의 이름.
 
 .. rst:role:: manpage
 
-   A reference to a Unix manual page including the section,
-   e.g. ``:manpage:`ls(1)```.
+   섹션을 포함한 Unix manual page에 대한 참조. 예 :``:manpage:`ls(1)```.
 
 .. rst:role:: menuselection
 
-   Menu selections should be marked using the ``menuselection`` role.  This is
-   used to mark a complete sequence of menu selections, including selecting
-   submenus and choosing a specific operation, or any subsequence of such a
-   sequence.  The names of individual selections should be separated by
-   ``-->``.
+   메뉴 선택은 ``menuselection`` role을 사용하여 표시해줘야 한다. 이 옵션은 하위 메뉴 선택과
+특정 작업 선택을 포함한 모든 메뉴 선택 시퀀스 표시하는 데 사용된다. 개별 선택 항목의 이름은
+``-->`` 로 구분해 주어야 한다.
 
-   For example, to mark the selection "Start > Programs", use this markup::
+   예를 들어 "Start > Programs" 선택을 나타내기 위해서는 다음과 같은 markup을
+사용한다::
 
       :menuselection:`Start --> Programs`
 
-   When including a selection that includes some trailing indicator, such as the
-   ellipsis some operating systems use to indicate that the command opens a
-   dialog, the indicator should be omitted from the selection name.
+   만약 뒤에 특수한 표식(예: 대화창 여는 것을 알려주는 줄임표)이 따라오는 선택을 포함시킬 때는
+뒤의 표식은 선택 이름에서 누락시킨다.
 
-   ``menuselection`` also supports ampersand accelerators just like
-   :rst:role:`guilabel`.
+
+   ``menuselection`` 은 또한 :rst:role:`guilabel` 과 같이 ampersand accelerator를
+지원한다.
 
 .. rst:role:: mimetype
 
-   The name of a MIME type, or a component of a MIME type (the major or minor
-   portion, taken alone).
+   MIME type의 이름 또는 MIME type의 구성요소의 이름.
 
 .. rst:role:: newsgroup
 
-   The name of a Usenet newsgroup.
+   Usenet 뉴스그룹의 이름.
 
 .. rst:role:: program
 
-   The name of an executable program.  This may differ from the file name for
-   the executable for some platforms.  In particular, the ``.exe`` (or other)
-   extension should be omitted for Windows programs.
+   실행 프로그램의 이름. 플랫폼에 따라서 실행 파일의 파일 이름과 다를 수 있다.
+특히 Windows 프로그램의 경우 ``.exe`` 와 같은 확장자를 생략해야 한다.
 
 .. rst:role:: regexp
 
-   A regular expression. Quotes should not be included.
+   정규표현식. 따옴표를 포함하면 안된다.
 
 .. rst:role:: samp
 
-   A piece of literal text, such as code.  Within the contents, you can use
-   curly braces to indicate a "variable" part, as in :rst:role:`file`.  For
-   example, in ``:samp:`print 1+{variable}```, the part ``variable`` would be
-   emphasized.
+   코드와 같은 literal text. :rst:role:`file` 에서 언급했듯이, 내용 안에 중괄호를 사용하여
+"변하는" 부분을 나타낼 수 있다. 예를 들면, ``:samp:`print 1+{variable}``` 에서 ``variable``
+부분은 강조되어 표시된다.
 
-   If you don't need the "variable part" indication, use the standard
-   ````code```` instead.
+   "가변 부분" 표시가 필요하지 않다면, 표준인 ````code```` 를 사용하면 된다.
 
-There is also an :rst:role:`index` role to generate index entries.
+또한 색인 항목을 생성하는 :rst:role:`index` role이 있다.
 
-The following roles generate external links:
+다음 role들은 외부 링크를 생성한다.
 
 .. rst:role:: pep
 
-   A reference to a Python Enhancement Proposal.  This generates appropriate
-   index entries. The text "PEP *number*\ " is generated; in the HTML output,
-   this text is a hyperlink to an online copy of the specified PEP.  You can
-   link to a specific section by saying ``:pep:`number#anchor```.
+   Python Enhancement Proposal에 대한 참조. 적절한 색인 항목이 생성된다.
+"PEP *number*\ "라는 텍스트가 생성된다. HTML output에서 이 텍스트는 지정된 PEP의
+온라인 버전에 대한 하이퍼링크가 된다. ``:pep:`number#anchor``` 를 사용하여 특정 섹션에
+링크 할 수 있다.
 
 .. rst:role:: rfc
 
-   A reference to an Internet Request for Comments.  This generates appropriate
-   index entries. The text "RFC *number*\ " is generated; in the HTML output,
-   this text is a hyperlink to an online copy of the specified RFC.  You can
-   link to a specific section by saying ``:rfc:`number#anchor```.
+   Internet Request for Comments에 대한 참조. 적절한 색인 항목이 생성된다.
+"RFC *number*\ "라는 텍스트가 생성된다. HTML 출력에서 이 텍스트는 지정된 RFC의
+온라인 사본에 대한 하이퍼링크가 된다. ``:rfc:`number#anchor``` 를 사용하여 특정 섹션에
+링크 할 수 있다.
 
 
-Note that there are no special roles for including hyperlinks as you can use
-the standard reST markup for that purpose.
+하이퍼링크를 포함하기 위해서는 standard reST markup으로 충분하므로, 이를 위한
+특수한 role은 존재하지 않는다.
 
 
 .. _default-substitutions:
@@ -413,23 +397,20 @@ the standard reST markup for that purpose.
 Substitutions
 ~~~~~~~~~~~~~
 
-The documentation system provides three substitutions that are defined by
-default. They are set in the build configuration file.
+Documentation 시스템은 디폴트로 세 가지 substitution을 제공한다. 이는 빌드 설정
+파일에 설정되어 있다.
 
 .. describe:: |release|
 
-   Replaced by the project release the documentation refers to.  This is meant
-   to be the full version string including alpha/beta/release candidate tags,
-   e.g. ``2.5.2b3``.  Set by :confval:`release`.
+   문서가 가리키는 프로젝트 release로 대체. 이는 alpha/beta/release canditate tag를 포함하는
+full version string이다. (예: ``2.5.2b3``) :confval:`release` 로 설정할 수 있다.
 
 .. describe:: |version|
 
-   Replaced by the project version the documentation refers to. This is meant to
-   consist only of the major and minor version parts, e.g. ``2.5``, even for
-   version 2.5.1.  Set by :confval:`version`.
+   문서가 가리키는 프로젝트 version으로 대체. 이는 major와 minor 부분으로만 구성된 버전을
+얘기한다. (예: 2.5 전체 버전 숫자가 2.5.1이더라도) :confval:`version`로 설정할 수 있다.
 
 .. describe:: |today|
 
-   Replaced by either today's date (the date on which the document is read), or
-   the date set in the build configuration file.  Normally has the format
-   ``April 14, 2007``.  Set by :confval:`today_fmt` and :confval:`today`.
+   오늘 날짜(문서를 읽는 날짜) 또는 빌드 설정 파일에 설정된 날짜로 대체. 일반적으로 ``April 14, 2007``
+형식을 가진다. :confval:`today_fmt` 와 :confval:`today` 로 설정 가능.
