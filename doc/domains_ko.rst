@@ -667,61 +667,55 @@ Options
 
 몇몇의 directive는 옵션을 지원한다.:
 
-- ``:noindex:``, see :ref:`basic-domain-markup`.
-- ``:tparam-line-spec:``, for templated declarations.
-  If specified, each template parameter will be rendered on a separate line.
-
+- ``:noindex:``, :ref:`basic-domain-markup`를 보자.
+- ``:tparam-line-spec:``, 템플릿 선언에 대해,
+  템플릿 파라미터가 지정되어지면, 각각의 템플릿 파라미터는 별도의 줄에서 렌더링이 될 것이다.
 
 Constrained Templates
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: The support for constrained templates is experimental. It is based on the
-  Concepts Technical Specification, and the features may change as the TS evolves.
+.. 경고:: 제한된 템플릿에 대한 지원은 실험적이고 Concepts Technical Specification에 기초를 둔다. 그리고 특징은 TS가 발전하면서 변경될 수 있다.
 
-.. note:: Sphinx does not currently support ``requires`` clauses.
+.. note:: 스핑크스는 현재 ``requires`` clauses 를 지원하지 않는다.
 
 Placeholders
 ............
 
-Declarations may use the name of a concept to introduce constrained template
-parameters, or the keyword ``auto`` to introduce unconstrained template parameters::
+선언은 제한된 템플릿 파라미터를 소개하기 위해 컨셉의 이름을 사용할 수도 있다. 또는 제한되지 않은 템플릿 파라미터를 소개하기 위해 ``auto`` 키워드를 사용할 수도 있다. ::
 
    .. cpp:function:: void f(auto &&arg)
 
-      A function template with a single unconstrained template parameter.
+      하나의 제한되지 않은 템플릿 파라미터를 가진 함수 템플릿.
 
    .. cpp:function:: void f(std::Iterator it)
 
-      A function template with a single template parameter, constrained by the
-      Iterator concept.
+      Iterator 컨셉에 의해 제한된 하나의 템플릿 파라미터를 가진 함수 템플릿.
 
 Template Introductions
 ......................
 
-Simple constrained function or class templates can be declared with a
-`template introduction` instead of a template parameter list::
+간단한 제한된 함수 또는 클래스 템플릿은 `템플릿 도입` 대신에 템플릿 파라미터 리스트를 사용해 선언되어질 수 있다. ::
 
    .. cpp:function:: std::Iterator{It} void advance(It &it)
 
-       A function template with a template parameter constrained to be an Iterator.
+       Iterator로 제한된 템플릿 파라미터를 가진 함수 템플릿.
 
    .. cpp:class:: std::LessThanComparable{T} MySortedContainer
 
-       A class template with a template parameter constrained to be LessThanComparable.
+       LessThanComparable로 제한된 템플릿 파라미터를 가진 클래스 템플릿.
 
-They are rendered as follows.
+다음과 같이 렌더링 된다.
 
 .. cpp:function:: std::Iterator{It} void advance(It &it)
 
-   A function template with a template parameter constrained to be an Iterator.
+   Iterator로 제한된 템플릿 파라미터를 가진 함수 템플릿.
 
 .. cpp:class:: std::LessThanComparable{T} MySortedContainer
 
-   A class template with a template parameter constrained to be LessThanComparable.
+   LessThanComparable로 제한된 템플릿 파라미터를 가진 함수 템플릿.
 
-Note however that no checking is performed with respect to parameter
-compatibility. E.g., ``Iterator{A, B, C}`` will be accepted as an introduction
-even though it would not be valid C++.
+Note 파라미터 호환성에 대한 체크가 수행되지는 않는다.
+ 예, ``Iterator{A, B, C}`` 는 도입에서는 받아 들여질 것이지만, C++에서는 유효하지 않을 것이다.
 
 
 Inline Expressions and Tpes
@@ -729,8 +723,8 @@ Inline Expressions and Tpes
 
 .. rst:role:: cpp:expr
 
-   A role for inserting a C++ expression or type as inline text.
-   For example::
+   inline 텍스트로써 C++ 표헌 또는 타입을 삽입하는 role.
+   예를 들면 ::
 
       .. cpp:var:: int a = 42
 
@@ -739,7 +733,7 @@ Inline Expressions and Tpes
       An expression: :cpp:expr:`a * f(a)`.
       A type: :cpp:expr:`const MySortedContainer<int>&`.
 
-   will be rendered as follows:
+   다음과 같이 렌더링 될 것이다.:
 
   .. cpp:var:: int a = 42
 
@@ -751,30 +745,24 @@ Inline Expressions and Tpes
 Namespacing
 ~~~~~~~~~~~~~~~~~
 
-Declarations in the C++ domain are as default placed in global scope.
-The current scope can be changed using three namespace directives.
-They manage a stack declarations where ``cpp:namespace`` resets the stack and
-changes a given scope.
-The ``cpp:namespace-push`` directive changes the scope to a given inner scope
-of the current one.
-The ``cpp:namespace-pop`` directive undos the most recent ``cpp:namespace-push``
-directive.
+C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
+현재 scope는 3개의 namespace directives에 의해 변경될 수 있다.
+그들은 stack 선언을 관리하고 이는 ``cpp:namespace`` 가 stack을 재설정하고 주어진 scope를 변경시키는 곳이다.
+``cpp:namespace-push`` directive는 현재 주어진 내부 scope의 scope를 변경시킨다.
+``cpp:namespace-pop`` directive는 가장 최근의 ``cpp:namespace-push`` directive를 취소한다.
 
 .. rst:directive:: .. cpp:namespace:: scope specification
 
-   Changes the current scope for the subsequent objects to the given scope,
-   and resets the namespace directive stack.
-   Note that the namespace does not need to correspond to C++ namespaces,
-   but can end in names of classes, e.g.,::
+   주어진 scope에서 다음에 오는 object의 현재 scope를 변경시키고 namespace directive stack을 재설정한다.   
+   namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의 이름에서 끝낼 수는 있다. 예,::
 
       .. cpp:namespace:: Namespace1::Namespace2::SomeClass::AnInnerClass
 
-   All subsequent objects will be defined as if their name were declared with the scope
-   prepended. The subsequent cross-references will be searched for starting in the current scope.
+   이후의 모든 objects는 자신의 이름 앞에 붙은 scope로 선언된 것처럼 정의되어 질 것이다. 이후의 상호 참조는 현재 scope부터 시작해서 검색될 것이다.
 
-   Using ``NULL``, ``0``, or ``nullptr`` as the scope will change to global scope.
+   ``NULL``, ``0``, or ``nullptr`` 를 사용하면 scope는 전역 scope로 변경될 것이다.
 
-   A namespace declaration can also be templated, e.g.,::
+   Namespace 선언 또한 템플릿이 될 수 있다.  예,::
 
       .. cpp:class:: template<typename T> \
                      std::vector
@@ -783,8 +771,8 @@ directive.
 
       .. cpp:function:: std::size_t size() const
 
-   declares ``size`` as a member function of the class template ``std::vector``.
-   Equivalently this could have been declared using::
+   ``size`` 를 클래스 템플릿 ``std::vector`` 의 멤버 함수로 선언한다.
+   동등하게 이는 사용한 것으로 선언되었을 수도 있다.::
 
       .. cpp:class:: template<typename T> \
                      std::vector
@@ -799,18 +787,18 @@ directive.
 
 .. rst:directive:: .. cpp:namespace-push:: scope specification
 
-   Change the scope relatively to the current scope. For example, after::
+   현재 scope에서 상대적으로 scope를 변경한다. 예를 들면::
 
       .. cpp:namespace:: A::B
 
       .. cpp:namespace-push:: C::D
 
-   the current scope will be ``A::B::C::D``.
+   현재 scope는 ``A::B::C::D`` 이 될 것이다.
 
 .. rst:directive:: .. cpp:namespace-pop::
 
-   Undo the previous ``cpp:namespace-push`` directive (*not* just pop a scope).
-   For example, after::
+   이전의 ``cpp:namespace-push`` directive (*not* just pop a scope)를 취소한다.
+   예를 들면::
 
       .. cpp:namespace:: A::B
 
@@ -818,11 +806,10 @@ directive.
 
       .. cpp:namespace-pop::
 
-   the current scope will be ``A::B`` (*not* ``A::B::C``).
+   현재 scopes는 ``A::B`` (*not* ``A::B::C``) 이 될 것이다..
 
-   If no previous ``cpp:namespace-push`` directive has been used, but only a ``cpp:namespace``
-   directive, then the current scope will be reset to global scope.
-   That is, ``.. cpp:namespace:: A::B`` is equivalent to::
+   이전에 사용된 ``cpp:namespace-push`` directive가 없고, 단지 ``cpp:namespace`` directive가 있으면, 현재 scope는 전역 scope로 재설정 될 것이다.
+   즉, ``.. cpp:namespace:: A::B`` 과 같게 된다.::
 
       .. cpp:namespace:: nullptr
 
@@ -832,12 +819,12 @@ directive.
 Info field lists
 ~~~~~~~~~~~~~~~~~
 
-The C++ directives support the following info fields (see also :ref:`info-field-lists`):
+C++ directive는 다음의 info fields 를 지원한다.( :ref:`info-field-lists` 를 보자.):
 
-* `param`, `parameter`, `arg`, `argument`: Description of a parameter.
-* `tparam`: Description of a template parameter.
-* `returns`, `return`: Description of a return value.
-* `throws`, `throw`, `exception`: Description of a possibly thrown exception.
+* `param`, `parameter`, `arg`, `argument`: 파라미터에 대한 설명.
+* `tparam`: 템플릿 파라미터에 대한 설명.
+* `returns`, `return`: 반환값에 대한 설명.
+* `throws`, `throw`, `exception`: 일어날 수 있는 예외에 대한 설명.
 
 
 .. _cpp-roles:
@@ -845,7 +832,7 @@ The C++ directives support the following info fields (see also :ref:`info-field-
 Cross-referencing
 ~~~~~~~~~~~~~~~~~
 
-These roles link to the given declaration types:
+이러한 roles은 주어진 선언 타입에 연결한다.:
 
 .. rst:role:: cpp:any
               cpp:class
@@ -857,37 +844,35 @@ These roles link to the given declaration types:
               cpp:enum
               cpp:enumerator
 
-   Reference a C++ declaration by name (see below for details).
-   The name must be properly qualified relative to the position of the link.
+   이름으로 C++ declaration를 참조 (상세 사항을 아래를 보자).
+   이름은 링크의 포지션에 관련해서 자격이 있어야 한다.
 
 .. admonition:: Note on References with Templates Parameters/Arguments
 
-   Sphinx's syntax to give references a custom title can interfere with
-   linking to class templates, if nothing follows the closing angle
-   bracket, i.e. if the link looks like this: ``:cpp:class:`MyClass<int>```.
-   This is interpreted as a link to ``int`` with a title of ``MyClass``.
-   In this case, please escape the opening angle bracket with a backslash,
-   like this: ``:cpp:class:`MyClass\<int>```.
+   Custom 제목을 참조하는 스핑크스의 syntax는 클래스 템플릿에 연결하는데 
+   방해가 될 수 있다. 닫는 괄호 뒤에 아무 것도 없다면, 링크가 이렇게 보인다면,
+   ``:cpp:class:`MyClass<int>``` . 이는 ``MyClass`` 라는 제목을 가진 ``int`` 에 
+   연결되는 것으로 해석된다. 이러한 경우에는, 다음과 같이 백슬래시와 
+   함께 여는 괄호를 탈출 시켜라. ``:cpp:class:`MyClass\<int>``` .
 
 .. admonition:: Note on References to Overloaded Functions
 
-   It is currently impossible to link to a specific version of an
-   overloaded method.  Currently the C++ domain is the first domain
-   that has basic support for overloaded methods and until there is more
-   data for comparison we don't want to select a bad syntax to reference a
-   specific overload.  Currently Sphinx will link to the first overloaded
-   version of the method / function.
+   오버로드된 메소드의 특정한 버젼에 연결하는 것은 불가능하다. 
+   현재 C++ 도메인은 오버로드된 메소드의 기본적인 지원을 하는 첫번째 도메인이다.
+   그리고 더 많은 비교에 대한 데이터가 있을때까지, 특정 오버로드를 참조하기 위해
+   좋지 않은 syntax를 선택하고 싶지 않을 것이다. 스핑크스는 메소드와 함수의
+   첫번째로 오버로드된 버젼에 연결을 할 것이다. 
 
-Declarations without template parameters and template arguments
+템플릿 파라미터와 템플릿 argument 없이 선언하기
 .................................................................
 
-For linking to non-templated declarations the name must be a nested name,
-e.g., ``f`` or ``MyClass::f``.
+템플릿이 없는 선언에 연결하기 위해 이름은 중첩된 이름이어야 한다.
+예, ``f`` 또는 ``MyClass::f``.
 
 Templated declarations
 ......................
 
-Assume the following declarations.
+다음의 선언을 가정하자.
 
 .. cpp:class:: Wrapper
 
@@ -897,16 +882,13 @@ Assume the following declarations.
       .. cpp:class:: template<typename TInner> \
                      Inner
 
-In general the reference must include the template paraemter declarations, e.g.,
+일반적으로 참조는 템플릿 파라미터 선언을 포함해야한다. e.g.,
 ``template\<typename TOuter> Wrapper::Outer`` (:cpp:class:`template\<typename TOuter> Wrapper::Outer`).
-Currently the lookup only succeed if the template parameter identifiers are equal strings. That is,
+템플릿 파라미터 식별자가 문자열과 같다면 단지 조회에는 성공한다. 즉,
 ``template\<typename UOuter> Wrapper::Outer`` will not work.
 
-The inner class template can not be directly referenced, unless the current namespace
-is changed or the following shorthand is used.
-If a template parameter list is omitted, then the lookup will assume either a template or a non-template,
-but not a partial template specialisation.
-This means the following references work.
+현재 namespace가 변화되거나 다음의 약식이 사용되지 않으면, inner 클래스 템플릿은 직접적으로 참조되어 질 수 없다. 템플릿 파라미터 리스트가 생략되어지면, 조회는 템플릿과 논-템플릿 중 하나를 가정한다. 그러나 부분 템플릿 전문화를 가정하지는 않는다.이는 다음의 참조 작업을 의미한다.
+
 
 - ``Wrapper::Outer`` (:cpp:class:`Wrapper::Outer`)
 - ``Wrapper::Outer::Inner`` (:cpp:class:`Wrapper::Outer::Inner`)
@@ -915,7 +897,7 @@ This means the following references work.
 (Full) Template Specialisations
 ................................
 
-Assume the following declarations.
+다음의 선언을 가정하자.
 
 .. cpp:class:: template<typename TOuter> \
                Outer
@@ -932,48 +914,45 @@ Assume the following declarations.
   .. cpp:class:: template<> \
                  Inner<bool>
 
-In general the reference must include a template parameter list for each template argument list.
-The full specialisation above can therefore be referenced with ``template\<> Outer\<int>`` (:cpp:class:`template\<> Outer\<int>`)
-and ``template\<> template\<> Outer\<int>::Inner\<bool>`` (:cpp:class:`template\<> template\<> Outer\<int>::Inner\<bool>`).
-As a shorthand the empty template parameter list can be omitted, e.g., ``Outer\<int>`` (:cpp:class:`Outer\<int>`)
-and ``Outer\<int>::Inner\<bool>`` (:cpp:class:`Outer\<int>::Inner\<bool>`).
+일반적으로 참조는 각각의 템플릿 argument 리스트에 대한 템플릿 파라미터를 포함해야 한다. 그러므로 위에서의 완전한 전문화는 ``template\<> Outer\<int>`` (:cpp:class:`template\<> Outer\<int>`)와 ``template\<> template\<> Outer\<int>::Inner\<bool>`` (:cpp:class:`template\<> template\<> Outer\<int>::Inner\<bool>`)로 참조되어질 수 있다.
+약식으로 빈 템플릿 파라미터 리스트를 생략할 수 있다., 예, ``Outer\<int>`` (:cpp:class:`Outer\<int>`)
+와 ``Outer\<int>::Inner\<bool>`` (:cpp:class:`Outer\<int>::Inner\<bool>`).
 
 
 Partial Template Specialisations
 .................................
 
-Assume the following declaration.
+다음의 선언을 가정하자.
 
 .. cpp:class:: template<typename T> \
                Outer<T*>
 
-References to partial specialisations must always include the template parameter lists, e.g.,
+부분 전문화에 대한 참조는 항상 템플릿 파라미터 리스트를 포함해야한다. 예,
 ``template\<typename T> Outer\<T*>`` (:cpp:class:`template\<typename T> Outer\<T*>`).
-Currently the lookup only succeed if the template parameter identifiers are equal strings.
+템플릿 파라미터 식별자가 문자열과 같다면 단지 조회만 성공된다.
 
 
 Configuration Variables
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-See :ref:`cpp-config`.
+:ref:`cpp-config` 를 보자.
 
 
 The Standard Domain
 -------------------
 
-The so-called "standard" domain collects all markup that doesn't warrant a
-domain of its own.  Its directives and roles are not prefixed with a domain
-name.
+이른바 "표준" 도메인은 스스로의 도메인을 보장하지 않는 모든 마크업을 모은다.
+그들의 directive와 role은 도메인 이름보다 앞에 오지 않는다.
 
-The standard domain is also where custom object descriptions, added using the
-:func:`~sphinx.application.Sphinx.add_object_type` API, are placed.
+표준 도메인은 또한 
+:func:`~sphinx.application.Sphinx.add_object_type` API 의 사용이 더해진 custom object 설명이 위치한 곳이다.
 
-There is a set of directives allowing documenting command-line programs:
+커맨드 라인 프로그램을 문서화 하는 것을 허락하는 directive의 집합이 있다.:
 
 .. rst:directive:: .. option:: name args, name args, ...
 
-   Describes a command line argument or switch.  Option argument names should be
-   enclosed in angle brackets.  Examples::
+   Command line argument와 switch를 설명한다.  옵션 argument 이름은 
+   angle brackets(<, >)에 의해 둘러 쌓여져야한다. 예::
 
       .. option:: dest_dir
 
@@ -981,28 +960,29 @@ There is a set of directives allowing documenting command-line programs:
 
       .. option:: -m <module>, --module <module>
 
-         Run a module as a script.
+         스크립트로 모듈을 실행한다.
 
-   The directive will create cross-reference targets for the given options,
-   referencable by :rst:role:`option` (in the example case, you'd use something
-   like ``:option:`dest_dir```, ``:option:`-m```, or ``:option:`--module```).
+   Directive는 :rst:role:`option` (in the example case, you'd use something
+   like ``:option:`dest_dir```, ``:option:`-m```, or ``:option:`--module```)에 
+   의해 참조 가능한 주어진 옵션에 대해 상호 참조 타겟을 만들 것이다.
 
-   ``cmdoption`` directive is a deprecated alias for the ``option`` directive.
+   ``cmdoption`` directive 는 ``option`` directive를 부르는 예전 명칭이다.
 
 .. rst:directive:: .. envvar:: name
 
-   Describes an environment variable that the documented code or program uses or
-   defines.  Referencable by :rst:role:`envvar`.
+   :rst:role:`envvar` 에 의해 참조 가능한 문서화된 코드와 프로그램이 
+   사용하거나 정의한 환경 변수 설명한다. 
+   
 
 .. rst:directive:: .. program:: name
 
-   Like :rst:dir:`py:currentmodule`, this directive produces no output.
-   Instead, it serves to notify Sphinx that all following :rst:dir:`option`
-   directives document options for the program called *name*.
+   :rst:dir:`py:currentmodule` 처럼, 이 directive는 아웃풋을 생산하지 않는다. 
+   대신에 *name* 이라고 불리는 프로그램에 대한 :rst:dir:`option` directives 
+   문서 옵션을 스핑크스에게 전달한다.
 
-   If you use :rst:dir:`program`, you have to qualify the references in your
-   :rst:role:`option` roles by the program name, so if you have the following
-   situation ::
+   :rst:dir:`program` 을 사용한다면, :rst:role:`option` roles에서 
+   참조에 대한 자격이 있어야 한다. 그래서 다음의 상황을 만난다면::
+  
 
       .. program:: rm
 
@@ -1014,120 +994,117 @@ There is a set of directives allowing documenting command-line programs:
 
       .. option:: -r revision
 
-         Specify the revision to work upon.
+         작업할 수 있는 revision을 지정한다.
 
-   then ``:option:`rm -r``` would refer to the first option, while
-   ``:option:`svn -r``` would refer to the second one.
+   그리고 나서, ``:option:`rm -r``` 은 첫번째 옵션을 참조할 것이다. 반면에
+   ``:option:`svn -r``` 두번째 옵션을 참조할 것이다.
 
-   The program name may contain spaces (in case you want to document subcommands
-   like ``svn add`` and ``svn commit`` separately).
+   프로그램 이름은 공백을 포함할 수도 있다.( ``svn add`` 와 ``svn commit``
+   같은 하위 문서를 구분해서 문서화 하기를 원하는 경우)
 
    .. versionadded:: 0.5
 
-
-There is also a very generic object description directive, which is not tied to
-any domain:
+또한 어떤 도메인에도 속하지 않은 generic object description directive도 있다.:
 
 .. rst:directive:: .. describe:: text
                .. object:: text
 
-   This directive produces the same formatting as the specific ones provided by
-   domains, but does not create index entries or cross-referencing targets.
-   Example::
+   이 directive는 도메인에 의해 제공된 구체적인 것과 같은 포매팅을 생산한다.
+   그러나 인덱스 엔트리나 상호 참조 타겟을 생산하지는 않는다. 예 ::
+   
 
       .. describe:: PAPER
 
-         You can set this variable to select a paper size.
+         페이퍼 사이즈를 선택하기 위해 이 변수를 설정할 수 있다.
 
 
 The JavaScript Domain
 ---------------------
 
-The JavaScript domain (name **js**) provides the following directives:
+자바스크립트 도메인 (name **js**) 은 다음의 directives를 제공한다.:
 
 .. rst:directive:: .. js:module:: name
 
-   This directive sets the module name for object declarations that follow
-   after. The module name is used in the global module index and in cross
-   references. This directive does not create an object heading like
-   :rst:dir:`py:class` would, for example.
+   이 directive는 object 선언에 대한 모듈 이름을 설정한다.
+   모듈 이름은 전역 모듈 인덱스와 상호 참조에서 사용된다.
+   이 directive는 :rst:dir:`py:class` 같은 object heading을 만들지 않는다.
+  
+   기본적으로, 이 directive 연결할 수 있는 엔터티를 만들 것이며, 
+   ``noindex`` 설정이 지정되어 있지 않다면, 전역 변수 인덱스 내에서
+   엔트리의 원인이 될 것이다. 
+   이 옵션이 지정되면, directive는 현재 모듈 이름만을 업데이트 할 것이다.   
 
-   By default, this directive will create a linkable entity and will cause an
-   entry in the global module index, unless the ``noindex`` option is specified.
-   If this option is specified, the directive will only update the current
-   module name.
 
-   To clear the current module, set the module name to ``null`` or ``None``
+   현재 모듈을 명확힉 하기 위해, 모듈 이름을 ``null`` 또는 ``None`` 로 설정한다.
 
    .. versionadded:: 1.6
 
 .. rst:directive:: .. js:function:: name(signature)
 
-   Describes a JavaScript function or method.  If you want to describe
-   arguments as optional use square brackets as :ref:`documented
-   <signatures>` for Python signatures.
+   자바스크립트의 함수와 메소드를 설명한다.
+   옵션으로 arguments를 설명하기를 원하면,  파이썬 signature를 위한
+   :ref:`documented<signatures>` 로써 대괄호([,])를 사용해라. 
 
-   You can use fields to give more details about arguments and their expected
-   types, errors which may be thrown by the function, and the value being
-   returned::
+   Argument와 기대 되어지는 타입, 함수에 의한 에러, 그리고 반환값에 대해
+   더 많은 내용을 보여 주기 위해 field를 사용할 수 있다.::
 
       .. js:function:: $.getJSON(href, callback[, errback])
 
-         :param string href: An URI to the location of the resource.
-         :param callback: Gets called with the object.
+         :param string href: 리소스의 위치에 대한 URI.
+         :param callback: Object로 call.
          :param errback:
-             Gets called in case the request fails. And a lot of other
-             text so we need multiple lines.
-         :throws SomeError: For whatever reason in that case.
+             요청이 실패한 경우 call.
+             많은 텍스트가 있어서 여러 줄이 필요한 경우.
+         :throws SomeError: 경우에 따라 어떤 이유든.
          :returns: Something.
 
-   This is rendered as:
+   다음과 같이 렌더링 된다.:
 
       .. js:function:: $.getJSON(href, callback[, errback])
 
-        :param string href: An URI to the location of the resource.
-        :param callback: Gets called with the object.
+        :param string href: 리소스 위치에 대한 URI.
+        :param callback: Object로 call.
         :param errback:
-            Gets called in case the request fails. And a lot of other
-            text so we need multiple lines.
-        :throws SomeError: For whatever reason in that case.
+            요청이 실패한 경우 call. 
+            많은 텍스트가 있어서 여러 줄이 필요한 경우.
+        :throws SomeError: 경우에 따라 어떤 이유든.
         :returns: Something.
 
 .. rst:directive:: .. js:method:: name(signature)
 
-   This directive is an alias for :rst:dir:`js:function`, however it describes a
-   function that is implemented as a method on a class object.
+   이 directive  :rst:dir:`js:function` 에 대한 별칭이다.
+   그러나 클래스 object에서 메소드로서 구현된 함수를 설명한다. 
 
    .. versionadded:: 1.6
 
 .. rst:directive:: .. js:class:: name
 
-   Describes a constructor that creates an object.  This is basically like
-   a function but will show up with a `class` prefix::
+   Object를 생성하는 constructor를 설명한다.
+   이는 기본적으로 함수이지만 `class` 접두사로 나타날 것이다.::
 
       .. js:class:: MyAnimal(name[, age])
 
-         :param string name: The name of the animal
-         :param number age: an optional age for the animal
+         :param string name: 동물의 이름
+         :param number age: 임의적인 동물의 나이
 
-   This is rendered as:
+   이렇게 렌더링 될 것이다.:
 
       .. js:class:: MyAnimal(name[, age])
 
-         :param string name: The name of the animal
-         :param number age: an optional age for the animal
+         :param string name: 동물의 이름
+         :param number age: 임의적인 동물의 나이
 
 .. rst:directive:: .. js:data:: name
 
-   Describes a global variable or constant.
+   전역 변수 또는 상수를 설명한다.
 
 .. rst:directive:: .. js:attribute:: object.name
 
-   Describes the attribute *name* of *object*.
+    *object*의 *name*의 특성을 설명한다.
 
 .. _js-roles:
 
-These roles are provided to refer to the described objects:
+이러한 role은 설명된 object를 참조하기 위해 제공된다.:
 
 .. rst:role:: js:mod
           js:func
@@ -1140,13 +1117,13 @@ These roles are provided to refer to the described objects:
 The reStructuredText domain
 ---------------------------
 
-The reStructuredText domain (name **rst**) provides the following directives:
+reStructuredText 도메인 (name **rst**) 은 다음의 directives를 제공한다. :
 
 .. rst:directive:: .. rst:directive:: name
 
-   Describes a reST directive.  The *name* can be a single directive name or
-   actual directive syntax (`..` prefix and `::` suffix) with arguments that
-   will be rendered differently.  For example::
+   reST directive를 설명한다.  *name* 하나의 directive 이름이거나
+   다르게 렌더링되는 argument를 가진 실제 directive syntax이다. 
+   (`..` prefix and `::` suffix).  예를 들면::
 
       .. rst:directive:: foo
 
@@ -1182,7 +1159,7 @@ The reStructuredText domain (name **rst**) provides the following directives:
 
 .. _rst-roles:
 
-These roles are provided to refer to the described objects:
+이러한 role은 설명된 object를 참조하기 위해 제공되어진다.:
 
 .. rst:role:: rst:dir
               rst:role
@@ -1191,10 +1168,10 @@ These roles are provided to refer to the described objects:
 More domains
 ------------
 
-The sphinx-contrib_ repository contains more domains available as extensions;
-currently Ada_, CoffeeScript_, Erlang_, HTTP_, Lasso_, MATLAB_, PHP_, and Ruby_
-domains. Also available are domains for `Chapel`_, `Common Lisp`_, dqn_, Go_,
-Jinja_, Operation_, and Scala_.
+The sphinx-contrib_ repository 확장으로 이용가능한 더 많은 도메인을 포함한다.;
+현재 Ada_, CoffeeScript_, Erlang_, HTTP_, Lasso_, MATLAB_, PHP_, and Ruby_
+도메인이 있고, 또한 `Chapel`_, `Common Lisp`_, dqn_, Go_,
+Jinja_, Operation_, and Scala_ 또한 이용이 가능하다.
 
 
 .. _sphinx-contrib: https://bitbucket.org/birkenfeld/sphinx-contrib/
