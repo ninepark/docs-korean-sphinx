@@ -22,13 +22,13 @@ Python 소스 코드나 인터랙티브 세션의 예제는 표준 reST literal 
 Syntax 강조는 `Pygments <http://pygments.org>`_ 와 함께 현명게 처리된다:
 
 * 각 소스 파일에는 "강조 표시 언어"가 있다. 파일의 대부분은 Python 코드를
-강조해야 하기 때문에 기본값은 ``'python'`` 이지만 문서 전체 기본값을
-:confval:`highlight_language` 설정 값으로 설정할 수 있다.
+  강조해야 하기 때문에 기본값은 ``'python'`` 이지만 문서 전체 기본값을
+  :confval:`highlight_language` 설정 값으로 설정할 수 있다.
 
 * Python 강조 모드에서 인터랙티브 세션은 자동으로 인식되고 적절히 강조가 된다.
-일반 Python 코드는 parsing이 가능한 경우에만 강조된다. (따라서 Python을
-기본값으로 사용할 수 있지만 여기저기 산재된 shell command나 다른 코드 블록의
-경우 강조되지 않는다.)
+  일반 Python 코드는 parsing이 가능한 경우에만 강조된다. (따라서 Python을
+  기본값으로 사용할 수 있지만 여기저기 산재된 shell command나 다른 코드 블록의
+  경우 강조되지 않는다.)
 
 * 강조 언어는 다음과 같이 사용되는``highlight`` directive를 사용하여 변경 할 수 있다:
 
@@ -40,8 +40,8 @@ Syntax 강조는 `Pygments <http://pygments.org>`_ 와 함께 현명게 처리�
 
      이 언어는 다음 ``highlight`` directive가 나올 때까지 사용된다.
 
-* 다른 언어의 코드를 표시해야하는 문서의 경우에는 강조 언어가 직접 지정된
-:rst:dir:`code-block' directive가 있다.
+* 다른 언어의 코드를 표시해야하는 문서의 경우에는 강조 언어가 직접 지정되는
+  :rst:dir:`code-block' directive가 있다.
 
   .. rst:directive:: .. code-block:: language
 
@@ -63,7 +63,7 @@ Syntax 강조는 `Pygments <http://pygments.org>`_ 와 함께 현명게 처리�
   * ... `Pygments가 지원하는 기타 lexer alias <http://pygments.org/docs/lexers/>`_.
 
 * 선택한 언어로 강조 표시가 실패한 경우 (즉, Pygments가 "오류" 토큰을 내보낼 경우)
-블록은 강조 표시되지 않는다.
+  블록은 강조 표시되지 않는다.
 
 줄 번호
 ^^^^^^^^^^^^
@@ -117,19 +117,19 @@ Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 �
 .. rst:directive:: .. literalinclude:: filename
 
    긴 예제 텍스트의 표시는 외부 파일에 plaintext로 저장하여 포함시킬 수 있다. 이 파일은
-``literalinclude`` directive를 사용하여 포함 할 수 있다. [1]_ 예를 들어, Python
-소스 파일 :file:`example.py` 를 사용하려면 다음과 같이 쓴다::
+   ``literalinclude`` directive를 사용하여 포함 할 수 있다. [1]_ 예를 들어, Python
+   소스 파일 :file:`example.py` 를 사용하려면 다음과 같이 쓴다::
 
       .. literalinclude:: example.py
 
    파일 이름은 대개 현재 파일의 경로를 기준으로합니다. 그러나 절대 경로
-(``/`` 로 시작하는 경로)는 최상위 소스 디렉토리에 상대적이다.
+   (``/`` 로 시작하는 경로)는 최상위 소스 디렉토리에 상대적이다.
 
    ``tab-width`` 옵션과 함께 원하는 탭의 크기를 지정하면 input에서의 탭이 확장된다.
 
    :rst:dir:`code-block` 과 같이, 이 directive는 ``linenos``, ``lineno-start``,
-``emphasize-lines`` 옵션들을 지원하고 현재 파일에서 지정된 언어와 다른
-언어를 지정하기 위한 ``language`` 옵션도 지원한다. 예::
+   ``emphasize-lines`` 옵션들을 지원하고 현재 파일에서 지정된 언어와 다른
+   언어를 지정하기 위한 ``language`` 옵션도 지원한다. 예::
 
       .. literalinclude:: example.rb
          :language: ruby
@@ -137,13 +137,13 @@ Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 �
          :linenos:
 
    포함되는 파일은 :confval:`source_encoding` 에 인코딩되어 있다고 가정합니다.
-파일의 인코딩이 다른 경우 ``encoding`` 옵션으로 지정할 수 있다::
+   파일의 인코딩이 다른 경우 ``encoding`` 옵션으로 지정할 수 있다::
 
       .. literalinclude:: example.py
          :encoding: latin-1
 
    이 directive는 파일의 일부만을 포함하는 것도 지원한다. 그것이 Python module인
-경우, ``pyobject`` 옵션을 사용하여 포함 할 class, function, method를 선택할 수 있다::
+   경우, ``pyobject`` 옵션을 사용하여 포함 할 class, function, method를 선택할 수 있다::
 
       .. literalinclude:: example.py
          :pyobject: Timer.start
@@ -158,24 +158,24 @@ Pygments는 코드 블록의 줄 번호를 생성 할 수 있다. 자동으로 �
    이 경우 1, 3, 5 ~ 10 행과 20 ~ 마지막 행까지만 포함된다.
 
    파일의 어느 부분이 포함는지를 제어하는 ​​또 다른 방법은 ``start-after`` 와
-``end-before`` 옵션(또는 그 중 하나만)을 사용하는 것이다. ``start-after`` 가 string
-옵션으로 주어지면, 그 string을 포함하는 첫 번째 라인 다음의 라인들만 포함된다.
-``end-before`` 가 string 옵션으로 주어지면, 그 string을 포함하는 첫 번째 줄 이전
-줄들만 포함된다.
+   ``end-before`` 옵션(또는 그 중 하나만)을 사용하는 것이다. ``start-after`` 가 string
+   옵션으로 주어지면, 그 string을 포함하는 첫 번째 라인 다음의 라인들만 포함된다.
+   ``end-before`` 가 string 옵션으로 주어지면, 그 string을 포함하는 첫 번째 줄 이전
+   줄들만 포함된다.
 
    ``start-after`` 를 사용하였더라도 여전히 ``lines`` 를 사용 가능하다. 이 경우
-허용되는 첫번째 행은 규칙에 따라 줄 번호 ``1`` 을 가진다.
+   허용되는 첫번째 행은 규칙에 따라 줄 번호 ``1`` 을 가진다.
 
    위에서 설명한 방법으로 행들을 선택했을 때, ``emphasize-lines`` 의 줄 번호는
-선택된 텍스트에 대한 상대적 줄번호를 의미한다. 즉, 선택된 내용의 첫번째 줄의
-번호는 ``1`` 이다.
+   선택된 텍스트에 대한 상대적 줄번호를 의미한다. 즉, 선택된 내용의 첫번째 줄의
+   번호는 ``1`` 이다.
 
    표시 할 파일의 특정 부분을 지정할 때, 원래의 줄 번호를 표시하는 것이 유용 할 수도 있다.
-이 경우 ``lineno-match`` 옵션을 사용하면 된다. 다만 이는 선택 항목이 연속적인 행들로
-구성되어 있을 때만 허용된다.
+   이 경우 ``lineno-match`` 옵션을 사용하면 된다. 다만 이는 선택 항목이 연속적인 행들로
+   구성되어 있을 때만 허용된다.
 
    ``prepend`` 와 ``append`` 옵션을 사용하여 포함 된 코드 앞뒤에 행을 추가 할 수 있다.
-이는 예를 들면 ``<?php``/``?>`` 마커를 포함하지 않는 PHP 코드를 강조 할 때 유용하다.
+   이는 예를 들면 ``<?php``/``?>`` 마커를 포함하지 않는 PHP 코드를 강조 할 때 유용하다.
 
 
    코드의 diff를 보여주고 싶다면 ``diff`` 옵션을 주어 이전 버전의 파일을 지정할 수 있다::
