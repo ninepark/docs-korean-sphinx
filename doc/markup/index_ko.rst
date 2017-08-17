@@ -1,7 +1,7 @@
 .. _sphinxmarkup:
 
-Sphinx Markup 구조
-========================
+Sphinx Markup Constructs
+============================
 
 Sphinx는 여러 새로운 directive와 interpreted text role을 `standard reST markup`_ 에
 추가한다. 이 section에는 이러한 도구들에 대한 참고 자료가 포함되어있다.
