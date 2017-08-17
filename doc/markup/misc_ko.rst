@@ -9,7 +9,7 @@
 ------------------------------
 
 reST는 "field list"라는 개념을 가지고 있다. 이들은 다음과 같이 주어진 일련의
-필드이다.
+필드이다::
 
    :fieldname: Field content
 
@@ -73,7 +73,7 @@ Sphinx는 :ref:`domains` 에서 설명 된 것처럼 모든 객체(함수, 클�
    이 directive는 하나 이상의 index 항목이 들어간다. 각 항목은 콜론으로 구분 된
    유형과 값으로 구성된다.
 
-   For example::
+   예제::
 
       .. index::
          single: execution; context
@@ -173,9 +173,8 @@ Sphinx는 :ref:`domains` 에서 설명 된 것처럼 모든 객체(함수, 클�
 
    이 표준 태그는 설정 파일을 읽은 *후에* 설정되므로 설정 파일에서 사용 할 수 없다.
 
-   모든 태그는 `Identifiers and keywords
-   <https://docs.python.org/2/reference/lexical_analysis.html#identifiers>`_
-   에 설정된 표준 Python identifier syntax를 따라야 한다. 즉, 태그 표현식은 Python
+   `Identifiers and keywords <https://docs.python.org/2/reference/lexical_analysis.html#identifiers>`_
+   에 설정된 표준 Python identifier syntax를 모든 태그는 따라야 한다. 즉, 태그 표현식은 Python
    variable의 syntax를 따르는 태그로만 구성 될 수 있다. ASCII에서는 ``A`` 부터 ``Z``
    까지의 대문자와 소문자, 밑줄 ``_``, 그리고 첫 번째 문자를 제외하고 ``0`` 부터 ``9``
    까지의 숫자로 구성된다.
@@ -307,5 +306,6 @@ Math
        빌더 형식과 빌더 이름을 구별한다.
 
        현재 빌더 태그는 ``conf.py`` 에서 사용할 수 없으며, 빌더가 초기화 된 후에만
-​​       사용할 수 있다.
+       사용할 수 있다.
+
 
