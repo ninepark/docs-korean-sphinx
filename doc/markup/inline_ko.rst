@@ -6,16 +6,16 @@ Inline markup
 =============
 
 Sphinx는 interpreted text role(역할)을 사용하여 semantic markup을 문서에 삽입한다.
-그들은 ``: rolename :`content`` 형태로 쓰여진다.
+그들은 ``:rolename:`content``` 형태로 쓰여진다.
 
 .. note::
 
-   디폴트 role인 (```content```)는 기본적으로 특별한 의미가 없다. 원하는대로 자유롭게 사용해도 된다.
-   예: 변수 이름. :confval:`default_role` 설정값을 사용하여 만들어진 역할로 설정하는게 가능하다.
-   예: :rst:role:`any` role을 사용하여 검색을 하거나 :rst:role:`py:obj` role을 사용하여
-   Python 객체를 검색.
+   디폴트 role인 ```content``` 는 기본적으로 특별한 의미가 없다. 원하는대로 자유롭게 사용해도
+   된다. 예: 변수 이름. :confval:`default_role` 설정값을 사용하여 만들어진 역할로 설정하는게
+   가능하다. 예: :rst:role:`any` role을 사용하여 검색을 하거나 :rst:role:`py:obj`
+   role을 사용하여 Python 객체를 검색.
 
-domain에 의해 추가된 role에 대해서는 :ref:`domains` 참조.
+Domain에 의해 추가된 role에 대해서는 :ref:`domains` 참조.
 
 
 .. _xref-syntax:
@@ -24,23 +24,23 @@ Cross-referencing syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 cross-reference(상호참조)는 많은 semantic interpreted text role에 의해 생성된다. 기본적으로
-``:role:`target``` 라고 쓰면 *role* 이 가리키는 타입의 *target* 이라고 이름지어진 항목에 링크가
+``:role:`target``` 이라고 쓰면 *role* 이 가리키는 타입의 *target* 이라고 이름지어진 항목에 링크가
 생성된다. 링크 텍스트는 *target* 과 동일하다.
 
 그러나 cross-reference role을 보다 다양하게 만드는 몇 가지 추가 기능이 있다.
 
-* reST direct hyperlink 에서 처럼 title과 reference target을 제공 할 수 있다.
+* reST direct hyperlink에서 처럼 title과 reference target을 제공 할 수 있다.
   예: ``:role:`title <target>``` 는 *target* 을 참조하지만 링크 텍스트는 *title* 이 된다.
 
 * 내용 앞에 접두로 ``!`` 를 붙이면 reference와 hyperlink가 생성되지 않는다.
 
 * 내용 앞에 접두로 ``~`` 를 붙이면 링크 텍스트는 target의 마지막 구성 요소가 된다. 예를 들어,
   ``:py:meth:`~Queue.Queue.get``` 는 ``Queue.Queue.get`` 을 참조하지만 링크 텍스트로
-  ``get`` 만 표시한다. 이 기능은 모든 cross-reference role에서 작동하지는 않지만 도메인에 따라
-  다르다.
+  ``get`` 만 표시한다. 이 기능은 모든 cross-reference role에서 작동하지는 않지만 domain에
+  따라 다르다.
 
   HTML 출력에서, 링크의 ``title`` 속성(예: mouse-hover에서의 tool-tip으로 표시)은
-  항상 완전한 target name이 된다.
+  항상 full target name이 된다.
 
 
 .. _any-role:
@@ -54,15 +54,15 @@ Cross-referencing anything
 
    이 convenience role은 reference text에 대해 유효한 target을 찾기 위해 최선을 다한다.
 
-   * 먼저, :rst:role:`doc`, :rst:role:`ref` 또는 :rst:role:`option` 에 의해 참조되는
-   표준 cross-reference target을 찾는것을 시도한다.
+   * 먼저, :rst:role:`doc`, :rst:role:`ref` 또는 :rst:role:`option` 에 의해
+     참조되는 표준 cross-reference target을 찾는것을 시도한다.
 
      그리고 extension에 의해 standard domain에 추가 된 사용자 정의 객체
      (:meth:`.add_object_type` 참조)도 검색된다.
 
-   * 그리고는 불려온 모든 domain 안의 객체(target)를 찾는다. 얼마나 구체적으로 일치해야 하는지는 각
-   도메인에 달려 있다. 예를 들어, Python domain에서 ``:any:`Builder``` 는
-   ``sphinx.builders.Builder`` class를 찾아낸다.
+   * 그리고는 불려온 모든 domain 안의 객체(target)를 찾는다. 얼마나 구체적으로 일치해야
+     하는지는 각 domain에 달려 있다. 예를 들어, Python domain에서 ``:any:`Builder``` 는
+     ``sphinx.builders.Builder`` class를 찾아낸다.
 
    대상이 하나도 없거나 여러 개인 경우 경고가 발생한다. 여러 대상의 경우 "any"를 특정 role로 변경할
    수 있다.
@@ -76,8 +76,8 @@ Cross-referencing anything
          이 function은 `signal` module이 알고있는 모든 signal에 대해 `handler` 를 설치한다.
          더 자세한 정보는 `about-signals` 섹션을 참조하면 된다.
 
-   용어집의 용어(보통 ``:term:`handler```), Python module (보통 ``:py:mod:``signal```
-   또는 ``:mod:`signal```)과 섹션 (보통 ``:ref:`about-signals```)를 참조하는게 가능하다.
+   Glossary의 term (보통 ``:term:`handler```), Python module
+   (보통 ``:py:mod:``signal``` 또는 ``:mod:`signal```)과 section (보통 ``:ref:`about-signals```) 참조가 가능하다.
 
    :rst:role:`any` role은 :mod:`~sphinx.ext.intersphinx` extension과 함께 같이 사용
    가능하다. 만약 로컬 cross-reference가 발견되지 않는다면, 모든 객체 유형의 intersphinx
