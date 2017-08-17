@@ -94,13 +94,13 @@ The Python Domain
 .. rst:directive:: .. py:module:: name
 
    
-   이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모    듈)에 대한 설명을 시작을 나타낸다.
+   이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모듈)에 대한 설명을 시작을 나타낸다.
    이는 content를 만들지 않는다. (예를 들면 :rst:dir:`py:class` )
 
    또한 이 directive는 전역 모듈 인덱스 내에서 인덱스의 원인이 된다.
 
-   ``platform`` 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다   .(모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
-   키들은 짧은 식별자이다. 사용중인 예는 "IRIX", "Mac", "Windows", 와 "Unix"를     포함한다. 적용이 가능할 때,
+   ``platform`` 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다.(모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
+   키들은 짧은 식별자이다. 사용중인 예는 "IRIX", "Mac", "Windows", 와 "Unix"를   포함한다. 적용이 가능할 때,
    이미 사용된 키를 사용하는 것은 중요하다. 
 
    ``synopsis`` 옵션은 모듈의 목적을 설명하는 하나의 문장으로 구성 되어야 한다. 이는 현재 전역 모듈 인덱스로 사용되어 진다.
@@ -128,7 +128,7 @@ The Python Domain
 
    사용해야하는 메소드의 경우 :rst:dir:`py:method`.
 
-   일반적으로 설명은 요구되어지는 파라미터, 어떻게 그들이 사용 되어지는지 , 부작용그리고  가능한 예외에 대한 정보를 포함해야 한다. 
+   일반적으로 설명은 요구되어지는 파라미터, 어떻게 그들이 사용 되어지는지, 부작용 그리고 가능한 예외에 대한 정보를 포함해야 한다. 
 
    이 정보는 (in any ``py`` directive) 선택적으로 구조화된 형태로 주어진다. :ref:`info-field-lists` 를 봐라.
 
@@ -148,7 +148,8 @@ The Python Domain
    :ref:`signatures` 를 보자.
 
    클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면,
-    제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다. 예::
+   제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다. 
+   예::
 
       .. py:class:: Foo
 
@@ -393,7 +394,8 @@ C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
 
 .. rst:directive:: .. c:function:: type name(signature)
 
-   C 함수를 설명한다. Signature는 C에서 제공되어진다. , 예::
+   C 함수를 설명한다. Signature는 C에서 제공되어진다. 
+   예::
 
       .. c:function:: PyObject* PyType_GenericAlloc(PyTypeObject *type, Py_ssize_t nitems)
 
@@ -407,19 +409,18 @@ C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
 
       .. c:member:: PyObject* PyTypeObject.tp_bases
 
-   설명하는 텍스트는 허락되어진 값의 범위와, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다.
+   설명하는 텍스트는 허락되어진 값의 범위, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다.
    텍스트에서 구조 멤버에 대한 참조는 ``member`` role을 사용해야한다.
 
 .. rst:directive:: .. c:macro:: name
 
-   간단한 C 매크로를 설명한다.  간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다.
+   간단한 C 매크로를 설명한다. 간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다.
    ``#define`` 는 간단한 C언어이다. 파이썬 문서에서 그것의 사용에 대한 예는
    :c:macro:`PyObject_HEAD` 과 :c:macro:`Py_BEGIN_ALLOW_THREADS` 를 포함한다.
 
 .. rst:directive:: .. c:type:: name
 
-   C 타입을 설명한다.(typedef 또는 struct에 의해 정의 되어 졌는지 여부). Signature
-   는 타입 이름이어야 한다.
+   C 타입을 설명한다.(typedef 또는 struct에 의해 정의 되어 졌는지 여부). Signature는 타입 이름이어야 한다.
 
 .. rst:directive:: .. c:var:: type name
 
@@ -466,11 +467,13 @@ Directives
 
 .. rst:directive:: .. cpp:class:: class specifier
 
-   클래스와 구조를 설명한다.(가능하면 상속에 대한 설명도 함께) 예,::
+   클래스와 구조를 설명한다.(가능하면 상속에 대한 설명도 함께)
+   예::
 
       .. cpp:class:: MyClass : public MyBase, MyOtherBase
 
-   클래스는 중첩된 범위 안에서 직접적으로 선언된다. 예,::
+   클래스는 중첩된 범위 안에서 직접적으로 선언된다.
+   예::
 
       .. cpp:class:: OuterScope::MyClass : public MyBase, MyOtherBase
 
@@ -494,7 +497,8 @@ Directives
 
 .. rst:directive:: .. cpp:function:: (member) function prototype
 
-   함수 또는 멤버 함수를 설명한다. 예,::
+   함수 또는 멤버 함수를 설명한다.
+   예::
 
       .. cpp:function:: bool myMethod(int arg1, std::string arg2)
 
@@ -534,7 +538,8 @@ Directives
 .. rst:directive:: .. cpp:member:: (member) variable declaration
                    .. cpp:var:: (member) variable declaration
 
-   변수와 멤버 변수를 설명한다. 예,::
+   변수와 멤버 변수를 설명한다. 
+   예::
 
       .. cpp:member:: std::string MyClass::myMember
 
@@ -552,8 +557,8 @@ Directives
                    .. cpp:type:: name
                    .. cpp:type:: type alias declaration
 
-   typedef 선언, type 별명 선언,
-   또는 단순히 지정되지 않은 타입의 타입 이름으로 타입을 설명한다. e.g.,::
+   typedef 선언, type 별명 선언, 또는 단순히 지정되지 않은 타입의 타입 이름으로 타입을 설명한다. 
+   예::
 
       .. cpp:type:: std::vector<int> MyList
 
@@ -618,7 +623,8 @@ Directives
 .. rst:directive:: .. cpp:enumerator:: name
                    .. cpp:enumerator:: name = constant
 
-   임의로 정의된 값을 가진 Enumerator를 설명한다. 예,::
+   임의로 정의된 값을 가진 Enumerator를 설명한다.
+   예::
 
       .. cpp:enumerator:: MyEnum::myEnumerator
 
@@ -632,7 +638,8 @@ Directives
       Concepts Technical Specification에 기초를 두고 있다. 
       특징은 TS의 발전에 따라 변할 수 있다.
 
-   변수 컨셉과 함수 컨셉을 설명한다. 둘 다 정확하게 하나의 템플릿 파라미터 리스트를 가져야 한다. 이름은 중첩된 이름이어도 된다. 예시::
+   변수 컨셉과 함수 컨셉을 설명한다. 둘 다 정확하게 하나의 템플릿 파라미터 리스트를 가져야 한다. 이름은 중첩된 이름이어도 된다. 
+   예::
 
       .. cpp:concept:: template<typename It> std::Iterator
 
@@ -775,7 +782,8 @@ C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
 
    ``NULL``, ``0``, or ``nullptr`` 를 사용하면 scope는 전역 scope로 변경될 것이다.
 
-   Namespace 선언 또한 템플릿이 될 수 있다.  예,::
+   Namespace 선언 또한 템플릿이 될 수 있다.  
+   예::
 
       .. cpp:class:: template<typename T> \
                      std::vector
@@ -800,7 +808,8 @@ C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
 
 .. rst:directive:: .. cpp:namespace-push:: scope specification
 
-   현재 scope에서 상대적으로 scope를 변경한다. 예를 들면::
+   현재 scope에서 상대적으로 scope를 변경한다.
+   예::
 
       .. cpp:namespace:: A::B
 
@@ -811,7 +820,7 @@ C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
 .. rst:directive:: .. cpp:namespace-pop::
 
    이전의 ``cpp:namespace-push`` directive (*not* just pop a scope)를 취소한다.
-   예를 들면::
+   예::
 
       .. cpp:namespace:: A::B
 
