@@ -106,10 +106,10 @@ Cross-referencing arbitrary locations
 .. rst:role:: ref
 
    모든 문서에서 임의의 위치에 대한 cross-reference를 지원하기 위해서 표준 reST label이 사용된다.
-   이를 위해 label 이름은 전체 문서에서 고유해야 한다. Label 참조에는 두 가지 방법이 있다.
+   이를 위해 label 이름은 전체 문서에서 고유해야 한다. Label 참조에는 두 가지 방법이 있다:
 
    * Section 제목 바로 앞에 label을 배치하면 ``:ref:`label-name``` 을 사용하여 label을
-   참조 할 수 있다. 예::
+     참조 할 수 있다. 예::
 
         .. _my-reference-label:
 
