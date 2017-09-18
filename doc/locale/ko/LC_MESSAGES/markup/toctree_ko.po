@@ -1,0 +1,279 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2017, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1.7+/637a0962\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-18 17:57+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../../markup/toctree_ko.rst:5
+msgid "The TOC tree"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:9
+msgid ""
+"reST에는 여러 문서를 서로 연결하거나 문서를 여러 출력 파일로 분할 할 수 있는 기능이 없기 때문에 Sphinx는 custom "
+"directive를 사용하여 documentation을 구성하는 문서들 관의 관계와 목차를 추가한다. ``toctree`` "
+"directive는 이를 위한 핵심 요소이다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:15
+msgid "하나의 파일에 다른 파일을 간단하게 \"include(포함)\"하는 것은 :dudir:`include` directive로 가능하다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:20
+msgid ""
+"이 directive는 directive의 body에 지정된 문서들의 개별 \"sub-TOC tree\" 포함한 TOC(목차)를 "
+"사용하여 현재 위치에 \"TOC tree\"를 삽입한다. 문서의 슬래시로 시작하지 않는 상대경로는 directive가 있는 문서에 "
+"대해 상대적이며, 절대경로는 소스 디렉토리에 대해 상대적이다. 숫자로 주어지는 ``maxdepth`` 옵션은 트리의 깊이를 지정하기"
+" 위해 설정될 수 있다. Default로는 모든 레벨이 포함된다. [#]_"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:26
+msgid "Python 문서의 library reference index에서 가져온 다음 예제를 고려해보자::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:37
+msgid "이것은 다음 두 가지를 수행한다:"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:39
+msgid "연관된 문서들에 있는 ``toctree`` directive를 모두 고려하여, 모든 문서의 깊이 2까지의 목차를 삽입한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:41
+msgid ""
+"Sphinx는 ``intro``, ``string`` 등 문서의 상대적인 순서를 알고 있으며, 현재 문서(library "
+"index)의 하위 항목임을 알고 있다. 이 정보를 이용하여 \"다음 장\", \"이전 장\" 및 \"상위 장\" 링크를 생성한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:45
+msgid "**Entries**"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:47
+msgid ""
+":rst:dir:`toctree` 안의 문서들의 제목은 참조하는 문서의 제목에서 자동으로 읽혀진다. 만약 이것이 원하는 것이 "
+"아니라면, reST hyperlink와 유사한 syntax(또는 Sphinx의 :ref:`cross-referencing "
+"syntax <xref-syntax>`)를 사용하여 제목과 대상을 지정할 수 있다. 이것은 다음과 같이 사용한다::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:58
+msgid ""
+"위의 두번째 줄은 ``strings`` 문서에 링크 하지만, ``strings`` 문서의 제목 대신에 \"All about "
+"strings\"라는 제목을 사용한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:61
+msgid "또한, 문서 이름 대신 HTTP 주소를 제공하여 외부 링크를 추가 할 수도 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:63
+msgid "**Section numbering**"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:65
+msgid ""
+"HTML 출력에서도 section number를 원하면 **toplevel** toctree에 ``numbered`` 옵션을 "
+"사용한다. 예를 들면::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:74
+msgid ""
+"이러면 번호 매김은 ``foo`` 의 표제에서 시작된다. Sub-toctrees는 자동적으로 번호가 매겨지므로 "
+"``numbered`` 플래그를 사용하면 안된다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:77
+msgid "``numbered`` 에 숫자 argument를 지정함으로써 특정한 깊이까지만 번호를 매기는 것도 가능하다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:79
+msgid "**Additional options**"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:81
+msgid ""
+"``caption`` 옵션을 사용하면 toctree에 caption(설명)을 제공 할 수 있다. ``name`` 옵션을 사용하면 "
+":rst:role:`ref` 에 의헤 참조 될 수 있는 이름을 제공 할 수 있다::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:90
+msgid "같은 레벨의 다른 표제가 아닌, 트리의 문서들의 제목만 나타나게 하려면 ``titlesonly`` 옵션을 사용하면 된다::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:99
+msgid ""
+"``glob`` 플래그 옵션을 사용하면 toctree directive에 \"globbing\"을 사용할 수 있다. 이 경우, 모든"
+" entry가 사용 가능한 문서 목록과 대조되고, 일치하는 항목들이 사전 순으로 목록에 삽입된다. 예::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:110
+msgid ""
+"여기에는 이름이 ``intro`` 로 시작하는 모든 문서들과 ``recipe`` 폴더에 있는 모든 문서들, 그리고 (이 "
+"directive를 포함하고있는 문서를 제외한) 나머지 모든 문서들 순으로 포함된다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:113
+msgid ""
+"특수 entry 이름 ``self`` 는 이 toctree directive를 포함하는 문서를 가르킨다. 이것은 toctree에서 "
+"\"sitemap\"을 생성하고자 할 때 유용하다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:116
+msgid ""
+"``reversed`` 플래그 옵션을 사용하여 목록의 entry 순서를 뒤집을 수도 있다. 이것은 ``glob`` 플래그 옵션을 "
+"사용할 때, 파일의 순서를 뒤집기 위해 유용하다. 예::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:125
+msgid "다음과 같이 directive에 \"hidden\" 옵션을 지정할 수도 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:133
+msgid ""
+"이것은 Sphinx에는 문서 계층을 알리지만 문서에는 directive의 위치에 링크를 삽입하지 않는다. 이는 링크를 직접, 다른 "
+"스타일, 또는 HTML 사이드바에 삽입하려는 경우에 유용하다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:136
+msgid ""
+"단 하나의 최상위 레벨의 toctree를 가지고 다른 모든 하위 레벨의 toctree를 숨기려면 최상위 레벨의 toctree에 "
+"\"includehidden\" 옵션을 추가하면 된다::"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:145
+msgid "그리고 나서 다른 모든 toctree의 entry는 \"hidden\" 옵션으로 제거하면 된다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:147
+msgid ""
+"결국, :term:`source directory` (또는 하위 디렉토리들)에 있는 모든 문서들은 적어도 하나의 "
+"``toctree`` directive 안에 나타나야만 한다. 이는 일반 파일 탐색을 통해 파일에 접근 할 수 없다는 뜻이기에, "
+"Sphinx가 포함되지 않은 파일을 발견하고 경고 메시지를 내보내기 때문이다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:152
+msgid ""
+"문서나 디렉토리를 빌드에서 완전히 제외시키기 위해서는 :confval:`exclude_patterns` 를 사용한다. 빌드는 하지만"
+" Sphinx에 toctree를 통해 도달 할 수는 없다는 것을 알리기 위해서는 :ref:`the \"orphan\" "
+"metadata <metadata>` 를 사용한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:156
+msgid ""
+"TOC tree의 구조에서 \"root\"에 해당하는 것은 (:confval:`master_doc` 에 의해 선택 된) "
+"\"master document\"이다. 이는 documentation의 메인 페이지로 사용하거나, ``maxdepth`` 옵션을 "
+"주지 않고 \"전체 목차\"로 사용할 수 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:160
+msgid "Added \"globbing\" option."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:163
+msgid ""
+"Added \"numbered\" and \"hidden\" options as well as external links and "
+"support for \"self\" references."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:167
+msgid "Added \"titlesonly\" option."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:170
+msgid "Added numeric argument to \"numbered\"."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:173
+msgid "Added \"includehidden\" option."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:176
+msgid "Added \"caption\" and \"name\" option."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:180
+msgid "Special names"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:182
+msgid "Sphinx는 자체 사용을 위해 특정 문서 이름들을 지정해 놓았으며, 이러한 이름들은 사용해서는 안된다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:184
+msgid "특수 문서 이름(및 그에 의해 생성 된 페이지)은 다음과 같다:"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:186
+msgid "``genindex``, ``modindex``, ``search``"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:188
+msgid "이들은 각각 general index, Python module index, 검색 페이지에 사용된다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:190
+msgid ""
+"General index는 module, index를 생성하는 모든 :ref:`object descriptions <basic-"
+"domain-markup>`, 그리고 :rst:dir:`index` directive의 항목들을 포함한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:193
+msgid "Python module index는 각 :rst:dir:`py:module` directive 당 하나의 항목을 포함한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:195
+msgid ""
+"검색 페이지에는 생성 된 JSON search index와 JavaScript를 사용, 생성 된 문서에 대해 full-text "
+"검색을 하는 양식이 포함되어 있다. 이는 최신 자바 스크립트를 지원하는 모든 주요 브라우저에서 지원한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:199
+msgid "``_`` 로 시작하는 모든 이름"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:201
+msgid ""
+"현재 Sphinx에서는 이러한 이름을 거의 사용하지 않지만, 이런 이름으로 문서나 문서가 포함된 폴더를 만들면 안된다. (사용자 "
+"정의 템플릿 디렉토리의 접두어로 ``_`` 를 사용하는 것 제외)"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:207
+msgid "파일 이름에 특수문자가 있는 경우를 조심해야 한다. 일부 형식은 이러한 문자를 잘못 해석 할 수도 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:210
+msgid "HTML 기반 형식에 ``:`` 을 사용하면 안된다. 링크가 작동하지 않을 수도 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:212
+msgid "ePub 형식에 ``+`` 를 사용하면 안된다. 일부 자원을 찾지 못할 수도 있다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:215
+msgid "Footnotes"
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:216
+msgid "LaTeX writer는 문서에서 첫번째 toctree directive의 ``maxdepth`` 옵션만을 참조한다."
+msgstr ""
+
+#: ../../markup/toctree_ko.rst:219
+msgid ""
+"사용 가능한 globbing syntax: ``*``, ``?``, ``[...]``, ``[!...]`` 과 같은 standard"
+" shell의 일반적인 구문. 단 슬래시와는 매치되지 않는다. *슬래시* 를 포함한 모든 문자열을 매치시키는 데는 ``**`` 를 "
+"사용한다."
+msgstr ""
+

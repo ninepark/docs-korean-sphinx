@@ -1,0 +1,307 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2017, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1.7+/637a0962\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-18 17:57+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../../authors.rst:6
+msgid "Sphinx authors"
+msgstr ""
+
+#: ../../../AUTHORS:1
+msgid "Sphinx is written and maintained by Georg Brandl <georg@python.org>."
+msgstr ""
+
+#: ../../../AUTHORS:3
+msgid ""
+"Substantial parts of the templates were written by Armin Ronacher "
+"<armin.ronacher@active-4.com>."
+msgstr ""
+
+#: ../../../AUTHORS:6
+msgid "Other co-maintainers:"
+msgstr ""
+
+#: ../../../AUTHORS:8
+msgid "Takayuki Shimizukawa <shimizukawa@gmail.com>"
+msgstr ""
+
+#: ../../../AUTHORS:9
+msgid "Daniel Neuhäuser <@DasIch>"
+msgstr ""
+
+#: ../../../AUTHORS:10
+msgid "Jon Waltman <@jonwaltman>"
+msgstr ""
+
+#: ../../../AUTHORS:11
+msgid "Rob Ruana <@RobRuana>"
+msgstr ""
+
+#: ../../../AUTHORS:12
+msgid "Robert Lehmann <@lehmannro>"
+msgstr ""
+
+#: ../../../AUTHORS:13
+msgid "Roland Meister <@rolmei>"
+msgstr ""
+
+#: ../../../AUTHORS:14
+msgid "Takeshi Komiya <@tk0miya>"
+msgstr ""
+
+#: ../../../AUTHORS:15
+msgid "Jean-François Burnol <@jfbu>"
+msgstr ""
+
+#: ../../../AUTHORS:16
+msgid "Yoshiki Shibukawa <@shibu_jp>"
+msgstr ""
+
+#: ../../../AUTHORS:18
+msgid "Other contributors, listed alphabetically, are:"
+msgstr ""
+
+#: ../../../AUTHORS:20
+msgid "Alastair Houghton -- Apple Help builder"
+msgstr ""
+
+#: ../../../AUTHORS:21
+msgid "Andi Albrecht -- agogo theme"
+msgstr ""
+
+#: ../../../AUTHORS:22
+msgid "Jakob Lykke Andersen -- Rewritten C++ domain"
+msgstr ""
+
+#: ../../../AUTHORS:23
+msgid "Henrique Bastos -- SVG support for graphviz extension"
+msgstr ""
+
+#: ../../../AUTHORS:24
+msgid "Daniel Bültmann -- todo extension"
+msgstr ""
+
+#: ../../../AUTHORS:25
+msgid "Marco Buttu -- doctest extension (pyversion option)"
+msgstr ""
+
+#: ../../../AUTHORS:26
+msgid "Etienne Desautels -- apidoc module"
+msgstr ""
+
+#: ../../../AUTHORS:27
+msgid "Michael Droettboom -- inheritance_diagram extension"
+msgstr ""
+
+#: ../../../AUTHORS:28
+msgid "Charles Duffy -- original graphviz extension"
+msgstr ""
+
+#: ../../../AUTHORS:29
+msgid "Kevin Dunn -- MathJax extension"
+msgstr ""
+
+#: ../../../AUTHORS:30
+msgid "Josip Dzolonga -- coverage builder"
+msgstr ""
+
+#: ../../../AUTHORS:31
+msgid "Buck Evan -- dummy builder"
+msgstr ""
+
+#: ../../../AUTHORS:32
+msgid "Hernan Grecco -- search improvements"
+msgstr ""
+
+#: ../../../AUTHORS:33
+msgid "Horst Gutmann -- internationalization support"
+msgstr ""
+
+#: ../../../AUTHORS:34
+msgid "Martin Hans -- autodoc improvements"
+msgstr ""
+
+#: ../../../AUTHORS:35
+msgid "Doug Hellmann -- graphviz improvements"
+msgstr ""
+
+#: ../../../AUTHORS:36
+msgid "Timotheus Kampik - JS theme & search enhancements"
+msgstr ""
+
+#: ../../../AUTHORS:37
+msgid "Dave Kuhlman -- original LaTeX writer"
+msgstr ""
+
+#: ../../../AUTHORS:38
+msgid "Blaise Laflamme -- pyramid theme"
+msgstr ""
+
+#: ../../../AUTHORS:39
+msgid "Thomas Lamb -- linkcheck builder"
+msgstr ""
+
+#: ../../../AUTHORS:40
+msgid "Łukasz Langa -- partial support for autodoc"
+msgstr ""
+
+#: ../../../AUTHORS:41
+msgid "Ian Lee -- quickstart improvements"
+msgstr ""
+
+#: ../../../AUTHORS:42
+msgid "Robert Lehmann -- gettext builder (GSOC project)"
+msgstr ""
+
+#: ../../../AUTHORS:43
+msgid "Dan MacKinlay -- metadata fixes"
+msgstr ""
+
+#: ../../../AUTHORS:44
+msgid "Martin Mahner -- nature theme"
+msgstr ""
+
+#: ../../../AUTHORS:45
+msgid "Will Maier -- directory HTML builder"
+msgstr ""
+
+#: ../../../AUTHORS:46
+msgid "Jacob Mason -- websupport library (GSOC project)"
+msgstr ""
+
+#: ../../../AUTHORS:47
+msgid "Glenn Matthews -- python domain signature improvements"
+msgstr ""
+
+#: ../../../AUTHORS:48
+msgid "Roland Meister -- epub builder"
+msgstr ""
+
+#: ../../../AUTHORS:49
+msgid "Ezio Melotti -- collapsible sidebar JavaScript"
+msgstr ""
+
+#: ../../../AUTHORS:50
+msgid "Bruce Mitchener -- Minor epub improvement"
+msgstr ""
+
+#: ../../../AUTHORS:51
+msgid "Daniel Neuhäuser -- JavaScript domain, Python 3 support (GSOC)"
+msgstr ""
+
+#: ../../../AUTHORS:52
+msgid "Christopher Perkins -- autosummary integration"
+msgstr ""
+
+#: ../../../AUTHORS:53
+msgid "Benjamin Peterson -- unittests"
+msgstr ""
+
+#: ../../../AUTHORS:54
+msgid "\\T. Powers -- HTML output improvements"
+msgstr ""
+
+#: ../../../AUTHORS:55
+msgid "Jeppe Pihl -- literalinclude improvements"
+msgstr ""
+
+#: ../../../AUTHORS:56
+msgid "Rob Ruana -- napoleon extension"
+msgstr ""
+
+#: ../../../AUTHORS:57
+msgid "Stefan Seefeld -- toctree improvements"
+msgstr ""
+
+#: ../../../AUTHORS:58
+msgid "Gregory Szorc -- performance improvements"
+msgstr ""
+
+#: ../../../AUTHORS:59
+msgid "Taku Shimizu -- epub3 builder"
+msgstr ""
+
+#: ../../../AUTHORS:60
+msgid "Antonio Valentino -- qthelp builder"
+msgstr ""
+
+#: ../../../AUTHORS:61
+msgid "Filip Vavera -- napoleon todo directive"
+msgstr ""
+
+#: ../../../AUTHORS:62
+msgid "Pauli Virtanen -- autodoc improvements, autosummary extension"
+msgstr ""
+
+#: ../../../AUTHORS:63
+msgid "Stefan van der Walt -- autosummary extension"
+msgstr ""
+
+#: ../../../AUTHORS:64
+msgid "Thomas Waldmann -- apidoc module fixes"
+msgstr ""
+
+#: ../../../AUTHORS:65
+msgid "John Waltman -- Texinfo builder"
+msgstr ""
+
+#: ../../../AUTHORS:66
+msgid "Barry Warsaw -- setup command improvements"
+msgstr ""
+
+#: ../../../AUTHORS:67
+msgid "Sebastian Wiesner -- image handling, distutils support"
+msgstr ""
+
+#: ../../../AUTHORS:68
+msgid "Michael Wilson -- Intersphinx HTTP basic auth support"
+msgstr ""
+
+#: ../../../AUTHORS:69
+msgid "Joel Wurtz -- cellspanning support in LaTeX"
+msgstr ""
+
+#: ../../../AUTHORS:70
+msgid "Hong Xu -- svg support in imgmath extension and various bug fixes"
+msgstr ""
+
+#: ../../../AUTHORS:71
+msgid "Stephen Finucane -- setup command improvements and documentation"
+msgstr ""
+
+#: ../../../AUTHORS:73
+msgid "Many thanks for all contributions!"
+msgstr ""
+
+#: ../../../AUTHORS:75
+msgid ""
+"There are also a few modules or functions incorporated from other authors"
+" and projects:"
+msgstr ""
+
+#: ../../../AUTHORS:78
+msgid ""
+"sphinx.util.jsdump uses the basestring encoding from simplejson, written "
+"by Bob Ippolito, released under the MIT license"
+msgstr ""
+
+#: ../../../AUTHORS:80
+msgid ""
+"sphinx.util.stemmer was written by Vivake Gupta, placed in the Public "
+"Domain"
+msgstr ""
+

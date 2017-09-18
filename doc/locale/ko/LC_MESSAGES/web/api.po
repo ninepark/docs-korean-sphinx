@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2017, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1.7+/637a0962\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-18 17:57+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+
+#: ../../web/api.rst:6
+msgid "The WebSupport Class"
+msgstr ""
+
+#: ../../web/api.rst:10
+msgid ""
+"The main API class for the web support package.  All interactions with "
+"the web support package should occur through this class."
+msgstr ""
+
+#: ../../web/api.rst:13
+msgid "The class takes the following keyword arguments:"
+msgstr ""
+
+#: ../../web/api.rst:16
+msgid "srcdir"
+msgstr ""
+
+#: ../../web/api.rst:16
+msgid "The directory containing reStructuredText source files."
+msgstr ""
+
+#: ../../web/api.rst:21
+msgid "builddir"
+msgstr ""
+
+#: ../../web/api.rst:19
+msgid ""
+"The directory that build data and static files should be placed in.  This"
+" should be used when creating a :class:`WebSupport` object that will be "
+"used to build data."
+msgstr ""
+
+#: ../../web/api.rst:25
+msgid "datadir"
+msgstr ""
+
+#: ../../web/api.rst:24
+msgid ""
+"The directory that the web support data is in.  This should be used when "
+"creating a :class:`WebSupport` object that will be used to retrieve data."
+msgstr ""
+
+#: ../../web/api.rst:30
+msgid "search"
+msgstr ""
+
+#: ../../web/api.rst:28
+msgid ""
+"This may contain either a string (e.g. 'xapian') referencing a built-in "
+"search adapter to use, or an instance of a subclass of "
+":class:`~.search.BaseSearch`."
+msgstr ""
+
+#: ../../web/api.rst:35
+msgid "storage"
+msgstr ""
+
+#: ../../web/api.rst:33
+msgid ""
+"This may contain either a string representing a database uri, or an "
+"instance of a subclass of :class:`~.storage.StorageBackend`.  If this is "
+"not provided, a new sqlite database will be created."
+msgstr ""
+
+#: ../../web/api.rst:40
+msgid "moderation_callback"
+msgstr ""
+
+#: ../../web/api.rst:38
+msgid ""
+"A callable to be called when a new comment is added that is not "
+"displayed.  It must accept one argument: a dictionary representing the "
+"comment that was added."
+msgstr ""
+
+#: ../../web/api.rst:45
+msgid "staticdir"
+msgstr ""
+
+#: ../../web/api.rst:43
+msgid ""
+"If static files are served from a location besides ``'/static'``, this "
+"should be a string with the name of that location (e.g. "
+"``'/static_files'``)."
+msgstr ""
+
+#: ../../web/api.rst:48
+msgid "docroot"
+msgstr ""
+
+#: ../../web/api.rst:48
+msgid ""
+"If the documentation is not served from the base path of a URL, this "
+"should be a string specifying that path (e.g. ``'docs'``)."
+msgstr ""
+
+#: ../../web/api.rst:54
+msgid ""
+"WebSupport class is moved to sphinxcontrib.websupport from "
+"sphinx.websupport. Please add ``sphinxcontrib-websupport`` package in "
+"your dependency and use moved class instead."
+msgstr ""
+
+#: ../../web/api.rst:60
+msgid "Methods"
+msgstr ""
+
