@@ -13,6 +13,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.todo',
 master_doc = 'contents'
 templates_path = ['_templates']
 exclude_patterns = ['_build']
+language = 'ko'
 
 project = 'Sphinx'
 copyright = '2007-2017, Georg Brandl and the Sphinx team'
