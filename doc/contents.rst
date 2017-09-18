@@ -7,15 +7,15 @@ Sphinx documentation contents
 .. toctree::
    :maxdepth: 2
 
-   intro
-   tutorial
+   intro_ko
+   tutorial_ko
    man/index
-   rest
+   rest_ko
    markup/index
-   domains
-   builders
+   domains_ko
+   builders_ko
    config
-   intl
+   intl_ko
    theming
    setuptools
    templating
