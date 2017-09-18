@@ -1,0 +1,1553 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sphinx Domains &#8212; Sphinx 1.7+/762679f3 documentation</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.7+/762679f3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Sphinx 1.7+/762679f3 documentation에서 찾기"
+          href="_static/opensearch.xml"/>
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
+    <link rel="next" title="Available builders" href="builders_ko.html" />
+    <link rel="prev" title="Miscellaneous markup" href="markup/misc.html" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script type="text/javascript">
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head>
+  <body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="install.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>탐색</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">색인</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
+        <li class="right" >
+          <a href="builders_ko.html" title="Available builders"
+             accesskey="N">다음</a> |</li>
+        <li class="right" >
+          <a href="markup/misc.html" title="Miscellaneous markup"
+             accesskey="P">이전</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sphinx Domains</a><ul>
+<li><a class="reference internal" href="#id1">도메인이란 무엇인가?</a></li>
+<li><a class="reference internal" href="#basic-markup">Basic Markup</a><ul>
+<li><a class="reference internal" href="#cross-referencing-syntax">Cross-referencing syntax</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-python-domain">The Python Domain</a><ul>
+<li><a class="reference internal" href="#python-signatures">Python Signatures</a></li>
+<li><a class="reference internal" href="#info-field-lists">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing-python-objects">Cross-referencing Python objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-c-domain">The C Domain</a><ul>
+<li><a class="reference internal" href="#cross-referencing-c-constructs">Cross-referencing C constructs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cpp-domain">The C++ Domain</a><ul>
+<li><a class="reference internal" href="#directives">Directives</a><ul>
+<li><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#constrained-templates">Constrained Templates</a><ul>
+<li><a class="reference internal" href="#placeholders">Placeholders</a></li>
+<li><a class="reference internal" href="#template-introductions">Template Introductions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inline-expressions-and-tpes">Inline Expressions and Tpes</a></li>
+<li><a class="reference internal" href="#namespacing">Namespacing</a></li>
+<li><a class="reference internal" href="#id10">Info field lists</a></li>
+<li><a class="reference internal" href="#cross-referencing">Cross-referencing</a><ul>
+<li><a class="reference internal" href="#argument">템플릿 파라미터와 템플릿 argument 없이 선언하기</a></li>
+<li><a class="reference internal" href="#templated-declarations">Templated declarations</a></li>
+<li><a class="reference internal" href="#full-template-specialisations">(Full) Template Specialisations</a></li>
+<li><a class="reference internal" href="#partial-template-specialisations">Partial Template Specialisations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-variables">Configuration Variables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-standard-domain">The Standard Domain</a></li>
+<li><a class="reference internal" href="#the-javascript-domain">The JavaScript Domain</a></li>
+<li><a class="reference internal" href="#the-restructuredtext-domain">The reStructuredText domain</a></li>
+<li><a class="reference internal" href="#more-domains">More domains</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>이전 항목</h4>
+  <p class="topless"><a href="markup/misc.html"
+                        title="이전 장">Miscellaneous markup</a></p>
+  <h4>다음 항목</h4>
+  <p class="topless"><a href="builders_ko.html"
+                        title="다음 장">Available builders</a></p>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/domains_ko.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx-domains">
+<span id="domains"></span><h1>Sphinx Domains<a class="headerlink" href="#sphinx-domains" title="제목 주소">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.0에 추가.</span></p>
+</div>
+<div class="section" id="id1">
+<h2>도메인이란 무엇인가?<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
+<p>원래, 스핑크스는 하나의 프로젝트와 파이썬 문서화를 위해 만들어졌다. 그 후 문서화 tool 로써 모든 사람이 사용 가능하게 만들어졌다. 하지만, 파이썬 모듈의 문서화는 빌트인 상태로 남게 되었고, <code class="docutils literal"><span class="pre">function</span></code> 같은 가장 기초적인 directives는 파이썬 object를 위해 고안되어졌다. 스핑크스가 유명해진 후에, C/C++, 자바스크립트, reStructuredText 마크업 등의 다양한 목적으로 개발되어지고고 있다.</p>
+<p>이제는 모든 목적에 맞는 <strong>domain</strong> 을 제공함으로써 다른 프로그래밍 언어를 사용하는 프로젝트 또는 스핑크스에서 지원하지 않는 프로젝트의 문서화를 더 쉽게 지원할 수 있다.</p>
+<p>도메인은 <a class="reference internal" href="glossary.html#term-object"><span class="xref std std-term">object</span></a>를 설명하고 연결하기 위한 markup(reStructuredText <a class="reference internal" href="glossary.html#term-directive"><span class="xref std std-term">directive</span></a>s 과:term:<cite>role</cite>s) 컬렉션이다. (예를 들면, 프로그래밍 언어의 요소)
+도메인에서 directive와 role names는 <code class="docutils literal"><span class="pre">domain:name</span></code> 과 같은 이름을 가진다. (예를 들면, <code class="docutils literal"><span class="pre">py:function</span></code>) 도메인은 또한 파이썬 모듈 인덱스 같은 커스텀 인덱스들을 제공할 수 있다.</p>
+<p>도메인을 가지는 것은 예를 들어 문서화된 한 세트가 C++, 파이썬 클래스를 참조하고자 할 때, 네이밍 문제가 없다는 것을 의미한다. 또한 새로운 언어의 문서화를 지원해주는 확장을 작성하기가 훨씬 더 쉬워졌다는 것을 의미한다.</p>
+<p>이 섹션은 스핑크스에 포함된 도메인이 무엇을 제공하는지를 설명해준다. 도메인 API는 문서화가 잘되어있다 <a class="reference internal" href="extdev/domainapi.html#domain-api"><span class="std std-ref">Domain API</span></a>.</p>
+</div>
+<div class="section" id="basic-markup">
+<span id="basic-domain-markup"></span><h2>Basic Markup<a class="headerlink" href="#basic-markup" title="제목 주소">¶</a></h2>
+<p>대부분의 도메인은 많은 <em class="dfn">object description directives</em> 를 제공하고, 이러한 것들은 모듈에 의해 제공된 구체적인 object를 설명하기 위해 사용되어 진다.
+각각의 directive는 설명할 것들에 대해 기본적인 정보를 제공하기 위해 하나 이상의 signature를 요구한다. 그리고 내용을 설명해야 한다. 기본 버젼은 일반적인 인덱스 내에서 엔트리를 만든다. 인덱스가 없는 엔트리가 요구되면, directive option flag 인 <code class="docutils literal"><span class="pre">:noindex:</span></code> 를 줄 수 있다. 아래는 파이썬 도메인 directive를 사용한 예이다.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> spam(eggs)
+                 ham(eggs)
+
+   Spam or ham the foo.
+</pre></div>
+</div>
+<p>이는 두 개의 파이썬 함수 <code class="docutils literal"><span class="pre">spam</span></code> 과 <code class="docutils literal"><span class="pre">ham</span></code> 을 설명한다. signature가 너무 길어질 때, 다음 줄까지 이어지는 줄에 backslash를 추가한다면 signature를 깰 수 있다. 예를 들면:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> filterwarnings(action, message=&#39;&#39;, category=Warning, \
+                                module=&#39;&#39;, lineno=0, append=False)
+   <span class="nc">:noindex:</span>
+</pre></div>
+</div>
+<p>(이 예는 또한 <code class="docutils literal"><span class="pre">:noindex:</span></code> flag를 사용하는 방법을 보여준다.)</p>
+<p>도메인은 또한 이러한 object 설명들로 돌아갈 수 있게 연결해주는 역할을 한다.
+예를 들면, 위의 예에서 설명된 함수중 하나에 연결하기 위해, 이렇게 할 수 있다.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span>The function <span class="na">:py:func:</span><span class="nv">`spam`</span> does a similar thing.
+</pre></div>
+</div>
+<p>위에서 볼 수 있듯이, directives와 role 이름 모두는 그 도메인 이름과 그 directive 네임을 포함 한다.</p>
+<p class="rubric">Default Domain</p>
+<p>하나의 도메인으로부터 object를 설명하는 문서화를 위해서, 저자는 각각의 directive, role, 기타 등에 대해서 구체적인 디폴트를 지정한 후에는 다시 명시할 필요가 없다.
+이는 config value <a class="reference internal" href="config.html#confval-primary_domain"><code class="xref std std-confval docutils literal"><span class="pre">primary_domain</span></code></a> 또는 directive를 통해 수행할 수 있다.</p>
+<dl class="directive">
+<dt id="directive-default-domain">
+<code class="descname">.. default-domain::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-default-domain" title="정의 주소">¶</a></dt>
+<dd><p>새로운 디폴트 도메인을 선택해라. <a class="reference internal" href="config.html#confval-primary_domain"><code class="xref std std-confval docutils literal"><span class="pre">primary_domain</span></code></a> 가 전역 디폴트를 선택하는 반면, 이는 같은 파일 내에서만 효과를 가진다.</p>
+</dd></dl>
+
+<p>다른 디폴트가 선택되지 않는다면, 대부분 스핑크스의 이전 버젼용으로 작성된 문서와의 호환성을 위해 파이썬 도메인 (named <code class="docutils literal"><span class="pre">py</span></code>) 가 디폴트가 된다.</p>
+<p>디폴트 도메인에 속하는 Directives와 roles은 도메인 이름을 주지 않고 언급되어질 수 있다. 예를 들면</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">function</span><span class="p">::</span> pyfunc()
+
+   Describes a Python function.
+
+Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
+</pre></div>
+</div>
+<div class="section" id="cross-referencing-syntax">
+<h3>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="제목 주소">¶</a></h3>
+<p>도메인에 의해 제공된 상호 참조 role의 경우, 일반적인 상호 참조를 위해 같은 기능이 존재한다. <a class="reference internal" href="markup/inline_ko.html#xref-syntax"><span class="std std-ref">Cross-referencing syntax</span></a> 를 보자.</p>
+<p>간략하게 :</p>
+<ul class="simple">
+<li>명시적인 제목과 참조 타겟을 제공할 수도 있다. : <code class="docutils literal"><span class="pre">:role:`title</span>
+<span class="pre">&lt;target&gt;`</span></code> 는 <em>target</em> 을 참조할 것이지만, 연결문은 <em>title</em> 일 것이다.</li>
+<li><code class="docutils literal"><span class="pre">!</span></code> 가 있는 컨텐츠를 앞에 놓는다면, 어떠한 참조나 하이퍼링크도 만들어지지 않을 것이다.</li>
+<li><code class="docutils literal"><span class="pre">~</span></code> 가 있는 컨텐츠를 앞에 놓는다면, 연결문은 단지 타겟의 마지막 구성요소일 것이다. 예를 들면, <code class="docutils literal"><span class="pre">:py:meth:`~Queue.Queue.get</span></code> 는 <code class="docutils literal"><span class="pre">Queue.Queue.get</span></code> 를 참조할 것이지만, 단지 연결문으로서 <code class="docutils literal"><span class="pre">get</span></code> 을 보여준다.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-python-domain">
+<h2>The Python Domain<a class="headerlink" href="#the-python-domain" title="제목 주소">¶</a></h2>
+<p>파이썬 도메인(name <strong>py</strong>)은 모듈 선언을 위해 다음의 directives를 제공한다.:</p>
+<dl class="directive">
+<dt id="directive-py:module">
+<code class="descname">.. py:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:module" title="정의 주소">¶</a></dt>
+<dd><p>이 directive는 모듈(또는 패키지 이름을 포함하고 이름이 완전한 패키지 서브 모듈)에 대한 설명을 시작을 나타낸다.
+이는 content를 만들지 않는다. (예를 들면 <a class="reference internal" href="#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:class</span></code></a> )</p>
+<p>또한 이 directive는 전역 모듈 인덱스 내에서 인덱스의 원인이 된다.</p>
+<p><code class="docutils literal"><span class="pre">platform</span></code> 옵션은 모듈이 이용 가능한 플랫폼의 콤마로 구분 가능한 리스트이다.(모든 플랫폼에서 사용이 가능한 경우, 옵션은 생략한다.)
+키들은 짧은 식별자이다. 사용중인 예는 &quot;IRIX&quot;, &quot;Mac&quot;, &quot;Windows&quot;, 와 &quot;Unix&quot;를   포함한다. 적용이 가능할 때,
+이미 사용된 키를 사용하는 것은 중요하다.</p>
+<p><code class="docutils literal"><span class="pre">synopsis</span></code> 옵션은 모듈의 목적을 설명하는 하나의 문장으로 구성 되어야 한다. 이는 현재 전역 모듈 인덱스로 사용되어 진다.</p>
+<p><code class="docutils literal"><span class="pre">deprecated</span></code> 옵션은 module이 deprecated이라는 것을 나타내기 위해 사용할 수 있다. 그리고 다양한 위치에 지정 되어질 것이다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:currentmodule">
+<code class="descname">.. py:currentmodule::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:currentmodule" title="정의 주소">¶</a></dt>
+<dd><p>이 directive는 클래스, 함수, 문서화 등이 주어진 모듈에 있는지를 스핑크스에게 알려준다. ( <a class="reference internal" href="#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:module</span></code></a>)
+그러나 그것은 <a class="reference internal" href="#role-py:mod" title="py:mod role"><code class="xref rst rst-role docutils literal"><span class="pre">py:mod</span></code></a> 에 대한 인덱스 엔트리, 전역 모듈 인덱스 내의 엔트리 도는 연결 타겟을 만들지 않을 것이다.
+이는 모듈에 있는 것들에 대한 문서화가 여러 개의 파일 또는 섹션을 통해 확산되는 상황에서 도움이 된다.
+하나의 위치는 <a class="reference internal" href="#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:module</span></code></a> directive를 가지고, 다른 위치들은 단지
+<a class="reference internal" href="#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:currentmodule</span></code></a> 를 가진다.</p>
+</dd></dl>
+
+<p>다음의 directive들은 모듈과 클래스 컨텐츠를 위해 제공 되어 진다.</p>
+<dl class="directive">
+<dt id="directive-py:function">
+<code class="descname">.. py:function::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="정의 주소">¶</a></dt>
+<dd><p>모듈 레벨의 함수를 설명한다. signature는 파이썬 함수 정의에서 주어진 파라미터를 포함 해야한다. <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 를 보자.
+예시:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> Timer.repeat(repeat=3, number=1000000)
+</pre></div>
+</div>
+<p>사용해야하는 메소드의 경우 <a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a>.</p>
+<p>일반적으로 설명은 요구되어지는 파라미터, 어떻게 그들이 사용 되어지는지, 부작용 그리고 가능한 예외에 대한 정보를 포함해야 한다.</p>
+<p>이 정보는 (in any <code class="docutils literal"><span class="pre">py</span></code> directive) 선택적으로 구조화된 형태로 주어진다. <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 봐라.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:data">
+<code class="descname">.. py:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:data" title="정의 주소">¶</a></dt>
+<dd><dl class="docutils">
+<dt>모듈에 있는 &quot;defined constants&quot;로 사용되는 변수와 값을 모두 포함하는 전역 데이터를 설명한다.</dt>
+<dd>클래스와 object 특징들은 이 환경을 사용해서 문서화 되지 않는다.</dd>
+</dl>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:exception">
+<code class="descname">.. py:exception::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:exception" title="정의 주소">¶</a></dt>
+<dd><p>예외 클래스를 설명한다. Signature는 constructor arguments를 가진 괄호를 포함할 필요는 없다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:class">
+<code class="descname">.. py:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:class" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. py:class::</code><code class="descclassname"> name(parameters)</code></dt>
+<dd><p>클래스를 설명한다. Signature는 선택적으로 constructor arguments로 보여지는 파라미터를 가진 괄호를 포함할 수 있다.
+<a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 를 보자.</p>
+<p>클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면,
+제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Foo
+
+<span class="p">   ..</span> <span class="ow">py:method</span><span class="p">::</span> quux()
+
+-- or --
+
+<span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Bar
+
+<span class="p">..</span> <span class="ow">py:method</span><span class="p">::</span> Bar.quux()
+</pre></div>
+</div>
+<p>첫번째 방법이 선호되는 방법이다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:attribute">
+<code class="descname">.. py:attribute::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:attribute" title="정의 주소">¶</a></dt>
+<dd><p>object 데이터 특성을 설명한다. 설명은 데이터 타입에 대한 정보를 포함해야하고, 데이터가 변경 여부에 대한 정보 또한 포함해야한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:method">
+<code class="descname">.. py:method::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="정의 주소">¶</a></dt>
+<dd><p>Object 메소드를 설명한다. 파라미터는 <code class="docutils literal"><span class="pre">self</span></code> 를 포함하지 않아도 된다. 설명은 <a href="#id2"><span class="problematic" id="id3">``</span></a>function``에 대한 설명과 유사한 정보를 포함해야한다.  <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 와 <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 보자.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:staticmethod">
+<code class="descname">.. py:staticmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:staticmethod" title="정의 주소">¶</a></dt>
+<dd><p><a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a> 와 같지만, 메소드가 static 메소드이다.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:classmethod">
+<code class="descname">.. py:classmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:classmethod" title="정의 주소">¶</a></dt>
+<dd><p><a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a> 와 같지만, 메소드가 클래스 메소드이다.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:decorator">
+<code class="descname">.. py:decorator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decorator" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. py:decorator::</code><code class="descclassname"> name(parameters)</code></dt>
+<dd><p>Decorator 함수를 설명한다. Signature는 decorator의 사용법을 표시해야한다. 예를 들면, 주어진 함수에서</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">removename</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+<span class="k">def</span> <span class="nf">setnewname</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">func</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+</pre></div>
+</div>
+<p>설명은 이렇게 보여야 한다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> removename
+
+   Decorated 함수의 이름을 제거해라.
+
+<span class="p">..</span> <span class="ow">py:decorator</span><span class="p">::</span> setnewname(name)
+
+   Decorated function의 이름을 <span class="ge">*name*</span>로 설정한다.
+</pre></div>
+</div>
+<p>(as opposed to <code class="docutils literal"><span class="pre">..</span> <span class="pre">py:decorator::</span> <span class="pre">removename(func)</span></code>.)</p>
+<p>이 directive와 함께 나타내는 decorator에 연결하는 <code class="docutils literal"><span class="pre">py:deco</span></code> role이 없다. 오히려 <a class="reference internal" href="#role-py:func" title="py:func role"><code class="xref rst rst-role docutils literal"><span class="pre">py:func</span></code></a> role를 사용한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-py:decoratormethod">
+<code class="descname">.. py:decoratormethod::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decoratormethod" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. py:decoratormethod::</code><code class="descclassname"> name(signature)</code></dt>
+<dd><p><a class="reference internal" href="#directive-py:decorator" title="py:decorator directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:decorator</span></code></a> 와 같지만, 메소드인 decorator를 위한 것이다.</p>
+<p><a class="reference internal" href="#role-py:meth" title="py:meth role"><code class="xref rst rst-role docutils literal"><span class="pre">py:meth</span></code></a> role를 사용해서 decorator 메소드를 참조해라.</p>
+</dd></dl>
+
+<div class="section" id="python-signatures">
+<span id="signatures"></span><h3>Python Signatures<a class="headerlink" href="#python-signatures" title="제목 주소">¶</a></h3>
+<p>함수, 메소드와 클래스 constuctor의 Signatures는 그들이 파이썬에서 쓰여지는 것처럼 주어질 수 있다.</p>
+<p>선택적인 argument에 대한 기본값은 주어질 수 있다.(하지만 콤마를 포함한다면, signature parser를 혼동할 것이다. 파이썬의 3가지 스타일의 주석 또한 주어질 것이고 또한 타입 주석을 리턴할 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> compile(source : string, filename, symbol=&#39;file&#39;) -&gt; ast object
+</pre></div>
+</div>
+<p>기본값이 없는 선택적인 파라미터를 가진 함수(일반적으로 키워드 argument 지원없이 C의 확장 모듈에서 구현되어진 함수)에 대해 선택적인 부분을 명확히 하기 위해 괄호를 사용할 수 있다.:</p>
+<blockquote>
+<div><dl class="function">
+<dt id="compile">
+<code class="descname">compile</code><span class="sig-paren">(</span><em>source</em><span class="optional">[</span>, <em>filename</em><span class="optional">[</span>, <em>symbol</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="정의 주소">¶</a></dt>
+<dd></dd></dl>
+
+</div></blockquote>
+<p>콤마 전에 여는 괄호를 넣는 것이 일반적인 관례이다.</p>
+</div>
+<div class="section" id="info-field-lists">
+<span id="id4"></span><h3>Info field lists<a class="headerlink" href="#info-field-lists" title="제목 주소">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
+</div>
+<p>파이썬 object description directives 내에서, 이러한 field list를 가진 reST field lists는 잘 인식되어지고 포매팅 되어진다.
+are recognized and formatted nicely:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">param</span></code>, <code class="docutils literal"><span class="pre">parameter</span></code>, <code class="docutils literal"><span class="pre">arg</span></code>, <code class="docutils literal"><span class="pre">argument</span></code>, <code class="docutils literal"><span class="pre">key</span></code>, <code class="docutils literal"><span class="pre">keyword</span></code>:
+파라미터에 대한 설명.</li>
+<li><code class="docutils literal"><span class="pre">type</span></code>: 파라미터의 타입. 가능하면 링크를 만든다.</li>
+<li><code class="docutils literal"><span class="pre">raises</span></code>, <code class="docutils literal"><span class="pre">raise</span></code>, <code class="docutils literal"><span class="pre">except</span></code>, <code class="docutils literal"><span class="pre">exception</span></code>: 특정 에러가 발생.</li>
+<li><code class="docutils literal"><span class="pre">var</span></code>, <code class="docutils literal"><span class="pre">ivar</span></code>, <code class="docutils literal"><span class="pre">cvar</span></code>: 변수에 대한 설명.</li>
+<li><code class="docutils literal"><span class="pre">vartype</span></code>: 변수의 타입. 가능하면 링크를 만든다.</li>
+<li><code class="docutils literal"><span class="pre">returns</span></code>, <code class="docutils literal"><span class="pre">return</span></code>: 반환값에 대한 설명.</li>
+<li><code class="docutils literal"><span class="pre">rtype</span></code>: 반환값의 타입. 가능하면 링크를 만든다.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">주석</p>
+<p class="last">현재 버젼에서, 모든 <code class="docutils literal"><span class="pre">var</span></code>, <code class="docutils literal"><span class="pre">ivar</span></code> 와 <code class="docutils literal"><span class="pre">cvar</span></code> 는 &quot;Variable&quot;로 표현된다.
+그리고 차이점은 전혀 없다.</p>
+</div>
+<p>The field names은 이러한 키워드 중 하나와 argument(argument를 필요로 하지 않는 <code class="docutils literal"><span class="pre">returns</span></code> 나 <code class="docutils literal"><span class="pre">rtype</span></code> 은 제외)로 구성되어야 한다. 이는 가장 잘 설명된 예시이다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> send_message(sender, recipient, message_body, [priority=1])
+
+   Send a message to a recipient
+
+   <span class="nc">:param str sender:</span> <span class="nf">The person sending the message</span>
+   <span class="nc">:param str recipient:</span> <span class="nf">The recipient of the message</span>
+   <span class="nc">:param str message_body:</span> <span class="nf">The body of the message</span>
+   <span class="nc">:param priority:</span> <span class="nf">The priority of the message, can be a number 1-5</span>
+   <span class="nc">:type priority:</span> <span class="nf">integer or None</span>
+   <span class="nc">:return:</span> <span class="nf">the message id</span>
+   <span class="nc">:rtype:</span> <span class="nf">int</span>
+   <span class="nc">:raises ValueError:</span> <span class="nf">if the message_body exceeds 160 characters</span>
+   <span class="nc">:raises TypeError:</span> <span class="nf">if the message_body is not a basestring</span>
+</pre></div>
+</div>
+<p>이는 이렇게 될 것이다.:</p>
+<blockquote>
+<div><dl class="function">
+<dt>
+<code class="descname">send_message</code><span class="sig-paren">(</span><em>sender</em>, <em>recipient</em>, <em>message_body</em><span class="optional">[</span>, <em>priority=1</em><span class="optional">]</span><span class="sig-paren">)</span></dt>
+<dd><p>Send a message to a recipient</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">매개 변수:</th><td class="field-body"><ul class="first simple">
+<li><strong>sender</strong> (<em>str</em>) -- The person sending the message</li>
+<li><strong>recipient</strong> (<em>str</em>) -- The recipient of the message</li>
+<li><strong>message_body</strong> (<em>str</em>) -- The body of the message</li>
+<li><strong>priority</strong> (<em>integer</em><em> or </em><em>None</em>) -- The priority of the message, can be a number 1-5</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">반환:</th><td class="field-body"><p class="first">the message id</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">반환 형식:</th><td class="field-body"><p class="first">int</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">예외:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ValueError</strong> -- if the message_body exceeds 160 characters</li>
+<li><strong>TypeError</strong> -- if the message_body is not a basestring</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+<p>타입이 하나의 단어라면, 파라미터의 타입과 설명을 결합하는 것 또한 가능하다.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="nc">:param int priority:</span> <span class="nf">The priority of the message, can be a number 1-5</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.5에 추가.</span></p>
+</div>
+<p>리스트와 딕셔너리 같은 컨테이너 타입은 다음의 syntax를 통해 자동으로 연결될 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="nc">:type priorities:</span> <span class="nf">list(int)</span>
+<span class="nc">:type priorities:</span> <span class="nf">list[int]</span>
+<span class="nc">:type mapping:</span> <span class="nf">dict(str, int)</span>
+<span class="nc">:type mapping:</span> <span class="nf">dict[str, int]</span>
+<span class="nc">:type point:</span> <span class="nf">tuple(float, float)</span>
+<span class="nc">:type point:</span> <span class="nf">tuple[float, float]</span>
+</pre></div>
+</div>
+<p>타입 필드에서 다중 타입들은 &quot;or&quot;에 의해 구분 되어 진다면, 자동으로 연결될 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="nc">:type an_arg:</span> <span class="nf">int or None</span>
+<span class="nc">:vartype a_var:</span> <span class="nf">str or int</span>
+<span class="nc">:rtype:</span> <span class="nf">float or str</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cross-referencing-python-objects">
+<span id="python-roles"></span><h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="제목 주소">¶</a></h3>
+<p>다음의 role은 모듈 내에서 object를 참조하고 매칭이 되는 식별자를 발견한다면 하이퍼링크의 기능도 할 수 있다.:</p>
+<dl class="role">
+<dt id="role-py:mod">
+<code class="descname">:py:mod:</code><a class="headerlink" href="#role-py:mod" title="정의 주소">¶</a></dt>
+<dd><p>모듈 참조; 점이 있는 이름을 사용할 수도 있다.  이는 또한 패키지 이름으로도 사용되어져야 한다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:func">
+<code class="descname">:py:func:</code><a class="headerlink" href="#role-py:func" title="정의 주소">¶</a></dt>
+<dd><dl class="docutils">
+<dt>파이썬 함수 참조; 점이 있는 이름을 사용할 수도 있다. Role 텍스트는 가독성을 향상 시키기 위해 괄호를 추적하는 것을 할 필요가 없다.</dt>
+<dd><a class="reference internal" href="config.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal"><span class="pre">add_function_parentheses</span></code></a> config value 가 <code class="docutils literal"><span class="pre">True</span></code> (기본값)이라면 스핑크스에 의해 자동적으로 더해질 것이기 때문이다.</dd>
+</dl>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:data">
+<code class="descname">:py:data:</code><a class="headerlink" href="#role-py:data" title="정의 주소">¶</a></dt>
+<dd><p>모듈 레벨의 변수 참조.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:const">
+<code class="descname">:py:const:</code><a class="headerlink" href="#role-py:const" title="정의 주소">¶</a></dt>
+<dd><p>&quot;defined&quot; constant 참조. 이는 변경되지 않는 파이썬 변수이다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:class">
+<code class="descname">:py:class:</code><a class="headerlink" href="#role-py:class" title="정의 주소">¶</a></dt>
+<dd><p>클래스 참조; 점이 포함된 이름이 사용 가능하다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:meth">
+<code class="descname">:py:meth:</code><a class="headerlink" href="#role-py:meth" title="정의 주소">¶</a></dt>
+<dd><p>Object의 메소드 참조.  Role text는 타입 이름과 메소드 이름을 포함할 수 있다. 타입의 설명 중에 발생하는 경우,
+타입 이름은 생략되어 질 수 있다. 점이 있는 이름 또한 사용 가능하다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:attr">
+<code class="descname">:py:attr:</code><a class="headerlink" href="#role-py:attr" title="정의 주소">¶</a></dt>
+<dd><p>Object의 데이터 특성 참조.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:exc">
+<code class="descname">:py:exc:</code><a class="headerlink" href="#role-py:exc" title="정의 주소">¶</a></dt>
+<dd><p>예외 참조.  점이 있는 이름도 사용 가능하다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-py:obj">
+<code class="descname">:py:obj:</code><a class="headerlink" href="#role-py:obj" title="정의 주소">¶</a></dt>
+<dd><p>구체화 되지 않은 타입의 object 참조. 유용한 예
+<a class="reference internal" href="config.html#confval-default_role"><code class="xref std std-confval docutils literal"><span class="pre">default_role</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
+</div>
+</dd></dl>
+
+<p>이 마크업에 둘러쌓인 이름은 모듈 이름과 클래스의 이름을 포함할 수 있다.
+예를 들면, <code class="docutils literal"><span class="pre">:py:func:`filter`</span></code> 는 현재 모듈 또는 그 이름의 빌트인 함수 내에서 <code class="docutils literal"><span class="pre">filter</span></code> 라는 이름의 함수를 참조할 수 있다. 반대로
+<code class="docutils literal"><span class="pre">:py:func:`foo.filter`</span></code> 는 명확하게 <code class="docutils literal"><span class="pre">foo</span></code> 모듈 내에 있는 <code class="docutils literal"><span class="pre">filter</span></code> 함수를 참조한다.</p>
+<p>일반적으로, 이러한 role에 있는 이름들은 더 필요한 조건 없이 처음에 검색된다. 그리고 나서, 현재 모듈 이름 앞에 추가된다. 그리고 현재 모듈의 이름이나 클래스의 이름 앞에 추가된다. 만약 점을 포함한 이름을 앞에 둔다면, 이 순서는 반대가 된다. 예를 들면,   파이썬 도큐멘테이션에서 <code class="xref py py-mod docutils literal"><span class="pre">codecs</span></code> module, <code class="docutils literal"><span class="pre">:py:func:`open`</span></code>  는 항상 빌트인 함수를 참조하는 반면, <code class="docutils literal"><span class="pre">:py:func:`.open`</span></code> 는 <code class="xref py py-func docutils literal"><span class="pre">codecs.open()</span></code> 를 참조한다.</p>
+<p>유사한 휴리스틱은 이름이 현재 문서화된 클래스의 특성인지 아닌지 여부를 결정하는데 사용된다.</p>
+<p>또한, 점이 이름 앞에 오고, 정확한 짝을 찾지 못하는 경우, 타겟은 접미사처럼 취급되어 지고 접미사를 가진 모든 object의 이름이 검색되어진다. 예를 들면 현재 모듈이 <code class="docutils literal"><span class="pre">tarfile</span></code> 이 아닌데 <code class="docutils literal"><span class="pre">:py:meth:`.TarFile.close`</span></code> 가
+<code class="docutils literal"><span class="pre">tarfile.TarFile.close()</span></code> 함수를 참조한다.  이는 모호함을 발생시키기 때문에, 하나 이상의 가능한 짝이 있다면, 스핑크스로가 경고를 보여줄 것이다.</p>
+<p><code class="docutils literal"><span class="pre">~</span></code> 와 <code class="docutils literal"><span class="pre">.</span></code> 를 접두사로 결합할 수 있다.:
+<code class="docutils literal"><span class="pre">:py:meth:`~.TarFile.close`</span></code> 는  <code class="docutils literal"><span class="pre">tarfile.TarFile.close()</span></code>
+메소드를 참조할 것이다. 하지만 눈에 보이는 링크 캡션은 단지 <code class="docutils literal"><span class="pre">close()</span></code> 일 것이다.</p>
+</div>
+</div>
+<div class="section" id="the-c-domain">
+<span id="c-domain"></span><h2>The C Domain<a class="headerlink" href="#the-c-domain" title="제목 주소">¶</a></h2>
+<p>C 도메인 (이름 <strong>c</strong>)은 C API의 문서화에 적합하다.</p>
+<dl class="directive">
+<dt id="directive-c:function">
+<code class="descname">.. c:function::</code><code class="descclassname"> type name(signature)</code><a class="headerlink" href="#directive-c:function" title="정의 주소">¶</a></dt>
+<dd><p>C 함수를 설명한다. Signature는 C에서 제공되어진다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> PyObject<span class="ge">* PyType_GenericAlloc(PyTypeObject *</span>type, Py_ssize_t nitems)
+</pre></div>
+</div>
+<p>이는 또한 Preprocessor macros 같은 함수를 설명한다. Argument의 이름은 그들이 설명 내에서 사용되어지게 하기 위해서 주어진다.</p>
+<p>reST 인라이너에 의해 parse되지 않기 때문에, Signature에서 백슬래시 이스케이프 asterisk를 사용하지 마라.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:member">
+<code class="descname">.. c:member::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:member" title="정의 주소">¶</a></dt>
+<dd><p>Describes a C struct member. Example signature:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:member</span><span class="p">::</span> PyObject* PyTypeObject.tp_bases
+</pre></div>
+</div>
+<p>설명하는 텍스트는 허락되어진 값의 범위, 어떻게 값이 해석되어져야 하는지, 값이 변경되는지 여부에 대한 정보를 포함해야한다.
+텍스트에서 구조 멤버에 대한 참조는 <code class="docutils literal"><span class="pre">member</span></code> role을 사용해야한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:macro">
+<code class="descname">.. c:macro::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:macro" title="정의 주소">¶</a></dt>
+<dd><p>간단한 C 매크로를 설명한다. 간단한 매크로는 코드의 확장을 위해 사용된다. 그러나 함수로 설명될 수 없는 argument는 사용하지 않는다.
+<code class="docutils literal"><span class="pre">#define</span></code> 는 간단한 C언어이다. 파이썬 문서에서 그것의 사용에 대한 예는
+<code class="xref c c-macro docutils literal"><span class="pre">PyObject_HEAD</span></code> 과 <code class="xref c c-macro docutils literal"><span class="pre">Py_BEGIN_ALLOW_THREADS</span></code> 를 포함한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:type">
+<code class="descname">.. c:type::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:type" title="정의 주소">¶</a></dt>
+<dd><p>C 타입을 설명한다.(typedef 또는 struct에 의해 정의 되어 졌는지 여부). Signature는 타입 이름이어야 한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-c:var">
+<code class="descname">.. c:var::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:var" title="정의 주소">¶</a></dt>
+<dd><p>전역 C 변수를 설명한다.  Signature는 다음과 같은 타입을 포함해야한다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:var</span><span class="p">::</span> PyObject* PyClass_Type
+</pre></div>
+</div>
+</dd></dl>
+
+<div class="section" id="cross-referencing-c-constructs">
+<span id="c-roles"></span><h3>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="제목 주소">¶</a></h3>
+<p>다음의 role은 문서에서 정의되어졌다면,  C 언어 구조에서 상호 참조를 생성한다.:</p>
+<dl class="role">
+<dt id="role-c:data">
+<code class="descname">:c:data:</code><a class="headerlink" href="#role-c:data" title="정의 주소">¶</a></dt>
+<dd><p>C 언어 변수 참조.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:func">
+<code class="descname">:c:func:</code><a class="headerlink" href="#role-c:func" title="정의 주소">¶</a></dt>
+<dd><p>C 언어 함수 참조. 괄호를 따라가는 것을 포함한다.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:macro">
+<code class="descname">:c:macro:</code><a class="headerlink" href="#role-c:macro" title="정의 주소">¶</a></dt>
+<dd><p>간단한 C 매크로 참조.</p>
+</dd></dl>
+
+<dl class="role">
+<dt id="role-c:type">
+<code class="descname">:c:type:</code><a class="headerlink" href="#role-c:type" title="정의 주소">¶</a></dt>
+<dd><p>C 언어 타입 참조.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="cpp-domain">
+<span id="id5"></span><h2>The C++ Domain<a class="headerlink" href="#cpp-domain" title="제목 주소">¶</a></h2>
+<p>C++ 도메인 (name <strong>cpp</strong>)은 C++ 프로젝트를 문서화 하는 것을 지원한다.</p>
+<div class="section" id="directives">
+<h3>Directives<a class="headerlink" href="#directives" title="제목 주소">¶</a></h3>
+<p>다음의 directive가 가능하다. 모든 선언은 <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> 또는 <a href="#id6"><span class="problematic" id="id7">``</span></a>protected``와 함께 시작할 수 있다.</p>
+<dl class="directive">
+<dt id="directive-cpp:class">
+<code class="descname">.. cpp:class::</code><code class="descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:class" title="정의 주소">¶</a></dt>
+<dd><p>클래스와 구조를 설명한다.(가능하면 상속에 대한 설명도 함께)
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>클래스는 중첩된 범위 안에서 직접적으로 선언된다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> OuterScope::MyClass : public MyBase, MyOtherBase
+</pre></div>
+</div>
+<p>클래스 템플릿이 선언되어 질 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; std::array
+</pre></div>
+</div>
+<p>줄 바꿈과 함께 사용할 수도 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T, std::size_t N&gt; \
+               std::array
+</pre></div>
+</div>
+<p>완전한 템플릿과 부분적인 템플릿 전문화가 선언되어 질 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;&gt; \
+                std::array&lt;bool, 256&gt;
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+                std::array&lt;T, 42&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:function">
+<code class="descname">.. cpp:function::</code><code class="descclassname"> (member) function prototype</code><a class="headerlink" href="#directive-cpp:function" title="정의 주소">¶</a></dt>
+<dd><p>함수 또는 멤버 함수를 설명한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int arg1, std::string arg2)
+
+   파라미터와 타입을 가진 함수.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int, double)
+
+   이름이 없는 파라미터를 가진 함수.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> const T &amp;MyClass::operator[](std::size_t i) const
+
+   인덱싱 오퍼레이터에 대한 오버로드.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> operator bool() const
+
+   캐스팅 오퍼레이터.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> constexpr void foo(std::string &amp;bar[2]) noexcept
+
+   constexpr 함수.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> MyClass::MyClass(const MyClass&amp;) = default
+
+   디폴트 구현의 생성자 복사.
+</pre></div>
+</div>
+<p>함수 템플릿 또한 설명되어질 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;typename U&gt; \
+                  void print(U &amp;&amp;u)
+</pre></div>
+</div>
+<p>함수 템플릿 전문화:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> template&lt;&gt; \
+                  void print(int i)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:member">
+<code class="descname">.. cpp:member::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:member" title="정의 주소">¶</a></dt>
+<dt id="directive-cpp:var">
+<code class="descname">.. cpp:var::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:var" title="정의 주소">¶</a></dt>
+<dd><p>변수와 멤버 변수를 설명한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> std::string MyClass::myMember
+
+<span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> std::string MyClass::myOtherMember[N][M]
+
+<span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> int a = 42
+</pre></div>
+</div>
+<p>변수 템플릿 또한 설명되어 질 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> template&lt;class T&gt; \
+                constexpr T pi = T(3.1415926535897932385)
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:type">
+<code class="descname">.. cpp:type::</code><code class="descclassname"> typedef declaration</code><a class="headerlink" href="#directive-cpp:type" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. cpp:type::</code><code class="descclassname"> name</code></dt>
+<dt>
+<code class="descname">.. cpp:type::</code><code class="descclassname"> type alias declaration</code></dt>
+<dd><p>typedef 선언, type 별명 선언, 또는 단순히 지정되지 않은 타입의 타입 이름으로 타입을 설명한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> std::vector&lt;int&gt; MyList
+
+   typedef 방식의 타입 선언
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyContainer::const_iterator
+
+   지정되지 않은 타입의 타입 별명 선언.
+
+<span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> MyType = std::unordered_map&lt;int, std::string&gt;
+
+   타입 별명 선언.
+</pre></div>
+</div>
+<p>타입 별명 또한 템플릿화 되어 질 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:type</span><span class="p">::</span> template&lt;typename T&gt; \
+              MyContainer = std::vector&lt;T&gt;
+</pre></div>
+</div>
+<p>다음 예시는 렌더링이 되어 진다.</p>
+<dl class="type">
+<dt id="_CPPv36MyList">
+<span id="_CPPv26MyList"></span><span id="MyList"></span><em class="property">typedef </em>std::vector&lt;int&gt; <code class="descclassname"></code><code class="descname">MyList</code><a class="headerlink" href="#_CPPv36MyList" title="정의 주소">¶</a><br /></dt>
+<dd><p>typedef 방식의 타입 선언.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv3N11MyContainer14const_iteratorE">
+<span id="_CPPv2N11MyContainer14const_iteratorE"></span><span id="MyContainer::const_iterator"></span><em class="property">type </em><code class="descclassname">MyContainer::</code><code class="descname">const_iterator</code><a class="headerlink" href="#_CPPv3N11MyContainer14const_iteratorE" title="정의 주소">¶</a><br /></dt>
+<dd><p>지정되지 않은 타입의 타입 별명 선언.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv36MyType">
+<span id="_CPPv26MyType"></span><em class="property">using </em><code class="descclassname"></code><code class="descname">MyType</code> = std::unordered_map&lt;int, std::string&gt;<a class="headerlink" href="#_CPPv36MyType" title="정의 주소">¶</a><br /></dt>
+<dd><p>타입 별명 선언.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv3I0E11MyContainer">
+<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;T&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:enum">
+<code class="descname">.. cpp:enum::</code><code class="descclassname"> unscoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum" title="정의 주소">¶</a></dt>
+<dt id="directive-cpp:enum-struct">
+<code class="descname">.. cpp:enum-struct::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-struct" title="정의 주소">¶</a></dt>
+<dt id="directive-cpp:enum-class">
+<code class="descname">.. cpp:enum-class::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-class" title="정의 주소">¶</a></dt>
+<dd><p>가능하면 지정된 기본 타입과 함께 (scoped) 열거를 설명한다.
+범위가 지정되지 않은 열거 내에서 선언된 enumerator는 enum scope와 parent scope 양 쪽 모두에서 선언된다.</p>
+<p>예시:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MyEnum
+
+   범위가 지정되지 않은 열거.
+
+<span class="p">..</span> <span class="ow">cpp:enum</span><span class="p">::</span> MySpecificEnum : long
+
+   지정된 기본 타입이 있고 범위가 지정되지 않은 열거.
+
+<span class="p">..</span> <span class="ow">cpp:enum-class</span><span class="p">::</span> MyScopedEnum
+
+   범위가 지정된 열거.
+
+<span class="p">..</span> <span class="ow">cpp:enum-struct</span><span class="p">::</span> protected MyScopedVisibilityEnum : std::underlying_type&lt;MySpecificEnum&gt;::type
+
+   지정된 기본 타입이 있고 디폴트가 아닌 visibility가 있으며 범위가 지정된 열거.
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:enumerator">
+<code class="descname">.. cpp:enumerator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-cpp:enumerator" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. cpp:enumerator::</code><code class="descclassname"> name = constant</code></dt>
+<dd><p>임의로 정의된 값을 가진 Enumerator를 설명한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myEnumerator
+
+<span class="p">..</span> <span class="ow">cpp:enumerator</span><span class="p">::</span> MyEnum::myOtherEnumerator = 42
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:concept">
+<code class="descname">.. cpp:concept::</code><code class="descclassname"> template-parameter-list name</code><a class="headerlink" href="#directive-cpp:concept" title="정의 주소">¶</a></dt>
+<dt>
+<code class="descname">.. cpp:concept::</code><code class="descclassname"> template-parameter-list name()</code></dt>
+<dd><p>변수 컨셉과 함수 컨셉을 설명한다. 둘 다 정확하게 하나의 템플릿 파라미터 리스트를 가져야 한다. 이름은 중첩된 이름이어도 된다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:concept</span><span class="p">::</span> template&lt;typename It&gt; std::Iterator
+
+   비교되거나 증가될 수 있는 개념적인 시퀀스의 요소에 대한 Proxy.
+
+   <span class="gs">**Notation**</span>
+
+<span class="p">   ..</span> <span class="ow">cpp:var</span><span class="p">::</span> It r
+
+      An lvalue.
+
+   <span class="gs">**Valid Expressions**</span>
+
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`*r`</span>, when <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is dereferenceable.
+   <span class="m">-</span> <span class="na">:cpp:expr:</span><span class="nv">`++r`</span>, with return type <span class="na">:cpp:expr:</span><span class="nv">`It&amp;`</span>, when <span class="na">:cpp:expr:</span><span class="nv">`r`</span> is incrementable.
+
+<span class="p">..</span> <span class="ow">cpp:concept</span><span class="p">::</span> template&lt;typename Cont&gt; std::Container()
+
+   <span class="na">:cpp:concept:</span><span class="nv">`Iterator`</span> s 를 통해 접근할 수 있는 요소의 Holder
+</pre></div>
+</div>
+<p>다음의 예시는 렌더링 되어 진다.:</p>
+<dl class="concept">
+<dt id="_CPPv3I0ENSt8IteratorE">
+<span id="_CPPv2I0ENSt8IteratorE"></span>template&lt;typename <code class="descname">It</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Iterator</code><a class="headerlink" href="#_CPPv3I0ENSt8IteratorE" title="정의 주소">¶</a><br /></dt>
+<dd><p>비교되거나 증가될 수 있는 개념적인 시퀀스의 요소에 대한 Proxy.</p>
+<p><strong>Notation</strong></p>
+<dl class="var">
+<dt id="_CPPv3NSt8Iterator1rE">
+<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span>It <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
+<dd><p>An lvalue.</p>
+</dd></dl>
+
+<p><strong>Valid Expressions</strong></p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">*</span><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, when <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is dereferenceable.</li>
+<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><span class="pre">It</span><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
+</ul>
+</dd></dl>
+
+<dl class="concept">
+<dt id="_CPPv3I0ENSt9ContainerE">
+<span id="_CPPv2I0ENSt9ContainerE"></span>template&lt;typename <code class="descname">Cont</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Container</code>()<a class="headerlink" href="#_CPPv3I0ENSt9ContainerE" title="정의 주소">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator"><code class="xref cpp cpp-concept docutils literal"><span class="pre">Iterator</span></code></a> s 를 통해 접근할 수 있는 요소의 Holder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="options">
+<h4>Options<a class="headerlink" href="#options" title="제목 주소">¶</a></h4>
+<p>몇몇의 directive는 옵션을 지원한다.:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">:noindex:</span></code>, :ref:<a href="#id8"><span class="problematic" id="id9">`</span></a>basic-domain-markup`를 보자.</li>
+<li><code class="docutils literal"><span class="pre">:tparam-line-spec:</span></code>, 템플릿 선언에 대해,
+템플릿 파라미터가 지정되어지면, 각각의 템플릿 파라미터는 별도의 줄에서 렌더링이 될 것이다.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="constrained-templates">
+<h3>Constrained Templates<a class="headerlink" href="#constrained-templates" title="제목 주소">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">주석</p>
+<p class="last">스핑크스는 현재 <code class="docutils literal"><span class="pre">requires</span></code> clauses 를 지원하지 않는다.</p>
+</div>
+<div class="section" id="placeholders">
+<h4>Placeholders<a class="headerlink" href="#placeholders" title="제목 주소">¶</a></h4>
+<p>선언은 제한된 템플릿 파라미터를 소개하기 위해 컨셉의 이름을 사용할 수도 있다. 또는 제한되지 않은 템플릿 파라미터를 소개하기 위해 <code class="docutils literal"><span class="pre">auto</span></code> 키워드를 사용할 수도 있다.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(auto &amp;&amp;arg)
+
+   하나의 제한되지 않은 템플릿 파라미터를 가진 함수 템플릿.
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(std::Iterator it)
+
+   Iterator 컨셉에 의해 제한된 하나의 템플릿 파라미터를 가진 함수 템플릿.
+</pre></div>
+</div>
+</div>
+<div class="section" id="template-introductions">
+<h4>Template Introductions<a class="headerlink" href="#template-introductions" title="제목 주소">¶</a></h4>
+<p>간단한 제한된 함수 또는 클래스 템플릿은 <cite>템플릿 도입</cite> 대신에 템플릿 파라미터 리스트를 사용해 선언되어질 수 있다.</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::Iterator{It} void advance(It &amp;it)
+
+    Iterator로 제한된 템플릿 파라미터를 가진 함수 템플릿.
+
+<span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> std::LessThanComparable{T} MySortedContainer
+
+    LessThanComparable로 제한된 템플릿 파라미터를 가진 클래스 템플릿.
+</pre></div>
+</div>
+<p>다음과 같이 렌더링 된다.</p>
+<dl class="function">
+<dt id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It">
+<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span>It &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
+<dd><p>Iterator로 제한된 템플릿 파라미터를 가진 함수 템플릿.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer">
+<span id="_CPPv2I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span>std::LessThanComparable{<code class="descname">T</code>}<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">MySortedContainer</code><a class="headerlink" href="#_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="정의 주소">¶</a><br /></dt>
+<dd><p>LessThanComparable로 제한된 템플릿 파라미터를 가진 함수 템플릿.</p>
+</dd></dl>
+
+<dl class="docutils">
+<dt>Note 파라미터 호환성에 대한 체크가 수행되지는 않는다.</dt>
+<dd>예, <code class="docutils literal"><span class="pre">Iterator{A,</span> <span class="pre">B,</span> <span class="pre">C}</span></code> 는 도입에서는 받아 들여질 것이지만, C++에서는 유효하지 않을 것이다.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="inline-expressions-and-tpes">
+<h3>Inline Expressions and Tpes<a class="headerlink" href="#inline-expressions-and-tpes" title="제목 주소">¶</a></h3>
+<dl class="role">
+<dt id="role-cpp:expr">
+<code class="descname">:cpp:expr:</code><a class="headerlink" href="#role-cpp:expr" title="정의 주소">¶</a></dt>
+<dd><blockquote>
+<div><p>inline 텍스트로써 C++ 표헌 또는 타입을 삽입하는 role.
+예를 들면</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a = 42
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> int f(int i)
+
+An expression: <span class="na">:cpp:expr:</span><span class="nv">`a * f(a)`</span>.
+A type: <span class="na">:cpp:expr:</span><span class="nv">`const MySortedContainer&lt;int&gt;&amp;`</span>.
+</pre></div>
+</div>
+<p>다음과 같이 렌더링 될 것이다.:</p>
+</div></blockquote>
+<dl class="var">
+<dt id="_CPPv31a">
+<span id="_CPPv21a"></span><span id="a__i"></span>int <code class="descclassname"></code><code class="descname">a</code> = 42<a class="headerlink" href="#_CPPv31a" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv31fi">
+<span id="_CPPv21fi"></span><span id="f__i"></span>int <code class="descclassname"></code><code class="descname">f</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv31fi" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>An expression: <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv31a" title="a"><span class="pre">a</span></a> <span class="pre">*</span> <a class="reference internal" href="domains.html#_CPPv31fi" title="f"><span class="pre">f</span></a><span class="pre">(</span><a class="reference internal" href="domains.html#_CPPv31a" title="a"><span class="pre">a</span></a><span class="pre">)</span></code>.
+A type: <code class="docutils literal"><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="domains.html#_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="MySortedContainer"><span class="pre">MySortedContainer</span></a><span class="pre">&lt;</span><span class="pre">int</span><span class="pre">&gt;</span><span class="pre">&amp;</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="namespacing">
+<h3>Namespacing<a class="headerlink" href="#namespacing" title="제목 주소">¶</a></h3>
+<p>C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
+현재 scope는 3개의 namespace directives에 의해 변경될 수 있다.
+그들은 stack 선언을 관리하고 이는 <code class="docutils literal"><span class="pre">cpp:namespace</span></code> 가 stack을 재설정하고 주어진 scope를 변경시키는 곳이다.
+<code class="docutils literal"><span class="pre">cpp:namespace-push</span></code> directive는 현재 주어진 내부 scope의 scope를 변경시킨다.
+<code class="docutils literal"><span class="pre">cpp:namespace-pop</span></code> directive는 가장 최근의 <code class="docutils literal"><span class="pre">cpp:namespace-push</span></code> directive를 취소한다.</p>
+<dl class="directive">
+<dt id="directive-cpp:namespace">
+<code class="descname">.. cpp:namespace::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace" title="정의 주소">¶</a></dt>
+<dd><p>주어진 scope에서 다음에 오는 object의 현재 scope를 변경시키고 namespace directive stack을 재설정한다.
+namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의 이름에서 끝낼 수는 있다. 예,:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> Namespace1::Namespace2::SomeClass::AnInnerClass
+</pre></div>
+</div>
+<p>이후의 모든 objects는 자신의 이름 앞에 붙은 scope로 선언된 것처럼 정의되어 질 것이다. 이후의 상호 참조는 현재 scope부터 시작해서 검색될 것이다.</p>
+<p><code class="docutils literal"><span class="pre">NULL</span></code>, <code class="docutils literal"><span class="pre">0</span></code>, or <code class="docutils literal"><span class="pre">nullptr</span></code> 를 사용하면 scope는 전역 scope로 변경될 것이다.</p>
+<p>Namespace 선언 또한 템플릿이 될 수 있다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> template&lt;typename T&gt; std::vector
+
+<span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">size</span></code> 를 클래스 템플릿 <code class="docutils literal"><span class="pre">std::vector</span></code> 의 멤버 함수로 선언한다.
+동등하게 이는 사용한 것으로 선언되었을 수도 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+
+<span class="p">   ..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::size_t size() const
+</pre></div>
+</div>
+<p>or::</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> template&lt;typename T&gt; \
+               std::vector
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:namespace-push">
+<code class="descname">.. cpp:namespace-push::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace-push" title="정의 주소">¶</a></dt>
+<dd><p>현재 scope에서 상대적으로 scope를 변경한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+</pre></div>
+</div>
+<p>현재 scope는 <code class="docutils literal"><span class="pre">A::B::C::D</span></code> 이 될 것이다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-cpp:namespace-pop">
+<code class="descname">.. cpp:namespace-pop::</code><code class="descclassname"> </code><a class="headerlink" href="#directive-cpp:namespace-pop" title="정의 주소">¶</a></dt>
+<dd><p>이전의 <code class="docutils literal"><span class="pre">cpp:namespace-push</span></code> directive (<em>not</em> just pop a scope)를 취소한다.
+예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> C::D
+
+<span class="p">..</span> <span class="ow">cpp:namespace-pop</span><span class="p">::</span>
+</pre></div>
+</div>
+<p>현재 scopes는 <code class="docutils literal"><span class="pre">A::B</span></code> (<em>not</em> <code class="docutils literal"><span class="pre">A::B::C</span></code>) 이 될 것이다..</p>
+<p>이전에 사용된 <code class="docutils literal"><span class="pre">cpp:namespace-push</span></code> directive가 없고, 단지 <code class="docutils literal"><span class="pre">cpp:namespace</span></code> directive가 있으면,
+현재 scope는 전역 scope로 재설정 될 것이다. 즉, <code class="docutils literal"><span class="pre">..</span> <span class="pre">cpp:namespace::</span> <span class="pre">A::B</span></code> 과 같게 된다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> nullptr
+
+<span class="p">..</span> <span class="ow">cpp:namespace-push</span><span class="p">::</span> A::B
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id10">
+<h3>Info field lists<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
+<p>C++ directive는 다음의 info fields 를 지원한다.( <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 보자.):</p>
+<ul class="simple">
+<li><cite>param</cite>, <cite>parameter</cite>, <cite>arg</cite>, <cite>argument</cite>: 파라미터에 대한 설명.</li>
+<li><cite>tparam</cite>: 템플릿 파라미터에 대한 설명.</li>
+<li><cite>returns</cite>, <cite>return</cite>: 반환값에 대한 설명.</li>
+<li><cite>throws</cite>, <cite>throw</cite>, <cite>exception</cite>: 일어날 수 있는 예외에 대한 설명.</li>
+</ul>
+</div>
+<div class="section" id="cross-referencing">
+<span id="cpp-roles"></span><h3>Cross-referencing<a class="headerlink" href="#cross-referencing" title="제목 주소">¶</a></h3>
+<p>이러한 roles은 주어진 선언 타입에 연결한다.:</p>
+<dl class="role">
+<dt id="role-cpp:any">
+<code class="descname">:cpp:any:</code><a class="headerlink" href="#role-cpp:any" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:class">
+<code class="descname">:cpp:class:</code><a class="headerlink" href="#role-cpp:class" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:func">
+<code class="descname">:cpp:func:</code><a class="headerlink" href="#role-cpp:func" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:member">
+<code class="descname">:cpp:member:</code><a class="headerlink" href="#role-cpp:member" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:var">
+<code class="descname">:cpp:var:</code><a class="headerlink" href="#role-cpp:var" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:type">
+<code class="descname">:cpp:type:</code><a class="headerlink" href="#role-cpp:type" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:concept">
+<code class="descname">:cpp:concept:</code><a class="headerlink" href="#role-cpp:concept" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:enum">
+<code class="descname">:cpp:enum:</code><a class="headerlink" href="#role-cpp:enum" title="정의 주소">¶</a></dt>
+<dt id="role-cpp:enumerator">
+<code class="descname">:cpp:enumerator:</code><a class="headerlink" href="#role-cpp:enumerator" title="정의 주소">¶</a></dt>
+<dd><p>이름으로 C++ declaration를 참조 (상세 사항을 아래를 보자).
+이름은 링크의 포지션에 관련해서 자격이 있어야 한다.</p>
+</dd></dl>
+
+<div class="admonition-note-on-references-with-templates-parameters-arguments admonition">
+<p class="first admonition-title">Note on References with Templates Parameters/Arguments</p>
+<p class="last">Custom 제목을 참조하는 스핑크스의 syntax는 클래스 템플릿에 연결하는데
+방해가 될 수 있다. 닫는 괄호 뒤에 아무 것도 없다면, 링크가 이렇게 보인다면,
+<code class="docutils literal"><span class="pre">:cpp:class:`MyClass&lt;int&gt;`</span></code> . 이는 <code class="docutils literal"><span class="pre">MyClass</span></code> 라는 제목을 가진 <code class="docutils literal"><span class="pre">int</span></code> 에
+연결되는 것으로 해석된다. 이러한 경우에는, 다음과 같이 백슬래시와
+함께 여는 괄호를 탈출 시켜라. <code class="docutils literal"><span class="pre">:cpp:class:`MyClass\&lt;int&gt;`</span></code> .</p>
+</div>
+<div class="admonition-note-on-references-to-overloaded-functions admonition">
+<p class="first admonition-title">Note on References to Overloaded Functions</p>
+<p class="last">오버로드된 메소드의 특정한 버젼에 연결하는 것은 불가능하다.
+현재 C++ 도메인은 오버로드된 메소드의 기본적인 지원을 하는 첫번째 도메인이다.
+그리고 더 많은 비교에 대한 데이터가 있을때까지, 특정 오버로드를 참조하기 위해
+좋지 않은 syntax를 선택하고 싶지 않을 것이다. 스핑크스는 메소드와 함수의
+첫번째로 오버로드된 버젼에 연결을 할 것이다.</p>
+</div>
+<div class="section" id="argument">
+<h4>템플릿 파라미터와 템플릿 argument 없이 선언하기<a class="headerlink" href="#argument" title="제목 주소">¶</a></h4>
+<p>템플릿이 없는 선언에 연결하기 위해 이름은 중첩된 이름이어야 한다.
+예, <code class="docutils literal"><span class="pre">f</span></code> 또는 <code class="docutils literal"><span class="pre">MyClass::f</span></code>.</p>
+</div>
+<div class="section" id="templated-declarations">
+<h4>Templated declarations<a class="headerlink" href="#templated-declarations" title="제목 주소">¶</a></h4>
+<p>다음의 선언을 가정하자.</p>
+<dl class="class">
+<dt id="_CPPv37Wrapper">
+<span id="_CPPv27Wrapper"></span><span id="Wrapper"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Wrapper</code><a class="headerlink" href="#_CPPv37Wrapper" title="정의 주소">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv3I0EN7Wrapper5OuterE">
+<span id="_CPPv2I0EN7Wrapper5OuterE"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5OuterE" title="정의 주소">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv3I0EN7Wrapper5Outer5InnerE">
+<span id="_CPPv2I0EN7Wrapper5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5Outer5InnerE" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<p>일반적으로 참조는 템플릿 파라미터 선언을 포함해야한다. e.g.,
+<code class="docutils literal"><span class="pre">template\&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code> (<a class="reference internal" href="domains.html#_CPPv3I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal"><span class="pre">template&lt;typename</span> <span class="pre">TOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code></a>).
+템플릿 파라미터 식별자가 문자열과 같다면 단지 조회에는 성공한다. 즉,
+<code class="docutils literal"><span class="pre">template\&lt;typename</span> <span class="pre">UOuter&gt;</span> <span class="pre">Wrapper::Outer</span></code> will not work.</p>
+<p>현재 namespace가 변화되거나 다음의 약식이 사용되지 않으면, inner 클래스 템플릿은 직접적으로 참조되어 질 수 없다. 템플릿 파라미터 리스트가 생략되어지면, 조회는 템플릿과 논-템플릿 중 하나를 가정한다. 그러나 부분 템플릿 전문화를 가정하지는 않는다.이는 다음의 참조 작업을 의미한다.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Wrapper::Outer</span></code> (<a class="reference internal" href="domains.html#_CPPv3I0EN7Wrapper5OuterE" title="Wrapper::Outer"><code class="xref cpp cpp-class docutils literal"><span class="pre">Wrapper::Outer</span></code></a>)</li>
+<li><code class="docutils literal"><span class="pre">Wrapper::Outer::Inner</span></code> (<a class="reference internal" href="domains.html#_CPPv3I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal"><span class="pre">Wrapper::Outer::Inner</span></code></a>)</li>
+<li><code class="docutils literal"><span class="pre">template\&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code> (<a class="reference internal" href="domains.html#_CPPv3I0EN7Wrapper5Outer5InnerE" title="Wrapper::Outer::Inner"><code class="xref cpp cpp-class docutils literal"><span class="pre">template&lt;typename</span> <span class="pre">TInner&gt;</span> <span class="pre">Wrapper::Outer::Inner</span></code></a>)</li>
+</ul>
+</div>
+<div class="section" id="full-template-specialisations">
+<h4>(Full) Template Specialisations<a class="headerlink" href="#full-template-specialisations" title="제목 주소">¶</a></h4>
+<p>다음의 선언을 가정하자.</p>
+<dl class="class">
+<dt id="_CPPv3I0E5Outer">
+<span id="_CPPv2I0E5Outer"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0E5Outer" title="정의 주소">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv3I0EN5Outer5InnerE">
+<span id="_CPPv2I0EN5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5Outer5InnerE" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv3IE5OuterIiE">
+<span id="_CPPv2IE5OuterIiE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;int&gt;<a class="headerlink" href="#_CPPv3IE5OuterIiE" title="정의 주소">¶</a><br /></dt>
+<dd><dl class="class">
+<dt id="_CPPv3I0EN5OuterIiE5InnerE">
+<span id="_CPPv2I0EN5OuterIiE5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5OuterIiE5InnerE" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="_CPPv3IEN5OuterIiE5InnerIbEE">
+<span id="_CPPv2IEN5OuterIiE5InnerIbEE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code>&lt;bool&gt;<a class="headerlink" href="#_CPPv3IEN5OuterIiE5InnerIbEE" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>일반적으로 참조는 각각의 템플릿 argument 리스트에 대한 템플릿 파라미터를 포함해야 한다. 그러므로 위에서의 완전한 전문화는 <code class="docutils literal"><span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="domains.html#_CPPv3IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">template&lt;&gt;</span> <span class="pre">Outer&lt;int&gt;</span></code></a>)와 <code class="docutils literal"><span class="pre">template\&lt;&gt;</span> <span class="pre">template\&lt;&gt;</span> <span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code> (<a class="reference internal" href="domains.html#_CPPv3IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">template&lt;&gt;</span> <span class="pre">template&lt;&gt;</span> <span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>)로 참조되어질 수 있다.
+약식으로 빈 템플릿 파라미터 리스트를 생략할 수 있다., 예, <code class="docutils literal"><span class="pre">Outer\&lt;int&gt;</span></code> (<a class="reference internal" href="domains.html#_CPPv3IE5OuterIiE" title="Outer&lt;int&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">Outer&lt;int&gt;</span></code></a>)
+와 <code class="docutils literal"><span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code> (<a class="reference internal" href="domains.html#_CPPv3IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).</p>
+</div>
+<div class="section" id="partial-template-specialisations">
+<h4>Partial Template Specialisations<a class="headerlink" href="#partial-template-specialisations" title="제목 주소">¶</a></h4>
+<p>다음의 선언을 가정하자.</p>
+<dl class="class">
+<dt id="_CPPv3I0E5OuterIP1TE">
+<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;T *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
+<dd></dd></dl>
+
+<p>부분 전문화에 대한 참조는 항상 템플릿 파라미터 리스트를 포함해야한다. 예,
+<code class="docutils literal"><span class="pre">template\&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer\&lt;T*&gt;</span></code> (<a class="reference internal" href="domains.html#_CPPv3I0E5OuterIP1TE" title="Outer&lt;T *&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">Outer&lt;T*&gt;</span></code></a>).
+템플릿 파라미터 식별자가 문자열과 같다면 단지 조회만 성공된다.</p>
+</div>
+</div>
+<div class="section" id="configuration-variables">
+<h3>Configuration Variables<a class="headerlink" href="#configuration-variables" title="제목 주소">¶</a></h3>
+<p><a class="reference internal" href="config.html#cpp-config"><span class="std std-ref">Options for the C++ domain</span></a> 를 보자.</p>
+</div>
+</div>
+<div class="section" id="the-standard-domain">
+<h2>The Standard Domain<a class="headerlink" href="#the-standard-domain" title="제목 주소">¶</a></h2>
+<p>이른바 &quot;표준&quot; 도메인은 스스로의 도메인을 보장하지 않는 모든 마크업을 모은다.
+그들의 directive와 role은 도메인 이름보다 앞에 오지 않는다.</p>
+<p>표준 도메인은 또한
+<a class="reference internal" href="extdev/appapi.html#sphinx.application.Sphinx.add_object_type" title="sphinx.application.Sphinx.add_object_type"><code class="xref py py-func docutils literal"><span class="pre">add_object_type()</span></code></a> API 의 사용이 더해진 custom object 설명이 위치한 곳이다.</p>
+<p>커맨드 라인 프로그램을 문서화 하는 것을 허락하는 directive의 집합이 있다.:</p>
+<dl class="directive">
+<dt id="directive-option">
+<code class="descname">.. option::</code><code class="descclassname"> name args, name args, ...</code><a class="headerlink" href="#directive-option" title="정의 주소">¶</a></dt>
+<dd><p>Command line argument와 switch를 설명한다.  옵션 argument 이름은
+angle brackets(&lt;, &gt;)에 의해 둘러 쌓여져야한다. 예:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">option</span><span class="p">::</span> dest_dir
+
+   Destination directory.
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -m &lt;module&gt;, --module &lt;module&gt;
+
+   스크립트로 모듈을 실행한다.
+</pre></div>
+</div>
+<p>Directive는 <a class="reference internal" href="markup/inline_ko.html#role-option" title="option role"><code class="xref rst rst-role docutils literal"><span class="pre">option</span></code></a> (in the example case, you'd use something
+like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span></code>, <code class="docutils literal"><span class="pre">:option:`-m`</span></code>, or <code class="docutils literal"><span class="pre">:option:`--module`</span></code>)에
+의해 참조 가능한 주어진 옵션에 대해 상호 참조 타겟을 만들 것이다.</p>
+<p><code class="docutils literal"><span class="pre">cmdoption</span></code> directive 는 <code class="docutils literal"><span class="pre">option</span></code> directive를 부르는 예전 명칭이다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-envvar">
+<code class="descname">.. envvar::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-envvar" title="정의 주소">¶</a></dt>
+<dd><p><a class="reference internal" href="markup/inline_ko.html#role-envvar" title="envvar role"><code class="xref rst rst-role docutils literal"><span class="pre">envvar</span></code></a> 에 의해 참조 가능한 문서화된 코드와 프로그램이
+사용하거나 정의한 환경 변수 설명한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-program">
+<code class="descname">.. program::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-program" title="정의 주소">¶</a></dt>
+<dd><p><a class="reference internal" href="#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:currentmodule</span></code></a> 처럼, 이 directive는 아웃풋을 생산하지 않는다.
+대신에 <em>name</em> 이라고 불리는 프로그램에 대한 <a class="reference internal" href="#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal"><span class="pre">option</span></code></a> directives
+문서 옵션을 스핑크스에게 전달한다.</p>
+<p><a class="reference internal" href="#directive-program" title="program directive"><code class="xref rst rst-dir docutils literal"><span class="pre">program</span></code></a> 을 사용한다면, <a class="reference internal" href="markup/inline_ko.html#role-option" title="option role"><code class="xref rst rst-role docutils literal"><span class="pre">option</span></code></a> roles에서
+참조에 대한 자격이 있어야 한다. 그래서 다음의 상황을 만난다면:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">program</span><span class="p">::</span> rm
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -r
+
+   Work recursively.
+
+<span class="p">..</span> <span class="ow">program</span><span class="p">::</span> svn
+
+<span class="p">..</span> <span class="ow">option</span><span class="p">::</span> -r revision
+
+   작업할 수 있는 revision을 지정한다.
+</pre></div>
+</div>
+<p>그리고 나서, <code class="docutils literal"><span class="pre">:option:`rm</span> <span class="pre">-r`</span></code> 은 첫번째 옵션을 참조할 것이다. 반면에
+<code class="docutils literal"><span class="pre">:option:`svn</span> <span class="pre">-r`</span></code> 두번째 옵션을 참조할 것이다.</p>
+<p>프로그램 이름은 공백을 포함할 수도 있다.( <code class="docutils literal"><span class="pre">svn</span> <span class="pre">add</span></code> 와 <code class="docutils literal"><span class="pre">svn</span> <span class="pre">commit</span></code>
+같은 하위 문서를 구분해서 문서화 하기를 원하는 경우)</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 0.5에 추가.</span></p>
+</div>
+</dd></dl>
+
+<p>또한 어떤 도메인에도 속하지 않은 generic object description directive도 있다.:</p>
+<dl class="directive">
+<dt id="directive-describe">
+<code class="descname">.. describe::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-describe" title="정의 주소">¶</a></dt>
+<dt id="directive-object">
+<code class="descname">.. object::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-object" title="정의 주소">¶</a></dt>
+<dd><p>이 directive는 도메인에 의해 제공된 구체적인 것과 같은 포매팅을 생산한다.
+그러나 인덱스 엔트리나 상호 참조 타겟을 생산하지는 않는다. 예</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">describe</span><span class="p">::</span> PAPER
+
+   페이퍼 사이즈를 선택하기 위해 이 변수를 설정할 수 있다.
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="the-javascript-domain">
+<h2>The JavaScript Domain<a class="headerlink" href="#the-javascript-domain" title="제목 주소">¶</a></h2>
+<p>자바스크립트 도메인 (name <strong>js</strong>) 은 다음의 directives를 제공한다.:</p>
+<dl class="directive">
+<dt id="directive-js:module">
+<code class="descname">.. js:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:module" title="정의 주소">¶</a></dt>
+<dd><p>이 directive는 object 선언에 대한 모듈 이름을 설정한다.
+모듈 이름은 전역 모듈 인덱스와 상호 참조에서 사용된다.
+이 directive는 <a class="reference internal" href="#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:class</span></code></a> 같은 object heading을 만들지 않는다.</p>
+<p>기본적으로, 이 directive 연결할 수 있는 엔터티를 만들 것이며,
+<code class="docutils literal"><span class="pre">noindex</span></code> 설정이 지정되어 있지 않다면, 전역 변수 인덱스 내에서
+엔트리의 원인이 될 것이다.
+이 옵션이 지정되면, directive는 현재 모듈 이름만을 업데이트 할 것이다.</p>
+<p>현재 모듈을 명확힉 하기 위해, 모듈 이름을 <code class="docutils literal"><span class="pre">null</span></code> 또는 <code class="docutils literal"><span class="pre">None</span></code> 로 설정한다.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.6에 추가.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:function">
+<code class="descname">.. js:function::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:function" title="정의 주소">¶</a></dt>
+<dd><p>자바스크립트의 함수와 메소드를 설명한다.
+옵션으로 arguments를 설명하기를 원하면,  파이썬 signature를 위한
+<a class="reference internal" href="#signatures"><span class="std std-ref">documented</span></a> 로써 대괄호([,])를 사용해라.</p>
+<p>Argument와 기대 되어지는 타입, 함수에 의한 에러, 그리고 반환값에 대해
+더 많은 내용을 보여 주기 위해 field를 사용할 수 있다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:function</span><span class="p">::</span> $.getJSON(href, callback[, errback])
+
+   <span class="nc">:param string href:</span> <span class="nf">리소스의 위치에 대한 URI.</span>
+   <span class="nc">:param callback:</span> <span class="nf">Object로 call.</span>
+   :param errback:
+       요청이 실패한 경우 call.
+       많은 텍스트가 있어서 여러 줄이 필요한 경우.
+   <span class="nc">:throws SomeError:</span> <span class="nf">경우에 따라 어떤 이유든.</span>
+   <span class="nc">:returns:</span> <span class="nf">Something.</span>
+</pre></div>
+</div>
+<p>다음과 같이 렌더링 된다.:</p>
+<blockquote>
+<div><dl class="function">
+<dt id="_S_.getJSON">
+<code class="descclassname">$.</code><code class="descname">getJSON</code><span class="sig-paren">(</span><em>href</em>, <em>callback</em><span class="optional">[</span>, <em>errback</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_S_.getJSON" title="정의 주소">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">인수:</th><td class="field-body"><ul class="first simple">
+<li><strong>href</strong> (<em>string</em>) -- 리소스 위치에 대한 URI.</li>
+<li><strong>callback</strong> -- Object로 call.</li>
+<li><strong>errback</strong> -- 요청이 실패한 경우 call.
+많은 텍스트가 있어서 여러 줄이 필요한 경우.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">예외:</th><td class="field-body"><p class="first"><strong>SomeError</strong> -- 경우에 따라 어떤 이유든.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">반환:</th><td class="field-body"><p class="first last">Something.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:method">
+<code class="descname">.. js:method::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:method" title="정의 주소">¶</a></dt>
+<dd><p>이 directive  <a class="reference internal" href="#directive-js:function" title="js:function directive"><code class="xref rst rst-dir docutils literal"><span class="pre">js:function</span></code></a> 에 대한 별칭이다.
+그러나 클래스 object에서 메소드로서 구현된 함수를 설명한다.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.6에 추가.</span></p>
+</div>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:class">
+<code class="descname">.. js:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:class" title="정의 주소">¶</a></dt>
+<dd><p>Object를 생성하는 constructor를 설명한다.
+이는 기본적으로 함수이지만 <cite>class</cite> 접두사로 나타날 것이다.:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:class</span><span class="p">::</span> MyAnimal(name[, age])
+
+   <span class="nc">:param string name:</span> <span class="nf">동물의 이름</span>
+   <span class="nc">:param number age:</span> <span class="nf">임의적인 동물의 나이</span>
+</pre></div>
+</div>
+<p>이렇게 렌더링 될 것이다.:</p>
+<blockquote>
+<div><dl class="class">
+<dt id="MyAnimal">
+<em class="property">class </em><code class="descname">MyAnimal</code><span class="sig-paren">(</span><em>name</em><span class="optional">[</span>, <em>age</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="정의 주소">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">인수:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) -- 동물의 이름</li>
+<li><strong>age</strong> (<em>number</em>) -- 임의적인 동물의 나이</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:data">
+<code class="descname">.. js:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:data" title="정의 주소">¶</a></dt>
+<dd><p>전역 변수 또는 상수를 설명한다.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-js:attribute">
+<code class="descname">.. js:attribute::</code><code class="descclassname"> object.name</code><a class="headerlink" href="#directive-js:attribute" title="정의 주소">¶</a></dt>
+<dd><p><a href="#id11"><span class="problematic" id="id12">*</span></a>object*의 <a href="#id13"><span class="problematic" id="id14">*</span></a>name*의 특성을 설명한다.</p>
+</dd></dl>
+
+<p id="js-roles">이러한 role은 설명된 object를 참조하기 위해 제공된다.:</p>
+<dl class="role">
+<dt id="role-js:mod">
+<code class="descname">:js:mod:</code><a class="headerlink" href="#role-js:mod" title="정의 주소">¶</a></dt>
+<dt id="role-js:func">
+<code class="descname">:js:func:</code><a class="headerlink" href="#role-js:func" title="정의 주소">¶</a></dt>
+<dt id="role-js:meth">
+<code class="descname">:js:meth:</code><a class="headerlink" href="#role-js:meth" title="정의 주소">¶</a></dt>
+<dt id="role-js:class">
+<code class="descname">:js:class:</code><a class="headerlink" href="#role-js:class" title="정의 주소">¶</a></dt>
+<dt id="role-js:data">
+<code class="descname">:js:data:</code><a class="headerlink" href="#role-js:data" title="정의 주소">¶</a></dt>
+<dt id="role-js:attr">
+<code class="descname">:js:attr:</code><a class="headerlink" href="#role-js:attr" title="정의 주소">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="the-restructuredtext-domain">
+<h2>The reStructuredText domain<a class="headerlink" href="#the-restructuredtext-domain" title="제목 주소">¶</a></h2>
+<p>reStructuredText 도메인 (name <strong>rst</strong>) 은 다음의 directives를 제공한다. :</p>
+<dl class="directive">
+<dt id="directive-rst:directive">
+<code class="descname">.. rst:directive::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:directive" title="정의 주소">¶</a></dt>
+<dd><p>reST directive를 설명한다.  <em>name</em> 하나의 directive 이름이거나
+다르게 렌더링되는 argument를 가진 실제 directive syntax이다.
+(<cite>..</cite> prefix and <cite>::</cite> suffix).  예를 들면:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> foo
+
+   Foo description.
+
+<span class="p">..</span> <span class="ow">rst:directive</span><span class="p">::</span> .. bar:: baz
+
+   Bar description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<blockquote>
+<div><dl class="directive">
+<dt id="directive-foo">
+<code class="descname">.. foo::</code><a class="headerlink" href="#directive-foo" title="정의 주소">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-bar">
+<code class="descname">.. bar::</code><code class="descclassname"> baz</code><a class="headerlink" href="#directive-bar" title="정의 주소">¶</a></dt>
+<dd><p>Bar description.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<dl class="directive">
+<dt id="directive-rst:role">
+<code class="descname">.. rst:role::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:role" title="정의 주소">¶</a></dt>
+<dd><p>Describes a reST role.  For example:</p>
+<div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:role</span><span class="p">::</span> foo
+
+   Foo description.
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<blockquote>
+<div><dl class="role">
+<dt id="role-foo">
+<code class="descname">:foo:</code><a class="headerlink" href="#role-foo" title="정의 주소">¶</a></dt>
+<dd><p>Foo description.</p>
+</dd></dl>
+
+</div></blockquote>
+</dd></dl>
+
+<p id="rst-roles">이러한 role은 설명된 object를 참조하기 위해 제공되어진다.:</p>
+<dl class="role">
+<dt id="role-rst:dir">
+<code class="descname">:rst:dir:</code><a class="headerlink" href="#role-rst:dir" title="정의 주소">¶</a></dt>
+<dt id="role-rst:role">
+<code class="descname">:rst:role:</code><a class="headerlink" href="#role-rst:role" title="정의 주소">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="more-domains">
+<h2>More domains<a class="headerlink" href="#more-domains" title="제목 주소">¶</a></h2>
+<p>The <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/">sphinx-contrib</a> repository 확장으로 이용가능한 더 많은 도메인을 포함한다.;
+현재 <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-adadomain">Ada</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-coffee">CoffeeScript</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-erlangdomain">Erlang</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-httpdomain">HTTP</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-lassodomain">Lasso</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-matlabdomain">MATLAB</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-phpdomain">PHP</a>, and <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/rubydomain">Ruby</a>
+도메인이 있고, 또한 <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-chapeldomain">Chapel</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-cldomain">Common Lisp</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-dqndomain">dqn</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-golangdomain">Go</a>,
+<a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-jinjadomain">Jinja</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-operationdomain">Operation</a>, and <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-scaladomain">Scala</a> 또한 이용이 가능하다.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>탐색</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >색인</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
+        <li class="right" >
+          <a href="builders_ko.html" title="Available builders"
+             >다음</a> |</li>
+        <li class="right" >
+          <a href="markup/misc.html" title="Miscellaneous markup"
+             >이전</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/762679f3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,454 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Internationalization &#8212; Sphinx 1.7+/762679f3 documentation</title>
+    <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.7+/762679f3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Sphinx 1.7+/762679f3 documentation에서 찾기"
+          href="_static/opensearch.xml"/>
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
+    <link rel="next" title="HTML theming support" href="theming.html" />
+    <link rel="prev" title="The build configuration file" href="config.html" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
+          rel='stylesheet' type='text/css' />
+ 
+    <style type="text/css">
+      table.right { float: right; margin-left: 20px; }
+      table.right td { border: 1px solid #ccc; }
+      
+    </style>
+    <script type="text/javascript">
+      // intelligent scrolling of the sidebar content
+      $(window).scroll(function() {
+        var sb = $('.sphinxsidebarwrapper');
+        var win = $(window);
+        var sbh = sb.height();
+        var offset = $('.sphinxsidebar').position()['top'];
+        var wintop = win.scrollTop();
+        var winbot = wintop + win.innerHeight();
+        var curtop = sb.position()['top'];
+        var curbot = curtop + sbh;
+        // does sidebar fit in window?
+        if (sbh < win.innerHeight()) {
+          // yes: easy case -- always keep at the top
+          sb.css('top', $u.min([$u.max([0, wintop - offset - 10]),
+                                $(document).height() - sbh - 200]));
+        } else {
+          // no: only scroll if top/bottom edge of sidebar is at
+          // top/bottom edge of window
+          if (curtop > wintop && curbot > winbot) {
+            sb.css('top', $u.max([wintop - offset - 10, 0]));
+          } else if (curtop < wintop && curbot < winbot) {
+            sb.css('top', $u.min([winbot - sbh - offset - 20,
+                                  $(document).height() - sbh - 200]));
+          }
+        }
+      });
+    </script>
+
+  </head>
+  <body>
+<div class="pageheader">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="install.html">Get it</a></li>
+    <li><a href="contents.html">Docs</a></li>
+    <li><a href="develop.html">Extend/Develop</a></li>
+  </ul>
+  <div>
+    <a href="index.html">
+      <img src="_static/sphinxheader.png" alt="SPHINX" />
+    </a>
+  </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>탐색</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">색인</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
+        <li class="right" >
+          <a href="theming.html" title="HTML theming support"
+             accesskey="N">다음</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="The build configuration file"
+             accesskey="P">이전</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">목차</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Internationalization</a><ul>
+<li><a class="reference internal" href="#sphinx-internationalization-details">Sphinx internationalization details</a></li>
+<li><a class="reference internal" href="#translating-with-sphinx-intl">Translating with sphinx-intl</a><ul>
+<li><a class="reference internal" href="#quick-guide">Quick guide</a></li>
+<li><a class="reference internal" href="#translating">Translating</a></li>
+<li><a class="reference internal" href="#update-your-po-files-by-new-pot-files">Update your po files by new pot files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-transifex-service-for-team-translation">Using Transifex service for team translation</a></li>
+<li><a class="reference internal" href="#contributing-to-sphinx-reference-translation">Contributing to Sphinx reference translation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>이전 항목</h4>
+  <p class="topless"><a href="config.html"
+                        title="이전 장">The build configuration file</a></p>
+  <h4>다음 항목</h4>
+  <p class="topless"><a href="theming.html"
+                        title="다음 장">HTML theming support</a></p>
+  <div role="note" aria-label="source link">
+    <h3>현재 문서</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/intl_ko.rst.txt"
+            rel="nofollow">소스 코드를 보려면</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>빠른 검색</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="internationalization">
+<span id="intl"></span><h1>Internationalization<a class="headerlink" href="#internationalization" title="제목 주소">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.1에 추가.</span></p>
+</div>
+<p>네비게이션 바(navigation bars) 같이 스핑크스 생성 메세지에 제공되는 번역을 보완하는
+스핑크스는 문서 번역을 용이하게 하는 메커니즘을 제공한다. 설정에 대한 자세한 사항은
+<a class="reference internal" href="config.html#intl-options"><span class="std std-ref">Options for internationalization</span></a> 를 참고하라.</p>
+<div class="figure" id="id9">
+<a class="reference internal image-reference" href="_images/translation.png"><img alt="_images/translation.png" src="_images/translation.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-text">스핑크스 번역 작업 흐름(workflow) 시각화. (<a class="reference external" href="http://xkcd.com/779/">XKCD comic</a>
+에서 참고함.)</span></p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#sphinx-internationalization-details" id="id10">Sphinx internationalization details</a></li>
+<li><a class="reference internal" href="#translating-with-sphinx-intl" id="id11">Translating with sphinx-intl</a><ul>
+<li><a class="reference internal" href="#quick-guide" id="id12">Quick guide</a></li>
+<li><a class="reference internal" href="#translating" id="id13">Translating</a></li>
+<li><a class="reference internal" href="#update-your-po-files-by-new-pot-files" id="id14">Update your po files by new pot files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-transifex-service-for-team-translation" id="id15">Using Transifex service for team translation</a></li>
+<li><a class="reference internal" href="#contributing-to-sphinx-reference-translation" id="id16">Contributing to Sphinx reference translation</a></li>
+</ul>
+</div>
+<div class="section" id="sphinx-internationalization-details">
+<h2><a class="toc-backref" href="#id10">Sphinx internationalization details</a><a class="headerlink" href="#sphinx-internationalization-details" title="제목 주소">¶</a></h2>
+<p><strong>gettext</strong> <a class="footnote-reference" href="#id7" id="id1">[1]</a> 는 국제화와 지역화를 위한 확정된 표준이다. 이것은 단순하게 프로그램에 있는
+메세지를 번역된 스트링에 매핑한다. 스핑크스는 모든 문서를 번역할 때 이 기능을 사용한다.</p>
+<p>처음에 프로젝트 관리자는 번역기에 알려줄 수 있도록 번역가능한 모든 스트링(또는 메세지)을 수집해야
+한다. 스핑크스는 <code class="docutils literal"><span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">gettext</span></code> 를 실행해서 스트링을 추출한다.</p>
+<p>독트리에 있는 각각의 단일 요소는 단일 메세지가 되며 큰 단락들은 원본 문서에서처럼 거칠게
+(coarsely-grained) 남아있는 반면에 리스트는 다른 덩어리들로(chunks) 동일하게 분할된다.
+이것은 자유 텍스트(free-text) 단계에 있는 번역기에 약간의 컨텍스트를 제공하면서 원활한 문서
+업데이트를 가능하게 한다. 자동화 된 방법이 없기 때문에 아주 큰 단락을 분리하는 일은 관리자가
+해야 한다.</p>
+<p>스핑크스가 성공적으로
+<a class="reference internal" href="builders_ko.html#sphinx.builders.gettext.MessageCatalogBuilder" title="sphinx.builders.gettext.MessageCatalogBuilder"><code class="xref py py-class docutils literal"><span class="pre">MessageCatalogBuilder</span></code></a> 를 실행하면 출력 디렉토리에
+<code class="docutils literal"><span class="pre">.pot</span></code> 파일들이 모여있는 것을 볼 수 있다. 이것은 <strong>카탈로그 템플릿</strong> 이며 원본 언어로만 된
+메세지를 포함하고 있다.</p>
+<p>그것들은 번역기에 전달될 수 있고 번역기는 그것들을 원본 메세지를 외국어 스트링으로 매핑하는
+<code class="docutils literal"><span class="pre">.po</span></code> 로 변환시킨다.</p>
+<p>Gettext는 효율성을 위해 <strong class="program">msgfmt</strong> 를 통해서 파일들을 바이너리 카탈로그 라고 알려진
+바이너리 포맷으로 컴파일한다. 만약 이 파일들을 <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 를 위해
+<a class="reference internal" href="config.html#confval-locale_dirs"><code class="xref std std-confval docutils literal"><span class="pre">locale_dirs</span></code></a> 로 검색 가능하게 하면 스핑크스가 자동적으로 그것들을 선택할 것이다.</p>
+<p>예: 당신은 스핑크스 프로젝트에 <code class="docutils literal"><span class="pre">usage.rst</span></code> 문서를 가지고 있다. gettext 빌더는 문서의
+메세지를 <code class="docutils literal"><span class="pre">usage.pot</span></code> 에 넣을 것이다. <code class="docutils literal"><span class="pre">usage.po</span></code> 에 스페인어 번역 <a class="footnote-reference" href="#id8" id="id2">[2]</a> 내용이 이
+있다고 상상해보자. 당신의 빌드가 번역되기 위해서는 아래의 지시 사항을 따라야 한다:</p>
+<ul>
+<li><p class="first">당신의 메세지 카탈로그를 로케일(locale) 디렉토리로 컴파일하라. <code class="docutils literal"><span class="pre">locale</span></code> 이라 하면
+당신의 소스 디렉토리에서 <code class="docutils literal"><span class="pre">./locale/es/LC_MESSAGES/usage.mo</span></code> 가 된다.
+(<code class="docutils literal"><span class="pre">es</span></code> 는 스페인어의 언어 코드다.)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">msgfmt</span> <span class="s2">&quot;usage.po&quot;</span> <span class="o">-</span><span class="n">o</span> <span class="s2">&quot;locale/es/LC_MESSAGES/usage.mo&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><a class="reference internal" href="config.html#confval-locale_dirs"><code class="xref std std-confval docutils literal"><span class="pre">locale_dirs</span></code></a> 를 <code class="docutils literal"><span class="pre">[&quot;locale/&quot;]</span></code> 로 설정하라.</p>
+</li>
+<li><p class="first"><a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 를 <code class="docutils literal"><span class="pre">es</span></code> (<a class="reference internal" href="man/sphinx-build_ko.html#id2"><code class="xref std std-option docutils literal"><span class="pre">-D</span></code></a> 를 통해서도 가능)
+로 설정하라.</p>
+</li>
+<li><p class="first">원하는 빌드를 실행하라.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="translating-with-sphinx-intl">
+<h2><a class="toc-backref" href="#id11">Translating with sphinx-intl</a><a class="headerlink" href="#translating-with-sphinx-intl" title="제목 주소">¶</a></h2>
+<div class="section" id="quick-guide">
+<h3><a class="toc-backref" href="#id12">Quick guide</a><a class="headerlink" href="#quick-guide" title="제목 주소">¶</a></h3>
+<p><a class="reference external" href="https://pypi.python.org/pypi/sphinx-intl">sphinx-intl</a> 는 스핑크스 번역 플로우(flow)를 다루는 유용한 도구다.
+이 섹선은 sphix-intl로 번역하는 쉬운 방법을 설명한다.</p>
+<ol class="arabic">
+<li><p class="first"><strong class="command">pip install sphinx-intl</strong> 나 <strong class="command">easy_install sphinx-intl</strong>
+명령을 통해서 <a class="reference external" href="https://pypi.python.org/pypi/sphinx-intl">sphinx-intl</a> 을 설치하라.</p>
+</li>
+<li><p class="first"><cite>conf.py</cite> 에 설정을 추가하라:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">locale_dirs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;locale/&#39;</span><span class="p">]</span>   <span class="c1"># 예시지만 이 경로를 추천한다.</span>
+<span class="n">gettext_compact</span> <span class="o">=</span> <span class="kc">False</span>     <span class="c1"># 선택적인 부분이다.</span>
+</pre></div>
+</div>
+<p>이 가이드는 <a class="reference internal" href="config.html#confval-locale_dirs"><code class="xref std std-confval docutils literal"><span class="pre">locale_dirs</span></code></a> 가 'locale/' 로 설정되어 있고
+<a class="reference internal" href="config.html#confval-gettext_compact"><code class="xref std std-confval docutils literal"><span class="pre">gettext_compact</span></code></a> 가 <cite>False</cite> 로 설정되어 있다.(스핑크스 문서도
+마찬가지로 구성되어 있다.)</p>
+</li>
+<li><p class="first">문서의 번역 가능한 메제세를 pot 파일로 추출하라:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make gettext
+</pre></div>
+</div>
+<p>결과적으로, pot 파일들이 <code class="docutils literal"><span class="pre">_build/gettext</span></code> 디렉토리 아래에 많이 생성될 것이다.</p>
+</li>
+<li><p class="first"><a href="#id3"><span class="problematic" id="id4">`</span></a>locale_dir`를 설정/업데이트 하라:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sphinx-intl update -p _build/gettext -l de -l ja
+</pre></div>
+</div>
+<p>실행하면 po 파일을 포함하는 아래의 디렉토리들을 얻게 된다:</p>
+<ul class="simple">
+<li><cite>./locale/de/LC_MESSAGES/</cite></li>
+<li><cite>./locale/ja/LC_MESSAGES/</cite></li>
+</ul>
+</li>
+<li><p class="first"><cite>./locale/&lt;lang&gt;/LC_MESSAGES/</cite> 에 있는 po 파일들을 번역하라.</p>
+</li>
+<li><p class="first">번역된 문서를 만들어라.</p>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a>conf.py``에 있는 <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 파라미터를 변경하거나 커맨드라인에서
+파라미터를 지정할 수 있다:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make -e <span class="nv">SPHINXOPTS</span><span class="o">=</span><span class="s2">&quot;-D language=&#39;de&#39;&quot;</span> html
+</pre></div>
+</div>
+</li>
+</ol>
+<p>축하한다! 당신은 <code class="docutils literal"><span class="pre">_build/html</span></code> 디렉토리에 번역된 문서를 얻게 되었다.</p>
+<div class="versionadded">
+<p><span class="versionmodified">버전 1.3에 추가: </span>make 커맨드에 의해 호출된 스핑크스 빌드는 po 파일을 mo 파일로 빌드 한다.</p>
+<p>만약 1.2.x 또는 이번의 버전을 사용하면 make 커맨드 이전에 <code class="docutils literal"><span class="pre">sphinx-intl</span> <span class="pre">build</span></code> 커맨드를
+호출하라.</p>
+</div>
+</div>
+<div class="section" id="translating">
+<h3><a class="toc-backref" href="#id13">Translating</a><a class="headerlink" href="#translating" title="제목 주소">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">./locale/de/LC_MESSAGES</span></code> 디렉토리에 있는 po 파일을 번역하라.
+스핑크스 문서에 있는 builders.po 파일의 경우:</p>
+<div class="highlight-po"><div class="highlight"><pre><span></span><span class="c1"># a5600c3d2e3d48fc8c261ea0284db79b</span>
+<span class="kd">#: ../../builders.rst:4</span>
+<span class="nv">msgid</span> <span class="s">&quot;Available builders&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&lt;FILL HERE BY TARGET LANGUAGE&gt;&quot;</span>
+</pre></div>
+</div>
+<p>다른 경우, msgid는 reStructuredText 신택스를 포함하는 여러 줄의 텍스트일 수 있다:</p>
+<div class="highlight-po"><div class="highlight"><pre><span></span><span class="c1"># 302558364e1d41c69b3277277e34b184</span>
+<span class="kd">#: ../../builders.rst:9</span>
+<span class="nv">msgid</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;These are the built-in Sphinx builders. More builders can be added by &quot;</span>
+<span class="s">&quot;:ref:`extensions &lt;extensions&gt;`.&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;FILL HERE BY TARGET LANGUAGE FILL HERE BY TARGET LANGUAGE FILL HERE &quot;</span>
+<span class="s">&quot;BY TARGET LANGUAGE :ref:`EXTENSIONS &lt;extensions&gt;` FILL HERE.&quot;</span>
+</pre></div>
+</div>
+<p>reST 형식을 위반하지 않도록 주의하라. 대부분의 po 에디터가 위반하지 않도록 도와줄 것이다.</p>
+</div>
+<div class="section" id="update-your-po-files-by-new-pot-files">
+<h3><a class="toc-backref" href="#id14">Update your po files by new pot files</a><a class="headerlink" href="#update-your-po-files-by-new-pot-files" title="제목 주소">¶</a></h3>
+<p>문서가 업데이트 되었다면 업데이트된 pot 파일을 생성하고 번역된 po 파일에 변경점을 적용해야 한다.
+업데이트된 pot 파일의 변경점을 po 파일에 적용시키기 위해서는
+<strong class="command">sphinx-intl update</strong> 커맨드를 사용하라.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sphinx-intl update -p _build/locale
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-transifex-service-for-team-translation">
+<h2><a class="toc-backref" href="#id15">Using Transifex service for team translation</a><a class="headerlink" href="#using-transifex-service-for-team-translation" title="제목 주소">¶</a></h2>
+<p><a class="reference external" href="https://www.transifex.com/">Transifex</a> 는 웹 인터페이스를 통해서 공동 번역을 할 수 있게 해주는 서비스 중의 하나이다.
+이것은 번역을 쉽게 fetch 하고 push 하게 만들어주는 뛰어난 파이선 기반 커맨드라인 클라이언트다.</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference external" href="https://pypi.python.org/pypi/transifex-client">transifex-client</a> 를 설치하라</p>
+<p>리소스(pot 파일)를 업로드를 위해서 <strong class="command">tx</strong> 커맨드를 사용하라.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install transifex-client
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">더 보기</p>
+<p class="last"><a class="reference external" href="http://docs.transifex.com/developer/client/">Transifex Client v0.8 &amp;mdash; Transifex documentation</a></p>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="https://www.transifex.com/">transifex</a> 계정을 생성하고 당신의 문서를 위한 새로운 프로젝트를 생성하라.</p>
+<p>현재, transifex는 번역 프로젝트가 여러 버전의 문서를 버전을 보유하는 것을 허용하지 않는다.
+따라서 프로젝트 이름에 버전 숫자를 써두는 것이 좋다.</p>
+<p>예시:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Project ID:</th><td class="field-body"><code class="docutils literal"><span class="pre">sphinx-document-test_1_0</span></code></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Project URL:</th><td class="field-body"><code class="docutils literal"><span class="pre">https://www.transifex.com/projects/p/sphinx-document-test_1_0/</span></code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">tx 커맨드를 위한 설정 파일들.</p>
+<p>이 과정은 현재 디렉토리에 <code class="docutils literal"><span class="pre">.tx/config</span></code> 와 작성자 정보가 있는 <code class="docutils literal"><span class="pre">~/.transifexrc</span></code> 파일을
+생성한다.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tx init
+<span class="go">Creating .tx folder...</span>
+<span class="go">Transifex instance [https://www.transifex.com]:</span>
+<span class="go">...</span>
+<span class="go">Please enter your transifex username: &lt;transifex-username&gt;</span>
+<span class="go">Password: &lt;transifex-password&gt;</span>
+<span class="go">...</span>
+<span class="go">Done.</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">pot 파일을 transifex 서비스에 업로드하라.</p>
+<p>pot 파일을 <code class="docutils literal"><span class="pre">.tx/config</span></code> 파일에 등록하라:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /your/document/root
+<span class="gp">$</span> sphinx-intl update-txconfig-resources --pot-dir _build/locale <span class="se">\</span>
+  --transifex-project-name sphinx-document-test_1_0
+</pre></div>
+</div>
+<p>그리고 pot 파일을 업로드하라:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tx push -s
+<span class="go">Pushing translations for resource sphinx-document-test_1_0.builders:</span>
+<span class="go">Pushing source file (locale/pot/builders.pot)</span>
+<span class="go">Resource does not exist.  Creating...</span>
+<span class="go">...</span>
+<span class="go">Done.</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">번역본을 transifex에 forward 하라.</p>
+</li>
+<li><p class="first">번역된 po 파일을 pull 해서 번역된 html 을 만들어라.</p>
+<p>번역된 카탈로그를 얻고 mo 파일을 빌드하라('de'인 경우):</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /your/document/root
+<span class="gp">$</span> tx pull -l de
+<span class="go">Pulling translations for resource sphinx-document-test_1_0.builders (...)</span>
+<span class="go"> -&gt; de: locale/de/LC_MESSAGES/builders.po</span>
+<span class="go">...</span>
+<span class="go">Done.</span>
+</pre></div>
+</div>
+<p>make html을 호출하라:</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make -e <span class="nv">SPHINXOPTS</span><span class="o">=</span><span class="s2">&quot;-D language=&#39;de&#39;&quot;</span> html
+</pre></div>
+</div>
+</li>
+</ol>
+<p>과정이 끝났다!</p>
+<div class="admonition tip">
+<p class="first admonition-title">참고</p>
+<p>Transifex나 로컬에서 번역하기</p>
+<p>만약 모든 언어의 po 파일을 push 하고 싶다면, <strong class="command">tx push -t</strong> 커맨드를
+사용하면 된다. 이 작업은 transifex에 있는 번역본들을 덮어쓰기 때문에 주의해야 한다.</p>
+<p class="last">바꿔 말하면, 만약 당신이 서비스와 로컬에 있는 po 파일을 각각 업데이트 했으면
+통합할 때 굉장히 많은 시간과 노력이 필요하다.</p>
+</div>
+</div>
+<div class="section" id="contributing-to-sphinx-reference-translation">
+<h2><a class="toc-backref" href="#id16">Contributing to Sphinx reference translation</a><a class="headerlink" href="#contributing-to-sphinx-reference-translation" title="제목 주소">¶</a></h2>
+<p>새로운 컨트리뷰터(contributor)가 스핑크스 레퍼런스를 번역할 때 권장하는 방법은 Transifex에
+있는 번역 팀에 가입시키는 것이다.</p>
+<p>Sphinx-1.3 도큐먼테이션에 <a class="reference external" href="https://www.transifex.com/sphinx-doc/sphinx-doc-1_3/">sphinx translation page</a> 가 있다.</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://www.transifex.com/">transifex</a> 서비스에 로그인 하라.</li>
+<li><a class="reference external" href="https://www.transifex.com/sphinx-doc/sphinx-doc-1_3/">sphinx translation page</a> 로 이동하라.</li>
+<li><code class="docutils literal"><span class="pre">Request</span> <span class="pre">language</span></code> 을 클릭하고 양식을 채워라.</li>
+<li>transifex 스핑크스 번역 관리자의 승인을 기다려라. Wait acceptance by  sphinx translation maintainers.</li>
+<li>(승인 후) transifex로 번역하라.</li>
+</ol>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>소프트웨어 suite에 대한 자세한 내용은 <a class="reference external" href="http://www.gnu.org/software/gettext/manual/gettext.html#Introduction">GNU gettext utilities</a>
+을 참고하라.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>아무도 스페인 종교 재판을 원하지 않기 때문이다!</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>탐색</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >색인</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
+        <li class="right" >
+          <a href="theming.html" title="HTML theming support"
+             >다음</a> |</li>
+        <li class="right" >
+          <a href="config.html" title="The build configuration file"
+             >이전</a> |</li>
+        <li><a href="index.html">Sphinx home</a>&#160;|</li>
+        <li><a href="contents.html">Documentation</a> &#187;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/762679f3.
+    </div>
+  </body>
+</html>
