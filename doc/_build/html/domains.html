@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Sphinx Domains &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>Sphinx Domains &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -80,14 +81,14 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -95,7 +96,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <h3><a href="contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Sphinx Domains</a><ul>
 <li><a class="reference internal" href="#what-is-a-domain">What is a Domain?</a></li>
@@ -145,17 +146,17 @@
 </ul>
 
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="_sources/domains.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -170,16 +171,16 @@
           <div class="body" role="main">
             
   <div class="section" id="sphinx-domains">
-<span id="domains"></span><h1>Sphinx Domains<a class="headerlink" href="#sphinx-domains" title="Permalink to this headline">¶</a></h1>
+<span id="domains"></span><h1>Sphinx Domains<a class="headerlink" href="#sphinx-domains" title="제목 주소">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.0.</span></p>
+<p><span class="versionmodified">버전 1.0에 추가.</span></p>
 </div>
 <div class="section" id="what-is-a-domain">
-<h2>What is a Domain?<a class="headerlink" href="#what-is-a-domain" title="Permalink to this headline">¶</a></h2>
+<h2>What is a Domain?<a class="headerlink" href="#what-is-a-domain" title="제목 주소">¶</a></h2>
 <p>Originally, Sphinx was conceived for a single project, the documentation of the
 Python language.  Shortly afterwards, it was made available for everyone as a
 documentation tool, but the documentation of Python modules remained deeply
-built in – the most fundamental directives, like <code class="docutils literal"><span class="pre">function</span></code>, were designed
+built in -- the most fundamental directives, like <code class="docutils literal"><span class="pre">function</span></code>, were designed
 for Python objects.  Since Sphinx has become somewhat popular, interest
 developed in using it for many different purposes: C/C++ projects, JavaScript,
 or even reStructuredText markup (like in this documentation).</p>
@@ -200,7 +201,7 @@ to write.</p>
 The domain API is documented as well, in the section <a class="reference internal" href="extdev/domainapi.html#domain-api"><span class="std std-ref">Domain API</span></a>.</p>
 </div>
 <div class="section" id="basic-markup">
-<span id="basic-domain-markup"></span><h2>Basic Markup<a class="headerlink" href="#basic-markup" title="Permalink to this headline">¶</a></h2>
+<span id="basic-domain-markup"></span><h2>Basic Markup<a class="headerlink" href="#basic-markup" title="제목 주소">¶</a></h2>
 <p>Most domains provide a number of <em class="dfn">object description directives</em>, used to
 describe specific objects provided by modules.  Each directive requires one or
 more signatures to provide basic information about what is being described, and
@@ -232,12 +233,12 @@ could say</p>
 directive name.</p>
 <p class="rubric">Default Domain</p>
 <p>For documentation describing objects from solely one domain, authors will not
-have to state again its name at each directive, role, etc… after
+have to state again its name at each directive, role, etc... after
 having specified a default. This can be done either via the config
 value <a class="reference internal" href="config.html#confval-primary_domain"><code class="xref std std-confval docutils literal"><span class="pre">primary_domain</span></code></a> or via this directive:</p>
 <dl class="directive">
 <dt id="directive-default-domain">
-<code class="descname">.. default-domain::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-default-domain" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. default-domain::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-default-domain" title="정의 주소">¶</a></dt>
 <dd><p>Select a new default domain.  While the <a class="reference internal" href="config.html#confval-primary_domain"><code class="xref std std-confval docutils literal"><span class="pre">primary_domain</span></code></a> selects a
 global default, this only has an effect within the same file.</p>
 </dd></dl>
@@ -255,7 +256,7 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 </pre></div>
 </div>
 <div class="section" id="cross-referencing-syntax">
-<h3>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="제목 주소">¶</a></h3>
 <p>For cross-reference roles provided by domains, the same facilities exist as for
 general cross-references.  See <a class="reference internal" href="markup/inline_ko.html#xref-syntax"><span class="std std-ref">Cross-referencing syntax</span></a>.</p>
 <p>In short:</p>
@@ -270,12 +271,12 @@ refer to <code class="docutils literal"><span class="pre">Queue.Queue.get</span>
 </div>
 </div>
 <div class="section" id="the-python-domain">
-<h2>The Python Domain<a class="headerlink" href="#the-python-domain" title="Permalink to this headline">¶</a></h2>
+<h2>The Python Domain<a class="headerlink" href="#the-python-domain" title="제목 주소">¶</a></h2>
 <p>The Python domain (name <strong>py</strong>) provides the following directives for module
 declarations:</p>
 <dl class="directive">
 <dt id="directive-py:module">
-<code class="descname">.. py:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:module" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:module" title="정의 주소">¶</a></dt>
 <dd><p>This directive marks the beginning of the description of a module (or package
 submodule, in which case the name should be fully qualified, including the
 package name).  It does not create content (like e.g. <a class="reference internal" href="domains_ko.html#directive-py:class" title="py:class directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:class</span></code></a>
@@ -284,22 +285,22 @@ does).</p>
 <p>The <code class="docutils literal"><span class="pre">platform</span></code> option, if present, is a comma-separated list of the
 platforms on which the module is available (if it is available on all
 platforms, the option should be omitted).  The keys are short identifiers;
-examples that are in use include “IRIX”, “Mac”, “Windows”, and “Unix”.  It is
+examples that are in use include &quot;IRIX&quot;, &quot;Mac&quot;, &quot;Windows&quot;, and &quot;Unix&quot;.  It is
 important to use a key which has already been used when applicable.</p>
 <p>The <code class="docutils literal"><span class="pre">synopsis</span></code> option should consist of one sentence describing the
-module’s purpose – it is currently only used in the Global Module Index.</p>
+module's purpose -- it is currently only used in the Global Module Index.</p>
 <p>The <code class="docutils literal"><span class="pre">deprecated</span></code> option can be given (with no value) to mark a module as
 deprecated; it will be designated as such in various locations then.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-py:currentmodule">
-<code class="descname">.. py:currentmodule::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:currentmodule" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:currentmodule::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:currentmodule" title="정의 주소">¶</a></dt>
 <dd><p>This directive tells Sphinx that the classes, functions etc. documented from
 here are in the given module (like <a class="reference internal" href="domains_ko.html#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:module</span></code></a>), but it will not
 create index entries, an entry in the Global Module Index, or a link target
 for <a class="reference internal" href="domains_ko.html#role-py:mod" title="py:mod role"><code class="xref rst rst-role docutils literal"><span class="pre">py:mod</span></code></a>.  This is helpful in situations where documentation
-for things in a module is spread over multiple files or sections – one
+for things in a module is spread over multiple files or sections -- one
 location has the <a class="reference internal" href="domains_ko.html#directive-py:module" title="py:module directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:module</span></code></a> directive, the others only
 <a class="reference internal" href="domains_ko.html#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:currentmodule</span></code></a>.</p>
 </dd></dl>
@@ -307,7 +308,7 @@ location has the <a class="reference internal" href="domains_ko.html#directive-p
 <p>The following directives are provided for module and class contents:</p>
 <dl class="directive">
 <dt id="directive-py:function">
-<code class="descname">.. py:function::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:function::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="정의 주소">¶</a></dt>
 <dd><p>Describes a module-level function.  The signature should include the
 parameters as given in the Python function definition, see <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a>.
 For example:</p>
@@ -324,29 +325,29 @@ structured form, see <a class="reference internal" href="domains_ko.html#info-fi
 
 <dl class="directive">
 <dt id="directive-py:data">
-<code class="descname">.. py:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:data" title="정의 주소">¶</a></dt>
 <dd><p>Describes global data in a module, including both variables and values used
-as “defined constants.”  Class and object attributes are not documented
+as &quot;defined constants.&quot;  Class and object attributes are not documented
 using this environment.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-py:exception">
-<code class="descname">.. py:exception::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:exception" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:exception::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:exception" title="정의 주소">¶</a></dt>
 <dd><p>Describes an exception class.  The signature can, but need not include
 parentheses with constructor arguments.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-py:class">
-<code class="descname">.. py:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:class" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. py:class::</code><code class="descclassname"> name(parameters)</code></dt>
 <dd><p>Describes a class.  The signature can optionally include parentheses with
 parameters which will be shown as the constructor arguments.  See also
 <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a>.</p>
 <p>Methods and attributes belonging to the class should be placed in this
-directive’s body.  If they are placed outside, the supplied name should
+directive's body.  If they are placed outside, the supplied name should
 contain the class name so that cross-references still work.  Example:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:class</span><span class="p">::</span> Foo
 
@@ -364,7 +365,7 @@ contain the class name so that cross-references still work.  Example:</p>
 
 <dl class="directive">
 <dt id="directive-py:attribute">
-<code class="descname">.. py:attribute::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:attribute" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:attribute::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:attribute" title="정의 주소">¶</a></dt>
 <dd><p>Describes an object data attribute.  The description should include
 information about the type of the data to be expected and whether it may be
 changed directly.</p>
@@ -372,7 +373,7 @@ changed directly.</p>
 
 <dl class="directive">
 <dt id="directive-py:method">
-<code class="descname">.. py:method::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:method::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="정의 주소">¶</a></dt>
 <dd><p>Describes an object method.  The parameters should not include the <code class="docutils literal"><span class="pre">self</span></code>
 parameter.  The description should include similar information to that
 described for <code class="docutils literal"><span class="pre">function</span></code>.  See also <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a> and
@@ -381,25 +382,25 @@ described for <code class="docutils literal"><span class="pre">function</span></
 
 <dl class="directive">
 <dt id="directive-py:staticmethod">
-<code class="descname">.. py:staticmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:staticmethod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:staticmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:staticmethod" title="정의 주소">¶</a></dt>
 <dd><p>Like <a class="reference internal" href="domains_ko.html#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a>, but indicates that the method is a static method.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.4.</span></p>
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-py:classmethod">
-<code class="descname">.. py:classmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:classmethod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:classmethod::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:classmethod" title="정의 주소">¶</a></dt>
 <dd><p>Like <a class="reference internal" href="domains_ko.html#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a>, but indicates that the method is a class method.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-py:decorator">
-<code class="descname">.. py:decorator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decorator" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:decorator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decorator" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. py:decorator::</code><code class="descclassname"> name(parameters)</code></dt>
 <dd><p>Describes a decorator function.  The signature should represent the usage as
@@ -432,7 +433,7 @@ this directive; rather, use the <a class="reference internal" href="domains_ko.h
 
 <dl class="directive">
 <dt id="directive-py:decoratormethod">
-<code class="descname">.. py:decoratormethod::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decoratormethod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. py:decoratormethod::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-py:decoratormethod" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. py:decoratormethod::</code><code class="descclassname"> name(signature)</code></dt>
 <dd><p>Same as <a class="reference internal" href="domains_ko.html#directive-py:decorator" title="py:decorator directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:decorator</span></code></a>, but for decorators that are methods.</p>
@@ -440,7 +441,7 @@ this directive; rather, use the <a class="reference internal" href="domains_ko.h
 </dd></dl>
 
 <div class="section" id="python-signatures">
-<span id="signatures"></span><h3>Python Signatures<a class="headerlink" href="#python-signatures" title="Permalink to this headline">¶</a></h3>
+<span id="signatures"></span><h3>Python Signatures<a class="headerlink" href="#python-signatures" title="제목 주소">¶</a></h3>
 <p>Signatures of functions, methods and class constructors can be given like they
 would be written in Python.</p>
 <p>Default values for optional arguments can be given (but if they contain commas,
@@ -449,22 +450,22 @@ can also be given as well as return type annotations:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> compile(source : string, filename, symbol=&#39;file&#39;) -&gt; ast object
 </pre></div>
 </div>
-<p>For functions with optional parameters that don’t have default values (typically
+<p>For functions with optional parameters that don't have default values (typically
 functions implemented in C extension modules without keyword argument support),
 you can use brackets to specify the optional parts:</p>
 <blockquote>
 <div><dl class="function">
 <dt id="compile">
-<code class="descname">compile</code><span class="sig-paren">(</span><em>source</em><span class="optional">[</span>, <em>filename</em><span class="optional">[</span>, <em>symbol</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">compile</code><span class="sig-paren">(</span><em>source</em><span class="optional">[</span>, <em>filename</em><span class="optional">[</span>, <em>symbol</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#compile" title="정의 주소">¶</a></dt>
 <dd></dd></dl>
 
 </div></blockquote>
 <p>It is customary to put the opening bracket before the comma.</p>
 </div>
 <div class="section" id="info-field-lists">
-<span id="id1"></span><h3>Info field lists<a class="headerlink" href="#info-field-lists" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h3>Info field lists<a class="headerlink" href="#info-field-lists" title="제목 주소">¶</a></h3>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.4.</span></p>
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
 </div>
 <p>Inside Python object description directives, reST field lists with these fields
 are recognized and formatted nicely:</p>
@@ -480,8 +481,8 @@ exception is raised.</li>
 <li><code class="docutils literal"><span class="pre">rtype</span></code>: Return type.  Creates a link if possible.</li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In current release, all <code class="docutils literal"><span class="pre">var</span></code>, <code class="docutils literal"><span class="pre">ivar</span></code> and <code class="docutils literal"><span class="pre">cvar</span></code> are represented as “Variable”.
+<p class="first admonition-title">주석</p>
+<p class="last">In current release, all <code class="docutils literal"><span class="pre">var</span></code>, <code class="docutils literal"><span class="pre">ivar</span></code> and <code class="docutils literal"><span class="pre">cvar</span></code> are represented as &quot;Variable&quot;.
 There is no difference at all.</p>
 </div>
 <p>The field names must consist of one of these keywords and an argument (except
@@ -512,23 +513,23 @@ explained by an example:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sender</strong> (<em>str</em>) – The person sending the message</li>
-<li><strong>recipient</strong> (<em>str</em>) – The recipient of the message</li>
-<li><strong>message_body</strong> (<em>str</em>) – The body of the message</li>
-<li><strong>priority</strong> (<em>integer</em><em> or </em><em>None</em>) – The priority of the message, can be a number 1-5</li>
+<tr class="field-odd field"><th class="field-name">매개 변수:</th><td class="field-body"><ul class="first simple">
+<li><strong>sender</strong> (<em>str</em>) -- The person sending the message</li>
+<li><strong>recipient</strong> (<em>str</em>) -- The recipient of the message</li>
+<li><strong>message_body</strong> (<em>str</em>) -- The body of the message</li>
+<li><strong>priority</strong> (<em>integer</em><em> or </em><em>None</em>) -- The priority of the message, can be a number 1-5</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the message id</p>
+<tr class="field-even field"><th class="field-name">반환:</th><td class="field-body"><p class="first">the message id</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">int</p>
+<tr class="field-odd field"><th class="field-name">반환 형식:</th><td class="field-body"><p class="first">int</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><strong>ValueError</strong> – if the message_body exceeds 160 characters</li>
-<li><strong>TypeError</strong> – if the message_body is not a basestring</li>
+<tr class="field-even field"><th class="field-name">예외:</th><td class="field-body"><ul class="first last simple">
+<li><strong>ValueError</strong> -- if the message_body exceeds 160 characters</li>
+<li><strong>TypeError</strong> -- if the message_body is not a basestring</li>
 </ul>
 </td>
 </tr>
@@ -543,7 +544,7 @@ single word, like this:</p>
 </pre></div>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5.</span></p>
+<p><span class="versionmodified">버전 1.5에 추가.</span></p>
 </div>
 <p>Container types such as lists and dictionaries can be linked automatically
 using the following syntax:</p>
@@ -556,7 +557,7 @@ using the following syntax:</p>
 </pre></div>
 </div>
 <p>Multiple types in a type field will be linked automatically if separated by
-the word “or”:</p>
+the word &quot;or&quot;:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="nc">:type an_arg:</span> <span class="nf">int or None</span>
 <span class="nc">:vartype a_var:</span> <span class="nf">str or int</span>
 <span class="nc">:rtype:</span> <span class="nf">float or str</span>
@@ -564,19 +565,19 @@ the word “or”:</p>
 </div>
 </div>
 <div class="section" id="cross-referencing-python-objects">
-<span id="python-roles"></span><h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="Permalink to this headline">¶</a></h3>
+<span id="python-roles"></span><h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="제목 주소">¶</a></h3>
 <p>The following roles refer to objects in modules and are possibly hyperlinked if
 a matching identifier is found:</p>
 <dl class="role">
 <dt id="role-py:mod">
-<code class="descname">:py:mod:</code><a class="headerlink" href="#role-py:mod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:mod:</code><a class="headerlink" href="#role-py:mod" title="정의 주소">¶</a></dt>
 <dd><p>Reference a module; a dotted name may be used.  This should also be used for
 package names.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:func">
-<code class="descname">:py:func:</code><a class="headerlink" href="#role-py:func" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:func:</code><a class="headerlink" href="#role-py:func" title="정의 주소">¶</a></dt>
 <dd><p>Reference a Python function; dotted names may be used.  The role text needs
 not include trailing parentheses to enhance readability; they will be added
 automatically by Sphinx if the <a class="reference internal" href="config.html#confval-add_function_parentheses"><code class="xref std std-confval docutils literal"><span class="pre">add_function_parentheses</span></code></a> config
@@ -585,26 +586,26 @@ value is <code class="docutils literal"><span class="pre">True</span></code> (th
 
 <dl class="role">
 <dt id="role-py:data">
-<code class="descname">:py:data:</code><a class="headerlink" href="#role-py:data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:data:</code><a class="headerlink" href="#role-py:data" title="정의 주소">¶</a></dt>
 <dd><p>Reference a module-level variable.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:const">
-<code class="descname">:py:const:</code><a class="headerlink" href="#role-py:const" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reference a “defined” constant.  This may be a Python variable that is not
+<code class="descname">:py:const:</code><a class="headerlink" href="#role-py:const" title="정의 주소">¶</a></dt>
+<dd><p>Reference a &quot;defined&quot; constant.  This may be a Python variable that is not
 intended to be changed.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:class">
-<code class="descname">:py:class:</code><a class="headerlink" href="#role-py:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:class:</code><a class="headerlink" href="#role-py:class" title="정의 주소">¶</a></dt>
 <dd><p>Reference a class; a dotted name may be used.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:meth">
-<code class="descname">:py:meth:</code><a class="headerlink" href="#role-py:meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:meth:</code><a class="headerlink" href="#role-py:meth" title="정의 주소">¶</a></dt>
 <dd><p>Reference a method of an object.  The role text can include the type name and
 the method name; if it occurs within the description of a type, the type name
 can be omitted.  A dotted name may be used.</p>
@@ -612,23 +613,23 @@ can be omitted.  A dotted name may be used.</p>
 
 <dl class="role">
 <dt id="role-py:attr">
-<code class="descname">:py:attr:</code><a class="headerlink" href="#role-py:attr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:attr:</code><a class="headerlink" href="#role-py:attr" title="정의 주소">¶</a></dt>
 <dd><p>Reference a data attribute of an object.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:exc">
-<code class="descname">:py:exc:</code><a class="headerlink" href="#role-py:exc" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:exc:</code><a class="headerlink" href="#role-py:exc" title="정의 주소">¶</a></dt>
 <dd><p>Reference an exception.  A dotted name may be used.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-py:obj">
-<code class="descname">:py:obj:</code><a class="headerlink" href="#role-py:obj" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:py:obj:</code><a class="headerlink" href="#role-py:obj" title="정의 주소">¶</a></dt>
 <dd><p>Reference an object of unspecified type.  Useful e.g. as the
 <a class="reference internal" href="config.html#confval-default_role"><code class="xref std std-confval docutils literal"><span class="pre">default_role</span></code></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.4.</span></p>
+<p><span class="versionmodified">버전 0.4에 추가.</span></p>
 </div>
 </dd></dl>
 
@@ -640,7 +641,7 @@ the current module, or the built-in function of that name.  In contrast,
 <p>Normally, names in these roles are searched first without any further
 qualification, then with the current module name prepended, then with the
 current module and class name (if any) prepended.  If you prefix the name with a
-dot, this order is reversed.  For example, in the documentation of Python’s
+dot, this order is reversed.  For example, in the documentation of Python's
 <code class="xref py py-mod docutils literal"><span class="pre">codecs</span></code> module, <code class="docutils literal"><span class="pre">:py:func:`open`</span></code> always refers to the built-in
 function, while <code class="docutils literal"><span class="pre">:py:func:`.open`</span></code> refers to <code class="xref py py-func docutils literal"><span class="pre">codecs.open()</span></code>.</p>
 <p>A similar heuristic is used to determine whether the name is an attribute of the
@@ -657,24 +658,24 @@ method, but the visible link caption will only be <code class="docutils literal"
 </div>
 </div>
 <div class="section" id="the-c-domain">
-<span id="c-domain"></span><h2>The C Domain<a class="headerlink" href="#the-c-domain" title="Permalink to this headline">¶</a></h2>
+<span id="c-domain"></span><h2>The C Domain<a class="headerlink" href="#the-c-domain" title="제목 주소">¶</a></h2>
 <p>The C domain (name <strong>c</strong>) is suited for documentation of C API.</p>
 <dl class="directive">
 <dt id="directive-c:function">
-<code class="descname">.. c:function::</code><code class="descclassname"> type name(signature)</code><a class="headerlink" href="#directive-c:function" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. c:function::</code><code class="descclassname"> type name(signature)</code><a class="headerlink" href="#directive-c:function" title="정의 주소">¶</a></dt>
 <dd><p>Describes a C function. The signature should be given as in C, e.g.:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:function</span><span class="p">::</span> PyObject<span class="ge">* PyType_GenericAlloc(PyTypeObject *</span>type, Py_ssize_t nitems)
 </pre></div>
 </div>
 <p>This is also used to describe function-like preprocessor macros.  The names
 of the arguments should be given so they may be used in the description.</p>
-<p>Note that you don’t have to backslash-escape asterisks in the signature, as
+<p>Note that you don't have to backslash-escape asterisks in the signature, as
 it is not parsed by the reST inliner.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-c:member">
-<code class="descname">.. c:member::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:member" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. c:member::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:member" title="정의 주소">¶</a></dt>
 <dd><p>Describes a C struct member. Example signature:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:member</span><span class="p">::</span> PyObject* PyTypeObject.tp_bases
 </pre></div>
@@ -686,8 +687,8 @@ References to structure members in text should use the <code class="docutils lit
 
 <dl class="directive">
 <dt id="directive-c:macro">
-<code class="descname">.. c:macro::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:macro" title="Permalink to this definition">¶</a></dt>
-<dd><p>Describes a “simple” C macro.  Simple macros are macros which are used for
+<code class="descname">.. c:macro::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:macro" title="정의 주소">¶</a></dt>
+<dd><p>Describes a &quot;simple&quot; C macro.  Simple macros are macros which are used for
 code expansion, but which do not take arguments so cannot be described as
 functions.  This is a simple C-language <code class="docutils literal"><span class="pre">#define</span></code>.  Examples of its use in
 the Python documentation include <code class="xref c c-macro docutils literal"><span class="pre">PyObject_HEAD</span></code> and
@@ -696,14 +697,14 @@ the Python documentation include <code class="xref c c-macro docutils literal"><
 
 <dl class="directive">
 <dt id="directive-c:type">
-<code class="descname">.. c:type::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. c:type::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-c:type" title="정의 주소">¶</a></dt>
 <dd><p>Describes a C type (whether defined by a typedef or struct). The signature
 should just be the type name.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-c:var">
-<code class="descname">.. c:var::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:var" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. c:var::</code><code class="descclassname"> type name</code><a class="headerlink" href="#directive-c:var" title="정의 주소">¶</a></dt>
 <dd><p>Describes a global C variable.  The signature should include the type, such
 as:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">c:var</span><span class="p">::</span> PyObject* PyClass_Type
@@ -712,45 +713,45 @@ as:</p>
 </dd></dl>
 
 <div class="section" id="cross-referencing-c-constructs">
-<span id="c-roles"></span><h3>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="Permalink to this headline">¶</a></h3>
+<span id="c-roles"></span><h3>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="제목 주소">¶</a></h3>
 <p>The following roles create cross-references to C-language constructs if they are
 defined in the documentation:</p>
 <dl class="role">
 <dt id="role-c:data">
-<code class="descname">:c:data:</code><a class="headerlink" href="#role-c:data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:c:data:</code><a class="headerlink" href="#role-c:data" title="정의 주소">¶</a></dt>
 <dd><p>Reference a C-language variable.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-c:func">
-<code class="descname">:c:func:</code><a class="headerlink" href="#role-c:func" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:c:func:</code><a class="headerlink" href="#role-c:func" title="정의 주소">¶</a></dt>
 <dd><p>Reference a C-language function. Should include trailing parentheses.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-c:macro">
-<code class="descname">:c:macro:</code><a class="headerlink" href="#role-c:macro" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reference a “simple” C macro, as defined above.</p>
+<code class="descname">:c:macro:</code><a class="headerlink" href="#role-c:macro" title="정의 주소">¶</a></dt>
+<dd><p>Reference a &quot;simple&quot; C macro, as defined above.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-c:type">
-<code class="descname">:c:type:</code><a class="headerlink" href="#role-c:type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:c:type:</code><a class="headerlink" href="#role-c:type" title="정의 주소">¶</a></dt>
 <dd><p>Reference a C-language type.</p>
 </dd></dl>
 
 </div>
 </div>
 <div class="section" id="cpp-domain">
-<span id="id2"></span><h2>The C++ Domain<a class="headerlink" href="#cpp-domain" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>The C++ Domain<a class="headerlink" href="#cpp-domain" title="제목 주소">¶</a></h2>
 <p>The C++ domain (name <strong>cpp</strong>) supports documenting C++ projects.</p>
 <div class="section" id="directives">
-<h3>Directives<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h3>
+<h3>Directives<a class="headerlink" href="#directives" title="제목 주소">¶</a></h3>
 <p>The following directives are available. All declarations can start with
 a visibility statement (<code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> or <code class="docutils literal"><span class="pre">protected</span></code>).</p>
 <dl class="directive">
 <dt id="directive-cpp:class">
-<code class="descname">.. cpp:class::</code><code class="descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:class::</code><code class="descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:class" title="정의 주소">¶</a></dt>
 <dd><p>Describe a class/struct, possibly with specification of inheritance, e.g.,:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:class</span><span class="p">::</span> MyClass : public MyBase, MyOtherBase
 </pre></div>
@@ -780,7 +781,7 @@ a visibility statement (<code class="docutils literal"><span class="pre">public<
 
 <dl class="directive">
 <dt id="directive-cpp:function">
-<code class="descname">.. cpp:function::</code><code class="descclassname"> (member) function prototype</code><a class="headerlink" href="#directive-cpp:function" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:function::</code><code class="descclassname"> (member) function prototype</code><a class="headerlink" href="#directive-cpp:function" title="정의 주소">¶</a></dt>
 <dd><p>Describe a function or member function, e.g.,:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> bool myMethod(int arg1, std::string arg2)
 
@@ -821,9 +822,9 @@ a visibility statement (<code class="docutils literal"><span class="pre">public<
 
 <dl class="directive">
 <dt id="directive-cpp:member">
-<code class="descname">.. cpp:member::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:member" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:member::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:member" title="정의 주소">¶</a></dt>
 <dt id="directive-cpp:var">
-<code class="descname">.. cpp:var::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:var" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:var::</code><code class="descclassname"> (member) variable declaration</code><a class="headerlink" href="#directive-cpp:var" title="정의 주소">¶</a></dt>
 <dd><p>Describe a variable or member variable, e.g.,:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:member</span><span class="p">::</span> std::string MyClass::myMember
 
@@ -841,7 +842,7 @@ a visibility statement (<code class="docutils literal"><span class="pre">public<
 
 <dl class="directive">
 <dt id="directive-cpp:type">
-<code class="descname">.. cpp:type::</code><code class="descclassname"> typedef declaration</code><a class="headerlink" href="#directive-cpp:type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:type::</code><code class="descclassname"> typedef declaration</code><a class="headerlink" href="#directive-cpp:type" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. cpp:type::</code><code class="descclassname"> name</code></dt>
 <dt>
@@ -869,36 +870,36 @@ or simply the name of a type with unspecified type, e.g.,:</p>
 <p>The example are rendered as follows.</p>
 <dl class="type">
 <dt id="_CPPv36MyList">
-<span id="_CPPv26MyList"></span><span id="MyList"></span><em class="property">typedef </em>std::vector&lt;int&gt; <code class="descclassname"></code><code class="descname">MyList</code><a class="headerlink" href="#_CPPv36MyList" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv26MyList"></span><span id="MyList"></span><em class="property">typedef </em>std::vector&lt;int&gt; <code class="descclassname"></code><code class="descname">MyList</code><a class="headerlink" href="#_CPPv36MyList" title="정의 주소">¶</a><br /></dt>
 <dd><p>A typedef-like declaration of a type.</p>
 </dd></dl>
 
 <dl class="type">
 <dt id="_CPPv3N11MyContainer14const_iteratorE">
-<span id="_CPPv2N11MyContainer14const_iteratorE"></span><span id="MyContainer::const_iterator"></span><em class="property">type </em><code class="descclassname">MyContainer::</code><code class="descname">const_iterator</code><a class="headerlink" href="#_CPPv3N11MyContainer14const_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2N11MyContainer14const_iteratorE"></span><span id="MyContainer::const_iterator"></span><em class="property">type </em><code class="descclassname">MyContainer::</code><code class="descname">const_iterator</code><a class="headerlink" href="#_CPPv3N11MyContainer14const_iteratorE" title="정의 주소">¶</a><br /></dt>
 <dd><p>Declaration of a type alias with unspecified type.</p>
 </dd></dl>
 
 <dl class="type">
 <dt id="_CPPv36MyType">
-<span id="_CPPv26MyType"></span><em class="property">using </em><code class="descclassname"></code><code class="descname">MyType</code> = std::unordered_map&lt;int, std::string&gt;<a class="headerlink" href="#_CPPv36MyType" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv26MyType"></span><em class="property">using </em><code class="descclassname"></code><code class="descname">MyType</code> = std::unordered_map&lt;int, std::string&gt;<a class="headerlink" href="#_CPPv36MyType" title="정의 주소">¶</a><br /></dt>
 <dd><p>Declaration of a type alias.</p>
 </dd></dl>
 
 <dl class="type">
 <dt id="_CPPv3I0E11MyContainer">
-<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;<a class="reference internal" href="#_CPPv3I0E11MyContainer" title="MyContainer::T">T</a>&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;T&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-cpp:enum">
-<code class="descname">.. cpp:enum::</code><code class="descclassname"> unscoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:enum::</code><code class="descclassname"> unscoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum" title="정의 주소">¶</a></dt>
 <dt id="directive-cpp:enum-struct">
-<code class="descname">.. cpp:enum-struct::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-struct" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:enum-struct::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-struct" title="정의 주소">¶</a></dt>
 <dt id="directive-cpp:enum-class">
-<code class="descname">.. cpp:enum-class::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:enum-class::</code><code class="descclassname"> scoped enum declaration</code><a class="headerlink" href="#directive-cpp:enum-class" title="정의 주소">¶</a></dt>
 <dd><p>Describe a (scoped) enum, possibly with the underlying type specified.
 Any enumerators declared inside an unscoped enum will be declared both in the enum scope
 and in the parent scope.
@@ -924,7 +925,7 @@ Examples:</p>
 
 <dl class="directive">
 <dt id="directive-cpp:enumerator">
-<code class="descname">.. cpp:enumerator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-cpp:enumerator" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:enumerator::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-cpp:enumerator" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. cpp:enumerator::</code><code class="descclassname"> name = constant</code></dt>
 <dd><p>Describe an enumerator, optionally with its value defined, e.g.,:</p>
@@ -937,11 +938,11 @@ Examples:</p>
 
 <dl class="directive">
 <dt id="directive-cpp:concept">
-<code class="descname">.. cpp:concept::</code><code class="descclassname"> template-parameter-list name</code><a class="headerlink" href="#directive-cpp:concept" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:concept::</code><code class="descclassname"> template-parameter-list name</code><a class="headerlink" href="#directive-cpp:concept" title="정의 주소">¶</a></dt>
 <dt>
 <code class="descname">.. cpp:concept::</code><code class="descclassname"> template-parameter-list name()</code></dt>
 <dd><div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">경고</p>
 <p class="last">The support for concepts is experimental. It is based on the
 Concepts Technical Specification, and the features may change as the TS evolves.</p>
 </div>
@@ -972,26 +973,26 @@ template parameter list. The name may be a nested name. Examples:</p>
 <p>They will render as follows:</p>
 <dl class="concept">
 <dt id="_CPPv3I0ENSt8IteratorE">
-<span id="_CPPv2I0ENSt8IteratorE"></span>template&lt;typename <code class="descname">It</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Iterator</code><a class="headerlink" href="#_CPPv3I0ENSt8IteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0ENSt8IteratorE"></span>template&lt;typename <code class="descname">It</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Iterator</code><a class="headerlink" href="#_CPPv3I0ENSt8IteratorE" title="정의 주소">¶</a><br /></dt>
 <dd><p>Proxy to an element of a notional sequence that can be compared,
 indirected, or incremented.</p>
 <p><strong>Notation</strong></p>
 <dl class="var">
 <dt id="_CPPv3NSt8Iterator1rE">
-<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span><a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It">It</a> <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span>It <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
 <dd><p>An lvalue.</p>
 </dd></dl>
 
 <p><strong>Valid Expressions</strong></p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">*</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is dereferenceable.</li>
-<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It"><span class="pre">It</span></a><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
+<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><span class="pre">It</span><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
 </ul>
 </dd></dl>
 
 <dl class="concept">
 <dt id="_CPPv3I0ENSt9ContainerE">
-<span id="_CPPv2I0ENSt9ContainerE"></span>template&lt;typename <code class="descname">Cont</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Container</code>()<a class="headerlink" href="#_CPPv3I0ENSt9ContainerE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0ENSt9ContainerE"></span>template&lt;typename <code class="descname">Cont</code>&gt;<br /><em class="property">concept </em>bool <code class="descclassname">std::</code><code class="descname">Container</code>()<a class="headerlink" href="#_CPPv3I0ENSt9ContainerE" title="정의 주소">¶</a><br /></dt>
 <dd><p>Holder of elements, to which it can provide access via
 <a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator"><code class="xref cpp cpp-concept docutils literal"><span class="pre">Iterator</span></code></a> s.</p>
 </dd></dl>
@@ -999,7 +1000,7 @@ indirected, or incremented.</p>
 </dd></dl>
 
 <div class="section" id="options">
-<h4>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h4>
+<h4>Options<a class="headerlink" href="#options" title="제목 주소">¶</a></h4>
 <p>Some directives support options:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">:noindex:</span></code>, see <a class="reference internal" href="domains_ko.html#basic-domain-markup"><span class="std std-ref">Basic Markup</span></a>.</li>
@@ -1009,18 +1010,18 @@ If specified, each template parameter will be rendered on a separate line.</li>
 </div>
 </div>
 <div class="section" id="constrained-templates">
-<h3>Constrained Templates<a class="headerlink" href="#constrained-templates" title="Permalink to this headline">¶</a></h3>
+<h3>Constrained Templates<a class="headerlink" href="#constrained-templates" title="제목 주소">¶</a></h3>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">경고</p>
 <p class="last">The support for constrained templates is experimental. It is based on the
 Concepts Technical Specification, and the features may change as the TS evolves.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Sphinx does not currently support <code class="docutils literal"><span class="pre">requires</span></code> clauses.</p>
 </div>
 <div class="section" id="placeholders">
-<h4>Placeholders<a class="headerlink" href="#placeholders" title="Permalink to this headline">¶</a></h4>
+<h4>Placeholders<a class="headerlink" href="#placeholders" title="제목 주소">¶</a></h4>
 <p>Declarations may use the name of a concept to introduce constrained template
 parameters, or the keyword <code class="docutils literal"><span class="pre">auto</span></code> to introduce unconstrained template parameters:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(auto &amp;&amp;arg)
@@ -1035,7 +1036,7 @@ parameters, or the keyword <code class="docutils literal"><span class="pre">auto
 </div>
 </div>
 <div class="section" id="template-introductions">
-<h4>Template Introductions<a class="headerlink" href="#template-introductions" title="Permalink to this headline">¶</a></h4>
+<h4>Template Introductions<a class="headerlink" href="#template-introductions" title="제목 주소">¶</a></h4>
 <p>Simple constrained function or class templates can be declared with a
 <cite>template introduction</cite> instead of a template parameter list:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::Iterator{It} void advance(It &amp;it)
@@ -1050,13 +1051,13 @@ parameters, or the keyword <code class="docutils literal"><span class="pre">auto
 <p>They are rendered as follows.</p>
 <dl class="function">
 <dt id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It">
-<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="advance::It">It</a> &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span>It &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
 <dd><p>A function template with a template parameter constrained to be an Iterator.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer">
-<span id="_CPPv2I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span>std::LessThanComparable{<code class="descname">T</code>}<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">MySortedContainer</code><a class="headerlink" href="#_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EXNSt18LessThanComparableEI1TEE17MySortedContainer"></span>std::LessThanComparable{<code class="descname">T</code>}<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">MySortedContainer</code><a class="headerlink" href="#_CPPv3I0EXNSt18LessThanComparableEI1TEE17MySortedContainer" title="정의 주소">¶</a><br /></dt>
 <dd><p>A class template with a template parameter constrained to be LessThanComparable.</p>
 </dd></dl>
 
@@ -1066,10 +1067,10 @@ even though it would not be valid C++.</p>
 </div>
 </div>
 <div class="section" id="inline-expressions-and-tpes">
-<h3>Inline Expressions and Tpes<a class="headerlink" href="#inline-expressions-and-tpes" title="Permalink to this headline">¶</a></h3>
+<h3>Inline Expressions and Tpes<a class="headerlink" href="#inline-expressions-and-tpes" title="제목 주소">¶</a></h3>
 <dl class="role">
 <dt id="role-cpp:expr">
-<code class="descname">:cpp:expr:</code><a class="headerlink" href="#role-cpp:expr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:expr:</code><a class="headerlink" href="#role-cpp:expr" title="정의 주소">¶</a></dt>
 <dd><blockquote>
 <div><p>A role for inserting a C++ expression or type as inline text.
 For example:</p>
@@ -1085,12 +1086,12 @@ A type: <span class="na">:cpp:expr:</span><span class="nv">`const MySortedContai
 </div></blockquote>
 <dl class="var">
 <dt id="_CPPv31a">
-<span id="_CPPv21a"></span><span id="a__i"></span>int <code class="descclassname"></code><code class="descname">a</code> = 42<a class="headerlink" href="#_CPPv31a" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv21a"></span><span id="a__i"></span>int <code class="descclassname"></code><code class="descname">a</code> = 42<a class="headerlink" href="#_CPPv31a" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="function">
 <dt id="_CPPv31fi">
-<span id="_CPPv21fi"></span><span id="f__i"></span>int <code class="descclassname"></code><code class="descname">f</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv31fi" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv21fi"></span><span id="f__i"></span>int <code class="descclassname"></code><code class="descname">f</code><span class="sig-paren">(</span>int <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv31fi" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>An expression: <code class="docutils literal"><a class="reference internal" href="#_CPPv31a" title="a"><span class="pre">a</span></a> <span class="pre">*</span> <a class="reference internal" href="#_CPPv31fi" title="f"><span class="pre">f</span></a><span class="pre">(</span><a class="reference internal" href="#_CPPv31a" title="a"><span class="pre">a</span></a><span class="pre">)</span></code>.
@@ -1099,7 +1100,7 @@ A type: <code class="docutils literal"><em class="property"><span class="pre">co
 
 </div>
 <div class="section" id="namespacing">
-<h3>Namespacing<a class="headerlink" href="#namespacing" title="Permalink to this headline">¶</a></h3>
+<h3>Namespacing<a class="headerlink" href="#namespacing" title="제목 주소">¶</a></h3>
 <p>Declarations in the C++ domain are as default placed in global scope.
 The current scope can be changed using three namespace directives.
 They manage a stack declarations where <code class="docutils literal"><span class="pre">cpp:namespace</span></code> resets the stack and
@@ -1110,7 +1111,7 @@ The <code class="docutils literal"><span class="pre">cpp:namespace-pop</span></c
 directive.</p>
 <dl class="directive">
 <dt id="directive-cpp:namespace">
-<code class="descname">.. cpp:namespace::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:namespace::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace" title="정의 주소">¶</a></dt>
 <dd><p>Changes the current scope for the subsequent objects to the given scope,
 and resets the namespace directive stack.
 Note that the namespace does not need to correspond to C++ namespaces,
@@ -1147,7 +1148,7 @@ Equivalently this could have been declared using:</p>
 
 <dl class="directive">
 <dt id="directive-cpp:namespace-push">
-<code class="descname">.. cpp:namespace-push::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace-push" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:namespace-push::</code><code class="descclassname"> scope specification</code><a class="headerlink" href="#directive-cpp:namespace-push" title="정의 주소">¶</a></dt>
 <dd><p>Change the scope relatively to the current scope. For example, after:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
 
@@ -1159,7 +1160,7 @@ Equivalently this could have been declared using:</p>
 
 <dl class="directive">
 <dt id="directive-cpp:namespace-pop">
-<code class="descname">.. cpp:namespace-pop::</code><code class="descclassname"> </code><a class="headerlink" href="#directive-cpp:namespace-pop" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. cpp:namespace-pop::</code><code class="descclassname"> </code><a class="headerlink" href="#directive-cpp:namespace-pop" title="정의 주소">¶</a></dt>
 <dd><p>Undo the previous <code class="docutils literal"><span class="pre">cpp:namespace-push</span></code> directive (<em>not</em> just pop a scope).
 For example, after:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:namespace</span><span class="p">::</span> A::B
@@ -1182,7 +1183,7 @@ That is, <code class="docutils literal"><span class="pre">..</span> <span class=
 
 </div>
 <div class="section" id="id3">
-<h3>Info field lists<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>Info field lists<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
 <p>The C++ directives support the following info fields (see also <a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>):</p>
 <ul class="simple">
 <li><cite>param</cite>, <cite>parameter</cite>, <cite>arg</cite>, <cite>argument</cite>: Description of a parameter.</li>
@@ -1192,34 +1193,34 @@ That is, <code class="docutils literal"><span class="pre">..</span> <span class=
 </ul>
 </div>
 <div class="section" id="cross-referencing">
-<span id="cpp-roles"></span><h3>Cross-referencing<a class="headerlink" href="#cross-referencing" title="Permalink to this headline">¶</a></h3>
+<span id="cpp-roles"></span><h3>Cross-referencing<a class="headerlink" href="#cross-referencing" title="제목 주소">¶</a></h3>
 <p>These roles link to the given declaration types:</p>
 <dl class="role">
 <dt id="role-cpp:any">
-<code class="descname">:cpp:any:</code><a class="headerlink" href="#role-cpp:any" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:any:</code><a class="headerlink" href="#role-cpp:any" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:class">
-<code class="descname">:cpp:class:</code><a class="headerlink" href="#role-cpp:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:class:</code><a class="headerlink" href="#role-cpp:class" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:func">
-<code class="descname">:cpp:func:</code><a class="headerlink" href="#role-cpp:func" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:func:</code><a class="headerlink" href="#role-cpp:func" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:member">
-<code class="descname">:cpp:member:</code><a class="headerlink" href="#role-cpp:member" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:member:</code><a class="headerlink" href="#role-cpp:member" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:var">
-<code class="descname">:cpp:var:</code><a class="headerlink" href="#role-cpp:var" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:var:</code><a class="headerlink" href="#role-cpp:var" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:type">
-<code class="descname">:cpp:type:</code><a class="headerlink" href="#role-cpp:type" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:type:</code><a class="headerlink" href="#role-cpp:type" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:concept">
-<code class="descname">:cpp:concept:</code><a class="headerlink" href="#role-cpp:concept" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:concept:</code><a class="headerlink" href="#role-cpp:concept" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:enum">
-<code class="descname">:cpp:enum:</code><a class="headerlink" href="#role-cpp:enum" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:enum:</code><a class="headerlink" href="#role-cpp:enum" title="정의 주소">¶</a></dt>
 <dt id="role-cpp:enumerator">
-<code class="descname">:cpp:enumerator:</code><a class="headerlink" href="#role-cpp:enumerator" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:cpp:enumerator:</code><a class="headerlink" href="#role-cpp:enumerator" title="정의 주소">¶</a></dt>
 <dd><p>Reference a C++ declaration by name (see below for details).
 The name must be properly qualified relative to the position of the link.</p>
 </dd></dl>
 
 <div class="admonition-note-on-references-with-templates-parameters-arguments admonition">
 <p class="first admonition-title">Note on References with Templates Parameters/Arguments</p>
-<p class="last">Sphinx’s syntax to give references a custom title can interfere with
+<p class="last">Sphinx's syntax to give references a custom title can interfere with
 linking to class templates, if nothing follows the closing angle
 bracket, i.e. if the link looks like this: <code class="docutils literal"><span class="pre">:cpp:class:`MyClass&lt;int&gt;`</span></code>.
 This is interpreted as a link to <code class="docutils literal"><span class="pre">int</span></code> with a title of <code class="docutils literal"><span class="pre">MyClass</span></code>.
@@ -1231,27 +1232,27 @@ like this: <code class="docutils literal"><span class="pre">:cpp:class:`MyClass\
 <p class="last">It is currently impossible to link to a specific version of an
 overloaded method.  Currently the C++ domain is the first domain
 that has basic support for overloaded methods and until there is more
-data for comparison we don’t want to select a bad syntax to reference a
+data for comparison we don't want to select a bad syntax to reference a
 specific overload.  Currently Sphinx will link to the first overloaded
 version of the method / function.</p>
 </div>
 <div class="section" id="declarations-without-template-parameters-and-template-arguments">
-<h4>Declarations without template parameters and template arguments<a class="headerlink" href="#declarations-without-template-parameters-and-template-arguments" title="Permalink to this headline">¶</a></h4>
+<h4>Declarations without template parameters and template arguments<a class="headerlink" href="#declarations-without-template-parameters-and-template-arguments" title="제목 주소">¶</a></h4>
 <p>For linking to non-templated declarations the name must be a nested name,
 e.g., <code class="docutils literal"><span class="pre">f</span></code> or <code class="docutils literal"><span class="pre">MyClass::f</span></code>.</p>
 </div>
 <div class="section" id="templated-declarations">
-<h4>Templated declarations<a class="headerlink" href="#templated-declarations" title="Permalink to this headline">¶</a></h4>
+<h4>Templated declarations<a class="headerlink" href="#templated-declarations" title="제목 주소">¶</a></h4>
 <p>Assume the following declarations.</p>
 <dl class="class">
 <dt id="_CPPv37Wrapper">
-<span id="_CPPv27Wrapper"></span><span id="Wrapper"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Wrapper</code><a class="headerlink" href="#_CPPv37Wrapper" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv27Wrapper"></span><span id="Wrapper"></span><em class="property">class </em><code class="descclassname"></code><code class="descname">Wrapper</code><a class="headerlink" href="#_CPPv37Wrapper" title="정의 주소">¶</a><br /></dt>
 <dd><dl class="class">
 <dt id="_CPPv3I0EN7Wrapper5OuterE">
-<span id="_CPPv2I0EN7Wrapper5OuterE"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5OuterE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EN7Wrapper5OuterE"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5OuterE" title="정의 주소">¶</a><br /></dt>
 <dd><dl class="class">
 <dt id="_CPPv3I0EN7Wrapper5Outer5InnerE">
-<span id="_CPPv2I0EN7Wrapper5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5Outer5InnerE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EN7Wrapper5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN7Wrapper5Outer5InnerE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1274,29 +1275,29 @@ This means the following references work.</p>
 </ul>
 </div>
 <div class="section" id="full-template-specialisations">
-<h4>(Full) Template Specialisations<a class="headerlink" href="#full-template-specialisations" title="Permalink to this headline">¶</a></h4>
+<h4>(Full) Template Specialisations<a class="headerlink" href="#full-template-specialisations" title="제목 주소">¶</a></h4>
 <p>Assume the following declarations.</p>
 <dl class="class">
 <dt id="_CPPv3I0E5Outer">
-<span id="_CPPv2I0E5Outer"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0E5Outer" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0E5Outer"></span>template&lt;typename <code class="descname">TOuter</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code><a class="headerlink" href="#_CPPv3I0E5Outer" title="정의 주소">¶</a><br /></dt>
 <dd><dl class="class">
 <dt id="_CPPv3I0EN5Outer5InnerE">
-<span id="_CPPv2I0EN5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5Outer5InnerE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EN5Outer5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5Outer5InnerE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="_CPPv3IE5OuterIiE">
-<span id="_CPPv2IE5OuterIiE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;int&gt;<a class="headerlink" href="#_CPPv3IE5OuterIiE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2IE5OuterIiE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;int&gt;<a class="headerlink" href="#_CPPv3IE5OuterIiE" title="정의 주소">¶</a><br /></dt>
 <dd><dl class="class">
 <dt id="_CPPv3I0EN5OuterIiE5InnerE">
-<span id="_CPPv2I0EN5OuterIiE5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5OuterIiE5InnerE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0EN5OuterIiE5InnerE"></span>template&lt;typename <code class="descname">TInner</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code><a class="headerlink" href="#_CPPv3I0EN5OuterIiE5InnerE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="class">
 <dt id="_CPPv3IEN5OuterIiE5InnerIbEE">
-<span id="_CPPv2IEN5OuterIiE5InnerIbEE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code>&lt;bool&gt;<a class="headerlink" href="#_CPPv3IEN5OuterIiE5InnerIbEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2IEN5OuterIiE5InnerIbEE"></span>template&lt;&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Inner</code>&lt;bool&gt;<a class="headerlink" href="#_CPPv3IEN5OuterIiE5InnerIbEE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1308,11 +1309,11 @@ As a shorthand the empty template parameter list can be omitted, e.g., <code cla
 and <code class="docutils literal"><span class="pre">Outer\&lt;int&gt;::Inner\&lt;bool&gt;</span></code> (<a class="reference internal" href="#_CPPv3IEN5OuterIiE5InnerIbEE" title="Outer&lt;int&gt;::Inner&lt;bool&gt;"><code class="xref cpp cpp-class docutils literal"><span class="pre">Outer&lt;int&gt;::Inner&lt;bool&gt;</span></code></a>).</p>
 </div>
 <div class="section" id="partial-template-specialisations">
-<h4>Partial Template Specialisations<a class="headerlink" href="#partial-template-specialisations" title="Permalink to this headline">¶</a></h4>
+<h4>Partial Template Specialisations<a class="headerlink" href="#partial-template-specialisations" title="제목 주소">¶</a></h4>
 <p>Assume the following declaration.</p>
 <dl class="class">
 <dt id="_CPPv3I0E5OuterIP1TE">
-<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;<a class="reference internal" href="#_CPPv3I0E5OuterIP1TE" title="Outer&lt;T *&gt;::T">T</a> *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;T *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>References to partial specialisations must always include the template parameter lists, e.g.,
@@ -1321,13 +1322,13 @@ Currently the lookup only succeed if the template parameter identifiers are equa
 </div>
 </div>
 <div class="section" id="configuration-variables">
-<h3>Configuration Variables<a class="headerlink" href="#configuration-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Configuration Variables<a class="headerlink" href="#configuration-variables" title="제목 주소">¶</a></h3>
 <p>See <a class="reference internal" href="config.html#cpp-config"><span class="std std-ref">Options for the C++ domain</span></a>.</p>
 </div>
 </div>
 <div class="section" id="the-standard-domain">
-<h2>The Standard Domain<a class="headerlink" href="#the-standard-domain" title="Permalink to this headline">¶</a></h2>
-<p>The so-called “standard” domain collects all markup that doesn’t warrant a
+<h2>The Standard Domain<a class="headerlink" href="#the-standard-domain" title="제목 주소">¶</a></h2>
+<p>The so-called &quot;standard&quot; domain collects all markup that doesn't warrant a
 domain of its own.  Its directives and roles are not prefixed with a domain
 name.</p>
 <p>The standard domain is also where custom object descriptions, added using the
@@ -1335,7 +1336,7 @@ name.</p>
 <p>There is a set of directives allowing documenting command-line programs:</p>
 <dl class="directive">
 <dt id="directive-option">
-<code class="descname">.. option::</code><code class="descclassname"> name args, name args, ...</code><a class="headerlink" href="#directive-option" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. option::</code><code class="descclassname"> name args, name args, ...</code><a class="headerlink" href="#directive-option" title="정의 주소">¶</a></dt>
 <dd><p>Describes a command line argument or switch.  Option argument names should be
 enclosed in angle brackets.  Examples:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">option</span><span class="p">::</span> dest_dir
@@ -1348,21 +1349,21 @@ enclosed in angle brackets.  Examples:</p>
 </pre></div>
 </div>
 <p>The directive will create cross-reference targets for the given options,
-referencable by <a class="reference internal" href="markup/inline_ko.html#role-option" title="option role"><code class="xref rst rst-role docutils literal"><span class="pre">option</span></code></a> (in the example case, you’d use something
+referencable by <a class="reference internal" href="markup/inline_ko.html#role-option" title="option role"><code class="xref rst rst-role docutils literal"><span class="pre">option</span></code></a> (in the example case, you'd use something
 like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span></code>, <code class="docutils literal"><span class="pre">:option:`-m`</span></code>, or <code class="docutils literal"><span class="pre">:option:`--module`</span></code>).</p>
 <p><code class="docutils literal"><span class="pre">cmdoption</span></code> directive is a deprecated alias for the <code class="docutils literal"><span class="pre">option</span></code> directive.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-envvar">
-<code class="descname">.. envvar::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-envvar" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. envvar::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-envvar" title="정의 주소">¶</a></dt>
 <dd><p>Describes an environment variable that the documented code or program uses or
 defines.  Referencable by <a class="reference internal" href="markup/inline_ko.html#role-envvar" title="envvar role"><code class="xref rst rst-role docutils literal"><span class="pre">envvar</span></code></a>.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-program">
-<code class="descname">.. program::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-program" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. program::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-program" title="정의 주소">¶</a></dt>
 <dd><p>Like <a class="reference internal" href="domains_ko.html#directive-py:currentmodule" title="py:currentmodule directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:currentmodule</span></code></a>, this directive produces no output.
 Instead, it serves to notify Sphinx that all following <a class="reference internal" href="domains_ko.html#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal"><span class="pre">option</span></code></a>
 directives document options for the program called <em>name</em>.</p>
@@ -1387,7 +1388,7 @@ situation</p>
 <p>The program name may contain spaces (in case you want to document subcommands
 like <code class="docutils literal"><span class="pre">svn</span> <span class="pre">add</span></code> and <code class="docutils literal"><span class="pre">svn</span> <span class="pre">commit</span></code> separately).</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.5.</span></p>
+<p><span class="versionmodified">버전 0.5에 추가.</span></p>
 </div>
 </dd></dl>
 
@@ -1395,9 +1396,9 @@ like <code class="docutils literal"><span class="pre">svn</span> <span class="pr
 any domain:</p>
 <dl class="directive">
 <dt id="directive-describe">
-<code class="descname">.. describe::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-describe" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. describe::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-describe" title="정의 주소">¶</a></dt>
 <dt id="directive-object">
-<code class="descname">.. object::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-object" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. object::</code><code class="descclassname"> text</code><a class="headerlink" href="#directive-object" title="정의 주소">¶</a></dt>
 <dd><p>This directive produces the same formatting as the specific ones provided by
 domains, but does not create index entries or cross-referencing targets.
 Example:</p>
@@ -1410,11 +1411,11 @@ Example:</p>
 
 </div>
 <div class="section" id="the-javascript-domain">
-<h2>The JavaScript Domain<a class="headerlink" href="#the-javascript-domain" title="Permalink to this headline">¶</a></h2>
+<h2>The JavaScript Domain<a class="headerlink" href="#the-javascript-domain" title="제목 주소">¶</a></h2>
 <p>The JavaScript domain (name <strong>js</strong>) provides the following directives:</p>
 <dl class="directive">
 <dt id="directive-js:module">
-<code class="descname">.. js:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:module" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:module::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:module" title="정의 주소">¶</a></dt>
 <dd><p>This directive sets the module name for object declarations that follow
 after. The module name is used in the global module index and in cross
 references. This directive does not create an object heading like
@@ -1425,13 +1426,13 @@ If this option is specified, the directive will only update the current
 module name.</p>
 <p>To clear the current module, set the module name to <code class="docutils literal"><span class="pre">null</span></code> or <code class="docutils literal"><span class="pre">None</span></code></p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6.</span></p>
+<p><span class="versionmodified">버전 1.6에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-js:function">
-<code class="descname">.. js:function::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:function" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:function::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:function" title="정의 주소">¶</a></dt>
 <dd><p>Describes a JavaScript function or method.  If you want to describe
 arguments as optional use square brackets as <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">documented</span></a> for Python signatures.</p>
 <p>You can use fields to give more details about arguments and their expected
@@ -1452,23 +1453,23 @@ returned:</p>
 <blockquote>
 <div><dl class="function">
 <dt id="_S_.getJSON">
-<code class="descclassname">$.</code><code class="descname">getJSON</code><span class="sig-paren">(</span><em>href</em>, <em>callback</em><span class="optional">[</span>, <em>errback</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_S_.getJSON" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">$.</code><code class="descname">getJSON</code><span class="sig-paren">(</span><em>href</em>, <em>callback</em><span class="optional">[</span>, <em>errback</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_S_.getJSON" title="정의 주소">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>href</strong> (<em>string</em>) – An URI to the location of the resource.</li>
-<li><strong>callback</strong> – Gets called with the object.</li>
-<li><strong>errback</strong> – Gets called in case the request fails. And a lot of other
+<tr class="field-odd field"><th class="field-name">인수:</th><td class="field-body"><ul class="first simple">
+<li><strong>href</strong> (<em>string</em>) -- An URI to the location of the resource.</li>
+<li><strong>callback</strong> -- Gets called with the object.</li>
+<li><strong>errback</strong> -- Gets called in case the request fails. And a lot of other
 text so we need multiple lines.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Throws:</th><td class="field-body"><p class="first"><strong>SomeError</strong> – For whatever reason in that case.</p>
+<tr class="field-even field"><th class="field-name">예외:</th><td class="field-body"><p class="first"><strong>SomeError</strong> -- For whatever reason in that case.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Something.</p>
+<tr class="field-odd field"><th class="field-name">반환:</th><td class="field-body"><p class="first last">Something.</p>
 </td>
 </tr>
 </tbody>
@@ -1480,17 +1481,17 @@ text so we need multiple lines.</li>
 
 <dl class="directive">
 <dt id="directive-js:method">
-<code class="descname">.. js:method::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:method" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:method::</code><code class="descclassname"> name(signature)</code><a class="headerlink" href="#directive-js:method" title="정의 주소">¶</a></dt>
 <dd><p>This directive is an alias for <a class="reference internal" href="domains_ko.html#directive-js:function" title="js:function directive"><code class="xref rst rst-dir docutils literal"><span class="pre">js:function</span></code></a>, however it describes a
 function that is implemented as a method on a class object.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6.</span></p>
+<p><span class="versionmodified">버전 1.6에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-js:class">
-<code class="descname">.. js:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:class::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:class" title="정의 주소">¶</a></dt>
 <dd><p>Describes a constructor that creates an object.  This is basically like
 a function but will show up with a <cite>class</cite> prefix:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">js:class</span><span class="p">::</span> MyAnimal(name[, age])
@@ -1503,14 +1504,14 @@ a function but will show up with a <cite>class</cite> prefix:</p>
 <blockquote>
 <div><dl class="class">
 <dt id="MyAnimal">
-<em class="property">class </em><code class="descname">MyAnimal</code><span class="sig-paren">(</span><em>name</em><span class="optional">[</span>, <em>age</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descname">MyAnimal</code><span class="sig-paren">(</span><em>name</em><span class="optional">[</span>, <em>age</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#MyAnimal" title="정의 주소">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> (<em>string</em>) – The name of the animal</li>
-<li><strong>age</strong> (<em>number</em>) – an optional age for the animal</li>
+<tr class="field-odd field"><th class="field-name">인수:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>string</em>) -- The name of the animal</li>
+<li><strong>age</strong> (<em>number</em>) -- an optional age for the animal</li>
 </ul>
 </td>
 </tr>
@@ -1523,39 +1524,39 @@ a function but will show up with a <cite>class</cite> prefix:</p>
 
 <dl class="directive">
 <dt id="directive-js:data">
-<code class="descname">.. js:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:data::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-js:data" title="정의 주소">¶</a></dt>
 <dd><p>Describes a global variable or constant.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-js:attribute">
-<code class="descname">.. js:attribute::</code><code class="descclassname"> object.name</code><a class="headerlink" href="#directive-js:attribute" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. js:attribute::</code><code class="descclassname"> object.name</code><a class="headerlink" href="#directive-js:attribute" title="정의 주소">¶</a></dt>
 <dd><p>Describes the attribute <em>name</em> of <em>object</em>.</p>
 </dd></dl>
 
 <p id="js-roles">These roles are provided to refer to the described objects:</p>
 <dl class="role">
 <dt id="role-js:mod">
-<code class="descname">:js:mod:</code><a class="headerlink" href="#role-js:mod" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:mod:</code><a class="headerlink" href="#role-js:mod" title="정의 주소">¶</a></dt>
 <dt id="role-js:func">
-<code class="descname">:js:func:</code><a class="headerlink" href="#role-js:func" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:func:</code><a class="headerlink" href="#role-js:func" title="정의 주소">¶</a></dt>
 <dt id="role-js:meth">
-<code class="descname">:js:meth:</code><a class="headerlink" href="#role-js:meth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:meth:</code><a class="headerlink" href="#role-js:meth" title="정의 주소">¶</a></dt>
 <dt id="role-js:class">
-<code class="descname">:js:class:</code><a class="headerlink" href="#role-js:class" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:class:</code><a class="headerlink" href="#role-js:class" title="정의 주소">¶</a></dt>
 <dt id="role-js:data">
-<code class="descname">:js:data:</code><a class="headerlink" href="#role-js:data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:data:</code><a class="headerlink" href="#role-js:data" title="정의 주소">¶</a></dt>
 <dt id="role-js:attr">
-<code class="descname">:js:attr:</code><a class="headerlink" href="#role-js:attr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:js:attr:</code><a class="headerlink" href="#role-js:attr" title="정의 주소">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="the-restructuredtext-domain">
-<h2>The reStructuredText domain<a class="headerlink" href="#the-restructuredtext-domain" title="Permalink to this headline">¶</a></h2>
+<h2>The reStructuredText domain<a class="headerlink" href="#the-restructuredtext-domain" title="제목 주소">¶</a></h2>
 <p>The reStructuredText domain (name <strong>rst</strong>) provides the following directives:</p>
 <dl class="directive">
 <dt id="directive-rst:directive">
-<code class="descname">.. rst:directive::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:directive" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. rst:directive::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:directive" title="정의 주소">¶</a></dt>
 <dd><p>Describes a reST directive.  The <em>name</em> can be a single directive name or
 actual directive syntax (<cite>..</cite> prefix and <cite>::</cite> suffix) with arguments that
 will be rendered differently.  For example:</p>
@@ -1572,13 +1573,13 @@ will be rendered differently.  For example:</p>
 <blockquote>
 <div><dl class="directive">
 <dt id="directive-foo">
-<code class="descname">.. foo::</code><a class="headerlink" href="#directive-foo" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. foo::</code><a class="headerlink" href="#directive-foo" title="정의 주소">¶</a></dt>
 <dd><p>Foo description.</p>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-bar">
-<code class="descname">.. bar::</code><code class="descclassname"> baz</code><a class="headerlink" href="#directive-bar" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. bar::</code><code class="descclassname"> baz</code><a class="headerlink" href="#directive-bar" title="정의 주소">¶</a></dt>
 <dd><p>Bar description.</p>
 </dd></dl>
 
@@ -1587,7 +1588,7 @@ will be rendered differently.  For example:</p>
 
 <dl class="directive">
 <dt id="directive-rst:role">
-<code class="descname">.. rst:role::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:role" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. rst:role::</code><code class="descclassname"> name</code><a class="headerlink" href="#directive-rst:role" title="정의 주소">¶</a></dt>
 <dd><p>Describes a reST role.  For example:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">rst:role</span><span class="p">::</span> foo
 
@@ -1598,7 +1599,7 @@ will be rendered differently.  For example:</p>
 <blockquote>
 <div><dl class="role">
 <dt id="role-foo">
-<code class="descname">:foo:</code><a class="headerlink" href="#role-foo" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:foo:</code><a class="headerlink" href="#role-foo" title="정의 주소">¶</a></dt>
 <dd><p>Foo description.</p>
 </dd></dl>
 
@@ -1608,14 +1609,14 @@ will be rendered differently.  For example:</p>
 <p id="rst-roles">These roles are provided to refer to the described objects:</p>
 <dl class="role">
 <dt id="role-rst:dir">
-<code class="descname">:rst:dir:</code><a class="headerlink" href="#role-rst:dir" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:rst:dir:</code><a class="headerlink" href="#role-rst:dir" title="정의 주소">¶</a></dt>
 <dt id="role-rst:role">
-<code class="descname">:rst:role:</code><a class="headerlink" href="#role-rst:role" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:rst:role:</code><a class="headerlink" href="#role-rst:role" title="정의 주소">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="more-domains">
-<h2>More domains<a class="headerlink" href="#more-domains" title="Permalink to this headline">¶</a></h2>
+<h2>More domains<a class="headerlink" href="#more-domains" title="제목 주소">¶</a></h2>
 <p>The <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/">sphinx-contrib</a> repository contains more domains available as extensions;
 currently <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-adadomain">Ada</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-coffee">CoffeeScript</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-erlangdomain">Erlang</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-httpdomain">HTTP</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-lassodomain">Lasso</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-matlabdomain">MATLAB</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-phpdomain">PHP</a>, and <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/rubydomain">Ruby</a>
 domains. Also available are domains for <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-chapeldomain">Chapel</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-cldomain">Common Lisp</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-dqndomain">dqn</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-golangdomain">Go</a>,
@@ -1630,14 +1631,14 @@ domains. Also available are domains for <a class="reference external" href="http
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -1645,7 +1646,7 @@ domains. Also available are domains for <a class="reference external" href="http
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>sphinx.ext.ifconfig – Include content based on configuration &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>sphinx.ext.ifconfig -- Include content based on configuration &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,13 +21,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sphinx.ext.imgconverter – Convert images to appropriate format for builders" href="imgconverter.html" />
-    <link rel="prev" title="sphinx.ext.graphviz – Add Graphviz graphs" href="graphviz.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="sphinx.ext.imgconverter -- Convert images to appropriate format for builders" href="imgconverter.html" />
+    <link rel="prev" title="sphinx.ext.graphviz -- Add Graphviz graphs" href="graphviz.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
-          <a href="imgconverter.html" title="sphinx.ext.imgconverter – Convert images to appropriate format for builders"
-             accesskey="N">next</a> |</li>
+          <a href="imgconverter.html" title="sphinx.ext.imgconverter -- Convert images to appropriate format for builders"
+             accesskey="N">다음</a> |</li>
         <li class="right" >
-          <a href="graphviz.html" title="sphinx.ext.graphviz – Add Graphviz graphs"
-             accesskey="P">previous</a> |</li>
+          <a href="graphviz.html" title="sphinx.ext.graphviz -- Add Graphviz graphs"
+             accesskey="P">이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -105,24 +106,24 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="graphviz.html"
-                        title="previous chapter"><code class="docutils literal"><span class="pre">sphinx.ext.graphviz</span></code> – Add Graphviz graphs</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장"><code class="docutils literal"><span class="pre">sphinx.ext.graphviz</span></code> -- Add Graphviz graphs</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="imgconverter.html"
-                        title="next chapter"><code class="docutils literal"><span class="pre">sphinx.ext.imgconverter</span></code> – Convert images to appropriate format for builders</a></p>
+                        title="다음 장"><code class="docutils literal"><span class="pre">sphinx.ext.imgconverter</span></code> -- Convert images to appropriate format for builders</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/ext/ifconfig.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -137,13 +138,13 @@
           <div class="body" role="main">
             
   <div class="section" id="module-sphinx.ext.ifconfig">
-<span id="sphinx-ext-ifconfig-include-content-based-on-configuration"></span><h1><a class="reference internal" href="#module-sphinx.ext.ifconfig" title="sphinx.ext.ifconfig: Include documentation content based on configuration values."><code class="xref py py-mod docutils literal"><span class="pre">sphinx.ext.ifconfig</span></code></a> – Include content based on configuration<a class="headerlink" href="#module-sphinx.ext.ifconfig" title="Permalink to this headline">¶</a></h1>
+<span id="sphinx-ext-ifconfig-include-content-based-on-configuration"></span><h1><a class="reference internal" href="#module-sphinx.ext.ifconfig" title="sphinx.ext.ifconfig: Include documentation content based on configuration values."><code class="xref py py-mod docutils literal"><span class="pre">sphinx.ext.ifconfig</span></code></a> -- Include content based on configuration<a class="headerlink" href="#module-sphinx.ext.ifconfig" title="제목 주소">¶</a></h1>
 <p>This extension is quite simple, and features only one directive:</p>
 <dl class="directive">
 <dt id="directive-ifconfig">
-<code class="descname">.. ifconfig::</code><a class="headerlink" href="#directive-ifconfig" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. ifconfig::</code><a class="headerlink" href="#directive-ifconfig" title="정의 주소">¶</a></dt>
 <dd><p>Include content of the directive only if the Python expression given as an
-argument is <code class="docutils literal"><span class="pre">True</span></code>, evaluated in the namespace of the project’s
+argument is <code class="docutils literal"><span class="pre">True</span></code>, evaluated in the namespace of the project's
 configuration (that is, all registered variables from <code class="file docutils literal"><span class="pre">conf.py</span></code> are
 available).</p>
 <p>For example, one could write</p>
@@ -173,20 +174,20 @@ changes).</p>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
-          <a href="imgconverter.html" title="sphinx.ext.imgconverter – Convert images to appropriate format for builders"
-             >next</a> |</li>
+          <a href="imgconverter.html" title="sphinx.ext.imgconverter -- Convert images to appropriate format for builders"
+             >다음</a> |</li>
         <li class="right" >
-          <a href="graphviz.html" title="sphinx.ext.graphviz – Add Graphviz graphs"
-             >previous</a> |</li>
+          <a href="graphviz.html" title="sphinx.ext.graphviz -- Add Graphviz graphs"
+             >이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -196,7 +197,7 @@ changes).</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

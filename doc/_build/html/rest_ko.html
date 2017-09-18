@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>reStructuredText 입분 &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>reStructuredText 입분 &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
     <link rel="next" title="Sphinx Markup Constructs" href="markup/index.html" />
     <link rel="prev" title="sphinx-autogen" href="man/sphinx-autogen.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="markup/index.html" title="Sphinx Markup Constructs"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="man/sphinx-autogen.html" title="sphinx-autogen"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -103,7 +104,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <h3><a href="contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">reStructuredText 입분</a><ul>
 <li><a class="reference internal" href="#id1">문단</a></li>
@@ -130,24 +131,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="man/sphinx-autogen.html"
-                        title="previous chapter">sphinx-autogen</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">sphinx-autogen</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="markup/index.html"
-                        title="next chapter">Sphinx Markup Constructs</a></p>
+                        title="다음 장">Sphinx Markup Constructs</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="_sources/rest_ko.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -162,24 +163,24 @@
           <div class="body" role="main">
             
   <div class="section" id="restructuredtext">
-<span id="rst-primer"></span><h1>reStructuredText 입분<a class="headerlink" href="#restructuredtext" title="Permalink to this headline">¶</a></h1>
+<span id="rst-primer"></span><h1>reStructuredText 입분<a class="headerlink" href="#restructuredtext" title="제목 주소">¶</a></h1>
 <p>이 섹션은 reStructuredText (reST) 의 개념, 문법에 대한 간단한 소개이며
 사용자가 생산적인 문서 작업을 하기에 부족함 없는 정보를 제공하는 것이 목적이다.
 reST는 간편한 마크업 언어로 고안되었으므로 이 문서는 길지 않을 것이다.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
+<p class="first admonition-title">더 보기</p>
 <p class="last"><a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText User Documentation</a> 는 신뢰할 수 있다.
-이 문서의 “ref” 링크들은 reST 레퍼런스 내부의 개별 구조 서술로 연결된다..</p>
+이 문서의 &quot;ref&quot; 링크들은 reST 레퍼런스 내부의 개별 구조 서술로 연결된다..</p>
 </div>
 <div class="section" id="id1">
-<h2>문단<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>문단<a class="headerlink" href="#id1" title="제목 주소">¶</a></h2>
 <p>reST 문서에서 가장 기본적인 블럭은 문단(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#paragraphs">ref</a>) 이다.
 문단은 간단히 말해 하나 이상의 공백행으로 구별되는 텍스트 덩어리이다.
 파이썬에서와 마찬가지로 reST 에서 들여쓰기는 중요한 요소이다.
 따라서 한 문단에 속하는 모든 라인은 동일한 들여쓰기 계층에서 좌로 정렬되어 있어야 한다.</p>
 </div>
 <div class="section" id="inlinemarkup">
-<span id="id2"></span><h2>인라인 마크업<a class="headerlink" href="#inlinemarkup" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>인라인 마크업<a class="headerlink" href="#inlinemarkup" title="제목 주소">¶</a></h2>
 <p>표준 reST 인라인 마크업은 꽤 간단하다. 아래 마크업을 사용하면 된다. :</p>
 <ul class="simple">
 <li>별표 1개: <code class="docutils literal"><span class="pre">*text*</span></code> 강조 (이탤릭체),</li>
@@ -202,17 +203,17 @@ Sphinx는 해석 텍스트 기능을 통해 의미 마크업과 식별자의 상
 일반적으로 쓰이는 문법은 <code class="docutils literal"><span class="pre">:rolename:`content`</span></code> 이다.</p>
 <p>표준 reST는 아래 기능들을 제공한다. :</p>
 <ul class="simple">
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#emphasis">emphasis</a> – <code class="docutils literal"><span class="pre">*emphasis*</span></code> 의 대체 철자.</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#strong">strong</a> – <code class="docutils literal"><span class="pre">**strong**</span></code> 의 대체 철자.</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#literal">literal</a> – <code class="docutils literal"><span class="pre">``literal``</span></code> 의 대체 철자.</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#subscript">subscript</a> – 아래첨자 텍스트</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#superscript">superscript</a> – 위첨자 텍스트</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#title-reference">title-reference</a> – 책, 정기 간행물 등의 표제</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#emphasis">emphasis</a> -- <code class="docutils literal"><span class="pre">*emphasis*</span></code> 의 대체 철자.</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#strong">strong</a> -- <code class="docutils literal"><span class="pre">**strong**</span></code> 의 대체 철자.</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#literal">literal</a> -- <code class="docutils literal"><span class="pre">``literal``</span></code> 의 대체 철자.</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#subscript">subscript</a> -- 아래첨자 텍스트</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#superscript">superscript</a> -- 위첨자 텍스트</li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/roles.html#title-reference">title-reference</a> -- 책, 정기 간행물 등의 표제</li>
 </ul>
 <p><a class="reference internal" href="markup/inline_ko.html#inline-markup"><span class="std std-ref">Inline markup</span></a> 에서 Sphinx 에 의해 추가된 기능들을 보자.</p>
 </div>
 <div class="section" id="id3">
-<h2>리스트와 유사 인용 블럭<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>리스트와 유사 인용 블럭<a class="headerlink" href="#id3" title="제목 주소">¶</a></h2>
 <p>리스트 마크업(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#bullet-lists">ref</a>)도 지원한다. :
 적절히 들여쓰고 문단 앞에 별표를 두면 된다.
 번호 리스트도 동일한 방법으로 할 수 있다. <code class="docutils literal"><span class="pre">#</span></code> 기호를 사용하면 자동으로 번호가 부여된다.</p>
@@ -264,7 +265,7 @@ Sphinx는 해석 텍스트 기능을 통해 의미 마크업과 식별자의 상
 </ul>
 </div>
 <div class="section" id="id4">
-<h2>소스 코드<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>소스 코드<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <p>리터럴 코드 블럭 (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#literal-blocks">ref</a>)은
 문단 끝에 특정 마커 <code class="docutils literal"><span class="pre">::</span></code> 를 두면서 시작된다.
 리터럴 블럭은 반드시 들여써야 한다. (다른 문단들과 마찬가지로 공백행으로 주변 문단과 구별된다.):</p>
@@ -284,10 +285,10 @@ Sphinx는 해석 텍스트 기능을 통해 의미 마크업과 식별자의 상
 <li>앞에 공백이 오면 마커는 사라진다.</li>
 <li>앞에 공백이 오지 않으면 마커는 싱글 콜론으로 대체된다.</li>
 </ul>
-<p>이로 인해 위 예시 첫문단의 두번째 문장은 “다음 문단은 코드샘플이다:” 로 구현된다.</p>
+<p>이로 인해 위 예시 첫문단의 두번째 문장은 &quot;다음 문단은 코드샘플이다:&quot; 로 구현된다.</p>
 </div>
 <div class="section" id="rst-tables">
-<span id="id5"></span><h2>테이블<a class="headerlink" href="#rst-tables" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>테이블<a class="headerlink" href="#rst-tables" title="제목 주소">¶</a></h2>
 <p><em>격자 테이블</em> (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">ref</a>)을 사용하려면 직접 격자를 그려야 한다.
 아래와 같이 그린다.</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span>+------------------------+------------+----------+----------+
@@ -316,14 +317,14 @@ True   True   True
 <em>명시 마크업 문법</em> 을 사용한다. <a class="reference internal" href="#directives">Directives</a> 섹션을 보자.</p>
 </div>
 <div class="section" id="id6">
-<h2>하이퍼 링크<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>하이퍼 링크<a class="headerlink" href="#id6" title="제목 주소">¶</a></h2>
 <div class="section" id="id7">
-<h3>외부 링크<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>외부 링크<a class="headerlink" href="#id7" title="제목 주소">¶</a></h3>
 <p>인라인 웹 링크를 가져오기 위해 <code class="docutils literal"><span class="pre">`Link</span> <span class="pre">text</span> <span class="pre">&lt;http://example.com/&gt;`_</span></code> 를 사용한다.
 링크 텍스트가 웹 주소라면 특별한 마크업을 사용하지 않아도 된다.
 파서가 텍스트로부터 링크와 메일주소를 찾아낸다.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="first admonition-title">중요</p>
 <p class="last">링크 텍스트와 URL이 시작되는 &lt; 사이에 반드시 공백이 있어야 한다.</p>
 </div>
 <p>링크와 대상 정의(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#hyperlink-targets">ref</a>) 를 분리할 수 있다. 예시</p>
@@ -334,13 +335,13 @@ True   True   True
 </div>
 </div>
 <div class="section" id="id8">
-<h3>내부 링크<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>내부 링크<a class="headerlink" href="#id8" title="제목 주소">¶</a></h3>
 <p>내부 링크는 Sphinx가 제공하는 특정 reST 기능으로 사용할 수 있다.
 특정 마크업(<a class="reference internal" href="markup/inline_ko.html#ref-role"><span class="std std-ref">Cross-referencing arbitrary locations</span></a>) 섹션을 참고하자.</p>
 </div>
 </div>
 <div class="section" id="id9">
-<h2>섹션<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>섹션<a class="headerlink" href="#id9" title="제목 주소">¶</a></h2>
 <p>섹션 헤더(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#sections">ref</a>)는 섹션 제목 아래에 줄을 그으면 생성된다. (경우에 따라 위에도 긋는다.)
 최소한 섹션 제목이 되는 텍스트 만큼 길게 그어야 한다.</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="gh">=================</span>
@@ -349,7 +350,7 @@ True   True   True
 </pre></div>
 </div>
 <p>섹션 구조는 연속되는 제목에 의해 결정되므로 특정 문자에 제목 계층이 할당되진 않지만
-<a class="reference external" href="https://docs.python.org/devguide/documenting.html#style-guide">Python’s Style Guide for documenting</a> 에서는
+<a class="reference external" href="https://docs.python.org/devguide/documenting.html#style-guide">Python's Style Guide for documenting</a> 에서는
 아래 규칙들이 사용된다. :</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">#</span></code> 윗줄과 함께, 부(parts)에 사용됨.</li>
@@ -363,8 +364,8 @@ True   True   True
 더 깊은 계층을 중첩할 수도 있지만 대부분의 대상 포맷(HTML, LaTex)가 지원하는 중첩 깊이에 제한이 있다는걸 알아두자.</p>
 </div>
 <div class="section" id="id10">
-<h2>명시 마크업<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
-<p>reST에서 “명시 마크업” (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#explicit-markup-blocks">ref</a>)은
+<h2>명시 마크업<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
+<p>reST에서 &quot;명시 마크업&quot; (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#explicit-markup-blocks">ref</a>)은
 각주, 특별히 강조할 문단, 코멘트, 포괄 명령어와 같이 특별한 처리를 필요로 하는 구조에 사용된다.</p>
 <p>명시 마크업 블럭은 <code class="docutils literal"><span class="pre">..</span></code> 로 시작되는 행에서 공백 다음에 오고
 동일한 들여쓰기를 갖는 다음 문단에서 종료된다.
@@ -372,7 +373,7 @@ True   True   True
 좀 복잡하게 들릴 수 있지만 작성해보면 직관적으로 알 수 있을 것이다.)</p>
 </div>
 <div class="section" id="directives">
-<span id="id11"></span><h2>명령어<a class="headerlink" href="#directives" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2>명령어<a class="headerlink" href="#directives" title="제목 주소">¶</a></h2>
 <p>명령어(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#directives">ref</a>)는 명시 마크업의 포괄 블럭이다.
 기능이기 전에 명령어는 reST의 확장 메카니즘이며 Sphinx는 이를 아주 많이 사용한다.</p>
 <p>Docutils는 아래 명령어들을 지원한다:</p>
@@ -380,8 +381,8 @@ True   True   True
 <li><p class="first">경고(Admonitions): <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#attention">attention</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#caution">caution</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#danger">danger</a>,
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#error">error</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#hint">hint</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#important">important</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#note">note</a>,
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#tip">tip</a>, <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#warning">warning</a> and the generic
-<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#admonitions">admonition</a>.  (대부분의 테마 스타일은 “note” 와
-“warning”)</p>
+<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#admonitions">admonition</a>.  (대부분의 테마 스타일은 &quot;note&quot; 와
+&quot;warning&quot;)</p>
 </li>
 <li><p class="first">이미지:</p>
 <ul class="simple">
@@ -412,7 +413,7 @@ True   True   True
 <ul class="simple">
 <li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#raw-data-pass-through">raw</a> (미처리 대상 포맷 마크업 포함)</li>
 <li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#include">include</a> (다른 파일로부터 온 reStructuredText 포함)
-– Sphinx에서 파일 경로를 포함하는 절대 경로가 주어질 때,
+-- Sphinx에서 파일 경로를 포함하는 절대 경로가 주어질 때,
 이 명령어는 소스 디렉토리에 따라 경로를 받는다.</li>
 <li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#class">class</a> (다음에 올 요소에 클래스 객체를 지정한다.) <a class="footnote-reference" href="#id22" id="id12">[1]</a></li>
 </ul>
@@ -449,7 +450,7 @@ True   True   True
 <p>명령어 내용은 공백행 다음에 오며 명령어가 시작되는 부분과 동일하게 들여쓴다.</p>
 </div>
 <div class="section" id="id15">
-<h2>이미지<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<h2>이미지<a class="headerlink" href="#id15" title="제목 주소">¶</a></h2>
 <p>reST는 이미지 명령어(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#image">ref</a>)를 지원하며 아래오 같이 쓴다.</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> gnu.png
    (options)
@@ -475,18 +476,18 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
 지원되는 이미지 타입과 선호도는 <a class="reference internal" href="builders_ko.html#builders"><span class="std std-ref">Available builders</span></a> 명시되어 있다.</p>
 <p>이미지 파일명은 공백을 포함해선 안된다.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.4: </span>별표로 끝나는 파일명을 지원.</p>
+<p><span class="versionmodified">버전 0.4으로 변경: </span>별표로 끝나는 파일명을 지원.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.6: </span>이미지 경로는 절대 경로도 가능.</p>
+<p><span class="versionmodified">버전 0.6으로 변경: </span>이미지 경로는 절대 경로도 가능.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>latex 대상이 픽셀을 지원. (디폴트 <code class="docutils literal"><span class="pre">96px=1in</span></code>).</p>
+<p><span class="versionmodified">버전 1.5으로 변경: </span>latex 대상이 픽셀을 지원. (디폴트 <code class="docutils literal"><span class="pre">96px=1in</span></code>).</p>
 </div>
 </div>
 <div class="section" id="id16">
-<h2>각주<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">[#name]_</span></code> 를 사용해 각주의 위치를 표시하고 문서 하단 “Footnotes” rubric 다음에 각주 본문을 추가한다.
+<h2>각주<a class="headerlink" href="#id16" title="제목 주소">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">[#name]_</span></code> 를 사용해 각주의 위치를 표시하고 문서 하단 &quot;Footnotes&quot; rubric 다음에 각주 본문을 추가한다.
 예시:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span>Lorem ipsum <span class="s">[#f1]_</span> dolor sit amet ... <span class="s">[#f2]_</span>
 
@@ -500,8 +501,8 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
 후자의 경우 각주명은 붙지 않는다.</p>
 </div>
 <div class="section" id="id17">
-<h2>인용<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
-<p>표준 reST 인용(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#citations">ref</a>)이 지원되며 추가 기능으로 인용은 “global” 인용이 된다.
+<h2>인용<a class="headerlink" href="#id17" title="제목 주소">¶</a></h2>
+<p>표준 reST 인용(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#citations">ref</a>)이 지원되며 추가 기능으로 인용은 &quot;global&quot; 인용이 된다.
 이는 모든 인용이 모든 파일에서 레퍼런스가 될 수 있음을 의미한다.
 아래와 같이 사용한다.:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span>Lorem ipsum <span class="s">[Ref]_</span> dolor sit amet.
@@ -512,7 +513,7 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
 <p>인용 사용법은 각주와 유사하지만 번호 라벨이나 <code class="docutils literal"><span class="pre">#</span></code> 을 사용하지 않는다.</p>
 </div>
 <div class="section" id="id18">
-<h2>대체<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<h2>대체<a class="headerlink" href="#id18" title="제목 주소">¶</a></h2>
 <p>reST는 대체(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#substitution-definitions">ref</a>)를 지원한다.
 대체란 텍스트 내부에서 <code class="docutils literal"><span class="pre">|name|</span></code> 으로  지정된 텍스트 또는 마크업의 조각들이다.
 명시 마크업 블럭을 포함하는 각주와 같이 명시된다. 아래와 같이.</p>
@@ -531,7 +532,7 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
 <p>Sphinx는 몇가지 디폴트 대체를 지정한다. <a class="reference internal" href="markup/inline_ko.html#default-substitutions"><span class="std std-ref">Substitutions</span></a> 를 보자.</p>
 </div>
 <div class="section" id="id19">
-<h2>코멘트<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<h2>코멘트<a class="headerlink" href="#id19" title="제목 주소">¶</a></h2>
 <p>유효하지 않은 마크업 구조(위 각주와 같이)를 갖는 모든 명시 마크업 블럭은 코맨트(<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#comments">ref</a>) 로 간주된다.
 예시</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="cp">.. This is a comment.</span>
@@ -547,13 +548,13 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
 </div>
 </div>
 <div class="section" id="id20">
-<h2>소스 인코딩<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<h2>소스 인코딩<a class="headerlink" href="#id20" title="제목 주소">¶</a></h2>
 <p>reST에서 엠 대시(em dash)나 저작권 기호와 같은 특수문자는 유니코드 문자로 작성하는게 가장 쉽기 때문에
 인코딩을 명시해야 한다. Sphinx는 UTF-8 인코딩을 디폴트로 한다.
 <a class="reference internal" href="config.html#confval-source_encoding"><code class="xref std std-confval docutils literal"><span class="pre">source_encoding</span></code></a> 배열값을 설정해 인코딩을 변경할 수 있다.</p>
 </div>
 <div class="section" id="id21">
-<h2>참고<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<h2>참고<a class="headerlink" href="#id21" title="제목 주소">¶</a></h2>
 <p>reST 문서를 작성하면서 일반적으로 겪는 몇가지 문제들이 있다.:</p>
 <ul class="simple">
 <li><strong>인라인 마크업의 분리:</strong> 위에서 다룬대로 인라인 마크업은 글자가 아닌 문자로 주변 텍스트와 구별되어야 한다.
@@ -579,20 +580,20 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="markup/index.html" title="Sphinx Markup Constructs"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="man/sphinx-autogen.html" title="sphinx-autogen"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -600,7 +601,7 @@ LaTex 빌더는 pdf 형식을 HTML 빌더는 png 형식을 선호할 것이다.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

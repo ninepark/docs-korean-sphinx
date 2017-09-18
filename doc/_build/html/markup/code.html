@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Showing code examples &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>Showing code examples &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="Inline markup" href="inline.html" />
     <link rel="prev" title="Paragraph-level markup" href="para.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="inline.html" title="Inline markup"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="para.html" title="Paragraph-level markup"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -104,7 +105,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <h3><a href="../contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Showing code examples</a><ul>
 <li><a class="reference internal" href="#line-numbers">Line numbers</a></li>
@@ -115,24 +116,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="para.html"
-                        title="previous chapter">Paragraph-level markup</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">Paragraph-level markup</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="inline.html"
-                        title="next chapter">Inline markup</a></p>
+                        title="다음 장">Inline markup</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/markup/code.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -147,14 +148,14 @@
           <div class="body" role="main">
             
   <div class="section" id="showing-code-examples">
-<span id="code-examples"></span><h1>Showing code examples<a class="headerlink" href="#showing-code-examples" title="Permalink to this headline">¶</a></h1>
+<span id="code-examples"></span><h1>Showing code examples<a class="headerlink" href="#showing-code-examples" title="제목 주소">¶</a></h1>
 <p id="index-0">Examples of Python source code or interactive sessions are represented using
 standard reST literal blocks.  They are started by a <code class="docutils literal"><span class="pre">::</span></code> at the end of the
 preceding paragraph and delimited by indentation.</p>
 <p>Representing an interactive session requires including the prompts and output
 along with the Python code.  No special markup is required for interactive
 sessions.  After the last line of input or output presented, there should not be
-an “unused” primary prompt; this is an example of what <em>not</em> to do:</p>
+an &quot;unused&quot; primary prompt; this is an example of what <em>not</em> to do:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span>&gt;&gt;&gt; 1 + 1
 2
 &gt;&gt;&gt;
@@ -163,7 +164,7 @@ an “unused” primary prompt; this is an example of what <em>not</em> to do:</
 <p>Syntax highlighting is done with <a class="reference external" href="http://pygments.org">Pygments</a> and handled
 in a smart way:</p>
 <ul>
-<li><p class="first">There is a “highlighting language” for each source file.  Per default, this is
+<li><p class="first">There is a &quot;highlighting language&quot; for each source file.  Per default, this is
 <code class="docutils literal"><span class="pre">'python'</span></code> as the majority of files will have to highlight Python snippets,
 but the doc-wide default can be set with the <a class="reference internal" href="../config.html#confval-highlight_language"><code class="xref std std-confval docutils literal"><span class="pre">highlight_language</span></code></a>
 config value.</p>
@@ -178,7 +179,7 @@ highlighted as Python).</p>
 used as follows:</p>
 <dl class="directive">
 <dt id="directive-highlight">
-<code class="descname">.. highlight::</code><code class="descclassname"> language</code><a class="headerlink" href="#directive-highlight" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. highlight::</code><code class="descclassname"> language</code><a class="headerlink" href="#directive-highlight" title="정의 주소">¶</a></dt>
 <dd><p>Example:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">highlight</span><span class="p">::</span> c
 </pre></div>
@@ -187,39 +188,39 @@ used as follows:</p>
 </dd></dl>
 
 </li>
-<li><p class="first">For documents that have to show snippets in different languages, there’s also
+<li><p class="first">For documents that have to show snippets in different languages, there's also
 a <a class="reference internal" href="code_ko.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code></a> directive that is given the highlighting language
 directly:</p>
 <dl class="directive">
 <dt id="directive-code-block">
-<code class="descname">.. code-block::</code><code class="descclassname"> language</code><a class="headerlink" href="#directive-code-block" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. code-block::</code><code class="descclassname"> language</code><a class="headerlink" href="#directive-code-block" title="정의 주소">¶</a></dt>
 <dd><p>Use it like this:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> ruby
 
    Some Ruby code.
 </pre></div>
 </div>
-<p>The directive’s alias name <code class="xref rst rst-dir docutils literal"><span class="pre">sourcecode</span></code> works as well.</p>
+<p>The directive's alias name <code class="xref rst rst-dir docutils literal"><span class="pre">sourcecode</span></code> works as well.</p>
 </dd></dl>
 
 </li>
 <li><p class="first">The valid values for the highlighting language are:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">none</span></code> (no highlighting)</li>
-<li><code class="docutils literal"><span class="pre">python</span></code> (the default when <a class="reference internal" href="../config.html#confval-highlight_language"><code class="xref std std-confval docutils literal"><span class="pre">highlight_language</span></code></a> isn’t set)</li>
+<li><code class="docutils literal"><span class="pre">python</span></code> (the default when <a class="reference internal" href="../config.html#confval-highlight_language"><code class="xref std std-confval docutils literal"><span class="pre">highlight_language</span></code></a> isn't set)</li>
 <li><code class="docutils literal"><span class="pre">guess</span></code> (let Pygments guess the lexer based on contents, only works with
 certain well-recognizable languages)</li>
 <li><code class="docutils literal"><span class="pre">rest</span></code></li>
 <li><code class="docutils literal"><span class="pre">c</span></code></li>
-<li>… and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
+<li>... and any other <a class="reference external" href="http://pygments.org/docs/lexers/">lexer alias that Pygments supports</a>.</li>
 </ul>
 </li>
 <li><p class="first">If highlighting with the selected language fails (i.e. Pygments emits an
-“Error” token), the block is not highlighted in any way.</p>
+&quot;Error&quot; token), the block is not highlighted in any way.</p>
 </li>
 </ul>
 <div class="section" id="line-numbers">
-<h2>Line numbers<a class="headerlink" href="#line-numbers" title="Permalink to this headline">¶</a></h2>
+<h2>Line numbers<a class="headerlink" href="#line-numbers" title="제목 주소">¶</a></h2>
 <p>Pygments can generate line numbers for code blocks.  For
 automatically-highlighted blocks (those started by <code class="docutils literal"><span class="pre">::</span></code>), line numbers must be
 switched on in a <a class="reference internal" href="code_ko.html#directive-highlight" title="highlight directive"><code class="xref rst rst-dir docutils literal"><span class="pre">highlight</span></code></a> directive, with the <code class="docutils literal"><span class="pre">linenothreshold</span></code>
@@ -258,17 +259,17 @@ emphasize particular lines:</p>
 </pre></div>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.1: </span><code class="docutils literal"><span class="pre">emphasize-lines</span></code> has been added.</p>
+<p><span class="versionmodified">버전 1.1으로 변경: </span><code class="docutils literal"><span class="pre">emphasize-lines</span></code> has been added.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.3: </span><code class="docutils literal"><span class="pre">lineno-start</span></code> has been added.</p>
+<p><span class="versionmodified">버전 1.3으로 변경: </span><code class="docutils literal"><span class="pre">lineno-start</span></code> has been added.</p>
 </div>
 </div>
 <div class="section" id="includes">
-<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<h2>Includes<a class="headerlink" href="#includes" title="제목 주소">¶</a></h2>
 <dl class="directive">
 <dt id="directive-literalinclude">
-<code class="descname">.. literalinclude::</code><code class="descclassname"> filename</code><a class="headerlink" href="#directive-literalinclude" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. literalinclude::</code><code class="descclassname"> filename</code><a class="headerlink" href="#directive-literalinclude" title="정의 주소">¶</a></dt>
 <dd><p>Longer displays of verbatim text may be included by storing the example text
 in an external file containing only plain text.  The file may be included
 using the <code class="docutils literal"><span class="pre">literalinclude</span></code> directive. <a class="footnote-reference" href="#id2" id="id1">[1]</a> For example, to include the
@@ -276,7 +277,7 @@ Python source file <code class="file docutils literal"><span class="pre">example
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">literalinclude</span><span class="p">::</span> example.py
 </pre></div>
 </div>
-<p>The file name is usually relative to the current file’s path.  However, if it
+<p>The file name is usually relative to the current file's path.  However, if it
 is absolute (starting with <code class="docutils literal"><span class="pre">/</span></code>), it is relative to the top source
 directory.</p>
 <p>Tabs in the input are expanded if you give a <code class="docutils literal"><span class="pre">tab-width</span></code> option with the
@@ -285,7 +286,7 @@ desired tab width.</p>
 option to switch on line numbers, the <code class="docutils literal"><span class="pre">lineno-start</span></code> option to select the
 first line number, the <code class="docutils literal"><span class="pre">emphasize-lines</span></code> option to emphasize particular
 lines, and a <code class="docutils literal"><span class="pre">language</span></code> option to select a language different from the
-current file’s standard language.  Example with options:</p>
+current file's standard language.  Example with options:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">literalinclude</span><span class="p">::</span> example.rb
    <span class="nc">:language:</span> <span class="nf">ruby</span>
    <span class="nc">:emphasize-lines:</span> <span class="nf">12,15-18</span>
@@ -332,7 +333,7 @@ display the original line numbers. This can be done using the
 consists of contiguous lines.</p>
 <p>You can prepend and/or append a line to the included code, using the
 <code class="docutils literal"><span class="pre">prepend</span></code> and <code class="docutils literal"><span class="pre">append</span></code> option, respectively.  This is useful e.g. for
-highlighting PHP code that doesn’t include the <code class="docutils literal"><span class="pre">&lt;?php</span></code>/<code class="docutils literal"><span class="pre">?&gt;</span></code> markers.</p>
+highlighting PHP code that doesn't include the <code class="docutils literal"><span class="pre">&lt;?php</span></code>/<code class="docutils literal"><span class="pre">?&gt;</span></code> markers.</p>
 <p>If you want to show the diff of the code, you can specify the old
 file by giving a <code class="docutils literal"><span class="pre">diff</span></code> option:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">literalinclude</span><span class="p">::</span> example.py
@@ -342,30 +343,30 @@ file by giving a <code class="docutils literal"><span class="pre">diff</span></c
 <p>This shows the diff between example.py and example.py.orig with unified diff
 format.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.4.3: </span>The <code class="docutils literal"><span class="pre">encoding</span></code> option.</p>
+<p><span class="versionmodified">버전 0.4.3에 추가: </span>The <code class="docutils literal"><span class="pre">encoding</span></code> option.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6: </span>The <code class="docutils literal"><span class="pre">pyobject</span></code>, <code class="docutils literal"><span class="pre">lines</span></code>, <code class="docutils literal"><span class="pre">start-after</span></code> and <code class="docutils literal"><span class="pre">end-before</span></code> options,
+<p><span class="versionmodified">버전 0.6에 추가: </span>The <code class="docutils literal"><span class="pre">pyobject</span></code>, <code class="docutils literal"><span class="pre">lines</span></code>, <code class="docutils literal"><span class="pre">start-after</span></code> and <code class="docutils literal"><span class="pre">end-before</span></code> options,
 as well as support for absolute filenames.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.0: </span>The <code class="docutils literal"><span class="pre">prepend</span></code> and <code class="docutils literal"><span class="pre">append</span></code> options, as well as <code class="docutils literal"><span class="pre">tab-width</span></code>.</p>
+<p><span class="versionmodified">버전 1.0에 추가: </span>The <code class="docutils literal"><span class="pre">prepend</span></code> and <code class="docutils literal"><span class="pre">append</span></code> options, as well as <code class="docutils literal"><span class="pre">tab-width</span></code>.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.3: </span>The <code class="docutils literal"><span class="pre">diff</span></code> option.
+<p><span class="versionmodified">버전 1.3에 추가: </span>The <code class="docutils literal"><span class="pre">diff</span></code> option.
 The <code class="docutils literal"><span class="pre">lineno-match</span></code> option.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.6: </span>With both <code class="docutils literal"><span class="pre">start-after</span></code> and <code class="docutils literal"><span class="pre">lines</span></code> in use, the first line as per
+<p><span class="versionmodified">버전 1.6으로 변경: </span>With both <code class="docutils literal"><span class="pre">start-after</span></code> and <code class="docutils literal"><span class="pre">lines</span></code> in use, the first line as per
 <code class="docutils literal"><span class="pre">start-after</span></code> is considered to be with line number <code class="docutils literal"><span class="pre">1</span></code> for <code class="docutils literal"><span class="pre">lines</span></code>.</p>
 </div>
 </dd></dl>
 
 </div>
 <div class="section" id="caption-and-name">
-<h2>Caption and name<a class="headerlink" href="#caption-and-name" title="Permalink to this headline">¶</a></h2>
+<h2>Caption and name<a class="headerlink" href="#caption-and-name" title="제목 주소">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.3.</span></p>
+<p><span class="versionmodified">버전 1.3에 추가.</span></p>
 </div>
 <p>A <code class="docutils literal"><span class="pre">caption</span></code> option can be given to show that name before the code block.
 A <code class="docutils literal"><span class="pre">name</span></code> option can be provided implicit target name that can be referenced
@@ -383,9 +384,9 @@ For example:</p>
 filename will be exactly the one given as an argument.</p>
 </div>
 <div class="section" id="dedent">
-<h2>Dedent<a class="headerlink" href="#dedent" title="Permalink to this headline">¶</a></h2>
+<h2>Dedent<a class="headerlink" href="#dedent" title="제목 주소">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.3.</span></p>
+<p><span class="versionmodified">버전 1.3에 추가.</span></p>
 </div>
 <p>A <code class="docutils literal"><span class="pre">dedent</span></code> option can be given to strip indentation characters from the code
 block. For example:</p>
@@ -414,20 +415,20 @@ file is not found.  This one only emits a warning.</td></tr>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="inline.html" title="Inline markup"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="para.html" title="Paragraph-level markup"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -436,7 +437,7 @@ file is not found.  This one only emits a warning.</td></tr>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

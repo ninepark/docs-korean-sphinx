@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>sphinx-build &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>sphinx-build &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -80,14 +81,14 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
  
@@ -95,7 +96,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <h3><a href="../contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">sphinx-build</a><ul>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
@@ -109,17 +110,17 @@
 </ul>
 
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/man/sphinx-build_ko.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -134,13 +135,13 @@
           <div class="body" role="main">
             
   <div class="section" id="sphinx-build">
-<h1>sphinx-build<a class="headerlink" href="#sphinx-build" title="Permalink to this headline">¶</a></h1>
+<h1>sphinx-build<a class="headerlink" href="#sphinx-build" title="제목 주소">¶</a></h1>
 <div class="section" id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<p><strong>sphinx-build</strong> [<em>options</em>] &lt;<em>sourcedir</em>&gt; &lt;<em>outputdir</em>&gt; [<em>filenames</em> …]</p>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="제목 주소">¶</a></h2>
+<p><strong>sphinx-build</strong> [<em>options</em>] &lt;<em>sourcedir</em>&gt; &lt;<em>outputdir</em>&gt; [<em>filenames</em> ...]</p>
 </div>
 <div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2>Description<a class="headerlink" href="#description" title="제목 주소">¶</a></h2>
 <p><strong class="program">sphinx-build</strong> 는 <code class="docutils literal"><span class="pre">&lt;sourcedir&gt;</span></code> 의 파일들로부터 문서를 생성하고
 이를 <code class="docutils literal"><span class="pre">&lt;outputdir&gt;</span></code> 에 저장한다.</p>
 <p><strong class="program">sphinx-build</strong> 는 <code class="docutils literal"><span class="pre">&lt;sourcedir&gt;/conf.py</span></code> 를 보고 배열 설정을 참고한다.
@@ -153,10 +154,10 @@
 <p>가능한 옵션에 대한 리스트는 <a class="reference internal" href="#cmdoption-sphinx-build-b"><code class="xref std std-option docutils literal"><span class="pre">sphinx-build</span> <span class="pre">-b</span></code></a> 로 볼 수 있다.</p>
 </div>
 <div class="section" id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<h2>Options<a class="headerlink" href="#options" title="제목 주소">¶</a></h2>
 <dl class="option">
 <dt id="cmdoption-sphinx-build-b">
-<code class="descname">-b</code><code class="descclassname"> buildername</code><a class="headerlink" href="#cmdoption-sphinx-build-b" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-b</code><code class="descclassname"> buildername</code><a class="headerlink" href="#cmdoption-sphinx-build-b" title="정의 주소">¶</a></dt>
 <dd><p>가장 중요한 옵션으로 빌더를 선택한다. 가장 일반적인 빌더들은 아래와 같다.:</p>
 <dl class="docutils">
 <dt><strong>html</strong></dt>
@@ -192,7 +193,7 @@
 <dt><strong>xml</strong></dt>
 <dd>Docutils 네이티브 XML 파일을 빌드한다.</dd>
 <dt><strong>pseudoxml</strong></dt>
-<dd>잘 프린트 된 압축 “pseudo-XML” 파일을 빌드해 중간 문서 계층의 내부구조를 보여준다.</dd>
+<dd>잘 프린트 된 압축 &quot;pseudo-XML&quot; 파일을 빌드해 중간 문서 계층의 내부구조를 보여준다.</dd>
 </dl>
 <p><a class="reference internal" href="../builders_ko.html#builders"><span class="std std-ref">Available builders</span></a> 에서 Sphinx와 함께 제공되는 모든 빌더의 리스트를 볼 수 있다.
 확장이 자체 빌더를 추가할 수 있다.</p>
@@ -200,7 +201,7 @@
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-a">
-<code class="descname">-a</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-a" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-a</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-a" title="정의 주소">¶</a></dt>
 <dd><p>위 옵션이 주여지면 항상 모든 아웃풋 파일을 작성한다.
 디폴트에서는 변경 되었거나 새로운 소스파일만을 작성한다.
 (빌더에 따라 적용되지 않을 수 있다.)</p>
@@ -208,26 +209,26 @@
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-e">
-<code class="descname">-E</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-e" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-E</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-e" title="정의 주소">¶</a></dt>
 <dd><p>저장된 <a class="reference internal" href="../glossary.html#term-environment"><span class="xref std std-term">environment</span></a> (모든 상호 레퍼런스를 캐싱하는 구조)를 사용하지 않고
 완전히 다시 빌드한다. 디폴트에서는 지난 실행 이후로 변경되거나 새로 나타난 소스 파일만을 읽고 파싱한다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-t">
-<code class="descname">-t</code><code class="descclassname"> tag</code><a class="headerlink" href="#cmdoption-sphinx-build-t" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-t</code><code class="descclassname"> tag</code><a class="headerlink" href="#cmdoption-sphinx-build-t" title="정의 주소">¶</a></dt>
 <dd><p><em>tag</em> 태그를 설정한다. 태그가 설정된 내용만을 포함한다는 점에서
 <a class="reference internal" href="../markup/misc_ko.html#directive-only" title="only directive"><code class="xref rst rst-dir docutils literal"><span class="pre">only</span></code></a> 명령어와 유사하다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-d">
-<code class="descname">-d</code><code class="descclassname"> path</code><a class="headerlink" href="#cmdoption-sphinx-build-d" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-d</code><code class="descclassname"> path</code><a class="headerlink" href="#cmdoption-sphinx-build-d" title="정의 주소">¶</a></dt>
 <dd><p>Sphinx가 출력 파일을 작성하려면 모든 소스파일을 읽고 파싱해야 하기 때문에
-파싱된 소스는 “doctree pickles” 로 캐시된다.
+파싱된 소스는 &quot;doctree pickles&quot; 로 캐시된다.
 일반적으로 이 파일들은 빌드 디렉토리 하에 <code class="file docutils literal"><span class="pre">.doctrees</span></code> 디렉토리에 저장된다.
 이 옵션을 사용하면 다른 캐시 디렉토리를 설정할 수 있다.
 (doctrees 는 모든 빌더들 간에 공유될 수 있다.)</p>
@@ -235,131 +236,131 @@
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-j">
-<code class="descname">-j</code><code class="descclassname"> N</code><a class="headerlink" href="#cmdoption-sphinx-build-j" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-j</code><code class="descclassname"> N</code><a class="headerlink" href="#cmdoption-sphinx-build-j" title="정의 주소">¶</a></dt>
 <dd><p>빌드를 <em>N</em> 프로세스들 상에 동시에 배포하여 멀티 프로세서 머신의 빌드를 보다 효과적으로 만든다.
 Sphinx의 모든 빌드와 모든 파트가 동시에 가능한 것은 아니니 주의한다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.2: </span>이 옵션은 <em>실험적</em> 이다.</p>
+<p><span class="versionmodified">버전 1.2에 추가: </span>이 옵션은 <em>실험적</em> 이다.</p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-c">
-<code class="descname">-c</code><code class="descclassname"> path</code><a class="headerlink" href="#cmdoption-sphinx-build-c" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-c</code><code class="descclassname"> path</code><a class="headerlink" href="#cmdoption-sphinx-build-c" title="정의 주소">¶</a></dt>
 <dd><p>소스 디렉토리의 <code class="file docutils literal"><span class="pre">conf.py</span></code> 를 보지 않고 주어진 배열 디렉토리를 사용한다.
 배열값에 의해 주어진 다른 파일들과 경로들이 배열 디렉토리 아래에 있을 것으로 예상되므로
 주어진 파일들도 동일한 배열 디렉토리에 있어야 한다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.3.</span></p>
+<p><span class="versionmodified">버전 0.3에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="id1">
-<code class="descname">-C</code><code class="descclassname"></code><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-C</code><code class="descclassname"></code><a class="headerlink" href="#id1" title="정의 주소">¶</a></dt>
 <dd><p>배열 파일을 보지 않는다.; <code class="docutils literal"><span class="pre">-D</span></code> 옵션을 통해서만 사용한다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.5.</span></p>
+<p><span class="versionmodified">버전 0.5에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="id2">
-<code class="descname">-D</code><code class="descclassname"> setting=value</code><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-D</code><code class="descclassname"> setting=value</code><a class="headerlink" href="#id2" title="정의 주소">¶</a></dt>
 <dd><p><code class="file docutils literal"><span class="pre">conf.py</span></code> 파일에 설정된 배열값을 무시한다.
 값은 반드시 숫자, 문자열, 리스트, 딕셔너리 값이어야 한다.</p>
 <p>리스트라면 <code class="docutils literal"><span class="pre">-D</span> <span class="pre">html_theme_path=path1,path2</span></code> 와 같이 콤마로 요소를 구별할 수 있다.</p>
 <p>딕셔너리라면 <code class="docutils literal"><span class="pre">-D</span> <span class="pre">latex_elements.docclass=scrartcl</span></code> 와 같이 세팅명과 키를 제공한다.</p>
 <p>부올리언이라면 <code class="docutils literal"><span class="pre">0</span></code> 또는 <code class="docutils literal"><span class="pre">1</span></code> 을 사용한다.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.6: </span>딕셔너리값이 가능해졌다.</p>
+<p><span class="versionmodified">버전 0.6으로 변경: </span>딕셔너리값이 가능해졌다.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.3: </span>리스트값이 가능해졌다.</p>
+<p><span class="versionmodified">버전 1.3으로 변경: </span>리스트값이 가능해졌다.</p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="id3">
-<code class="descname">-A</code><code class="descclassname"> name=value</code><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-A</code><code class="descclassname"> name=value</code><a class="headerlink" href="#id3" title="정의 주소">¶</a></dt>
 <dd><p>HTMl 템플릿에서 <em>name</em> 에 지정될 <em>value</em> 를 설정한다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.5.</span></p>
+<p><span class="versionmodified">버전 0.5에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-n">
-<code class="descname">-n</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-n" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-n</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-n" title="정의 주소">¶</a></dt>
 <dd><p>nit-picky 모드를 실행한다. 현재 이 옵션은 모든 레퍼런스 손실에 대해 경고를 생성한다.
 <a class="reference internal" href="../config.html#confval-nitpick_ignore"><code class="xref std std-confval docutils literal"><span class="pre">nitpick_ignore</span></code></a> 배열값에서 이미 알고 있는 손실을 제외할 수 있다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="id4">
-<code class="descname">-N</code><code class="descclassname"></code><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-N</code><code class="descclassname"></code><a class="headerlink" href="#id4" title="정의 주소">¶</a></dt>
 <dd><p>컬러 출력을 하지 않는다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-v">
-<code class="descname">-v</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-v" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-v</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-v" title="정의 주소">¶</a></dt>
 <dd><p>verbosity (로그레벨)을 증가시킨다.
 이 옵션은 디버그 기록 출력을 위해 세번까지 줄 수 있다.
 <a class="reference internal" href="#id7"><code class="xref std std-option docutils literal"><span class="pre">-T</span></code></a> 를 포함한다..</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.2.</span></p>
+<p><span class="versionmodified">버전 1.2에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-q">
-<code class="descname">-q</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-q" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-q</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-q" title="정의 주소">¶</a></dt>
 <dd><p>표준 출력 상의 출력은 출력하지 않는다. 경고와 표준 오류의 오류만을 작성한다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="id5">
-<code class="descname">-Q</code><code class="descclassname"></code><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-Q</code><code class="descclassname"></code><a class="headerlink" href="#id5" title="정의 주소">¶</a></dt>
 <dd><p>표준 출력 상의 출력은 출력하지 않고 경고 또한 무시한다.
 표준 오류의 오류만 작성한다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-w">
-<code class="descname">-w</code><code class="descclassname"> file</code><a class="headerlink" href="#cmdoption-sphinx-build-w" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-w</code><code class="descclassname"> file</code><a class="headerlink" href="#cmdoption-sphinx-build-w" title="정의 주소">¶</a></dt>
 <dd><p>주어진 파일과 표준 오류의 경고(오류 포함)을 작성한다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="id6">
-<code class="descname">-W</code><code class="descclassname"></code><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-W</code><code class="descclassname"></code><a class="headerlink" href="#id6" title="정의 주소">¶</a></dt>
 <dd><p>경고를 오류로 변환한다. 이 때 빌드는 첫번째 경고에서 멈추고
 <code class="docutils literal"><span class="pre">sphinx-build</span></code> 가 exit status 1로 종료된다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="id7">
-<code class="descname">-T</code><code class="descclassname"></code><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-T</code><code class="descclassname"></code><a class="headerlink" href="#id7" title="정의 주소">¶</a></dt>
 <dd><p>처리되지 않은 예외가 발생했을 때 모든 트레이스백(traceback)을 보여준다.
 또는 트레이스백 정보는 추가 분석을 위해 파일로 저장되고 요약만을 보여준다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.2.</span></p>
+<p><span class="versionmodified">버전 1.2에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-p">
-<code class="descname">-P</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-p" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-P</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-p" title="정의 주소">¶</a></dt>
 <dd><p>(디버깅에서만 유용.) 빌딩 중 처리되지 않은 예외가 발생했을 때 파이썬 디버거(<code class="xref py py-mod docutils literal"><span class="pre">pdb</span></code>) 를 실행한다.</p>
 </dd></dl>
 
 <dl class="option">
 <dt id="cmdoption-sphinx-build-h">
-<code class="descname">-h</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--help</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--version</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-h" title="Permalink to this definition">¶</a></dt>
+<code class="descname">-h</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--help</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--version</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-sphinx-build-h" title="정의 주소">¶</a></dt>
 <dd><p>Sphinx 버전 또는 사용법 요약을 보여준다.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.2.</span></p>
+<p><span class="versionmodified">버전 1.2에 추가.</span></p>
 </div>
 </dd></dl>
 
@@ -367,7 +368,7 @@ Sphinx의 모든 빌드와 모든 파트가 동시에 가능한 것은 아니니
 이 때 Sphinx는 부여된 출력 파일과 그 종속 파일 만을 빌드하려 할 것이다.</p>
 </div>
 <div class="section" id="id8">
-<h2>환경 변수<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h2>환경 변수<a class="headerlink" href="#id8" title="제목 주소">¶</a></h2>
 <p><strong class="program">sphinx-build</strong> 는 아래 환경 변수를 적용한다.</p>
 <dl class="describe">
 <dt>
@@ -383,7 +384,7 @@ Sphinx의 모든 빌드와 모든 파트가 동시에 가능한 것은 아니니
 <dl class="describe">
 <dt>
 <code class="descname">PAPER</code></dt>
-<dd><p><a class="reference internal" href="../config.html#confval-latex_elements"><code class="xref std std-confval docutils literal"><span class="pre">latex_elements</span></code></a> 의 ‘“papersize”` 키가 갖는 값.</p>
+<dd><p><a class="reference internal" href="../config.html#confval-latex_elements"><code class="xref std std-confval docutils literal"><span class="pre">latex_elements</span></code></a> 의 '&quot;papersize&quot;` 키가 갖는 값.</p>
 </dd></dl>
 
 <dl class="describe">
@@ -406,7 +407,7 @@ Sphinx의 모든 빌드와 모든 파트가 동시에 가능한 것은 아니니
 
 </div>
 <div class="section" id="when-deprecation-warnings-are-displayed">
-<span id="id9"></span><h2>반대 경고<a class="headerlink" href="#when-deprecation-warnings-are-displayed" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>반대 경고<a class="headerlink" href="#when-deprecation-warnings-are-displayed" title="제목 주소">¶</a></h2>
 <p>사용자의 문서를 빌드할 때 <code class="docutils literal"><span class="pre">RemovedInSphinxXXXWarning</span></code> 와 같은 반대 경고가 나타난다면
 Sphinx 확장이 미래엔 배제될 기능을 사용하는 것이다. 그러한 상황에서는 확장 저자에게 문의하길 바란다.</p>
 <p>사용자의 환경에서 <code class="docutils literal"><span class="pre">PYTHONWARNINGS=</span></code> 환경 변수를 설정해 반대 경고를 비활성화 할 수 있다. 예시:</p>
@@ -418,7 +419,7 @@ Sphinx 확장이 미래엔 배제될 기능을 사용하는 것이다. 그러한
 </ul>
 </div>
 <div class="section" id="id10">
-<h2>참고<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<h2>참고<a class="headerlink" href="#id10" title="제목 주소">¶</a></h2>
 <p><em class="manpage">sphinx-quickstart(1)</em></p>
 </div>
 </div>
@@ -430,14 +431,14 @@ Sphinx 확장이 미래엔 배제될 기능을 사용하는 것이다. 그러한
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
  
@@ -445,7 +446,7 @@ Sphinx 확장이 미래엔 배제될 기능을 사용하는 것이다. 그러한
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>LaTeX customization &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>LaTeX customization &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
     <link rel="next" title="Markdown support" href="markdown.html" />
     <link rel="prev" title="Templating" href="templating.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="markdown.html" title="Markdown support"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="templating.html" title="Templating"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -103,7 +104,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <h3><a href="contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">LaTeX customization</a><ul>
 <li><a class="reference internal" href="#basic-customization">Basic customization</a></li>
@@ -122,24 +123,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="templating.html"
-                        title="previous chapter">Templating</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">Templating</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="markdown.html"
-                        title="next chapter">Markdown support</a></p>
+                        title="다음 장">Markdown support</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="_sources/latex.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -154,11 +155,11 @@
           <div class="body" role="main">
             
   <div class="section" id="module-latex">
-<span id="latex-customization"></span><span id="latex"></span><h1>LaTeX customization<a class="headerlink" href="#module-latex" title="Permalink to this headline">¶</a></h1>
+<span id="latex-customization"></span><span id="latex"></span><h1>LaTeX customization<a class="headerlink" href="#module-latex" title="제목 주소">¶</a></h1>
 <p>The <em>latex</em> target does not benefit from pre-prepared themes like the
 <em>html</em> target does (see <a class="reference internal" href="theming.html"><span class="doc">HTML theming support</span></a>).</p>
 <div class="section" id="basic-customization">
-<h2>Basic customization<a class="headerlink" href="#basic-customization" title="Permalink to this headline">¶</a></h2>
+<h2>Basic customization<a class="headerlink" href="#basic-customization" title="제목 주소">¶</a></h2>
 <p>It is achieved via usage of the
 <a class="reference internal" href="config.html#latex-options"><span class="std std-ref">Options for LaTeX output</span></a> as described in <a class="reference internal" href="config.html"><span class="doc">The build configuration file</span></a>. For example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># inside conf.py</span>
@@ -197,9 +198,9 @@ example:</p>
 </div>
 </div>
 <div class="section" id="the-latex-style-file-options">
-<span id="latexsphinxsetup"></span><h2>The LaTeX style file options<a class="headerlink" href="#the-latex-style-file-options" title="Permalink to this headline">¶</a></h2>
+<span id="latexsphinxsetup"></span><h2>The LaTeX style file options<a class="headerlink" href="#the-latex-style-file-options" title="제목 주소">¶</a></h2>
 <div class="section" id="the-sphinxsetup-interface">
-<h3>The sphinxsetup interface<a class="headerlink" href="#the-sphinxsetup-interface" title="Permalink to this headline">¶</a></h3>
+<h3>The sphinxsetup interface<a class="headerlink" href="#the-sphinxsetup-interface" title="제목 주소">¶</a></h3>
 <p>The <code class="docutils literal"><span class="pre">'sphinxsetup'</span></code> key of <a class="reference internal" href="config.html#confval-latex_elements"><code class="xref std std-confval docutils literal"><span class="pre">latex_elements</span></code></a> provides a convenient
 interface to the package options of the Sphinx style file:</p>
 <div class="highlight-latex"><div class="highlight"><pre><span></span>latex<span class="nb">_</span>elements = <span class="nb">{</span>
@@ -221,7 +222,7 @@ inside the document preamble, like this:</p>
 </pre></div>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5.</span></p>
+<p><span class="versionmodified">버전 1.5에 추가.</span></p>
 </div>
 <p>It is possible to insert further uses of the <code class="docutils literal"><span class="pre">\sphinxsetup</span></code> LaTeX macro
 directly into the body of the document, via the help of the <code class="xref rst rst-dir docutils literal"><span class="pre">raw</span></code>
@@ -253,9 +254,9 @@ of this chapter in the PDF output:</p>
 </div>
 <p>at its end.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p>The colors above are made available via the <code class="docutils literal"><span class="pre">svgnames</span></code> option of
-the “xcolor” package:</p>
+the &quot;xcolor&quot; package:</p>
 <div class="last highlight-latex"><div class="highlight"><pre><span></span>latex<span class="nb">_</span>elements = <span class="nb">{</span>
     &#39;passoptionstopackages&#39;: r&#39;<span class="k">\PassOptionsToPackage</span><span class="nb">{</span>svgnames<span class="nb">}{</span>xcolor<span class="nb">}</span>&#39;,
 <span class="nb">}</span>
@@ -264,7 +265,7 @@ the “xcolor” package:</p>
 </div>
 </div>
 <div class="section" id="the-available-styling-options">
-<h3>The available styling options<a class="headerlink" href="#the-available-styling-options" title="Permalink to this headline">¶</a></h3>
+<h3>The available styling options<a class="headerlink" href="#the-available-styling-options" title="제목 주소">¶</a></h3>
 <dl class="docutils" id="latexsphinxsetuphmargin">
 <dt><code class="docutils literal"><span class="pre">hmargin,</span> <span class="pre">vmargin</span></code></dt>
 <dd><p class="first">The dimensions of the horizontal (resp. vertical) margins, passed as
@@ -280,17 +281,17 @@ to get the text width set to an exact multiple of the <em>zenkaku</em> width, an
 the text height set to an integer multiple of the baselineskip, with the
 closest fit for the margins.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
+<p class="first admonition-title">힌트</p>
 <p>For Japanese <code class="docutils literal"><span class="pre">'manual'</span></code> docclass with pointsize <code class="docutils literal"><span class="pre">11pt</span></code> or <code class="docutils literal"><span class="pre">12pt</span></code>,
 use the <code class="docutils literal"><span class="pre">nomag</span></code> extra document class option (cf.
 <code class="docutils literal"><span class="pre">'extraclassoptions'</span></code> key of <a class="reference internal" href="config.html#confval-latex_elements"><code class="xref std std-confval docutils literal"><span class="pre">latex_elements</span></code></a>) or so-called
-TeX “true” units:</p>
+TeX &quot;true&quot; units:</p>
 <div class="last highlight-latex"><div class="highlight"><pre><span></span>&#39;sphinxsetup&#39;: &#39;hmargin=1.5truein, vmargin=1.5truein, marginpar=5zw&#39;,
 </pre></div>
 </div>
 </div>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.5.3.</span></p>
+<p><span class="versionmodified">버전 1.5.3에 추가.</span></p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">marginpar</span></code></dt>
@@ -298,46 +299,46 @@ TeX “true” units:</p>
 documents, the value is modified to be the closest integer multiple of the
 <em>zenkaku</em> width.</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.5.3.</span></p>
+<p><span class="versionmodified">버전 1.5.3에 추가.</span></p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">verbatimwithframe</span></code></dt>
 <dd>default <code class="docutils literal"><span class="pre">true</span></code>. Boolean to specify if <a class="reference internal" href="markup/code_ko.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code></a>s and literal
 includes are framed. Setting it to <code class="docutils literal"><span class="pre">false</span></code> does not deactivate use of
-package “framed”, because it is still in use for the optional background
+package &quot;framed&quot;, because it is still in use for the optional background
 colour.</dd>
 <dt><code class="docutils literal"><span class="pre">verbatimwrapslines</span></code></dt>
-<dd>default <code class="docutils literal"><span class="pre">true</span></code>. Tells whether long lines in <a class="reference internal" href="markup/code_ko.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code></a>’s
+<dd>default <code class="docutils literal"><span class="pre">true</span></code>. Tells whether long lines in <a class="reference internal" href="markup/code_ko.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code></a>'s
 contents should wrap.</dd>
 <dt><code class="docutils literal"><span class="pre">literalblockcappos</span></code></dt>
-<dd><p class="first">default <code class="docutils literal"><span class="pre">t</span></code> for “top”. Decides the caption position. Alternative is
-<code class="docutils literal"><span class="pre">b</span></code> (“bottom”).</p>
+<dd><p class="first">default <code class="docutils literal"><span class="pre">t</span></code> for &quot;top&quot;. Decides the caption position. Alternative is
+<code class="docutils literal"><span class="pre">b</span></code> (&quot;bottom&quot;).</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.7.</span></p>
+<p><span class="versionmodified">버전 1.7에 추가.</span></p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">verbatimhintsturnover</span></code></dt>
-<dd><p class="first">default <code class="docutils literal"><span class="pre">true</span></code>. If <code class="docutils literal"><span class="pre">true</span></code>, code-blocks display “continued on next
-page”, “continued from previous page” hints in case of pagebreaks.</p>
+<dd><p class="first">default <code class="docutils literal"><span class="pre">true</span></code>. If <code class="docutils literal"><span class="pre">true</span></code>, code-blocks display &quot;continued on next
+page&quot;, &quot;continued from previous page&quot; hints in case of pagebreaks.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6.3.</span></p>
+<p><span class="versionmodified">버전 1.6.3에 추가.</span></p>
 </div>
 <div class="last versionchanged">
-<p><span class="versionmodified">Changed in version 1.7: </span>the default changed from <code class="docutils literal"><span class="pre">false</span></code> to <code class="docutils literal"><span class="pre">true</span></code>.</p>
+<p><span class="versionmodified">버전 1.7으로 변경: </span>the default changed from <code class="docutils literal"><span class="pre">false</span></code> to <code class="docutils literal"><span class="pre">true</span></code>.</p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">verbatimcontinuedalign</span></code>, <code class="docutils literal"><span class="pre">verbatimcontinuesalign</span></code></dt>
 <dd><p class="first">default <code class="docutils literal"><span class="pre">c</span></code>. Horizontal position relative to the framed contents:
 either <code class="docutils literal"><span class="pre">l</span></code> (left aligned), <code class="docutils literal"><span class="pre">r</span></code> (right aligned) or <code class="docutils literal"><span class="pre">c</span></code> (centered).</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.7.</span></p>
+<p><span class="versionmodified">버전 1.7에 추가.</span></p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">parsedliteralwraps</span></code></dt>
-<dd><p class="first">default <code class="docutils literal"><span class="pre">true</span></code>. Tells whether long lines in <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#parsed-literal">parsed-literal</a>’s
+<dd><p class="first">default <code class="docutils literal"><span class="pre">true</span></code>. Tells whether long lines in <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#parsed-literal">parsed-literal</a>'s
 contents should wrap.</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.5.2: </span>set this option value to <code class="docutils literal"><span class="pre">false</span></code> to recover former behaviour.</p>
+<p><span class="versionmodified">버전 1.5.2에 추가: </span>set this option value to <code class="docutils literal"><span class="pre">false</span></code> to recover former behaviour.</p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">inlineliteralwraps</span></code></dt>
@@ -347,7 +348,7 @@ or for hyphenation) are currently inserted only after the characters
 <code class="docutils literal"><span class="pre">.</span> <span class="pre">,</span> <span class="pre">;</span> <span class="pre">?</span> <span class="pre">!</span> <span class="pre">/</span></code>. Due to TeX internals, white space in the line will be
 stretched (or shrunk) in order to accomodate the linebreak.</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.5: </span>set this option value to <code class="docutils literal"><span class="pre">false</span></code> to recover former behaviour.</p>
+<p><span class="versionmodified">버전 1.5에 추가: </span>set this option value to <code class="docutils literal"><span class="pre">false</span></code> to recover former behaviour.</p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">verbatimvisiblespace</span></code></dt>
@@ -356,22 +357,22 @@ split, the last space character from the source code line right before the
 linebreak location is typeset using this.</dd>
 <dt><code class="docutils literal"><span class="pre">verbatimcontinued</span></code></dt>
 <dd><p class="first">A LaTeX macro inserted at start of continuation code lines. Its
-(complicated…) default typesets a small red hook pointing to the right:</p>
+(complicated...) default typesets a small red hook pointing to the right:</p>
 <div class="highlight-latex"><div class="highlight"><pre><span></span><span class="k">\makebox</span><span class="na">[2\fontcharwd\font`\x][r]</span><span class="nb">{</span><span class="k">\textcolor</span><span class="nb">{</span>red<span class="nb">}{</span><span class="k">\tiny</span><span class="s">$</span><span class="nv">\hookrightarrow</span><span class="s">$</span><span class="nb">}}</span>
 </pre></div>
 </div>
 <div class="last versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>The breaking of long code lines was added at 1.4.2. The default
+<p><span class="versionmodified">버전 1.5으로 변경: </span>The breaking of long code lines was added at 1.4.2. The default
 definition of the continuation symbol was changed at 1.5 to accomodate
 various font sizes (e.g. code-blocks can be in footnotes).</p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">TitleColor</span></code></dt>
 <dd>default <code class="docutils literal"><span class="pre">{rgb}{0.126,0.263,0.361}</span></code>. The colour for titles (as configured
-via use of package “titlesec”.)</dd>
+via use of package &quot;titlesec&quot;.)</dd>
 </dl>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">경고</p>
 <p class="last">Colours set via <code class="docutils literal"><span class="pre">'sphinxsetup'</span></code>  must obey the syntax of the
 argument of the <code class="docutils literal"><span class="pre">color/xcolor</span></code> packages <code class="docutils literal"><span class="pre">\definecolor</span></code> command.</p>
 </div>
@@ -396,7 +397,7 @@ value of <code class="docutils literal"><span class="pre">filecolor</span></code
 <dd>default <code class="docutils literal"><span class="pre">5pt</span></code>. The separation between contents and frame for
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#contents">contents</a> and <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#topic">topic</a> boxes.</dd>
 <dt><code class="docutils literal"><span class="pre">shadowsize</span></code></dt>
-<dd>default <code class="docutils literal"><span class="pre">4pt</span></code>. The width of the lateral “shadow” to the right.</dd>
+<dd>default <code class="docutils literal"><span class="pre">4pt</span></code>. The width of the lateral &quot;shadow&quot; to the right.</dd>
 <dt><code class="docutils literal"><span class="pre">shadowrule</span></code></dt>
 <dd>default <code class="docutils literal"><span class="pre">\fboxrule</span></code>. The width of the frame around <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#topic">topic</a> boxes.</dd>
 <dt><code class="docutils literal"><span class="pre">noteBorderColor</span></code>, <code class="docutils literal"><span class="pre">hintBorderColor</span></code>,
@@ -405,9 +406,9 @@ value of <code class="docutils literal"><span class="pre">filecolor</span></code
 used by Sphinx in LaTeX for styling a <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#note">note</a> type admonition.</dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The actual colour names declared to “color” or “xcolor” are prefixed with
-“sphinx”.</p>
+<p class="first admonition-title">주석</p>
+<p class="last">The actual colour names declared to &quot;color&quot; or &quot;xcolor&quot; are prefixed with
+&quot;sphinx&quot;.</p>
 </div>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">noteborder</span></code>, <code class="docutils literal"><span class="pre">hintborder</span></code>, <code class="docutils literal"><span class="pre">importantborder</span></code>, <code class="docutils literal"><span class="pre">tipborder</span></code></dt>
@@ -437,7 +438,7 @@ text at bottom of page, after the footnote number.</dd>
 mark. The default removes possible space before it (else, TeX could insert
 a linebreak there).</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.5.</span></p>
+<p><span class="versionmodified">버전 1.5에 추가.</span></p>
 </div>
 </dd>
 <dt><code class="docutils literal"><span class="pre">HeaderFamily</span></code></dt>
@@ -446,18 +447,18 @@ a linebreak there).</p>
 </div>
 </div>
 <div class="section" id="latex-macros-and-environments">
-<h2>LaTeX macros and environments<a class="headerlink" href="#latex-macros-and-environments" title="Permalink to this headline">¶</a></h2>
+<h2>LaTeX macros and environments<a class="headerlink" href="#latex-macros-and-environments" title="제목 주소">¶</a></h2>
 <p>Here are some macros from the package file <code class="file docutils literal"><span class="pre">sphinx.sty</span></code> and class files
 <code class="file docutils literal"><span class="pre">sphinxhowto.cls</span></code>, <code class="file docutils literal"><span class="pre">sphinxmanual.cls</span></code>, which have public names
 thus allowing redefinitions. Check the respective files for the defaults.</p>
 <div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<h3>Macros<a class="headerlink" href="#macros" title="제목 주소">¶</a></h3>
 <ul>
 <li><p class="first">text styling commands <code class="docutils literal"><span class="pre">\sphinx&lt;foo&gt;</span></code> with <code class="docutils literal"><span class="pre">&lt;foo&gt;</span></code> being one of
 <code class="docutils literal"><span class="pre">strong</span></code>, <code class="docutils literal"><span class="pre">bfcode</span></code>, <code class="docutils literal"><span class="pre">email</span></code>, <code class="docutils literal"><span class="pre">tablecontinued</span></code>, <code class="docutils literal"><span class="pre">titleref</span></code>,
 <code class="docutils literal"><span class="pre">menuselection</span></code>, <code class="docutils literal"><span class="pre">accelerator</span></code>, <code class="docutils literal"><span class="pre">crossref</span></code>, <code class="docutils literal"><span class="pre">termref</span></code>, <code class="docutils literal"><span class="pre">optional</span></code>.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.4.5: </span>Use of <code class="docutils literal"><span class="pre">\sphinx</span></code> prefixed macro names to limit possibilities of conflict
+<p><span class="versionmodified">버전 1.4.5에 추가: </span>Use of <code class="docutils literal"><span class="pre">\sphinx</span></code> prefixed macro names to limit possibilities of conflict
 with LaTeX packages.</p>
 </div>
 </li>
@@ -467,31 +468,31 @@ with LaTeX packages.</p>
 <code class="docutils literal"><span class="pre">emphasis</span></code>, <code class="docutils literal"><span class="pre">literalemphasis</span></code>, <code class="docutils literal"><span class="pre">strong</span></code>, <code class="docutils literal"><span class="pre">literalstrong</span></code>,
 <code class="docutils literal"><span class="pre">abbreviation</span></code>, <code class="docutils literal"><span class="pre">literalintitle</span></code>, <code class="docutils literal"><span class="pre">codecontinued</span></code>, <code class="docutils literal"><span class="pre">codecontinues</span></code></p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5: </span>these macros were formerly hard-coded as non customizable <code class="docutils literal"><span class="pre">\texttt</span></code>,
-<code class="docutils literal"><span class="pre">\emph</span></code>, etc…</p>
+<p><span class="versionmodified">버전 1.5에 추가: </span>these macros were formerly hard-coded as non customizable <code class="docutils literal"><span class="pre">\texttt</span></code>,
+<code class="docutils literal"><span class="pre">\emph</span></code>, etc...</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6: </span><code class="docutils literal"><span class="pre">\sphinxstyletheadfamily</span></code> which defaults to <code class="docutils literal"><span class="pre">\sffamily</span></code> and allows
+<p><span class="versionmodified">버전 1.6에 추가: </span><code class="docutils literal"><span class="pre">\sphinxstyletheadfamily</span></code> which defaults to <code class="docutils literal"><span class="pre">\sffamily</span></code> and allows
 multiple paragraphs in header cells of tables.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6.3: </span><code class="docutils literal"><span class="pre">\sphinxstylecodecontinued</span></code> and <code class="docutils literal"><span class="pre">\sphinxstylecodecontinues</span></code>.</p>
+<p><span class="versionmodified">버전 1.6.3에 추가: </span><code class="docutils literal"><span class="pre">\sphinxstylecodecontinued</span></code> and <code class="docutils literal"><span class="pre">\sphinxstylecodecontinues</span></code>.</p>
 </div>
 </li>
 <li><p class="first">by default the Sphinx style file <code class="docutils literal"><span class="pre">sphinx.sty</span></code> executes the command
 <code class="docutils literal"><span class="pre">\fvset{fontsize=\small}</span></code> as part of its configuration of
 <code class="docutils literal"><span class="pre">fancyvrb.sty</span></code>. This may be overriden for example via
 <code class="docutils literal"><span class="pre">\fvset{fontsize=auto}</span></code> which will let code listings use the ambient font
-size. Refer to <code class="docutils literal"><span class="pre">fancyvrb.sty</span></code>’s documentation for further keys.</p>
+size. Refer to <code class="docutils literal"><span class="pre">fancyvrb.sty</span></code>'s documentation for further keys.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5.</span></p>
+<p><span class="versionmodified">버전 1.5에 추가.</span></p>
 </div>
 </li>
 <li><p class="first">the table of contents is typeset via <code class="docutils literal"><span class="pre">\sphinxtableofcontents</span></code> which is a
 wrapper (whose definition can be found in <code class="file docutils literal"><span class="pre">sphinxhowto.cls</span></code> or in
 <code class="file docutils literal"><span class="pre">sphinxmanual.cls</span></code>) of standard <code class="docutils literal"><span class="pre">\tableofcontents</span></code>.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>formerly, the meaning of <code class="docutils literal"><span class="pre">\tableofcontents</span></code> was modified by Sphinx.</p>
+<p><span class="versionmodified">버전 1.5으로 변경: </span>formerly, the meaning of <code class="docutils literal"><span class="pre">\tableofcontents</span></code> was modified by Sphinx.</p>
 </div>
 </li>
 <li><p class="first">the <code class="docutils literal"><span class="pre">\maketitle</span></code> command is redefined by the class files
@@ -500,37 +501,37 @@ wrapper (whose definition can be found in <code class="file docutils literal"><s
 </ul>
 </div>
 <div class="section" id="environments">
-<h3>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h3>
+<h3>Environments<a class="headerlink" href="#environments" title="제목 주소">¶</a></h3>
 <ul>
 <li><p class="first">a <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#figure">figure</a> may have an optional legend with arbitrary body
 elements: they are rendered in a <code class="docutils literal"><span class="pre">sphinxlegend</span></code> environment. The default
 definition issues <code class="docutils literal"><span class="pre">\small</span></code>, and ends with <code class="docutils literal"><span class="pre">\par</span></code>.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5.6: </span>formerly, the <code class="docutils literal"><span class="pre">\small</span></code> was hardcoded in LaTeX writer and the ending
+<p><span class="versionmodified">버전 1.5.6에 추가: </span>formerly, the <code class="docutils literal"><span class="pre">\small</span></code> was hardcoded in LaTeX writer and the ending
 <code class="docutils literal"><span class="pre">\par</span></code> was lacking.</p>
 </div>
 </li>
 <li><p class="first">for each admonition type <code class="docutils literal"><span class="pre">&lt;foo&gt;</span></code>, the
 used environment is named <code class="docutils literal"><span class="pre">sphinx&lt;foo&gt;</span></code>. They may be <code class="docutils literal"><span class="pre">\renewenvironment</span></code>
-‘d individually, and must then be defined with one argument (it is the heading
+'d individually, and must then be defined with one argument (it is the heading
 of the notice, for example <code class="docutils literal"><span class="pre">Warning:</span></code> for <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#warning">warning</a> directive, if
 English is the document language). Their default definitions use either the
 <em>sphinxheavybox</em> (for the first listed directives) or the <em>sphinxlightbox</em>
 environments, configured to use the parameters (colours, border thickness)
 specific to each type, which can be set via <code class="docutils literal"><span class="pre">'sphinxsetup'</span></code> string.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>use of public environment names, separate customizability of the
+<p><span class="versionmodified">버전 1.5으로 변경: </span>use of public environment names, separate customizability of the
 parameters, such as <code class="docutils literal"><span class="pre">noteBorderColor</span></code>, <code class="docutils literal"><span class="pre">noteborder</span></code>,
-<code class="docutils literal"><span class="pre">warningBgColor</span></code>, <code class="docutils literal"><span class="pre">warningBorderColor</span></code>, <code class="docutils literal"><span class="pre">warningborder</span></code>, …</p>
+<code class="docutils literal"><span class="pre">warningBgColor</span></code>, <code class="docutils literal"><span class="pre">warningBorderColor</span></code>, <code class="docutils literal"><span class="pre">warningborder</span></code>, ...</p>
 </div>
 </li>
 <li><p class="first">the <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#contents">contents</a> directive (with <code class="docutils literal"><span class="pre">:local:</span></code> option) and the
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#topic">topic</a> directive are implemented by environment <code class="docutils literal"><span class="pre">sphinxShadowBox</span></code>.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.4.2: </span>former code refactored into an environment allowing page breaks.</p>
+<p><span class="versionmodified">버전 1.4.2에 추가: </span>former code refactored into an environment allowing page breaks.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>options <code class="docutils literal"><span class="pre">shadowsep</span></code>, <code class="docutils literal"><span class="pre">shadowsize</span></code>,  <code class="docutils literal"><span class="pre">shadowrule</span></code>.</p>
+<p><span class="versionmodified">버전 1.5으로 변경: </span>options <code class="docutils literal"><span class="pre">shadowsep</span></code>, <code class="docutils literal"><span class="pre">shadowsize</span></code>,  <code class="docutils literal"><span class="pre">shadowrule</span></code>.</p>
 </div>
 </li>
 <li><p class="first">the literal blocks (via <code class="docutils literal"><span class="pre">::</span></code> or <a class="reference internal" href="markup/code_ko.html#directive-code-block" title="code-block directive"><code class="xref rst rst-dir docutils literal"><span class="pre">code-block</span></code></a>), are
@@ -541,12 +542,12 @@ pagebreaks. Inside tables the used
 environment is <code class="docutils literal"><span class="pre">sphinxVerbatimintable</span></code> (it does not draw a frame, but
 allows a caption).</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span><code class="docutils literal"><span class="pre">Verbatim</span></code> keeps exact same meaning as in <code class="docutils literal"><span class="pre">fancyvrb.sty</span></code> (also
+<p><span class="versionmodified">버전 1.5으로 변경: </span><code class="docutils literal"><span class="pre">Verbatim</span></code> keeps exact same meaning as in <code class="docutils literal"><span class="pre">fancyvrb.sty</span></code> (also
 under the name <code class="docutils literal"><span class="pre">OriginalVerbatim</span></code>); <code class="docutils literal"><span class="pre">sphinxVerbatimintable</span></code> is used
 inside tables.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5: </span>options <code class="docutils literal"><span class="pre">verbatimwithframe</span></code>, <code class="docutils literal"><span class="pre">verbatimwrapslines</span></code>,
+<p><span class="versionmodified">버전 1.5에 추가: </span>options <code class="docutils literal"><span class="pre">verbatimwithframe</span></code>, <code class="docutils literal"><span class="pre">verbatimwrapslines</span></code>,
 <code class="docutils literal"><span class="pre">verbatimsep</span></code>, <code class="docutils literal"><span class="pre">verbatimborder</span></code>.</p>
 </div>
 </li>
@@ -555,42 +556,42 @@ as well as the general index both use <code class="docutils literal"><span class
 are wrappers of the <code class="docutils literal"><span class="pre">thebibliography</span></code> and respectively <code class="docutils literal"><span class="pre">theindex</span></code>
 environments as provided by the document class (or packages).</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>formerly, the original environments were modified by Sphinx.</p>
+<p><span class="versionmodified">버전 1.5으로 변경: </span>formerly, the original environments were modified by Sphinx.</p>
 </div>
 </li>
 </ul>
 </div>
 <div class="section" id="miscellany">
-<h3>Miscellany<a class="headerlink" href="#miscellany" title="Permalink to this headline">¶</a></h3>
+<h3>Miscellany<a class="headerlink" href="#miscellany" title="제목 주소">¶</a></h3>
 <ul>
-<li><p class="first">the section, subsection, …  headings are set using  <em>titlesec</em>’s
+<li><p class="first">the section, subsection, ...  headings are set using  <em>titlesec</em>'s
 <code class="docutils literal"><span class="pre">\titleformat</span></code> command.</p>
 </li>
 <li><p class="first">for the <code class="docutils literal"><span class="pre">'manual'</span></code> docclass, the chapter headings can be customized using
-<em>fncychap</em>’s commands <code class="docutils literal"><span class="pre">\ChNameVar</span></code>, <code class="docutils literal"><span class="pre">\ChNumVar</span></code>, <code class="docutils literal"><span class="pre">\ChTitleVar</span></code>. File
+<em>fncychap</em>'s commands <code class="docutils literal"><span class="pre">\ChNameVar</span></code>, <code class="docutils literal"><span class="pre">\ChNumVar</span></code>, <code class="docutils literal"><span class="pre">\ChTitleVar</span></code>. File
 <code class="file docutils literal"><span class="pre">sphinx.sty</span></code> has custom re-definitions in case of <em>fncychap</em>
 option <code class="docutils literal"><span class="pre">Bjarne</span></code>.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span>formerly, use of <em>fncychap</em> with other styles than <code class="docutils literal"><span class="pre">Bjarne</span></code> was
+<p><span class="versionmodified">버전 1.5으로 변경: </span>formerly, use of <em>fncychap</em> with other styles than <code class="docutils literal"><span class="pre">Bjarne</span></code> was
 dysfunctional.</p>
 </div>
 </li>
-<li><p class="first">check file <code class="file docutils literal"><span class="pre">sphinx.sty</span></code> for more…</p>
+<li><p class="first">check file <code class="file docutils literal"><span class="pre">sphinx.sty</span></code> for more...</p>
 </li>
 </ul>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
+<p class="first admonition-title">힌트</p>
 <p>As an experimental feature, Sphinx can use user-defined template file for
 LaTeX source if you have a file named <code class="docutils literal"><span class="pre">_templates/latex.tex_t</span></code> in your
 project.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5: </span>currently all template variables are unstable and undocumented.</p>
+<p><span class="versionmodified">버전 1.5에 추가: </span>currently all template variables are unstable and undocumented.</p>
 </div>
 <p>Additional files <code class="docutils literal"><span class="pre">longtable.tex_t</span></code>, <code class="docutils literal"><span class="pre">tabulary.tex_t</span></code> and
 <code class="docutils literal"><span class="pre">tabular.tex_t</span></code> can be added to <code class="docutils literal"><span class="pre">_templates/</span></code> to configure some aspects
 of table rendering (such as the caption position).</p>
 <div class="last versionadded">
-<p><span class="versionmodified">New in version 1.6: </span>currently all template variables are unstable and undocumented.</p>
+<p><span class="versionmodified">버전 1.6에 추가: </span>currently all template variables are unstable and undocumented.</p>
 </div>
 </div>
 </div>
@@ -604,20 +605,20 @@ of table rendering (such as the caption position).</p>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="markdown.html" title="Markdown support"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="templating.html" title="Templating"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -625,7 +626,7 @@ of table rendering (such as the caption position).</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

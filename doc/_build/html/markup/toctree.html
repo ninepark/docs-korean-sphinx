@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>The TOC tree &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>The TOC tree &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="Paragraph-level markup" href="para.html" />
     <link rel="prev" title="Sphinx Markup Constructs" href="index.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="para.html" title="Paragraph-level markup"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="index.html" title="Sphinx Markup Constructs"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -104,7 +105,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <h3><a href="../contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">The TOC tree</a><ul>
 <li><a class="reference internal" href="#special-names">Special names</a></li>
@@ -112,24 +113,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Sphinx Markup Constructs</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">Sphinx Markup Constructs</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="para.html"
-                        title="next chapter">Paragraph-level markup</a></p>
+                        title="다음 장">Paragraph-level markup</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/markup/toctree.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -144,26 +145,26 @@
           <div class="body" role="main">
             
   <div class="section" id="the-toc-tree">
-<span id="toctree-directive"></span><h1>The TOC tree<a class="headerlink" href="#the-toc-tree" title="Permalink to this headline">¶</a></h1>
+<span id="toctree-directive"></span><h1>The TOC tree<a class="headerlink" href="#the-toc-tree" title="제목 주소">¶</a></h1>
 <p id="index-0">Since reST does not have facilities to interconnect several documents, or split
 documents into multiple output files, Sphinx uses a custom directive to add
 relations between the single files the documentation is made of, as well as
 tables of contents.  The <code class="docutils literal"><span class="pre">toctree</span></code> directive is the central element.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Simple “inclusion” of one file in another can be done with the
+<p class="first admonition-title">주석</p>
+<p class="last">Simple &quot;inclusion&quot; of one file in another can be done with the
 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#include">include</a> directive.</p>
 </div>
 <dl class="directive">
 <dt id="directive-toctree">
-<code class="descname">.. toctree::</code><a class="headerlink" href="#directive-toctree" title="Permalink to this definition">¶</a></dt>
-<dd><p>This directive inserts a “TOC tree” at the current location, using the
-individual TOCs (including “sub-TOC trees”) of the documents given in the
+<code class="descname">.. toctree::</code><a class="headerlink" href="#directive-toctree" title="정의 주소">¶</a></dt>
+<dd><p>This directive inserts a &quot;TOC tree&quot; at the current location, using the
+individual TOCs (including &quot;sub-TOC trees&quot;) of the documents given in the
 directive body.  Relative document names (not beginning with a slash) are
 relative to the document the directive occurs in, absolute names are relative
 to the source directory.  A numeric <code class="docutils literal"><span class="pre">maxdepth</span></code> option may be given to
 indicate the depth of the tree; by default, all levels are included. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
-<p>Consider this example (taken from the Python docs’ library reference index):</p>
+<p>Consider this example (taken from the Python docs' library reference index):</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
    <span class="nc">:maxdepth:</span> <span class="nf">2</span>
 
@@ -181,14 +182,14 @@ depth of two, that means one nested heading.  <code class="docutils literal"><sp
 those documents are also taken into account.</li>
 <li>Sphinx knows the relative order of the documents <code class="docutils literal"><span class="pre">intro</span></code>,
 <code class="docutils literal"><span class="pre">strings</span></code> and so forth, and it knows that they are children of the shown
-document, the library index.  From this information it generates “next
-chapter”, “previous chapter” and “parent chapter” links.</li>
+document, the library index.  From this information it generates &quot;next
+chapter&quot;, &quot;previous chapter&quot; and &quot;parent chapter&quot; links.</li>
 </ul>
 <p><strong>Entries</strong></p>
 <p>Document titles in the <a class="reference internal" href="toctree_ko.html#directive-toctree" title="toctree directive"><code class="xref rst rst-dir docutils literal"><span class="pre">toctree</span></code></a> will be automatically read from the
-title of the referenced document. If that isn’t what you want, you can
+title of the referenced document. If that isn't what you want, you can
 specify an explicit title and target using a similar syntax to reST
-hyperlinks (and Sphinx’s <a class="reference internal" href="inline_ko.html#xref-syntax"><span class="std std-ref">cross-referencing syntax</span></a>). This
+hyperlinks (and Sphinx's <a class="reference internal" href="inline_ko.html#xref-syntax"><span class="std std-ref">cross-referencing syntax</span></a>). This
 looks like:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
 
@@ -198,7 +199,7 @@ looks like:</p>
 </pre></div>
 </div>
 <p>The second line above will link to the <code class="docutils literal"><span class="pre">strings</span></code> document, but will use the
-title “All about strings” instead of the title of the <code class="docutils literal"><span class="pre">strings</span></code> document.</p>
+title &quot;All about strings&quot; instead of the title of the <code class="docutils literal"><span class="pre">strings</span></code> document.</p>
 <p>You can also add external links, by giving an HTTP URL instead of a document
 name.</p>
 <p><strong>Section numbering</strong></p>
@@ -212,7 +213,7 @@ name.</p>
 </pre></div>
 </div>
 <p>Numbering then starts at the heading of <code class="docutils literal"><span class="pre">foo</span></code>.  Sub-toctrees are
-automatically numbered (don’t give the <code class="docutils literal"><span class="pre">numbered</span></code> flag to those).</p>
+automatically numbered (don't give the <code class="docutils literal"><span class="pre">numbered</span></code> flag to those).</p>
 <p>Numbering up to a specific depth is also possible, by giving the depth as a
 numeric argument to <code class="docutils literal"><span class="pre">numbered</span></code>.</p>
 <p><strong>Additional options</strong></p>
@@ -235,7 +236,7 @@ headings of the same level, you can use the <code class="docutils literal"><span
    bar
 </pre></div>
 </div>
-<p>You can use “globbing” in toctree directives, by giving the <code class="docutils literal"><span class="pre">glob</span></code> flag
+<p>You can use &quot;globbing&quot; in toctree directives, by giving the <code class="docutils literal"><span class="pre">glob</span></code> flag
 option.  All entries are then matched against the list of available
 documents, and matches are inserted into the list alphabetically.  Example:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
@@ -250,7 +251,7 @@ documents, and matches are inserted into the list alphabetically.  Example:</p>
 documents in the <code class="docutils literal"><span class="pre">recipe</span></code> folder, then all remaining documents (except the
 one containing the directive, of course.) <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
 <p>The special entry name <code class="docutils literal"><span class="pre">self</span></code> stands for the document containing the
-toctree directive.  This is useful if you want to generate a “sitemap” from
+toctree directive.  This is useful if you want to generate a &quot;sitemap&quot; from
 the toctree.</p>
 <p>You can use the <code class="docutils literal"><span class="pre">reversed</span></code> flag option to reverse the order of the entries
 in the list. This can be useful when using the <code class="docutils literal"><span class="pre">glob</span></code> flag option to
@@ -262,7 +263,7 @@ reverse the ordering of the files.  Example:</p>
    recipe/*
 </pre></div>
 </div>
-<p>You can also give a “hidden” option to the directive, like this:</p>
+<p>You can also give a &quot;hidden&quot; option to the directive, like this:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
    <span class="nc">:hidden:</span>
 
@@ -271,11 +272,11 @@ reverse the ordering of the files.  Example:</p>
 </pre></div>
 </div>
 <p>This will still notify Sphinx of the document hierarchy, but not insert links
-into the document at the location of the directive – this makes sense if you
+into the document at the location of the directive -- this makes sense if you
 intend to insert these links yourself, in a different style, or in the HTML
 sidebar.</p>
 <p>In cases where you want to have only one top-level toctree and hide all other
-lower level toctrees you can add the “includehidden” option to the top-level
+lower level toctrees you can add the &quot;includehidden&quot; option to the top-level
 toctree entry:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
    <span class="nc">:includehidden:</span>
@@ -284,42 +285,42 @@ toctree entry:</p>
    doc_2
 </pre></div>
 </div>
-<p>All other toctree entries can then be eliminated by the “hidden” option.</p>
+<p>All other toctree entries can then be eliminated by the &quot;hidden&quot; option.</p>
 <p>In the end, all documents in the <a class="reference internal" href="../glossary.html#term-source-directory"><span class="xref std std-term">source directory</span></a> (or subdirectories)
 must occur in some <code class="docutils literal"><span class="pre">toctree</span></code> directive; Sphinx will emit a warning if it
 finds a file that is not included, because that means that this file will not
 be reachable through standard navigation.</p>
 <p>Use <a class="reference internal" href="../config.html#confval-exclude_patterns"><code class="xref std std-confval docutils literal"><span class="pre">exclude_patterns</span></code></a> to explicitly exclude documents or
-directories from building completely.  Use <a class="reference internal" href="misc_ko.html#metadata"><span class="std std-ref">the “orphan” metadata</span></a> to let a document be built, but notify Sphinx that it is not
+directories from building completely.  Use <a class="reference internal" href="misc_ko.html#metadata"><span class="std std-ref">the &quot;orphan&quot; metadata</span></a> to let a document be built, but notify Sphinx that it is not
 reachable via a toctree.</p>
-<p>The “master document” (selected by <a class="reference internal" href="../config.html#confval-master_doc"><code class="xref std std-confval docutils literal"><span class="pre">master_doc</span></code></a>) is the “root” of
-the TOC tree hierarchy.  It can be used as the documentation’s main page, or
-as a “full table of contents” if you don’t give a <code class="docutils literal"><span class="pre">maxdepth</span></code> option.</p>
+<p>The &quot;master document&quot; (selected by <a class="reference internal" href="../config.html#confval-master_doc"><code class="xref std std-confval docutils literal"><span class="pre">master_doc</span></code></a>) is the &quot;root&quot; of
+the TOC tree hierarchy.  It can be used as the documentation's main page, or
+as a &quot;full table of contents&quot; if you don't give a <code class="docutils literal"><span class="pre">maxdepth</span></code> option.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.3: </span>Added “globbing” option.</p>
+<p><span class="versionmodified">버전 0.3으로 변경: </span>Added &quot;globbing&quot; option.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 0.6: </span>Added “numbered” and “hidden” options as well as external links and
-support for “self” references.</p>
+<p><span class="versionmodified">버전 0.6으로 변경: </span>Added &quot;numbered&quot; and &quot;hidden&quot; options as well as external links and
+support for &quot;self&quot; references.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.0: </span>Added “titlesonly” option.</p>
+<p><span class="versionmodified">버전 1.0으로 변경: </span>Added &quot;titlesonly&quot; option.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.1: </span>Added numeric argument to “numbered”.</p>
+<p><span class="versionmodified">버전 1.1으로 변경: </span>Added numeric argument to &quot;numbered&quot;.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.2: </span>Added “includehidden” option.</p>
+<p><span class="versionmodified">버전 1.2으로 변경: </span>Added &quot;includehidden&quot; option.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.3: </span>Added “caption” and “name” option.</p>
+<p><span class="versionmodified">버전 1.3으로 변경: </span>Added &quot;caption&quot; and &quot;name&quot; option.</p>
 </div>
 </dd></dl>
 
 <div class="section" id="special-names">
-<h2>Special names<a class="headerlink" href="#special-names" title="Permalink to this headline">¶</a></h2>
+<h2>Special names<a class="headerlink" href="#special-names" title="제목 주소">¶</a></h2>
 <p>Sphinx reserves some document names for its own use; you should not try to
-create documents with these names – it will cause problems.</p>
+create documents with these names -- it will cause problems.</p>
 <p>The special document names (and pages generated for them) are:</p>
 <ul>
 <li><p class="first"><code class="docutils literal"><span class="pre">genindex</span></code>, <code class="docutils literal"><span class="pre">modindex</span></code>, <code class="docutils literal"><span class="pre">search</span></code></p>
@@ -340,7 +341,7 @@ a prefix for a custom template directory is fine.)</p>
 </li>
 </ul>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">경고</p>
 <p>Be careful with unusual characters in filenames.  Some formats may interpret
 these characters in unexpected ways:</p>
 <ul class="last simple">
@@ -363,7 +364,7 @@ directive in the document.</td></tr>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>A note on available globbing syntax: you can use the standard shell
 constructs <code class="docutils literal"><span class="pre">*</span></code>, <code class="docutils literal"><span class="pre">?</span></code>, <code class="docutils literal"><span class="pre">[...]</span></code> and <code class="docutils literal"><span class="pre">[!...]</span></code> with the feature that
-these all don’t match slashes.  A double star <code class="docutils literal"><span class="pre">**</span></code> can be used to match
+these all don't match slashes.  A double star <code class="docutils literal"><span class="pre">**</span></code> can be used to match
 any sequence of characters <em>including</em> slashes.</td></tr>
 </tbody>
 </table>
@@ -377,20 +378,20 @@ any sequence of characters <em>including</em> slashes.</td></tr>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="para.html" title="Paragraph-level markup"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="index.html" title="Sphinx Markup Constructs"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -399,7 +400,7 @@ any sequence of characters <em>including</em> slashes.</td></tr>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

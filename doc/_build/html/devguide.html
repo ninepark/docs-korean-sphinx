@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Sphinx Developer’s Guide &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>Sphinx Developer&#39;s Guide &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="색인" href="genindex.html" />
+    <link rel="search" title="검색" href="search.html" />
     <link rel="next" title="Changes in Sphinx" href="changes.html" />
     <link rel="prev" title="Glossary" href="glossary.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="changes.html" title="Changes in Sphinx"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="glossary.html" title="Glossary"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -103,9 +104,9 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <h3><a href="contents.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Sphinx Developer’s Guide</a><ul>
+<li><a class="reference internal" href="#">Sphinx Developer's Guide</a><ul>
 <li><a class="reference internal" href="#bug-reports-and-feature-requests">Bug Reports and Feature Requests</a></li>
 <li><a class="reference internal" href="#contributing-to-sphinx">Contributing to Sphinx</a><ul>
 <li><a class="reference internal" href="#getting-started">Getting Started</a></li>
@@ -124,24 +125,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="glossary.html"
-                        title="previous chapter">Glossary</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">Glossary</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="changes.html"
-                        title="next chapter">Changes in Sphinx</a></p>
+                        title="다음 장">Changes in Sphinx</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="_sources/devguide.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -156,7 +157,7 @@
           <div class="body" role="main">
             
   <div class="section" id="sphinx-developer-s-guide">
-<h1>Sphinx Developer’s Guide<a class="headerlink" href="#sphinx-developer-s-guide" title="Permalink to this headline">¶</a></h1>
+<h1>Sphinx Developer's Guide<a class="headerlink" href="#sphinx-developer-s-guide" title="제목 주소">¶</a></h1>
 <div class="topic">
 <p class="topic-title first">Abstract</p>
 <p>This document describes the development process of Sphinx, a documentation
@@ -194,7 +195,7 @@ develop other systems that may also be documented using Sphinx.</p>
 <dd>IRC channel for development questions and user support.</dd>
 </dl>
 <div class="section" id="bug-reports-and-feature-requests">
-<h2><a class="toc-backref" href="#id3">Bug Reports and Feature Requests</a><a class="headerlink" href="#bug-reports-and-feature-requests" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Bug Reports and Feature Requests</a><a class="headerlink" href="#bug-reports-and-feature-requests" title="제목 주소">¶</a></h2>
 <p>If you have encountered a problem with Sphinx or have an idea for a new
 feature, please submit it to the <a class="reference external" href="https://github.com/sphinx-doc/sphinx/issues">issue tracker</a> on GitHub or discuss it
 on the sphinx-dev mailing list.</p>
@@ -207,7 +208,7 @@ issue.  If possible, try to create a minimal project that produces the error
 and post that instead.</p>
 </div>
 <div class="section" id="contributing-to-sphinx">
-<h2><a class="toc-backref" href="#id4">Contributing to Sphinx</a><a class="headerlink" href="#contributing-to-sphinx" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Contributing to Sphinx</a><a class="headerlink" href="#contributing-to-sphinx" title="제목 주소">¶</a></h2>
 <p>The recommended way for new contributors to submit code to Sphinx is to fork
 the repository on GitHub and then submit a pull request after
 committing the changes.  The pull request will then need to be approved by one
@@ -227,7 +228,7 @@ published. Make sure to add yourself to <a class="reference external" href="http
 <a class="reference external" href="https://github.com/sphinx-doc/sphinx/blob/master/CHANGES">CHANGES</a>.</li>
 </ol>
 <div class="section" id="getting-started">
-<h3><a class="toc-backref" href="#id5">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Getting Started</a><a class="headerlink" href="#getting-started" title="제목 주소">¶</a></h3>
 <p>These are the basic steps needed to start developing on Sphinx.</p>
 <ol class="arabic">
 <li><p class="first">Create an account on GitHub.</p>
@@ -272,7 +273,7 @@ next major release, use the <code class="docutils literal"><span class="pre">mas
 </pre></div>
 </div>
 </li>
-<li><p class="first">Again, it’s useful to turn on deprecation warnings on so they’re shown in
+<li><p class="first">Again, it's useful to turn on deprecation warnings on so they're shown in
 the test output:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">PYTHONWARNINGS=all make test</span>
 </pre></div>
@@ -335,7 +336,7 @@ or <code class="docutils literal"><span class="pre">stable</span></code>) on <co
 </ol>
 </div>
 <div class="section" id="core-developers">
-<h3><a class="toc-backref" href="#id6">Core Developers</a><a class="headerlink" href="#core-developers" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Core Developers</a><a class="headerlink" href="#core-developers" title="제목 주소">¶</a></h3>
 <p>The core developers of Sphinx have write access to the main repository.  They
 can commit changes, accept/reject pull requests, and manage items on the issue
 tracker.</p>
@@ -354,7 +355,7 @@ author in the commit message and any relevant <code class="file docutils literal
 </ul>
 </div>
 <div class="section" id="locale-updates">
-<h3><a class="toc-backref" href="#id7">Locale updates</a><a class="headerlink" href="#locale-updates" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Locale updates</a><a class="headerlink" href="#locale-updates" title="제목 주소">¶</a></h3>
 <p>The parts of messages in Sphinx that go into builds are translated into several
 locales.  The translations are kept as gettext <code class="docutils literal"><span class="pre">.po</span></code> files translated from the
 master template <code class="docutils literal"><span class="pre">sphinx/locale/sphinx.pot</span></code>.</p>
@@ -371,10 +372,10 @@ template file.</li>
 <p>When an updated <code class="docutils literal"><span class="pre">.po</span></code> file is submitted, run compile_catalog to commit both
 the source and the compiled catalogs.</p>
 <p>When a new locale is submitted, add a new directory with the ISO 639-1 language
-identifier and put <code class="docutils literal"><span class="pre">sphinx.po</span></code> in there.  Don’t forget to update the possible
+identifier and put <code class="docutils literal"><span class="pre">sphinx.po</span></code> in there.  Don't forget to update the possible
 values for <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> in <code class="docutils literal"><span class="pre">doc/config.rst</span></code>.</p>
 <p>The Sphinx core messages can also be translated on <a class="reference external" href="https://www.transifex.com/">Transifex</a>.  There exists a client tool named <code class="docutils literal"><span class="pre">tx</span></code> in the
-Python package “transifex_client”, which can be used to pull translations in
+Python package &quot;transifex_client&quot;, which can be used to pull translations in
 <code class="docutils literal"><span class="pre">.po</span></code> format from Transifex.  To do this, go to <code class="docutils literal"><span class="pre">sphinx/locale</span></code> and then run
 <code class="docutils literal"><span class="pre">tx</span> <span class="pre">pull</span> <span class="pre">-f</span> <span class="pre">-l</span> <span class="pre">LANG</span></code> where LANG is an existing language identifier.  It is
 good practice to run <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">update_catalog</span></code> afterwards to make sure
@@ -382,7 +383,7 @@ the <code class="docutils literal"><span class="pre">.po</span></code> file has 
 </div>
 </div>
 <div class="section" id="coding-guide">
-<h2><a class="toc-backref" href="#id8">Coding Guide</a><a class="headerlink" href="#coding-guide" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Coding Guide</a><a class="headerlink" href="#coding-guide" title="제목 주소">¶</a></h2>
 <ul class="simple">
 <li>Try to use the same code style as used in the rest of the project.  See the
 <a class="reference external" href="http://flask.pocoo.org/docs/styleguide/">Pocoo Styleguide</a> for more information.</li>
@@ -392,13 +393,13 @@ changes alter existing behavior, please document this.</li>
 appropriate.  If possible, include a sample that is displayed in the
 generated output.</li>
 <li>When adding a new configuration variable, be sure to document it and update
-<code class="file docutils literal"><span class="pre">sphinx/quickstart.py</span></code> if it’s important enough.</li>
+<code class="file docutils literal"><span class="pre">sphinx/quickstart.py</span></code> if it's important enough.</li>
 <li>Use the included <strong class="program">utils/check_sources.py</strong> script to check for
 common formatting issues (trailing whitespace, lengthy lines, etc).</li>
 <li>Add appropriate unit tests.</li>
 </ul>
 <div class="section" id="debugging-tips">
-<h3><a class="toc-backref" href="#id9">Debugging Tips</a><a class="headerlink" href="#debugging-tips" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Debugging Tips</a><a class="headerlink" href="#debugging-tips" title="제목 주소">¶</a></h3>
 <ul>
 <li><p class="first">Delete the build cache before building documents if you make changes in the
 code by running the command <code class="docutils literal"><span class="pre">make</span> <span class="pre">clean</span></code> or using the
@@ -432,14 +433,14 @@ You can get the resulting JavaScript files using the following command:</p>
 </div>
 </div>
 <div class="section" id="deprecating-a-feature">
-<h2><a class="toc-backref" href="#id10">Deprecating a feature</a><a class="headerlink" href="#deprecating-a-feature" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Deprecating a feature</a><a class="headerlink" href="#deprecating-a-feature" title="제목 주소">¶</a></h2>
 <p>There are a couple reasons that code in Sphinx might be deprecated:</p>
 <ul class="simple">
 <li>If a feature has been improved or modified in a backwards-incompatible way,
 the old feature or behavior will be deprecated.</li>
-<li>Sometimes Sphinx will include a backport of a Python library that’s not
+<li>Sometimes Sphinx will include a backport of a Python library that's not
 included in a version of Python that Sphinx currently supports. When Sphinx
-no longer needs to support the older version of Python that doesn’t include
+no longer needs to support the older version of Python that doesn't include
 the library, the library will be deprecated in Sphinx.</li>
 </ul>
 <p>As the <a class="reference internal" href="#deprecation-policy"><span class="std std-ref">Deprecation policy</span></a> describes,
@@ -452,7 +453,7 @@ a <code class="docutils literal"><span class="pre">RemovedInSphinxXXWarning</spa
 generated when running the tests.</p>
 </div>
 <div class="section" id="deprecation-policy">
-<span id="id2"></span><h2><a class="toc-backref" href="#id11">Deprecation policy</a><a class="headerlink" href="#deprecation-policy" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><a class="toc-backref" href="#id11">Deprecation policy</a><a class="headerlink" href="#deprecation-policy" title="제목 주소">¶</a></h2>
 <p>A feature release may deprecate certain features from previous releases. If a
 feature is deprecated in feature release 1.A, it will continue to work in all
 1.A.x versions (for all versions of x) but raise warnings. Deprecated features
@@ -477,7 +478,7 @@ warnings with:</p>
 </ul>
 </div>
 <div class="section" id="unit-testing">
-<h2><a class="toc-backref" href="#id12">Unit Testing</a><a class="headerlink" href="#unit-testing" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Unit Testing</a><a class="headerlink" href="#unit-testing" title="제목 주소">¶</a></h2>
 <p>Sphinx has been tested with pytest runner. Sphinx developers write unit tests
 using pytest notation. Utility functions and pytest fixtures for testing are
 provided in <code class="docutils literal"><span class="pre">sphinx.testing</span></code>. If you are a developer of Sphinx extensions,
@@ -492,11 +493,11 @@ You can require <code class="docutils literal"><span class="pre">'sphinx.testing
 <p>If you want to know more detailed usage, please refer to <code class="docutils literal"><span class="pre">tests/conftest.py</span></code>
 and other <code class="docutils literal"><span class="pre">test_*.py</span></code> files under <code class="docutils literal"><span class="pre">tests</span></code> directory.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Prior to Sphinx - 1.5.2, Sphinx was running the test with nose.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6: </span><code class="docutils literal"><span class="pre">sphinx.testing</span></code> as a experimental.</p>
+<p><span class="versionmodified">버전 1.6에 추가: </span><code class="docutils literal"><span class="pre">sphinx.testing</span></code> as a experimental.</p>
 </div>
 </div>
 </div>
@@ -508,20 +509,20 @@ and other <code class="docutils literal"><span class="pre">test_*.py</span></cod
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="changes.html" title="Changes in Sphinx"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="glossary.html" title="Glossary"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
  
@@ -529,7 +530,7 @@ and other <code class="docutils literal"><span class="pre">test_*.py</span></cod
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

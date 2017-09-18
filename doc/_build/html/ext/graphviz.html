@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>sphinx.ext.graphviz – Add Graphviz graphs &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>sphinx.ext.graphviz -- Add Graphviz graphs &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,13 +21,14 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sphinx.ext.ifconfig – Include content based on configuration" href="ifconfig.html" />
-    <link rel="prev" title="sphinx.ext.githubpages – Publish HTML docs in GitHub Pages" href="githubpages.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
+    <link rel="next" title="sphinx.ext.ifconfig -- Include content based on configuration" href="ifconfig.html" />
+    <link rel="prev" title="sphinx.ext.githubpages -- Publish HTML docs in GitHub Pages" href="githubpages.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
-          <a href="ifconfig.html" title="sphinx.ext.ifconfig – Include content based on configuration"
-             accesskey="N">next</a> |</li>
+          <a href="ifconfig.html" title="sphinx.ext.ifconfig -- Include content based on configuration"
+             accesskey="N">다음</a> |</li>
         <li class="right" >
-          <a href="githubpages.html" title="sphinx.ext.githubpages – Publish HTML docs in GitHub Pages"
-             accesskey="P">previous</a> |</li>
+          <a href="githubpages.html" title="sphinx.ext.githubpages -- Publish HTML docs in GitHub Pages"
+             accesskey="P">이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -105,24 +106,24 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="githubpages.html"
-                        title="previous chapter"><code class="docutils literal"><span class="pre">sphinx.ext.githubpages</span></code> – Publish HTML docs in GitHub Pages</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장"><code class="docutils literal"><span class="pre">sphinx.ext.githubpages</span></code> -- Publish HTML docs in GitHub Pages</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="ifconfig.html"
-                        title="next chapter"><code class="docutils literal"><span class="pre">sphinx.ext.ifconfig</span></code> – Include content based on configuration</a></p>
+                        title="다음 장"><code class="docutils literal"><span class="pre">sphinx.ext.ifconfig</span></code> -- Include content based on configuration</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/ext/graphviz.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -137,16 +138,16 @@
           <div class="body" role="main">
             
   <div class="section" id="module-sphinx.ext.graphviz">
-<span id="sphinx-ext-graphviz-add-graphviz-graphs"></span><h1><a class="reference internal" href="#module-sphinx.ext.graphviz" title="sphinx.ext.graphviz: Support for Graphviz graphs."><code class="xref py py-mod docutils literal"><span class="pre">sphinx.ext.graphviz</span></code></a> – Add Graphviz graphs<a class="headerlink" href="#module-sphinx.ext.graphviz" title="Permalink to this headline">¶</a></h1>
+<span id="sphinx-ext-graphviz-add-graphviz-graphs"></span><h1><a class="reference internal" href="#module-sphinx.ext.graphviz" title="sphinx.ext.graphviz: Support for Graphviz graphs."><code class="xref py py-mod docutils literal"><span class="pre">sphinx.ext.graphviz</span></code></a> -- Add Graphviz graphs<a class="headerlink" href="#module-sphinx.ext.graphviz" title="제목 주소">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 <p>This extension allows you to embed <a class="reference external" href="http://graphviz.org/">Graphviz</a> graphs in
 your documents.</p>
 <p>It adds these directives:</p>
 <dl class="directive">
 <dt id="directive-graphviz">
-<code class="descname">.. graphviz::</code><a class="headerlink" href="#directive-graphviz" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. graphviz::</code><a class="headerlink" href="#directive-graphviz" title="정의 주소">¶</a></dt>
 <dd><p>Directive to embed graphviz code.  The input code for <code class="docutils literal"><span class="pre">dot</span></code> is given as the
 content.  For example:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">graphviz</span><span class="p">::</span>
@@ -167,13 +168,13 @@ argument to <a class="reference internal" href="#directive-graphviz" title="grap
 <p>As for all file references in Sphinx, if the filename is absolute, it is
 taken as relative to the source directory.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.1: </span>Added support for external files.</p>
+<p><span class="versionmodified">버전 1.1으로 변경: </span>Added support for external files.</p>
 </div>
 </dd></dl>
 
 <dl class="directive">
 <dt id="directive-graph">
-<code class="descname">.. graph::</code><a class="headerlink" href="#directive-graph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. graph::</code><a class="headerlink" href="#directive-graph" title="정의 주소">¶</a></dt>
 <dd><p>Directive for embedding a single undirected graph.  The name is given as a
 directive argument, the contents of the graph are the directive content.
 This is a convenience directive to generate <code class="docutils literal"><span class="pre">graph</span> <span class="pre">&lt;name&gt;</span> <span class="pre">{</span> <span class="pre">&lt;content&gt;</span> <span class="pre">}</span></code>.</p>
@@ -184,7 +185,7 @@ This is a convenience directive to generate <code class="docutils literal"><span
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">The graph name is passed unchanged to Graphviz.  If it contains
 non-alphanumeric characters (e.g. a dash), you will have to double-quote
 it.</p>
@@ -193,7 +194,7 @@ it.</p>
 
 <dl class="directive">
 <dt id="directive-digraph">
-<code class="descname">.. digraph::</code><a class="headerlink" href="#directive-digraph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">.. digraph::</code><a class="headerlink" href="#directive-digraph" title="정의 주소">¶</a></dt>
 <dd><p>Directive for embedding a single directed graph.  The name is given as a
 directive argument, the contents of the graph are the directive content.
 This is a convenience directive to generate <code class="docutils literal"><span class="pre">digraph</span> <span class="pre">&lt;name&gt;</span> <span class="pre">{</span> <span class="pre">&lt;content&gt;</span> <span class="pre">}</span></code>.</p>
@@ -206,29 +207,29 @@ This is a convenience directive to generate <code class="docutils literal"><span
 </dd></dl>
 
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.0: </span>All three directives support an <code class="docutils literal"><span class="pre">alt</span></code> option that determines the image’s
+<p><span class="versionmodified">버전 1.0에 추가: </span>All three directives support an <code class="docutils literal"><span class="pre">alt</span></code> option that determines the image's
 alternate text for HTML output.  If not given, the alternate text defaults to
 the graphviz code.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.1: </span>All three directives support a <code class="docutils literal"><span class="pre">caption</span></code> option that can be used to give a
+<p><span class="versionmodified">버전 1.1에 추가: </span>All three directives support a <code class="docutils literal"><span class="pre">caption</span></code> option that can be used to give a
 caption to the diagram.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.4: </span>All three directives support a <code class="docutils literal"><span class="pre">graphviz_dot</span></code> option that can be switch the
+<p><span class="versionmodified">버전 1.4으로 변경: </span>All three directives support a <code class="docutils literal"><span class="pre">graphviz_dot</span></code> option that can be switch the
 <code class="docutils literal"><span class="pre">dot</span></code> command within the directive.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.5: </span>All three directives support a <code class="docutils literal"><span class="pre">align</span></code> option to align the graph horizontal.
-The values “left”, “center”, “right” are allowed.</p>
+<p><span class="versionmodified">버전 1.5에 추가: </span>All three directives support a <code class="docutils literal"><span class="pre">align</span></code> option to align the graph horizontal.
+The values &quot;left&quot;, &quot;center&quot;, &quot;right&quot; are allowed.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.6: </span>All three directives support a <code class="docutils literal"><span class="pre">name</span></code> option to set the label to graph.</p>
+<p><span class="versionmodified">버전 1.6에 추가: </span>All three directives support a <code class="docutils literal"><span class="pre">name</span></code> option to set the label to graph.</p>
 </div>
 <p>There are also these new config values:</p>
 <dl class="confval">
 <dt id="confval-graphviz_dot">
-<code class="descname">graphviz_dot</code><a class="headerlink" href="#confval-graphviz_dot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">graphviz_dot</code><a class="headerlink" href="#confval-graphviz_dot" title="정의 주소">¶</a></dt>
 <dd><p>The command name with which to invoke <code class="docutils literal"><span class="pre">dot</span></code>.  The default is <code class="docutils literal"><span class="pre">'dot'</span></code>; you
 may need to set this to a full path if <code class="docutils literal"><span class="pre">dot</span></code> is not in the executable
 search path.</p>
@@ -243,15 +244,15 @@ option should be preferable, like this:</p>
 
 <dl class="confval">
 <dt id="confval-graphviz_dot_args">
-<code class="descname">graphviz_dot_args</code><a class="headerlink" href="#confval-graphviz_dot_args" title="Permalink to this definition">¶</a></dt>
+<code class="descname">graphviz_dot_args</code><a class="headerlink" href="#confval-graphviz_dot_args" title="정의 주소">¶</a></dt>
 <dd><p>Additional command-line arguments to give to dot, as a list.  The default is
 an empty list.  This is the right place to set global graph, node or edge
-attributes via dot’s <code class="docutils literal"><span class="pre">-G</span></code>, <code class="docutils literal"><span class="pre">-N</span></code> and <code class="docutils literal"><span class="pre">-E</span></code> options.</p>
+attributes via dot's <code class="docutils literal"><span class="pre">-G</span></code>, <code class="docutils literal"><span class="pre">-N</span></code> and <code class="docutils literal"><span class="pre">-E</span></code> options.</p>
 </dd></dl>
 
 <dl class="confval">
 <dt id="confval-graphviz_output_format">
-<code class="descname">graphviz_output_format</code><a class="headerlink" href="#confval-graphviz_output_format" title="Permalink to this definition">¶</a></dt>
+<code class="descname">graphviz_output_format</code><a class="headerlink" href="#confval-graphviz_output_format" title="정의 주소">¶</a></dt>
 <dd><p>The output format for Graphviz when building HTML files.  This must be either
 <code class="docutils literal"><span class="pre">'png'</span></code> or <code class="docutils literal"><span class="pre">'svg'</span></code>; the default is <code class="docutils literal"><span class="pre">'png'</span></code>. If <code class="docutils literal"><span class="pre">'svg'</span></code> is used, in
 order to make the URL links work properly, an appropriate <code class="docutils literal"><span class="pre">target</span></code>
@@ -267,7 +268,7 @@ link in the following graph should work in the svg output:</p>
 </pre></div>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.0: </span>Previously, output always was PNG.</p>
+<p><span class="versionmodified">버전 1.0에 추가: </span>Previously, output always was PNG.</p>
 </div>
 </dd></dl>
 
@@ -280,20 +281,20 @@ link in the following graph should work in the svg output:</p>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
-          <a href="ifconfig.html" title="sphinx.ext.ifconfig – Include content based on configuration"
-             >next</a> |</li>
+          <a href="ifconfig.html" title="sphinx.ext.ifconfig -- Include content based on configuration"
+             >다음</a> |</li>
         <li class="right" >
-          <a href="githubpages.html" title="sphinx.ext.githubpages – Publish HTML docs in GitHub Pages"
-             >previous</a> |</li>
+          <a href="githubpages.html" title="sphinx.ext.githubpages -- Publish HTML docs in GitHub Pages"
+             >이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -303,7 +304,7 @@ link in the following graph should work in the svg output:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

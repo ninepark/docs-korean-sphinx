@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Tutorial: Writing a simple extension &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>Tutorial: Writing a simple extension &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link rel="next" title="Application API" href="appapi.html" />
     <link rel="prev" title="Developing extensions for Sphinx" href="index.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
@@ -82,20 +83,20 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="appapi.html" title="Application API"
-             accesskey="N">next</a> |</li>
+             accesskey="N">다음</a> |</li>
         <li class="right" >
           <a href="index.html" title="Developing extensions for Sphinx"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -104,7 +105,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <h3><a href="../contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Tutorial: Writing a simple extension</a><ul>
 <li><a class="reference internal" href="#important-objects">Important objects</a></li>
@@ -118,24 +119,24 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
+  <h4>이전 항목</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Developing extensions for Sphinx</a></p>
-  <h4>Next topic</h4>
+                        title="이전 장">Developing extensions for Sphinx</a></p>
+  <h4>다음 항목</h4>
   <p class="topless"><a href="appapi.html"
-                        title="next chapter">Application API</a></p>
+                        title="다음 장">Application API</a></p>
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/extdev/tutorial.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -150,15 +151,15 @@
           <div class="body" role="main">
             
   <div class="section" id="tutorial-writing-a-simple-extension">
-<span id="exttut"></span><h1>Tutorial: Writing a simple extension<a class="headerlink" href="#tutorial-writing-a-simple-extension" title="Permalink to this headline">¶</a></h1>
+<span id="exttut"></span><h1>Tutorial: Writing a simple extension<a class="headerlink" href="#tutorial-writing-a-simple-extension" title="제목 주소">¶</a></h1>
 <p>This section is intended as a walkthrough for the creation of custom extensions.
 It covers the basics of writing and activating an extension, as well as
 commonly used features of extensions.</p>
-<p>As an example, we will cover a “todo” extension that adds capabilities to
+<p>As an example, we will cover a &quot;todo&quot; extension that adds capabilities to
 include todo entries in the documentation, and to collect these in a central
-place.  (A similar “todo” extension is distributed with Sphinx.)</p>
+place.  (A similar &quot;todo&quot; extension is distributed with Sphinx.)</p>
 <div class="section" id="important-objects">
-<h2>Important objects<a class="headerlink" href="#important-objects" title="Permalink to this headline">¶</a></h2>
+<h2>Important objects<a class="headerlink" href="#important-objects" title="제목 주소">¶</a></h2>
 <p>There are several key objects whose API you will use while writing an
 extension.  These are:</p>
 <dl class="docutils">
@@ -197,7 +198,7 @@ of <a class="reference internal" href="appapi.html#sphinx.config.Config" title="
 </dl>
 </div>
 <div class="section" id="build-phases">
-<h2>Build Phases<a class="headerlink" href="#build-phases" title="Permalink to this headline">¶</a></h2>
+<h2>Build Phases<a class="headerlink" href="#build-phases" title="제목 주소">¶</a></h2>
 <p>One thing that is vital in order to understand extension mechanisms is the way
 in which a Sphinx project is built: this works in several phases.</p>
 <p><strong>Phase 0: Initialization</strong></p>
@@ -212,7 +213,7 @@ created.</div></blockquote>
 changed) are read and parsed.  This is the phase where directives and roles
 are encountered by docutils, and the corresponding code is executed.  The
 output of this phase is a <em>doctree</em> for each source file; that is a tree of
-docutils nodes.  For document elements that aren’t fully known until all
+docutils nodes.  For document elements that aren't fully known until all
 existing files are read, temporary nodes are created.</p>
 <p>There are nodes provided by docutils, which are documented <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/doctree.html">in the docutils
 documentation</a>.
@@ -233,34 +234,34 @@ hold all of them in memory.</p>
 known, all temporary nodes are replaced by nodes that can be converted into
 output using components called tranform.  For example, links are created for
 object references that exist, and simple literal nodes are created for those
-that don’t.</div></blockquote>
+that don't.</div></blockquote>
 <p><strong>Phase 4: Writing</strong></p>
 <blockquote>
 <div>This phase converts the resolved doctrees to the desired output format, such
 as HTML or LaTeX.  This happens via a so-called docutils writer that visits
 the individual nodes of each doctree and produces some output in the process.</div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Some builders deviate from this general build plan, for example, the builder
 that checks external links does not need anything more than the parsed
-doctrees and therefore does not have phases 2–4.</p>
+doctrees and therefore does not have phases 2--4.</p>
 </div>
 </div>
 <div class="section" id="extension-design">
-<h2>Extension Design<a class="headerlink" href="#extension-design" title="Permalink to this headline">¶</a></h2>
+<h2>Extension Design<a class="headerlink" href="#extension-design" title="제목 주소">¶</a></h2>
 <p>We want the extension to add the following to Sphinx:</p>
 <ul class="simple">
-<li>A “todo” directive, containing some content that is marked with “TODO”, and
+<li>A &quot;todo&quot; directive, containing some content that is marked with &quot;TODO&quot;, and
 only shown in the output if a new config value is set.  (Todo entries should
 not be in the output by default.)</li>
-<li>A “todolist” directive that creates a list of all todo entries throughout the
+<li>A &quot;todolist&quot; directive that creates a list of all todo entries throughout the
 documentation.</li>
 </ul>
 <p>For that, we will need to add the following elements to Sphinx:</p>
 <ul class="simple">
 <li>New directives, called <code class="docutils literal"><span class="pre">todo</span></code> and <code class="docutils literal"><span class="pre">todolist</span></code>.</li>
 <li>New document tree nodes to represent these directives, conventionally also
-called <code class="docutils literal"><span class="pre">todo</span></code> and <code class="docutils literal"><span class="pre">todolist</span></code>.  We wouldn’t need new nodes if the new
+called <code class="docutils literal"><span class="pre">todo</span></code> and <code class="docutils literal"><span class="pre">todolist</span></code>.  We wouldn't need new nodes if the new
 directives only produced some content representable by existing nodes.</li>
 <li>A new config value <code class="docutils literal"><span class="pre">todo_include_todos</span></code> (config value names should start
 with the extension name, in order to stay unique) that controls whether todo
@@ -271,8 +272,8 @@ for that will be covered later).</li>
 </ul>
 </div>
 <div class="section" id="the-setup-function">
-<h2>The Setup Function<a class="headerlink" href="#the-setup-function" title="Permalink to this headline">¶</a></h2>
-<p>The new elements are added in the extension’s setup function.  Let us create a
+<h2>The Setup Function<a class="headerlink" href="#the-setup-function" title="제목 주소">¶</a></h2>
+<p>The new elements are added in the extension's setup function.  Let us create a
 new Python module called <code class="file docutils literal"><span class="pre">todo.py</span></code> and add the setup function:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="n">app</span><span class="o">.</span><span class="n">add_config_value</span><span class="p">(</span><span class="s1">&#39;todo_include_todos&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">)</span>
@@ -303,8 +304,8 @@ influence reading (build phase 1).</p>
 </li>
 <li><p class="first"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_node" title="sphinx.application.Sphinx.add_node"><code class="xref py py-meth docutils literal"><span class="pre">add_node()</span></code></a> adds a new <em>node class</em> to the build system.  It also
 can specify visitor functions for each supported output format.  These visitor
-functions are needed when the new nodes stay until phase 4 – since the
-<code class="docutils literal"><span class="pre">todolist</span></code> node is always replaced in phase 3, it doesn’t need any.</p>
+functions are needed when the new nodes stay until phase 4 -- since the
+<code class="docutils literal"><span class="pre">todolist</span></code> node is always replaced in phase 3, it doesn't need any.</p>
 <p>We need to create the two node classes <code class="docutils literal"><span class="pre">todo</span></code> and <code class="docutils literal"><span class="pre">todolist</span></code> later.</p>
 </li>
 <li><p class="first"><a class="reference internal" href="appapi.html#sphinx.application.Sphinx.add_directive" title="sphinx.application.Sphinx.add_directive"><code class="xref py py-meth docutils literal"><span class="pre">add_directive()</span></code></a> adds a new <em>directive</em>, given by name and class.</p>
@@ -317,8 +318,8 @@ with several arguments which are documented with the event.</p>
 </ul>
 </div>
 <div class="section" id="the-node-classes">
-<h2>The Node Classes<a class="headerlink" href="#the-node-classes" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start with the node classes:</p>
+<h2>The Node Classes<a class="headerlink" href="#the-node-classes" title="제목 주소">¶</a></h2>
+<p>Let's start with the node classes:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docutils</span> <span class="k">import</span> <span class="n">nodes</span>
 
 <span class="k">class</span> <span class="nc">todo</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Admonition</span><span class="p">,</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Element</span><span class="p">):</span>
@@ -334,18 +335,18 @@ with several arguments which are documented with the event.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">depart_admonition</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Node classes usually don’t have to do anything except inherit from the standard
+<p>Node classes usually don't have to do anything except inherit from the standard
 docutils classes defined in <code class="xref py py-mod docutils literal"><span class="pre">docutils.nodes</span></code>.  <code class="docutils literal"><span class="pre">todo</span></code> inherits from
 <code class="docutils literal"><span class="pre">Admonition</span></code> because it should be handled like a note or warning, <code class="docutils literal"><span class="pre">todolist</span></code>
-is just a “general” node.</p>
+is just a &quot;general&quot; node.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Many extensions will not have to create their own node classes and work fine
 with the nodes already provided by <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/doctree.html">docutils</a> and <a class="reference internal" href="nodes.html#nodes"><span class="std std-ref">Sphinx</span></a>.</p>
 </div>
 </div>
 <div class="section" id="the-directive-classes">
-<h2>The Directive Classes<a class="headerlink" href="#the-directive-classes" title="Permalink to this headline">¶</a></h2>
+<h2>The Directive Classes<a class="headerlink" href="#the-directive-classes" title="제목 주소">¶</a></h2>
 <p>A directive class is a class deriving usually from
 <a class="reference internal" href="markupapi.html#docutils.parsers.rst.Directive" title="docutils.parsers.rst.Directive"><code class="xref py py-class docutils literal"><span class="pre">docutils.parsers.rst.Directive</span></code></a>.  The directive interface is also
 covered in detail in the <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html">docutils documentation</a>; the important thing is that
@@ -410,7 +411,7 @@ where the author puts a <code class="docutils literal"><span class="pre">todolis
 attribute <code class="docutils literal"><span class="pre">todo_all_todos</span></code> is used (again, the name should be unique, so it is
 prefixed by the extension name).  It does not exist when a new environment is
 created, so the directive must check and create it if necessary.  Various
-information about the todo entry’s location are stored along with a copy of the
+information about the todo entry's location are stored along with a copy of the
 node.</p>
 <p>In the last line, the nodes that should be put into the doctree are returned:
 the target node and the admonition node.</p>
@@ -432,8 +433,8 @@ the target node and the admonition node.</p>
 </div>
 </div>
 <div class="section" id="the-event-handlers">
-<h2>The Event Handlers<a class="headerlink" href="#the-event-handlers" title="Permalink to this headline">¶</a></h2>
-<p>Finally, let’s look at the event handlers.  First, the one for the
+<h2>The Event Handlers<a class="headerlink" href="#the-event-handlers" title="제목 주소">¶</a></h2>
+<p>Finally, let's look at the event handlers.  First, the one for the
 <a class="reference internal" href="appapi.html#event-env-purge-doc"><code class="xref std std-event docutils literal"><span class="pre">env-purge-doc</span></code></a> event:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">purge_todos</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">docname</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;todo_all_todos&#39;</span><span class="p">):</span>
@@ -444,7 +445,7 @@ the target node and the admonition node.</p>
 </div>
 <p>Since we store information from source files in the environment, which is
 persistent, it may become out of date when the source file changes.  Therefore,
-before each source file is read, the environment’s records of it are cleared,
+before each source file is read, the environment's records of it are cleared,
 and the <a class="reference internal" href="appapi.html#event-env-purge-doc"><code class="xref std std-event docutils literal"><span class="pre">env-purge-doc</span></code></a> event gives extensions a chance to do the same.
 Here we clear out all todos whose docname matches the given one from the
 <code class="docutils literal"><span class="pre">todo_all_todos</span></code> list.  If there are todos left in the document, they will be
@@ -493,7 +494,7 @@ emitted at the end of phase 3 and allows custom resolving to be done:</p>
         <span class="n">node</span><span class="o">.</span><span class="n">replace_self</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It is a bit more involved.  If our new “todo_include_todos” config value is
+<p>It is a bit more involved.  If our new &quot;todo_include_todos&quot; config value is
 false, all todo and todolist nodes are removed from the documents.</p>
 <p>If not, todo nodes just stay where and how they are.  Todolist nodes are
 replaced by a list of todo entries, complete with backlinks to the location
@@ -502,7 +503,7 @@ entry and docutils nodes created on the fly: a paragraph for each entry,
 containing text that gives the location, and a link (reference node containing
 an italic node) with the backreference.  The reference URI is built by
 <code class="docutils literal"><span class="pre">app.builder.get_relative_uri</span></code> which creates a suitable URI depending on the
-used builder, and appending the todo node’s (the target’s) ID as the anchor
+used builder, and appending the todo node's (the target's) ID as the anchor
 name.</p>
 </div>
 </div>
@@ -514,20 +515,20 @@ name.</p>
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li class="right" >
           <a href="appapi.html" title="Application API"
-             >next</a> |</li>
+             >다음</a> |</li>
         <li class="right" >
           <a href="index.html" title="Developing extensions for Sphinx"
-             >previous</a> |</li>
+             >이전</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
 
@@ -536,7 +537,7 @@ name.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>

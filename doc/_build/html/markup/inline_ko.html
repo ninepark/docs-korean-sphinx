@@ -2,16 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Inline markup &#8212; Sphinx 1.7+/90783791 documentation</title>
+    <title>Inline markup &#8212; Sphinx 1.7+/b1277403 documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/90783791',
+        VERSION:     '1.7+/b1277403',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -21,11 +21,12 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Sphinx 1.7+/90783791 documentation"
+          title="Sphinx 1.7+/b1277403 documentation에서 찾기"
           href="../_static/opensearch.xml"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="색인" href="../genindex.html" />
+    <link rel="search" title="검색" href="../search.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -80,14 +81,14 @@
 </div>
 
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
+             accesskey="I">색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
  
@@ -95,7 +96,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <h3><a href="../contents.html">목차</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Inline markup</a><ul>
 <li><a class="reference internal" href="#cross-referencing-syntax">Cross-referencing syntax</a><ul>
@@ -115,17 +116,17 @@
 </ul>
 
   <div role="note" aria-label="source link">
-    <h3>This Page</h3>
+    <h3>현재 문서</h3>
     <ul class="this-page-menu">
       <li><a href="../_sources/markup/inline_ko.rst.txt"
-            rel="nofollow">Show Source</a></li>
+            rel="nofollow">소스 코드를 보려면</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3>빠른 검색</h3>
     <form class="search" action="../search.html" method="get">
       <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <div><input type="submit" value="바로 가기" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -140,11 +141,11 @@
           <div class="body" role="main">
             
   <div class="section" id="inline-markup">
-<span id="id1"></span><h1>Inline markup<a class="headerlink" href="#inline-markup" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Inline markup<a class="headerlink" href="#inline-markup" title="제목 주소">¶</a></h1>
 <p>Sphinx는 interpreted text role(역할)을 사용하여 semantic markup을 문서에 삽입한다.
 그들은 <code class="docutils literal"><span class="pre">:rolename:`content`</span></code> 형태로 쓰여진다.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Default role인 <code class="docutils literal"><span class="pre">`content`</span></code> 는 기본적으로 특별한 의미가 없다. 원하는대로 자유롭게 사용해도
 된다. (예: 변수 이름) <a class="reference internal" href="../config.html#confval-default_role"><code class="xref std std-confval docutils literal"><span class="pre">default_role</span></code></a> 설정값을 이용하여 이미 정의된 role로
 설정하는게 가능하다. (예: <a class="reference internal" href="#role-any" title="any role"><code class="xref rst rst-role docutils literal"><span class="pre">any</span></code></a> role을 사용하여 검색을 하거나
@@ -152,7 +153,7 @@
 </div>
 <p>Domain에 의해 추가된 role에 대해서는 <a class="reference internal" href="../domains_ko.html#domains"><span class="std std-ref">Sphinx Domains</span></a> 참조한다.</p>
 <div class="section" id="cross-referencing-syntax">
-<span id="xref-syntax"></span><h2>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="Permalink to this headline">¶</a></h2>
+<span id="xref-syntax"></span><h2>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="제목 주소">¶</a></h2>
 <p>Cross-reference(상호참조)는 여러 semantic interpreted text role에 의해 생성된다.
 기본적으로, <code class="docutils literal"><span class="pre">:role:`target`</span></code> 의 형식으로 쓰면 <em>role</em> 의 type을 가지며 <em>target</em> 이라는
 이름을 가지는 항목에 링크가 생성된다. 이 때, 링크 텍스트는 <em>target</em> 과 동일하다.</p>
@@ -173,12 +174,12 @@
 </li>
 </ul>
 <div class="section" id="cross-referencing-anything">
-<span id="any-role"></span><h3>Cross-referencing anything<a class="headerlink" href="#cross-referencing-anything" title="Permalink to this headline">¶</a></h3>
+<span id="any-role"></span><h3>Cross-referencing anything<a class="headerlink" href="#cross-referencing-anything" title="제목 주소">¶</a></h3>
 <dl class="role">
 <dt id="role-any">
-<code class="descname">:any:</code><a class="headerlink" href="#role-any" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:any:</code><a class="headerlink" href="#role-any" title="정의 주소">¶</a></dt>
 <dd><div class="versionadded">
-<p><span class="versionmodified">New in version 1.3.</span></p>
+<p><span class="versionmodified">버전 1.3에 추가.</span></p>
 </div>
 <p>이 편리한 role은 참조되는 텍스트에 대해 유효한 target을 찾기 위해 최선을 다한다.</p>
 <ul>
@@ -192,7 +193,7 @@
 <code class="docutils literal"><span class="pre">sphinx.builders.Builder</span></code> class를 찾아낸다.</p>
 </li>
 </ul>
-<p>대상이 하나도 없거나 여러 개인 경우 경고가 발생한다. 여러 대상의 경우 “any”를 특정 role로 변경할
+<p>대상이 하나도 없거나 여러 개인 경우 경고가 발생한다. 여러 대상의 경우 &quot;any&quot;를 특정 role로 변경할
 수 있다.</p>
 <p>이 role은 <a class="reference internal" href="../config.html#confval-default_role"><code class="xref std std-confval docutils literal"><span class="pre">default_role</span></code></a> 로 설정하기에 적합하다. Markup에 overhead가
 별로 없이 많은 cross-reference를 작성할 수 있기 때문이다. 예를 들어, 아래의 Python
@@ -213,7 +214,7 @@ inventory도 검색된다.</p>
 
 </div>
 <div class="section" id="cross-referencing-objects">
-<h3>Cross-referencing objects<a class="headerlink" href="#cross-referencing-objects" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-referencing objects<a class="headerlink" href="#cross-referencing-objects" title="제목 주소">¶</a></h3>
 <p>아래의 role들은 해당 domain과 함께 설명되어있다:</p>
 <ul class="simple">
 <li><a class="reference internal" href="../domains_ko.html#python-roles"><span class="std std-ref">Python</span></a></li>
@@ -224,10 +225,10 @@ inventory도 검색된다.</p>
 </ul>
 </div>
 <div class="section" id="cross-referencing-arbitrary-locations">
-<span id="ref-role"></span><h3>Cross-referencing arbitrary locations<a class="headerlink" href="#cross-referencing-arbitrary-locations" title="Permalink to this headline">¶</a></h3>
+<span id="ref-role"></span><h3>Cross-referencing arbitrary locations<a class="headerlink" href="#cross-referencing-arbitrary-locations" title="제목 주소">¶</a></h3>
 <dl class="role">
 <dt id="role-ref">
-<code class="descname">:ref:</code><a class="headerlink" href="#role-ref" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:ref:</code><a class="headerlink" href="#role-ref" title="정의 주소">¶</a></dt>
 <dd><p>모든 문서에서 임의의 위치에 대한 cross-reference를 지원하기 위해서 표준 reST label이 사용된다.
 이를 위해 label 이름은 전체 문서에서 고유해야 한다. Label 참조에는 두 가지 방법이 있다:</p>
 <ul>
@@ -243,8 +244,8 @@ This is the text of the section.
 It refers to the section itself, see <span class="na">:ref:</span><span class="nv">`my-reference-label`</span>.
 </pre></div>
 </div>
-<p>그런 다음 <code class="docutils literal"><span class="pre">:ref:</span></code> role은 section에 대한 링크를 생성하고, 링크 제목은 “Section to
-cross-reference”가 된다. 심지어 section과 reference가 다른 소스 파일에 있어도 된다.</p>
+<p>그런 다음 <code class="docutils literal"><span class="pre">:ref:</span></code> role은 section에 대한 링크를 생성하고, 링크 제목은 &quot;Section to
+cross-reference&quot;가 된다. 심지어 section과 reference가 다른 소스 파일에 있어도 된다.</p>
 <p>자동 label은 figure(삽화/도표)에도 사용 가능하다. 다음과 같이 주어졌을 경우:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_my-figure:</span>
 
@@ -253,7 +254,7 @@ cross-reference”가 된다. 심지어 section과 reference가 다른 소스 �
    Figure caption
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">:ref:`my-figure</span></code> reference는 링크 텍스트 “Figure caption”과 함께 그림에 대한
+<p><code class="docutils literal"><span class="pre">:ref:`my-figure</span></code> reference는 링크 텍스트 &quot;Figure caption&quot;과 함께 그림에 대한
 reference를 삽입한다.</p>
 <p>이는 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#table">table</a> directive를 사용한 table에 대해서도 caption을 명시하였다면,
 마찬가지로 작동한다.</p>
@@ -263,7 +264,7 @@ reference를 삽입한다.</p>
 </li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">주석</p>
 <p class="last">Reference label은 underscore(<code class="docutils literal"><span class="pre">_</span></code>)로 시작해야 한다. 하지만 label을 참조 할 때에는
 underscore를 생략 해야 한다. (위의 예시 참조)</p>
 </div>
@@ -274,14 +275,14 @@ underscore를 생략 해야 한다. (위의 예시 참조)</p>
 
 </div>
 <div class="section" id="cross-referencing-documents">
-<h3>Cross-referencing documents<a class="headerlink" href="#cross-referencing-documents" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-referencing documents<a class="headerlink" href="#cross-referencing-documents" title="제목 주소">¶</a></h3>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 <p>문서에 직접 링크하는 방법도 있다.</p>
 <dl class="role">
 <dt id="role-doc">
-<code class="descname">:doc:</code><a class="headerlink" href="#role-doc" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:doc:</code><a class="headerlink" href="#role-doc" title="정의 주소">¶</a></dt>
 <dd><p>지정된 문서에 링크한다. 문서 이름은 절대경로 또는 상대경로로 지정할 수 있다. 예를 들어,
 <code class="docutils literal"><span class="pre">sketches/index</span></code> 문서에서 <code class="docutils literal"><span class="pre">:doc:`parrot`</span></code> 과 같은 reference가 있다면 링크는
 <code class="docutils literal"><span class="pre">sketches/parrot</span></code> 로 연결하게 된다. 만약 reference가 <code class="docutils literal"><span class="pre">:doc:`/people`</span></code> 또는
@@ -292,13 +293,13 @@ caption은 주어진 문서의 제목이 된다.</p>
 
 </div>
 <div class="section" id="referencing-downloadable-files">
-<h3>Referencing downloadable files<a class="headerlink" href="#referencing-downloadable-files" title="Permalink to this headline">¶</a></h3>
+<h3>Referencing downloadable files<a class="headerlink" href="#referencing-downloadable-files" title="제목 주소">¶</a></h3>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 <dl class="role">
 <dt id="role-download">
-<code class="descname">:download:</code><a class="headerlink" href="#role-download" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:download:</code><a class="headerlink" href="#role-download" title="정의 주소">¶</a></dt>
 <dd><p>이 role은 소스 트리에 있는 reST 문서는 아니지만 다운로드 가능한 파일들에 링크하는 것을 가능하게 한다.</p>
 <p>이 role을 사용하면 참조 되는 파일이 빌드시(HTML 출력에만 해당) output에 포함되도록 자동으로
 표시된다. 다운로드 가능한 모든 파일은 output 디렉토리의 <code class="docutils literal"><span class="pre">_downloads</span></code> 서브디렉토리에 저장된다.
@@ -320,19 +321,19 @@ caption은 주어진 문서의 제목이 된다.</p>
 
 </div>
 <div class="section" id="cross-referencing-figures-by-figure-number">
-<h3>Cross-referencing figures by figure number<a class="headerlink" href="#cross-referencing-figures-by-figure-number" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-referencing figures by figure number<a class="headerlink" href="#cross-referencing-figures-by-figure-number" title="제목 주소">¶</a></h3>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.3.</span></p>
+<p><span class="versionmodified">버전 1.3에 추가.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.5: </span><cite>numref</cite> role can also refer sections.
+<p><span class="versionmodified">버전 1.5으로 변경: </span><cite>numref</cite> role can also refer sections.
 And <cite>numref</cite> allows <cite>{name}</cite> for the link text.</p>
 </div>
 <dl class="role">
 <dt id="role-numref">
-<code class="descname">:numref:</code><a class="headerlink" href="#role-numref" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:numref:</code><a class="headerlink" href="#role-numref" title="정의 주소">¶</a></dt>
 <dd><p>지정된 figure, table, code block, section에 링크한다. 여기에는 Standard reST label이
-사용된다. 이 role을 사용하면 “Fig. 1.1”과 같이 figure number와 함께 링크 텍스트가 있는
+사용된다. 이 role을 사용하면 &quot;Fig. 1.1&quot;과 같이 figure number와 함께 링크 텍스트가 있는
 figure에 대한 reference가 삽입된다.</p>
 <p><code class="docutils literal"><span class="pre">:numref:`Image</span> <span class="pre">of</span> <span class="pre">Sphinx</span> <span class="pre">(Fig.</span> <span class="pre">%s)</span> <span class="pre">&lt;my-figure&gt;`</span></code> 와 같이 링크 텍스트가 주어지면,
 링크 caption은 reference의 제목이 된다. 특수 문자로 쓰인 <cite>%s</cite> 와 <cite>{number}</cite> 는 figure
@@ -344,32 +345,32 @@ role은 reference가 아니라 label이나 링크 텍스트를 삽입한다.</p>
 
 </div>
 <div class="section" id="cross-referencing-other-items-of-interest">
-<h3>Cross-referencing other items of interest<a class="headerlink" href="#cross-referencing-other-items-of-interest" title="Permalink to this headline">¶</a></h3>
+<h3>Cross-referencing other items of interest<a class="headerlink" href="#cross-referencing-other-items-of-interest" title="제목 주소">¶</a></h3>
 <p>다음 role들은 cross-reference를 만들지만 객체를 참조하지는 않는다.</p>
 <dl class="role">
 <dt id="role-envvar">
-<code class="descname">:envvar:</code><a class="headerlink" href="#role-envvar" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:envvar:</code><a class="headerlink" href="#role-envvar" title="정의 주소">¶</a></dt>
 <dd><p>Environment variable. Index entry들이 생성된다. 또한 일치하는 <a class="reference internal" href="../domains_ko.html#directive-envvar" title="envvar directive"><code class="xref rst rst-dir docutils literal"><span class="pre">envvar</span></code></a>
 directive가 있다면, 이에 대한 링크를 생성한다.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-token">
-<code class="descname">:token:</code><a class="headerlink" href="#role-token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:token:</code><a class="headerlink" href="#role-token" title="정의 주소">¶</a></dt>
 <dd><p>Grammar token의 이름. (<a class="reference internal" href="para_ko.html#directive-productionlist" title="productionlist directive"><code class="xref rst rst-dir docutils literal"><span class="pre">productionlist</span></code></a> directive들 사이에 링크를
 생성하는데 사용)</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-keyword">
-<code class="descname">:keyword:</code><a class="headerlink" href="#role-keyword" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:keyword:</code><a class="headerlink" href="#role-keyword" title="정의 주소">¶</a></dt>
 <dd><p>Python에서 keyword의 이름. 만약 존재한다면, 이 이름을 가지는 reference label에 대한 링크를
 생성한다.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-option">
-<code class="descname">:option:</code><a class="headerlink" href="#role-option" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:option:</code><a class="headerlink" href="#role-option" title="정의 주소">¶</a></dt>
 <dd><p>실행 가능한 프로그램에 대한 command-line 옵션. 이것은 <a class="reference internal" href="../domains_ko.html#directive-option" title="option directive"><code class="xref rst rst-dir docutils literal"><span class="pre">option</span></code></a> directive가 있는
 경우, 이에 대한 링크를 생성한다.</p>
 </dd></dl>
@@ -378,7 +379,7 @@ directive가 있다면, 이에 대한 링크를 생성한다.</p>
 생성한다:</p>
 <dl class="role">
 <dt id="role-term">
-<code class="descname">:term:</code><a class="headerlink" href="#role-term" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:term:</code><a class="headerlink" href="#role-term" title="정의 주소">¶</a></dt>
 <dd><p>Glossary(용어집)의 term에 대한 reference. Glossary는 <code class="docutils literal"><span class="pre">glossary</span></code> directive를
 사용하여 만들어지며, term과 definition이 있는 정의 목록을 포함한다. <code class="docutils literal"><span class="pre">term</span></code> markup과 같은
 파일에 있을 필요는 없다. 예를 들어, Python의 docs는 <code class="docutils literal"><span class="pre">glossary.rst</span></code> 파일에 글로벌
@@ -389,35 +390,35 @@ glossary 하나만을 가지고 있다.</p>
 </div>
 </div>
 <div class="section" id="other-semantic-markup">
-<h2>Other semantic markup<a class="headerlink" href="#other-semantic-markup" title="Permalink to this headline">¶</a></h2>
+<h2>Other semantic markup<a class="headerlink" href="#other-semantic-markup" title="제목 주소">¶</a></h2>
 <p>다음 role들은 텍스트 서식을 지정하는 것 외에는 특별한 작업을 수행하지는 않는다:</p>
 <dl class="role">
 <dt id="role-abbr">
-<code class="descname">:abbr:</code><a class="headerlink" href="#role-abbr" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:abbr:</code><a class="headerlink" href="#role-abbr" title="정의 주소">¶</a></dt>
 <dd><p>Abbreviation(약어). 만약 role의 content에 괄호로 둘러싸인 설명이 포함되어 있으면, 이는
 특수하게 다루어진다. HTML에서는 tool-tip으로 표시되고 LaTeX에서는 한 번만 출력된다.</p>
 <p>Example: <code class="docutils literal"><span class="pre">:abbr:`LIFO</span> <span class="pre">(last-in,</span> <span class="pre">first-out)`</span></code>.</p>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 0.6.</span></p>
+<p><span class="versionmodified">버전 0.6에 추가.</span></p>
 </div>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-command">
-<code class="descname">:command:</code><a class="headerlink" href="#role-command" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:command:</code><a class="headerlink" href="#role-command" title="정의 주소">¶</a></dt>
 <dd><p><a href="#id2"><span class="problematic" id="id3">``</span></a>rm``과 같은 OS레벨에서의 명령어.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-dfn">
-<code class="descname">:dfn:</code><a class="headerlink" href="#role-dfn" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:dfn:</code><a class="headerlink" href="#role-dfn" title="정의 주소">¶</a></dt>
 <dd><p>텍스트에서 term이 정의되는 부분을 표시해 준다. (다만 index entry는 생성되지 않는다.)</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-file">
-<code class="descname">:file:</code><a class="headerlink" href="#role-file" title="Permalink to this definition">¶</a></dt>
-<dd><p>파일 또는 디렉토리의 이름. 내용 안에서 중괄호를 사용하여 “변하는” 부분을 나타낼 수 있다. 예:</p>
+<code class="descname">:file:</code><a class="headerlink" href="#role-file" title="정의 주소">¶</a></dt>
+<dd><p>파일 또는 디렉토리의 이름. 내용 안에서 중괄호를 사용하여 &quot;변하는&quot; 부분을 나타낼 수 있다. 예:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="cp">... is installed in :file:`/usr/lib/python2.{x}/site-packages` ...</span>
 </pre></div>
 </div>
@@ -426,14 +427,14 @@ glossary 하나만을 가지고 있다.</p>
 
 <dl class="role">
 <dt id="role-guilabel">
-<code class="descname">:guilabel:</code><a class="headerlink" href="#role-guilabel" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:guilabel:</code><a class="headerlink" href="#role-guilabel" title="정의 주소">¶</a></dt>
 <dd><p>Interactive user interface의 일부로 제공된 label은 <code class="docutils literal"><span class="pre">guilabel</span></code> 을 사용하여 나타내야
 한다. 여기에는 <code class="xref py py-mod docutils literal"><span class="pre">curses</span></code> 와 같은 텍스트 기반 라이브러리를 사용하여 만들어진, 텍스트 기반
 interface의 label이 포함된다. Interface에 사용되는 모든 label에는 이 role로 지정해 주어야
 한다. 이는 button label, window title, field name, 메뉴, 메뉴 선택 이름, 심지어 선택
 목록 내의 값도 포함한다.</p>
 <div class="versionchanged">
-<p><span class="versionmodified">Changed in version 1.0: </span>An accelerator key for the GUI label can be included using an ampersand;
+<p><span class="versionmodified">버전 1.0으로 변경: </span>An accelerator key for the GUI label can be included using an ampersand;
 this will be stripped and displayed underlined in the output (example:
 <code class="docutils literal"><span class="pre">:guilabel:`&amp;Cancel`</span></code>).  To include a literal ampersand, double it.</p>
 </div>
@@ -441,7 +442,7 @@ this will be stripped and displayed underlined in the output (example:
 
 <dl class="role">
 <dt id="role-kbd">
-<code class="descname">:kbd:</code><a class="headerlink" href="#role-kbd" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:kbd:</code><a class="headerlink" href="#role-kbd" title="정의 주소">¶</a></dt>
 <dd><p>키보드 입력 시퀀스를 표시. 무엇이 조합키를 이루는지는 플랫폼 또는 응용 프로그램 별로 규칙이 다를 수
 있다. 관련 규칙이 없으면 신규 사용자와 비 원어민 사용자의 편의성을 높이기 위해 변환키를 이름 그대로
 써줘야 한다. 예를 들어, <em>xemacs</em> 의 키입력 시퀀스는 <code class="docutils literal"><span class="pre">:kbd:`C-x</span> <span class="pre">C-f`</span></code> 와 같이 표시 될 수
@@ -451,9 +452,9 @@ this will be stripped and displayed underlined in the output (example:
 
 <dl class="role">
 <dt id="role-mailheader">
-<code class="descname">:mailheader:</code><a class="headerlink" href="#role-mailheader" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:mailheader:</code><a class="headerlink" href="#role-mailheader" title="정의 주소">¶</a></dt>
 <dd><p>RFC 822 스타일의 메일 header 이름. 이 markup은 header가 이메일 메시지에 사용되고 있음을
-의미하지는 않지만, 동일한 “스타일”의 header를 참조하는 데 사용될 수 있다. 이것은 다양한
+의미하지는 않지만, 동일한 &quot;스타일&quot;의 header를 참조하는 데 사용될 수 있다. 이것은 다양한
 MIME specification으로 정의 된 header에도 사용된다. Header 이름은 일반적으로 실제로 사용되는
 것과 동일한 방식으로 입력해야 한다. 일반적으로 camel-casing 방식이 선호된다. 예:
 <code class="docutils literal"><span class="pre">:mailheader:`Content-Type`</span></code>.</p>
@@ -461,23 +462,23 @@ MIME specification으로 정의 된 header에도 사용된다. Header 이름은 
 
 <dl class="role">
 <dt id="role-makevar">
-<code class="descname">:makevar:</code><a class="headerlink" href="#role-makevar" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:makevar:</code><a class="headerlink" href="#role-makevar" title="정의 주소">¶</a></dt>
 <dd><p><strong class="command">make</strong> variable 의 이름.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-manpage">
-<code class="descname">:manpage:</code><a class="headerlink" href="#role-manpage" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:manpage:</code><a class="headerlink" href="#role-manpage" title="정의 주소">¶</a></dt>
 <dd><p>Section을 포함한 Unix manual page에 대한 참조. 예: <code class="docutils literal"><span class="pre">:manpage:`ls(1)`</span></code>.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-menuselection">
-<code class="descname">:menuselection:</code><a class="headerlink" href="#role-menuselection" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:menuselection:</code><a class="headerlink" href="#role-menuselection" title="정의 주소">¶</a></dt>
 <dd><p>메뉴 선택은 <code class="docutils literal"><span class="pre">menuselection</span></code> role을 사용하여 표시해줘야 한다. 이 옵션은 하위 메뉴 선택과
 특정 작업 선택을 포함한 모든 메뉴 선택 시퀀스를 표시하는 데 사용된다. 개별 선택 항목의 이름은
 <code class="docutils literal"><span class="pre">--&gt;</span></code> 로 구분해 주어야 한다.</p>
-<p>예를 들어, “Start &gt; Programs” 와 같은 선택을 나타내기 위해서는 다음과 같은 markup을
+<p>예를 들어, &quot;Start &gt; Programs&quot; 와 같은 선택을 나타내기 위해서는 다음과 같은 markup을
 사용한다:</p>
 <div class="highlight-rest"><div class="highlight"><pre><span></span><span class="na">:menuselection:</span><span class="nv">`Start --&gt; Programs`</span>
 </pre></div>
@@ -490,54 +491,54 @@ MIME specification으로 정의 된 header에도 사용된다. Header 이름은 
 
 <dl class="role">
 <dt id="role-mimetype">
-<code class="descname">:mimetype:</code><a class="headerlink" href="#role-mimetype" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:mimetype:</code><a class="headerlink" href="#role-mimetype" title="정의 주소">¶</a></dt>
 <dd><p>MIME type 또는 MIME type의 구성요소의 이름.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-newsgroup">
-<code class="descname">:newsgroup:</code><a class="headerlink" href="#role-newsgroup" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:newsgroup:</code><a class="headerlink" href="#role-newsgroup" title="정의 주소">¶</a></dt>
 <dd><p>Usenet 뉴스그룹의 이름.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-program">
-<code class="descname">:program:</code><a class="headerlink" href="#role-program" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:program:</code><a class="headerlink" href="#role-program" title="정의 주소">¶</a></dt>
 <dd><p>실행 프로그램의 이름. 플랫폼에 따라서 실행 파일의 파일 이름과 다를 수 있다. 특히 Windows 프로그램의
 경우 <code class="docutils literal"><span class="pre">.exe</span></code> 와 같은 확장자를 생략해야 한다.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-regexp">
-<code class="descname">:regexp:</code><a class="headerlink" href="#role-regexp" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:regexp:</code><a class="headerlink" href="#role-regexp" title="정의 주소">¶</a></dt>
 <dd><p>정규표현식. 따옴표를 포함하면 안된다.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-samp">
-<code class="descname">:samp:</code><a class="headerlink" href="#role-samp" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:samp:</code><a class="headerlink" href="#role-samp" title="정의 주소">¶</a></dt>
 <dd><p>코드와 같은 literal text. <a class="reference internal" href="#role-file" title="file role"><code class="xref rst rst-role docutils literal"><span class="pre">file</span></code></a> 에서 언급했듯이, 내용 안에 중괄호를 사용하여
-“변하는” 부분을 나타낼 수 있다. 예를 들면, <code class="docutils literal"><span class="pre">:samp:`print</span> <span class="pre">1+{variable}`</span></code> 에서
+&quot;변하는&quot; 부분을 나타낼 수 있다. 예를 들면, <code class="docutils literal"><span class="pre">:samp:`print</span> <span class="pre">1+{variable}`</span></code> 에서
 <code class="docutils literal"><span class="pre">variable</span></code> 부분은 강조되어 표시된다.</p>
-<p>“가변 부분” 표시가 필요하지 않다면, 표준인 <code class="docutils literal"><span class="pre">``code``</span></code> 를 사용해도 된다.</p>
+<p>&quot;가변 부분&quot; 표시가 필요하지 않다면, 표준인 <code class="docutils literal"><span class="pre">``code``</span></code> 를 사용해도 된다.</p>
 </dd></dl>
 
 <p>또한 index entry를 생성하는 <a class="reference internal" href="misc_ko.html#role-index" title="index role"><code class="xref rst rst-role docutils literal"><span class="pre">index</span></code></a> role이 있다.</p>
 <p>다음 role들은 외부 링크를 생성한다.</p>
 <dl class="role">
 <dt id="role-pep">
-<code class="descname">:pep:</code><a class="headerlink" href="#role-pep" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:pep:</code><a class="headerlink" href="#role-pep" title="정의 주소">¶</a></dt>
 <dd><p>Python Enhancement Proposal에 대한 reference. 적절한 index entry가 생성된다.
-“PEP <em>number</em>”라는 텍스트가 생성되며, HTML 출력에서 이 텍스트는 지정된 PEP의 온라인
+&quot;PEP <em>number</em>&quot;라는 텍스트가 생성되며, HTML 출력에서 이 텍스트는 지정된 PEP의 온라인
 사본에 대한 hyperlink가 된다. <code class="docutils literal"><span class="pre">:pep:`number#anchor`</span></code> 를 사용하여 특정 section에
 링크 할 수도 있다.</p>
 </dd></dl>
 
 <dl class="role">
 <dt id="role-rfc">
-<code class="descname">:rfc:</code><a class="headerlink" href="#role-rfc" title="Permalink to this definition">¶</a></dt>
+<code class="descname">:rfc:</code><a class="headerlink" href="#role-rfc" title="정의 주소">¶</a></dt>
 <dd><p>Internet Request for Comments에 대한 reference. 적절한 index entry가 생성된다.
-“RFC <em>number</em>”라는 텍스트가 생성되며, HTML 출력에서 이 텍스트는 지정된 RFC의 온라인 사본에
+&quot;RFC <em>number</em>&quot;라는 텍스트가 생성되며, HTML 출력에서 이 텍스트는 지정된 RFC의 온라인 사본에
 대한 hyperlink가 된다. <code class="docutils literal"><span class="pre">:rfc:`number#anchor`</span></code> 를 사용하여 특정 section에 링크 할
 수도 있다.</p>
 </dd></dl>
@@ -546,7 +547,7 @@ MIME specification으로 정의 된 header에도 사용된다. Header 이름은 
 존재하지 않는다.</p>
 </div>
 <div class="section" id="substitutions">
-<span id="default-substitutions"></span><h2>Substitutions<a class="headerlink" href="#substitutions" title="Permalink to this headline">¶</a></h2>
+<span id="default-substitutions"></span><h2>Substitutions<a class="headerlink" href="#substitutions" title="제목 주소">¶</a></h2>
 <p>Documentation 시스템은 default로 세 가지 substitution(대체법)을 제공한다. 이는 빌드 설정
 파일에 설정되어 있다.</p>
 <dl class="describe">
@@ -582,14 +583,14 @@ version number를 얘기한다. (예: 전체 version number가 2.5.1이더라도
       <div class="clearer"></div>
     </div>
     <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
+      <h3>탐색</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
-             >index</a></li>
+             >색인</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
+          <a href="../py-modindex.html" title="Python 모듈 목록"
+             >모듈</a> |</li>
         <li><a href="../index.html">Sphinx home</a>&#160;|</li>
         <li><a href="../contents.html">Documentation</a> &#187;</li>
  
@@ -597,7 +598,7 @@ version number를 얘기한다. (예: 전체 version number가 2.5.1이더라도
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/90783791.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/b1277403.
     </div>
   </body>
 </html>
