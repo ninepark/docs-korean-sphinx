@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../_templates/index.html:2
 msgid "Overview"
-msgstr ""
+msgstr "개요"
 
 #: ../../_templates/index.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "환영합니다!"
 
 #: ../../_templates/index.html:7
 msgid "What users say:"
