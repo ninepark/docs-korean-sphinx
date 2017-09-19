@@ -1,0 +1,26 @@
+<p class="logo">A <a href="http://pocoo.org/">
+  <img src="{{ pathto("_static/pocoo.png", 1) }}" alt="Pocoo" /></a>
+  {%trans%}프로젝트{%endtrans%}</p>
+
+<h3>다운로드</h3>
+{% if version.endswith('+') %}
+<p>{%trans%}이 문서는 아직 릴리즈 되지 않은 <b><a href="changes.html">{{ version }}</a></b> 버전 용이다.{%endtrans%}</p>
+<p>{%trans%}<a href="https://github.com/sphinx-doc/sphinx/">Git 저장소에서</a> 사용할 수 있고 <a href="https://pypi.python.org/pypi/Sphinx">Python Package Index에서</a> 릴리즈된 버전을 찾을 수 있다.{%endtrans%}</p>
+{% else %}
+<p>{%trans%}현재 버전: <b><a href="changes.html">{{ version }}</a></b>{%endtrans%}</p>
+<p>{%trans%}<a href="https://pypi.python.org/pypi/Sphinx">Python Package
+Index에서</a> 얻을 수 있고, 다음 명령으로 설치할 수 있다:{%endtrans%}</p>
+<pre>pip install -U Sphinx</pre>
+{% endif %}
+
+<h3>{%trans%}질문? 제안?{%endtrans%}</h3>
+
+<p>{%trans%}구글 그룹에 있는 <a href="http://groups.google.com/group/sphinx-users">sphinx-users</a> 메일링 리스트에 가입하라:{%endtrans%}</p>
+<form action="http://groups.google.com/group/sphinx-users/boxsubscribe"
+      style="padding-left: 0.5em">
+  <input type="text" name="email" value="your@email" style="font-size: 90%; width: 120px"
+         onfocus="$(this).val('');"/>
+  <input type="submit" name="sub" value="Subscribe" style="font-size: 90%; width: 70px"/>
+</form>
+<p>{%trans%}아니면 FreeNode의 <tt>#sphinx-doc</tt> 채널에 참여하라.{%endtrans%}</p>
+<p>{%trans%}또한 <a href="https://github.com/sphinx-doc/sphinx/issues">tracker</a>를 통해 이슈를 개설할 수도 있다.{%endtrans%}</p>

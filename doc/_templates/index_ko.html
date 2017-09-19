@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% set title = _('Overview') %}
+{% block body %}
+  <h1>{{ _('환영합니다') }}</h1>
+
+  <div class="quotebar">
+    <p><em>{%trans%}유저들이 말하길:{%endtrans%}</em></p>
+    <p>{%trans%}&#8220;프로그래머들이 도큐먼테이션 작성을 <b>하고 싶게</b> 만드는 훌륭한 툴이 만들어지길 기원한다!&#8220;{%endtrans%}</p>
+  </div>
+
+  <p>{%trans%}
+    스핑크스는 Georg Brnadl이 제작한 툴로 똑똑하고 아름다운 도큐먼테이션을 쉽게 만들 수 있게 해주며 BSD 라이센스 하에서 사용할 수 있다.{%endtrans%}</p>
+  <p>{%trans%}원래는 <a href="https://docs.python.org/">파이썬 도큐먼테이션을</a> 위해 제작되었으나 다양한 언어로 된 소프트웨어 프로젝트의
+    도큐면테이션을 위한 훌륭한 기능들 또한 가지고 있다. 물론 이 사이트도 reStructuredText 소스로부터 스핑크스를 사용해 제작하였다! 
+    아래는 주목할 만한 기능들이다:{%endtrans%}
+  </p>
+  <ul>
+    <li>{%trans%}<b>출력 포맷:</b> HTML (윈도우 HTML 도움말 포함), LaTeX (프린트 가능한 PDF 버전 용), ePub, Texinfo, 매뉴얼 페이지, 일반 텍스{%endtrans%}</li>
+    <li>{%trans%}<b>광범위한 상호 참조:</b> 함수, 클래스, 인용, 용어, 유사한 정보를 위한 시멘틱 마크업과 자동 링크{%endtrans%}</li>
+    <li>{%trans%}<b>계층 구조:</b> 자동적인 형제, 부모, 자식 링크를 통한 쉬운 문서 트리 정의{%endtrans%}</li>
+    <li>{%trans%}<b>자동 색인:</b> 언어 한정 모듈 색인과 일반 색인{%endtrans%}</li>
+    <li>{%trans%}<b>코드 처리:</b> <a href="http://pygments.org">피그먼트</a> 하이라이터를 사용한 자동 하이라이팅{%endtrans%}</li>
+    <li>{%trans path=pathto('ext/builtins')%}<b>확장:</b> 코드 스니펫 자동 테스팅, 파이썬 모듈(API 문서)에서 독스트링 포함과 그 
+      <a href="{{ path }}#builtin-sphinx-extensions">이상의 것들</a>{%endtrans%}</li>
+    <li>{%trans path=pathto('develop')%}<b>공헌된 확장:</b> 두 번째 저장소에 있는 50개 이상의 확장이 <a href="{{ path }}#extensions">유저들에 의해 기여되었다</a>; 대부분 PyPI에서 설치 가능{%endtrans%}</li>
+  </ul>
+  <p>{%trans%}
+    스핑크스는 <a href="http://docutils.sourceforge.net/rst.html">reStructuredText를</a>
+    마크업 언어로 사용했고 스핑크스의 많은 장점나 reStructuredText의 직관성과 강력함에서 왔고 스위트 파싱과 번역 능력은 <a href="http://docutils.sourceforge.net/">Docutils로부터</a> 왔다.{%endtrans%}
+  </p>
+
+  <h2 style="margin-bottom: 0">{%trans%}도큐먼테이션{%endtrans%}</h2>
+
+  <table class="contentstable">
+    <tr>
+      <td>
+        <p class="biglink"><a class="biglink" href="~/sphinx-build/tutorial") }}">{%trans%}스핑크스 시작하기{%endtrans%}</a><br/>
+           <span class="linkdescr">{%trans%}기본적인 작업 개{%endtrans%}</span></p>
+      </td><td>
+        {%- if hasdoc('search') %}<p class="biglink"><a class="biglink" href="/home/nwaistd/sphinx-build/tutorialsearch") }}">{%trans%}검색 페이지{%endtrans%}</a><br/>
+           <span class="linkdescr">{%trans%}도큐먼테이션 검색{%endtrans%}</span></p>{%- endif %}
+      </td>
+    </tr><tr>
+      <td>
+        <p class="biglink"><a class="biglink" href="~/sphinx-build/tutorialcontents") }}">{%trans%}목차{%endtrans%}</a><br/>
+           <span class="linkdescr">{%trans%}전체 개요{%endtrans%}</span></p>
+      </td><td>
+        {%- if hasdoc('genindex') %}<p class="biglink"><a class="biglink" href="~/sphinx-build/tutorialgenindex") }}">{%trans%}일반 색인{%endtrans%}</a><br/>
+           <span class="linkdescr">{%trans%}전체 함수, 클래스, 용어{%endtrans%}</span></p>{%- endif %}
+      </td>
+    </tr><tr>
+      <td>
+        <p class="biglink"><a class="biglink" href="~sphinx-build/tutorialchanges") }}">{%trans%}변화{%endtrans%}</a><br/>
+           <span class="linkdescr">{%trans%}릴리즈 히스토리{%endtrans%}</span></p>
+      </td><td>
+      </td>
+    </tr>
+  </table>
+
+  <p>{%trans%}
+    PDF/EPUB 버전 스핑크스 도큐먼테이션을 다운로드 할 수 있다:
+    <a href="http://readthedocs.org/projects/sphinx/downloads/pdf/stable/">PDF 버전</a> LaTeX 스핑크스에서 생성, 
+    <a href="http://readthedocs.org/projects/sphinx/downloads/epub/stable/">EPUB 버전</a>.
+   {%endtrans%}
+  </p>
+
+  <h2>{%trans%}예시{%endtrans%}</h2>
+  <p>{%trans path=pathto("examples")%}스핑크스를 사용해 제작된 도큐먼테이션 링크는 <a href="{{ path }}">스핑크스를 사용한 프로젝트</a> 페이지에서 찾아볼 수 있다.{%endtrans%}
+  </p>
+  <p>{%trans%}
+    스핑크스 소스 파일이 어떻게 생겼는지에 대한 예시는 이 환영 페이지를 제외한 다른 도큐먼테이션의 모든 페이지에서 &#8220;소스 보기를&#8221; 사용해서 확인하라.{%endtrans%}
+  </p>
+
+  <p>{%trans%}matplotlib 개발자들에 의해 제작된 스핑크스를 사용한 커스터마이즈 된 도큐먼테이션을 생성하는 방법에 대한 매우 좋은<a href="http://matplotlib.sourceforge.net/sampledoc/">튜토리얼에</a> 관심이 있을 수도 있다{%endtrans%}</p>
+
+  <p>{%trans%}일본 스핑크스 사용자 그룹의 도움으로 이 도큐먼테이션의 <a href="http://docs.sphinx-users.jp/">일본어 번역본도</a> 존재한다.{%endtrans%}</p>
+  <p>{%trans%}스핑크스에 관한 일본어 책은 O'Reilly에 의해 출판되었다:
+    <a href="http://www.oreilly.co.jp/books/9784873116488/">Sphinxをはじめよう /
+      스핑크스 배우기</a>.{%endtrans%}</p>
+  <!-- <p><img src="{{ pathto("_static/bookcover.png", 1) }}"/></p> -->
+
+
+  <h2>{%trans%}호스팅{%endtrans%}</h2>
+
+  <p>{%trans%}당신의 스핑크스 문서를 호스트할 곳이 필요한가?
+    <a href="http://readthedocs.org">readthedocs.org</a>은 이미 많은 스핑크스 문서를 호스팅하고 있고, 프로젝트의 소스 관리도 잘 통합하고 있다.
+    또한 스핑크스의 자바스크립트 기반 오프라인 검색 가능성을 뛰어넘는 강력한 내장 검색 기능을 제공한다.{%endtrans%}</p>
+
+  <h2>{%trans%}기여자 안내{%endtrans%}</h2>
+
+  <p>{%trans%}프로젝트에 기여하고 싶다면 이 문서를 참고하라.{%endtrans%}</p>
+
+    <ul>
+      <li>{%trans path=pathto("devguide")%}<a href="{{ path }}">스핑크스 개발자 가이드</a></li>{%endtrans%}
+      <li>{%trans path=pathto("authors")%}<a href="{{ path }}">스핑크스 제작자</a></li>{%endtrans%}
+    </ul>
+
+{% endblock %}
