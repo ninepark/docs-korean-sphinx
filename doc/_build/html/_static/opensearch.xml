@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
   <ShortName>Sphinx</ShortName>
-  <Description>Sphinx 1.7+ documentation에서 찾기</Description>
+  <Description>Sphinx 1.7+/15f30aee documentation에서 찾기</Description>
   <InputEncoding>utf-8</InputEncoding>
   <Url type="text/html" method="get"
        template="http://sphinx-doc.org/search.html?q={searchTerms}&amp;check_keywords=yes&amp;area=default"/>
-  <LongName>Sphinx 1.7+ documentation</LongName>
+  <LongName>Sphinx 1.7+/15f30aee documentation</LongName>
   
 </OpenSearchDescription>

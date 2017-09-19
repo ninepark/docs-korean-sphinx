@@ -25,8 +25,8 @@ html_theme = 'sphinx13'
 html_theme_path = ['_themes']
 modindex_common_prefix = ['sphinx.']
 html_static_path = ['_static']
-html_sidebars = {'index': ['indexsidebar.html', 'searchbox.html']}
-html_additional_pages = {'index': 'index.html'}
+html_sidebars = {'index': ['indexsidebar_ko.html', 'searchbox.html']}
+html_additional_pages = {'index': 'index_ko.html'}
 html_use_opensearch = 'http://sphinx-doc.org'
 
 htmlhelp_basename = 'Sphinxdoc'

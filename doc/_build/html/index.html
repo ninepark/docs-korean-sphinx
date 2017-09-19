@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>개요 &#8212; Sphinx 1.7+ documentation</title>
+    <title>개요 &#8212; Sphinx 1.7+/15f30aee documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+',
+        VERSION:     '1.7+/15f30aee',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Sphinx 1.7+ documentation에서 찾기"
+          title="Sphinx 1.7+/15f30aee documentation에서 찾기"
           href="_static/opensearch.xml"/>
     <link rel="index" title="색인" href="genindex.html" />
     <link rel="search" title="검색" href="search.html" />
@@ -99,30 +99,27 @@
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper"><p class="logo">A <a href="http://pocoo.org/">
   <img src="_static/pocoo.png" alt="Pocoo" /></a>
-  project</p>
+  프로젝트</p>
 
-<h3>Download</h3>
+<h3>다운로드</h3>
 
-<p>This documentation is for version <b><a href="changes.html">1.7+</a></b>, which is
-  not released yet.</p>
-<p>You can use it from the
-  <a href="https://github.com/sphinx-doc/sphinx/">Git repo</a> or look for
-  released versions in the <a href="https://pypi.python.org/pypi/Sphinx">Python
-    Package Index</a>.</p>
+<p>현재 버전: <b><a href="changes.html">1.7+/15f30aee</a></b></p>
+<p><a href="https://pypi.python.org/pypi/Sphinx">Python Package
+Index에서</a> 얻을 수 있고, 다음 명령으로 설치할 수 있다:</p>
+<pre>pip install -U Sphinx</pre>
 
 
-<h3>Questions? Suggestions?</h3>
+<h3>질문? 제안?</h3>
 
-<p>Join the <a href="http://groups.google.com/group/sphinx-users">sphinx-users</a> mailing list on Google Groups:</p>
+<p>구글 그룹에 있는 <a href="http://groups.google.com/group/sphinx-users">sphinx-users</a> 메일링 리스트에 가입하라:</p>
 <form action="http://groups.google.com/group/sphinx-users/boxsubscribe"
       style="padding-left: 0.5em">
   <input type="text" name="email" value="your@email" style="font-size: 90%; width: 120px"
          onfocus="$(this).val('');"/>
   <input type="submit" name="sub" value="Subscribe" style="font-size: 90%; width: 70px"/>
 </form>
-<p>or come to the <tt>#sphinx-doc</tt> channel on FreeNode.</p>
-<p>You can also open an issue at the
-  <a href="https://github.com/sphinx-doc/sphinx/issues">tracker</a>.</p>
+<p>아니면 FreeNode의 <tt>#sphinx-doc</tt> 채널에 참여하라.</p>
+<p>또한 <a href="https://github.com/sphinx-doc/sphinx/issues">tracker</a>를 통해 이슈를 개설할 수도 있다.</p>
 <div id="searchbox" style="display: none" role="search">
   <h3>빠른 검색</h3>
     <form class="search" action="search.html" method="get">
@@ -141,122 +138,96 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Welcome</h1>
+  <h1>환영합니다</h1>
 
   <div class="quotebar">
-    <p><em>What users say:</em></p>
-    <p>&#8220;Cheers for a great tool that actually makes programmers <b>want</b>
-      to write documentation!&#8220;</p>
+    <p><em>유저들이 말하길:</em></p>
+    <p>&#8220;프로그래머들이 도큐먼테이션 작성을 <b>하고 싶게</b> 만드는 훌륭한 툴이 만들어지길 기원한다!&#8220;</p>
   </div>
 
   <p>
-    Sphinx is a tool that makes it easy to create intelligent and beautiful
-    documentation, written by Georg Brandl and licensed under the BSD license.</p>
-  <p>It was originally created for <a href="https://docs.python.org/">the
-    Python documentation</a>, and it has excellent facilities for the
-    documentation of software projects in a range of languages.  Of
-    course, this site is also created from reStructuredText sources using
-    Sphinx!  The following features should be highlighted:
+    스핑크스는 Georg Brnadl이 제작한 툴로 똑똑하고 아름다운 도큐먼테이션을 쉽게 만들 수 있게 해주며 BSD 라이센스 하에서 사용할 수 있다.</p>
+  <p>원래는 <a href="https://docs.python.org/">파이썬 도큐먼테이션을</a> 위해 제작되었으나 다양한 언어로 된 소프트웨어 프로젝트의
+    도큐면테이션을 위한 훌륭한 기능들 또한 가지고 있다. 물론 이 사이트도 reStructuredText 소스로부터 스핑크스를 사용해 제작하였다! 
+    아래는 주목할 만한 기능들이다:
   </p>
   <ul>
-    <li><b>Output formats:</b> HTML (including Windows HTML Help), LaTeX (for
-      printable PDF versions), ePub, Texinfo, manual pages, plain text</li>
-    <li><b>Extensive cross-references:</b> semantic markup and automatic links
-      for functions, classes, citations, glossary terms and similar pieces of
-      information</li>
-    <li><b>Hierarchical structure:</b> easy definition of a document tree, with
-      automatic links to siblings, parents and children</li>
-    <li><b>Automatic indices:</b> general index as well as a language-specific
-      module indices</li>
-    <li><b>Code handling:</b> automatic highlighting using the <a
-      href="http://pygments.org">Pygments</a> highlighter</li>
-    <li><b>Extensions:</b> automatic testing of code snippets, inclusion of
-      docstrings from Python modules (API docs), and
-      <a href="ext/builtins.html#builtin-sphinx-extensions">more</a></li>
-    <li><b>Contributed extensions:</b> more than
-      50 extensions <a href="develop.html#extensions">contributed by users</a>
-      in a second repository; most of them installable from PyPI</li>
+    <li><b>출력 포맷:</b> HTML (윈도우 HTML 도움말 포함), LaTeX (프린트 가능한 PDF 버전 용), ePub, Texinfo, 매뉴얼 페이지, 일반 텍스</li>
+    <li><b>광범위한 상호 참조:</b> 함수, 클래스, 인용, 용어, 유사한 정보를 위한 시멘틱 마크업과 자동 링크</li>
+    <li><b>계층 구조:</b> 자동적인 형제, 부모, 자식 링크를 통한 쉬운 문서 트리 정의</li>
+    <li><b>자동 색인:</b> 언어 한정 모듈 색인과 일반 색인</li>
+    <li><b>코드 처리:</b> <a href="http://pygments.org">피그먼트</a> 하이라이터를 사용한 자동 하이라이팅</li>
+    <li><b>확장:</b> 코드 스니펫 자동 테스팅, 파이썬 모듈(API 문서)에서 독스트링 포함과 그 
+      <a href="ext/builtins.html#builtin-sphinx-extensions">이상의 것들</a></li>
+    <li><b>공헌된 확장:</b> 두 번째 저장소에 있는 50개 이상의 확장이 <a href="develop.html#extensions">유저들에 의해 기여되었다</a>; 대부분 PyPI에서 설치 가능</li>
   </ul>
   <p>
-    Sphinx uses <a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>
-    as its markup language, and many of its strengths come from the power and
-    straightforwardness of reStructuredText and its parsing and translating
-    suite, the <a href="http://docutils.sourceforge.net/">Docutils</a>.
+    스핑크스는 <a href="http://docutils.sourceforge.net/rst.html">reStructuredText를</a>
+    마크업 언어로 사용했고 스핑크스의 많은 장점나 reStructuredText의 직관성과 강력함에서 왔고 스위트 파싱과 번역 능력은 <a href="http://docutils.sourceforge.net/">Docutils로부터</a> 왔다.
   </p>
 
-  <h2 style="margin-bottom: 0">Documentation</h2>
+  <h2 style="margin-bottom: 0">도큐먼테이션</h2>
 
   <table class="contentstable">
     <tr>
       <td>
-        <p class="biglink"><a class="biglink" href="tutorial.html">First steps with Sphinx</a><br/>
-           <span class="linkdescr">overview of basic tasks</span></p>
-      </td><td><p class="biglink"><a class="biglink" href="search.html">Search page</a><br/>
-           <span class="linkdescr">search the documentation</span></p>
+        <p class="biglink"><a class="biglink" href="~/sphinx-build/tutorial") }}">스핑크스 시작하기</a><br/>
+           <span class="linkdescr">기본적인 작업 개</span></p>
+      </td><td><p class="biglink"><a class="biglink" href="/home/nwaistd/sphinx-build/tutorialsearch") }}">검색 페이지</a><br/>
+           <span class="linkdescr">도큐먼테이션 검색</span></p>
       </td>
     </tr><tr>
       <td>
-        <p class="biglink"><a class="biglink" href="contents.html">내용</a><br/>
-           <span class="linkdescr">for a complete overview</span></p>
-      </td><td><p class="biglink"><a class="biglink" href="genindex.html">전체 색인</a><br/>
-           <span class="linkdescr">함수, 클래스 및 용어 개관</span></p>
+        <p class="biglink"><a class="biglink" href="~/sphinx-build/tutorialcontents") }}">목차</a><br/>
+           <span class="linkdescr">전체 개요</span></p>
+      </td><td><p class="biglink"><a class="biglink" href="~/sphinx-build/tutorialgenindex") }}">일반 색인</a><br/>
+           <span class="linkdescr">전체 함수, 클래스, 용어</span></p>
       </td>
     </tr><tr>
       <td>
-        <p class="biglink"><a class="biglink" href="changes.html">Changes</a><br/>
-           <span class="linkdescr">release history</span></p>
+        <p class="biglink"><a class="biglink" href="~sphinx-build/tutorialchanges") }}">변화</a><br/>
+           <span class="linkdescr">릴리즈 히스토리</span></p>
       </td><td>
       </td>
     </tr>
   </table>
 
   <p>
-    You can also download PDF/EPUB versions of the Sphinx documentation:
-    a <a href="http://readthedocs.org/projects/sphinx/downloads/pdf/stable/">PDF version</a> generated from
-    the LaTeX Sphinx produces, and
-    a <a href="http://readthedocs.org/projects/sphinx/downloads/epub/stable/">EPUB version</a>.
+    PDF/EPUB 버전 스핑크스 도큐먼테이션을 다운로드 할 수 있다:
+    <a href="http://readthedocs.org/projects/sphinx/downloads/pdf/stable/">PDF 버전</a> LaTeX 스핑크스에서 생성, 
+    <a href="http://readthedocs.org/projects/sphinx/downloads/epub/stable/">EPUB 버전</a>.
    
   </p>
 
-  <h2>Examples</h2>
-  <p>Links to documentation generated with Sphinx can be found on the
-    <a href="examples.html">Projects using Sphinx</a> page.
+  <h2>예시</h2>
+  <p>스핑크스를 사용해 제작된 도큐먼테이션 링크는 <a href="examples.html">스핑크스를 사용한 프로젝트</a> 페이지에서 찾아볼 수 있다.
   </p>
   <p>
-    For examples of how Sphinx source files look, use the &#8220;Show
-    source&#8221; links on all pages of the documentation apart from this
-    welcome page.
+    스핑크스 소스 파일이 어떻게 생겼는지에 대한 예시는 이 환영 페이지를 제외한 다른 도큐먼테이션의 모든 페이지에서 &#8220;소스 보기를&#8221; 사용해서 확인하라.
   </p>
 
-  <p>You may also be interested in the very nice
-    <a href="http://matplotlib.sourceforge.net/sampledoc/">tutorial</a> on how to
-    create a customized documentation using Sphinx written by the matplotlib
-    developers.</p>
+  <p>matplotlib 개발자들에 의해 제작된 스핑크스를 사용한 커스터마이즈 된 도큐먼테이션을 생성하는 방법에 대한 매우 좋은<a href="http://matplotlib.sourceforge.net/sampledoc/">튜토리얼에</a> 관심이 있을 수도 있다</p>
 
-  <p>There is a <a href="http://docs.sphinx-users.jp/">Japanese translation</a>
-    of this documentation, thanks to the Japanese Sphinx user group.</p>
-  <p>A Japanese book about Sphinx has been published by O'Reilly:
+  <p>일본 스핑크스 사용자 그룹의 도움으로 이 도큐먼테이션의 <a href="http://docs.sphinx-users.jp/">일본어 번역본도</a> 존재한다.</p>
+  <p>스핑크스에 관한 일본어 책은 O'Reilly에 의해 출판되었다:
     <a href="http://www.oreilly.co.jp/books/9784873116488/">Sphinxをはじめよう /
-      Learning Sphinx</a>.</p>
+      스핑크스 배우기</a>.</p>
   <!-- <p><img src="_static/bookcover.png"/></p> -->
 
 
-  <h2>Hosting</h2>
+  <h2>호스팅</h2>
 
-  <p>Need a place to host your Sphinx docs?
-    <a href="http://readthedocs.org">readthedocs.org</a> hosts a lot of Sphinx docs
-    already, and integrates well with projects' source control.  It also features a
-    powerful built-in search that exceeds the possibilities of Sphinx' JavaScript-based
-    offline search.</p>
+  <p>당신의 스핑크스 문서를 호스트할 곳이 필요한가?
+    <a href="http://readthedocs.org">readthedocs.org</a>은 이미 많은 스핑크스 문서를 호스팅하고 있고, 프로젝트의 소스 관리도 잘 통합하고 있다.
+    또한 스핑크스의 자바스크립트 기반 오프라인 검색 가능성을 뛰어넘는 강력한 내장 검색 기능을 제공한다.</p>
 
-  <h2>Contributor Guide</h2>
+  <h2>기여자 안내</h2>
 
-  <p>If you want to contribute to the project,
-    this part of the documentation is for you.</p>
+  <p>프로젝트에 기여하고 싶다면 이 문서를 참고하라.</p>
 
     <ul>
-      <li><a href="devguide.html">Sphinx Developer’s Guide</a></li>
-      <li><a href="authors.html">Sphinx Authors</a></li>
+      <li><a href="devguide.html">스핑크스 개발자 가이드</a></li>
+      <li><a href="authors.html">스핑크스 제작자</a></li>
     </ul>
 
 
@@ -281,7 +252,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/15f30aee.
     </div>
   </body>
 </html>
