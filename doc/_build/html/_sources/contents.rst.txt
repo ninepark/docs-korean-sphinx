@@ -9,9 +9,9 @@ Sphinx documentation contents
 
    intro_ko
    tutorial_ko
-   man/index
+   man/index_ko
    rest_ko
-   markup/index
+   markup/index_ko
    domains_ko
    builders_ko
    config

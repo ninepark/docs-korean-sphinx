@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Miscellaneous markup &#8212; Sphinx 1.7+/15f30aee documentation</title>
+    <title>Miscellaneous markup &#8212; Sphinx 1.7+ documentation</title>
     <link rel="stylesheet" href="../_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7+/15f30aee',
+        VERSION:     '1.7+',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Sphinx 1.7+/15f30aee documentation에서 찾기"
+          title="Sphinx 1.7+ documentation에서 찾기"
           href="../_static/opensearch.xml"/>
     <link rel="index" title="색인" href="../genindex.html" />
     <link rel="search" title="검색" href="../search.html" />
@@ -190,7 +190,7 @@ directive는 주어진 코드의 작성자 이름을 지정하며, 여러번 사
 </div>
 <div class="section" id="index-generating-markup">
 <h2>Index-generating markup<a class="headerlink" href="#index-generating-markup" title="제목 주소">¶</a></h2>
-<p>Sphinx는 <a class="reference internal" href="../domains_ko.html#domains"><span class="std std-ref">Sphinx Domains</span></a> 에서 설명 된 것처럼 모든 객체의 설명(function, class,
+<p>Sphinx는 <a class="reference internal" href="../domains_ko.html#domains"><span class="std std-ref">Sphinx 도메인</span></a> 에서 설명 된 것처럼 모든 객체의 설명(function, class,
 attribute)으로부터 index entry를 자동으로 생성한다.</p>
 <p>그러나 index를 보다 포괄적으로 만들고, 정보가 주로 language refrence와 같이 정보 단위에
 포함되지 않는 문서에서 index entry를 사용 할 수 있도록 해주는 markup도 있다.</p>
@@ -318,12 +318,12 @@ ASCII에서는 <code class="docutils literal"><span class="pre">A</span></code> 
 <p><a class="reference internal" href="../rest_ko.html#rst-tables"><span class="std std-ref">reStructuredText tables</span></a> 를 사용하면 된다. 즉, 다음 중 하나를
 사용한다.</p>
 <ul class="simple">
-<li>grid table syntax (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#grid-tables">ref</a>),</li>
-<li>simple table syntax (<a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#simple-tables">ref</a>),</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#csv-table">csv-table</a> syntax,</li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#list-table">list-table</a> syntax.</li>
+<li>grid table syntax (<a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/restructuredtext_ko.html#grid-tables">ref</a>),</li>
+<li>simple table syntax (<a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/restructuredtext_ko.html#simple-tables">ref</a>),</li>
+<li><a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/directives_ko.html#csv-table">csv-table</a> syntax,</li>
+<li><a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/directives_ko.html#list-table">list-table</a> syntax.</li>
 </ul>
-<p><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#table">table</a> directive는 <em>grid</em> 와 <em>simple</em> syntax의 wrapper 역할을 한다.</p>
+<p><a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/directives_ko.html#table">table</a> directive는 <em>grid</em> 와 <em>simple</em> syntax의 wrapper 역할을 한다.</p>
 <p>위의 예시들은 HTML 출력에서는 잘 작동하지만, LaTeX에서 테이블을 사용할 때에는 몇 가지 문제가 생긴다.
 예를 들면 column width를 자동으로 올바르게 판별하질 못한다. 이러한 이유로 다음 directive가
 존재한다.</p>
@@ -407,7 +407,7 @@ environment는 <code class="docutils literal"><span class="pre">p{width}``(및</
 <p><code class="docutils literal"><span class="pre">b</span></code> 는 총 column 수일 <em>필요는 없으며</em>, <code class="docutils literal"><span class="pre">\X</span></code> specifier의 분수 합계가 1이 될
 <em>필요도 없다</em>. 예를 들어 <code class="docutils literal"><span class="pre">|\X{2}{5}|\X{1}{5}|\X{1}{5}|</span></code> 는 허용되는 표현이며,
 이 때, 테이블은 line width의 80%를 차지하게 된다.</p>
-<p>이것은 <a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#table">table</a> directive의 <code class="docutils literal"><span class="pre">:widths:</span></code> 옵션에 의해 사용된다.</p>
+<p>이것은 <a class="reference external" href="https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/directives_ko.html#table">table</a> directive의 <code class="docutils literal"><span class="pre">:widths:</span></code> 옵션에 의해 사용된다.</p>
 <p>Sphinx 1.6 이후부터는 <code class="docutils literal"><span class="pre">\Y{0.15}</span></code> 와 같이 소수 표현을 허용하는 <code class="docutils literal"><span class="pre">\Y{f}</span></code> specifier도
 존재한다. 이것은 <code class="docutils literal"><span class="pre">\X{3}{20}</span></code> 와 똑같은 효과를 가진다.</p>
 <div class="versionchanged">
@@ -458,7 +458,7 @@ builder만 builder format과 builder name을 구별한다.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/15f30aee.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
     </div>
   </body>
 </html>

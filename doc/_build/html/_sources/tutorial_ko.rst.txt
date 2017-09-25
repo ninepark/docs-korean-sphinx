@@ -32,7 +32,7 @@ Sphinx 는 :program:`sphinx-quickstart` 스크립트를 지원한다.
 실행되는 질문들에 답하면 된다. ("autodoc" 확장에 yes 를 꼭 입력하자.)
 
 자동 API 문서 생성기인 :program:`sphinx-apidoc` 도 있다. ;
-:doc:`/man/sphinx-apidoc` 에서 이에 대한 세부사항을 볼 수 있다.
+:doc:`/man/sphinx-apidoc_ko` 에서 이에 대한 세부사항을 볼 수 있다.
 
 
 문서 구조 정의
@@ -264,7 +264,7 @@ intersphinx 을 사용하려면 :file:`conf.py` 에서 intersphinx 을 활성화
 어떤 상호 레퍼런스건 현재 문서 세트에서 알맞은 대상을 찾을 수 없다면
 :confval:`intersphinx_mapping` 에 설정된 문서를 보게 된다.
 (이 과정은 유효한 대상의 리스트를 받기 위한 URL 로의 접근을 필요로 한다.)
-Intersphinx 는 ``:ref:`` 를 포함한 다른 :ref:`domains' <domains>` 기능에서도 작동하지만
+Intersphinx 는 ``:ref:`` 를 포함한 다른 :ref:`domains <domains>` 기능에서도 작동하지만
 ``:doc:`` 과 같은 도메인이 없는 기능에서는 작동하지 않는다.
 
 |more| intersphinx 의 기능에 대한 완전한 설명은 :mod:`sphinx.ext.intersphinx` 를 보라.

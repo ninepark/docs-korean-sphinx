@@ -5,7 +5,7 @@
 Sphinx 는 reStructuredText_ 소스 파일을 다양한 출력 포맷으로 변환하는 도구로
 상호 레퍼런스, 인덱스 등을 자동 생성한다.
 이로 인해 디렉토리(하위 디렉토리도 가능)가 reST 포맷 문서 묶음을 포함할 때
-Sphinx는 체계적으로 배열된 HTML 파일들(다른 디렉토리에)을 생성하고 브라우징과 네비게이션을 용이하게 한다.
+Sphinx는 체계적으로 배열된 HTML 파일들을 다른 디렉토리에 생성 브라우징과 네비게이션을 용이하게 한다.
 동일한 소스로부터 LaTeX, `rinohtype`_, `rst2pdf`_ 를 사용해 PDF 또한 생성할 수도 있다.
 
 수동으로 작성한 문서를 주로 처리하지만 자동 생성 API 문서와 같이
@@ -54,8 +54,8 @@ Sphinx는 구동을 위해 최소한 **Python 2.7** 또는 **Python 3.4** 를
 Sphinx는 docutils 버전 0.10 또는 손상되지 않은 SVN 트렁크 스냅샷과 함께 사용해야 한다.
 소스코드 강조 지원을 원한다면 Pygments_ 라이브러리를 설치해야 한다.
 
-.. _reStructuredText: http://docutils.sourceforge.net/rst.html
-.. _docutils: http://docutils.sourceforge.net/
+.. _reStructuredText: https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/introduction_ko.html
+.. _docutils: https://veranostech.github.io/docs-korean-docutils/docutils/docs/index.html
 .. _Jinja2: http://jinja.pocoo.org/
 .. _Pygments: http://pygments.org/
 
@@ -63,4 +63,4 @@ Sphinx는 docutils 버전 0.10 또는 손상되지 않은 SVN 트렁크 스냅�
 사용
 -----
 
-소개를 위해 :doc:`tutorial` 를 보라. 이 문서는 다루고 있는 주제에 대한 심화된 섹션으로의 링크를 포함한다.
+소개를 위해 :doc:`tutorial_ko` 를 보라. 이 문서는 다루고 있는 주제에 대한 심화된 섹션으로의 링크를 포함한다.

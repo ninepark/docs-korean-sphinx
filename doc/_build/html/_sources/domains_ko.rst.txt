@@ -2,7 +2,7 @@
 
 .. _domains:
 
-Sphinx Domains
+Sphinx 도메인
 ==============
 
 .. versionadded:: 1.0
