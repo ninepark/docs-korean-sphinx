@@ -2,7 +2,7 @@
 
 .. _rst-primer:
 
-reStructuredText 입분
+reStructuredText 입문
 =======================
 
 이 섹션은 reStructuredText (reST) 의 개념, 문법에 대한 간단한 소개이며

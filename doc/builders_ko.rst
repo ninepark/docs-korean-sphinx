@@ -1,6 +1,6 @@
 .. _builders:
 
-Available builders
+사용가능한 빌더
 ==================
 
 .. module:: sphinx.builders
@@ -115,7 +115,7 @@ Available builders
 .. class:: DevhelpBuilder
 
    이 빌더는 자립형 HTML 빌더와 같은 출력물을 생성하지만 GNOME Devhelp reader로
-   볼 수 있게 해주는 <https://wiki.gnome.org/Apps/Devhelp>`__ 지원
+   볼 수 있게 해주는 `<https://wiki.gnome.org/Apps/Devhelp>`__ 지원
    파일도 함께 생성한다.
 
    .. autoattribute:: name
@@ -392,9 +392,9 @@ Available builders
 .. module:: sphinx.builders.linkcheck
 .. class:: CheckExternalLinksBuilder
 
-   이 빌더는 모든 문서의 외부 링크를 스캔(scan)하고 :mod:`urllib2`로 링크를 열어
+   이 빌더는 모든 문서의 외부 링크를 스캔(scan)하고 urllib2 로 링크를 열어
    본다. 그리고 어떤 링크가 끊어졌고 리다이렉트(redirect)되었는지에 대한 개관을
-   출력 디렉토리에있는 기존 출력물과 :file:`output.txt` 에 작성한다.
+   출력 디렉토리에있는 기존 출력물과 output.txt 에 작성한다.
 
    .. autoattribute:: name
 
@@ -441,7 +441,7 @@ Available builders
 
 .. _serialization-details:
 
-Serialization builder details
+직렬화 빌더 세부사항
 -----------------------------
 
 모든 직렬화 빌더는 소스 파일에 대한 하나의 파일과 여러 개의 특수 파일을 출력한다.
