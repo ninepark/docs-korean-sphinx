@@ -69,12 +69,12 @@ latex_show_urls = 'footnote'
 
 autodoc_member_order = 'groupwise'
 todo_include_todos = True
-extlinks = {'duref': ('http://docutils.sourceforge.net/docs/ref/rst/'
-                      'restructuredtext.html#%s', ''),
-            'durole': ('http://docutils.sourceforge.net/docs/ref/rst/'
-                       'roles.html#%s', ''),
-            'dudir': ('http://docutils.sourceforge.net/docs/ref/rst/'
-                      'directives.html#%s', '')}
+extlinks = {'duref': ('https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/'
+                      'restructuredtext_ko.html#%s', ''),
+            'durole': ('https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/'
+                       'roles_ko.html#%s', ''),
+            'dudir': ('https://veranostech.github.io/docs-korean-docutils/docutils/docs/ref/rst/'
+                      'directives_ko.html#%s', '')}
 
 man_pages = [
     ('contents', 'sphinx-all', 'Sphinx documentation generator system manual',
