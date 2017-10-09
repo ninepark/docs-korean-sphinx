@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Internationalization &#8212; Sphinx 1.7+ documentation</title>
+    <title>국제화 &#8212; Sphinx 1.7+/d91ef213a documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+',
+        VERSION:     '1.7+/d91ef213a',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Sphinx 1.7+ documentation에서 찾기"
+          title="Sphinx 1.7+/d91ef213a documentation에서 찾기"
           href="_static/opensearch.xml"/>
     <link rel="index" title="색인" href="genindex.html" />
     <link rel="search" title="검색" href="search.html" />
@@ -106,16 +106,16 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="contents.html">목차</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Internationalization</a><ul>
-<li><a class="reference internal" href="#sphinx-internationalization-details">Sphinx internationalization details</a></li>
-<li><a class="reference internal" href="#translating-with-sphinx-intl">Translating with sphinx-intl</a><ul>
-<li><a class="reference internal" href="#quick-guide">Quick guide</a></li>
-<li><a class="reference internal" href="#translating">Translating</a></li>
-<li><a class="reference internal" href="#update-your-po-files-by-new-pot-files">Update your po files by new pot files</a></li>
+<li><a class="reference internal" href="#">국제화</a><ul>
+<li><a class="reference internal" href="#id2">스핑크스 국제화 세부 사항</a></li>
+<li><a class="reference internal" href="#sphinx-intl">sphinx-intl 를 사용한 번역</a><ul>
+<li><a class="reference internal" href="#id5">간편 가이드</a></li>
+<li><a class="reference internal" href="#id10">번역</a></li>
+<li><a class="reference internal" href="#pot-po">새로운 pot 파일로 po 파일 업데이트</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-transifex-service-for-team-translation">Using Transifex service for team translation</a></li>
-<li><a class="reference internal" href="#contributing-to-sphinx-reference-translation">Contributing to Sphinx reference translation</a></li>
+<li><a class="reference internal" href="#transifex">공동 번역을 위한 Transifex 서비스</a></li>
+<li><a class="reference internal" href="#id11">스핑크스 레퍼런스 번역 참여</a></li>
 </ul>
 </li>
 </ul>
@@ -151,35 +151,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="internationalization">
-<span id="intl"></span><h1>Internationalization<a class="headerlink" href="#internationalization" title="제목 주소">¶</a></h1>
+  <div class="section" id="intl">
+<span id="id1"></span><h1>국제화<a class="headerlink" href="#intl" title="제목 주소">¶</a></h1>
 <div class="versionadded">
 <p><span class="versionmodified">버전 1.1에 추가.</span></p>
 </div>
-<p>네비게이션 바(navigation bars) 같이 스핑크스 생성 메세지에 제공되는 번역을 보완하는
+<p>네비게이션 바와 같이 스핑크스 생성 메세지에 제공되는 번역을 보완하는
 스핑크스는 문서 번역을 용이하게 하는 메커니즘을 제공한다. 설정에 대한 자세한 사항은
 <a class="reference internal" href="config.html#intl-options"><span class="std std-ref">Options for internationalization</span></a> 를 참고하라.</p>
-<div class="figure" id="id9">
+<div class="figure" id="id16">
 <a class="reference internal image-reference" href="_images/translation.png"><img alt="_images/translation.png" src="_images/translation.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">스핑크스 번역 작업 흐름(workflow) 시각화. (<a class="reference external" href="http://xkcd.com/779/">XKCD comic</a>
 에서 참고함.)</span></p>
 </div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#sphinx-internationalization-details" id="id10">Sphinx internationalization details</a></li>
-<li><a class="reference internal" href="#translating-with-sphinx-intl" id="id11">Translating with sphinx-intl</a><ul>
-<li><a class="reference internal" href="#quick-guide" id="id12">Quick guide</a></li>
-<li><a class="reference internal" href="#translating" id="id13">Translating</a></li>
-<li><a class="reference internal" href="#update-your-po-files-by-new-pot-files" id="id14">Update your po files by new pot files</a></li>
+<li><a class="reference internal" href="#id2" id="id17">스핑크스 국제화 세부 사항</a></li>
+<li><a class="reference internal" href="#sphinx-intl" id="id18">sphinx-intl 를 사용한 번역</a><ul>
+<li><a class="reference internal" href="#id5" id="id19">간편 가이드</a></li>
+<li><a class="reference internal" href="#id10" id="id20">번역</a></li>
+<li><a class="reference internal" href="#pot-po" id="id21">새로운 pot 파일로 po 파일 업데이트</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-transifex-service-for-team-translation" id="id15">Using Transifex service for team translation</a></li>
-<li><a class="reference internal" href="#contributing-to-sphinx-reference-translation" id="id16">Contributing to Sphinx reference translation</a></li>
+<li><a class="reference internal" href="#transifex" id="id22">공동 번역을 위한 Transifex 서비스</a></li>
+<li><a class="reference internal" href="#id11" id="id23">스핑크스 레퍼런스 번역 참여</a></li>
 </ul>
 </div>
-<div class="section" id="sphinx-internationalization-details">
-<h2><a class="toc-backref" href="#id10">Sphinx internationalization details</a><a class="headerlink" href="#sphinx-internationalization-details" title="제목 주소">¶</a></h2>
-<p><strong>gettext</strong> <a class="footnote-reference" href="#id7" id="id1">[1]</a> 는 국제화와 지역화를 위한 확정된 표준이다. 이것은 단순하게 프로그램에 있는
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id17">스핑크스 국제화 세부 사항</a><a class="headerlink" href="#id2" title="제목 주소">¶</a></h2>
+<p><strong>gettext</strong> <a class="footnote-reference" href="#id12" id="id3">[1]</a> 는 국제화와 지역화를 위한 확정된 표준이다. 이것은 단순하게 프로그램에 있는
 메세지를 번역된 스트링에 매핑한다. 스핑크스는 모든 문서를 번역할 때 이 기능을 사용한다.</p>
 <p>처음에 프로젝트 관리자는 번역기에 알려줄 수 있도록 번역가능한 모든 스트링(또는 메세지)을 수집해야
 한다. 스핑크스는 <code class="docutils literal"><span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">gettext</span></code> 를 실행해서 스트링을 추출한다.</p>
@@ -198,7 +198,7 @@
 바이너리 포맷으로 컴파일한다. 만약 이 파일들을 <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 를 위해
 <a class="reference internal" href="config.html#confval-locale_dirs"><code class="xref std std-confval docutils literal"><span class="pre">locale_dirs</span></code></a> 로 검색 가능하게 하면 스핑크스가 자동적으로 그것들을 선택할 것이다.</p>
 <p>예: 당신은 스핑크스 프로젝트에 <code class="docutils literal"><span class="pre">usage.rst</span></code> 문서를 가지고 있다. gettext 빌더는 문서의
-메세지를 <code class="docutils literal"><span class="pre">usage.pot</span></code> 에 넣을 것이다. <code class="docutils literal"><span class="pre">usage.po</span></code> 에 스페인어 번역 <a class="footnote-reference" href="#id8" id="id2">[2]</a> 내용이 이
+메세지를 <code class="docutils literal"><span class="pre">usage.pot</span></code> 에 넣을 것이다. <code class="docutils literal"><span class="pre">usage.po</span></code> 에 스페인어 번역 <a class="footnote-reference" href="#id13" id="id4">[2]</a> 내용이 이
 있다고 상상해보자. 당신의 빌드가 번역되기 위해서는 아래의 지시 사항을 따라야 한다:</p>
 <ul>
 <li><p class="first">당신의 메세지 카탈로그를 로케일(locale) 디렉토리로 컴파일하라. <code class="docutils literal"><span class="pre">locale</span></code> 이라 하면
@@ -217,10 +217,10 @@
 </li>
 </ul>
 </div>
-<div class="section" id="translating-with-sphinx-intl">
-<h2><a class="toc-backref" href="#id11">Translating with sphinx-intl</a><a class="headerlink" href="#translating-with-sphinx-intl" title="제목 주소">¶</a></h2>
-<div class="section" id="quick-guide">
-<h3><a class="toc-backref" href="#id12">Quick guide</a><a class="headerlink" href="#quick-guide" title="제목 주소">¶</a></h3>
+<div class="section" id="sphinx-intl">
+<h2><a class="toc-backref" href="#id18">sphinx-intl 를 사용한 번역</a><a class="headerlink" href="#sphinx-intl" title="제목 주소">¶</a></h2>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id19">간편 가이드</a><a class="headerlink" href="#id5" title="제목 주소">¶</a></h3>
 <p><a class="reference external" href="https://pypi.python.org/pypi/sphinx-intl">sphinx-intl</a> 는 스핑크스 번역 플로우(flow)를 다루는 유용한 도구다.
 이 섹선은 sphix-intl로 번역하는 쉬운 방법을 설명한다.</p>
 <ol class="arabic">
@@ -242,7 +242,7 @@
 </div>
 <p>결과적으로, pot 파일들이 <code class="docutils literal"><span class="pre">_build/gettext</span></code> 디렉토리 아래에 많이 생성될 것이다.</p>
 </li>
-<li><p class="first"><a href="#id3"><span class="problematic" id="id4">`</span></a>locale_dir`를 설정/업데이트 하라:</p>
+<li><p class="first"><a href="#id6"><span class="problematic" id="id7">`</span></a>locale_dir`를 설정/업데이트 하라:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sphinx-intl update -p _build/gettext -l de -l ja
 </pre></div>
 </div>
@@ -255,7 +255,7 @@
 <li><p class="first"><cite>./locale/&lt;lang&gt;/LC_MESSAGES/</cite> 에 있는 po 파일들을 번역하라.</p>
 </li>
 <li><p class="first">번역된 문서를 만들어라.</p>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a>conf.py``에 있는 <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 파라미터를 변경하거나 커맨드라인에서
+<p><a href="#id8"><span class="problematic" id="id9">``</span></a>conf.py``에 있는 <a class="reference internal" href="config.html#confval-language"><code class="xref std std-confval docutils literal"><span class="pre">language</span></code></a> 파라미터를 변경하거나 커맨드라인에서
 파라미터를 지정할 수 있다:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make -e <span class="nv">SPHINXOPTS</span><span class="o">=</span><span class="s2">&quot;-D language=&#39;de&#39;&quot;</span> html
 </pre></div>
@@ -269,8 +269,8 @@
 호출하라.</p>
 </div>
 </div>
-<div class="section" id="translating">
-<h3><a class="toc-backref" href="#id13">Translating</a><a class="headerlink" href="#translating" title="제목 주소">¶</a></h3>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id20">번역</a><a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
 <p><code class="docutils literal"><span class="pre">./locale/de/LC_MESSAGES</span></code> 디렉토리에 있는 po 파일을 번역하라.
 스핑크스 문서에 있는 builders.po 파일의 경우:</p>
 <div class="highlight-po"><div class="highlight"><pre><span></span><span class="c1"># a5600c3d2e3d48fc8c261ea0284db79b</span>
@@ -292,8 +292,8 @@
 </div>
 <p>reST 형식을 위반하지 않도록 주의하라. 대부분의 po 에디터가 위반하지 않도록 도와줄 것이다.</p>
 </div>
-<div class="section" id="update-your-po-files-by-new-pot-files">
-<h3><a class="toc-backref" href="#id14">Update your po files by new pot files</a><a class="headerlink" href="#update-your-po-files-by-new-pot-files" title="제목 주소">¶</a></h3>
+<div class="section" id="pot-po">
+<h3><a class="toc-backref" href="#id21">새로운 pot 파일로 po 파일 업데이트</a><a class="headerlink" href="#pot-po" title="제목 주소">¶</a></h3>
 <p>문서가 업데이트 되었다면 업데이트된 pot 파일을 생성하고 번역된 po 파일에 변경점을 적용해야 한다.
 업데이트된 pot 파일의 변경점을 po 파일에 적용시키기 위해서는
 <strong class="command">sphinx-intl update</strong> 커맨드를 사용하라.</p>
@@ -302,8 +302,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="using-transifex-service-for-team-translation">
-<h2><a class="toc-backref" href="#id15">Using Transifex service for team translation</a><a class="headerlink" href="#using-transifex-service-for-team-translation" title="제목 주소">¶</a></h2>
+<div class="section" id="transifex">
+<h2><a class="toc-backref" href="#id22">공동 번역을 위한 Transifex 서비스</a><a class="headerlink" href="#transifex" title="제목 주소">¶</a></h2>
 <p><a class="reference external" href="https://www.transifex.com/">Transifex</a> 는 웹 인터페이스를 통해서 공동 번역을 할 수 있게 해주는 서비스 중의 하나이다.
 이것은 번역을 쉽게 fetch 하고 push 하게 만들어주는 뛰어난 파이선 기반 커맨드라인 클라이언트다.</p>
 <ol class="arabic">
@@ -391,8 +391,8 @@
 통합할 때 굉장히 많은 시간과 노력이 필요하다.</p>
 </div>
 </div>
-<div class="section" id="contributing-to-sphinx-reference-translation">
-<h2><a class="toc-backref" href="#id16">Contributing to Sphinx reference translation</a><a class="headerlink" href="#contributing-to-sphinx-reference-translation" title="제목 주소">¶</a></h2>
+<div class="section" id="id11">
+<h2><a class="toc-backref" href="#id23">스핑크스 레퍼런스 번역 참여</a><a class="headerlink" href="#id11" title="제목 주소">¶</a></h2>
 <p>새로운 컨트리뷰터(contributor)가 스핑크스 레퍼런스를 번역할 때 권장하는 방법은 Transifex에
 있는 번역 팀에 가입시키는 것이다.</p>
 <p>Sphinx-1.3 도큐먼테이션에 <a class="reference external" href="https://www.transifex.com/sphinx-doc/sphinx-doc-1_3/">sphinx translation page</a> 가 있다.</p>
@@ -404,17 +404,17 @@
 <li>(승인 후) transifex로 번역하라.</li>
 </ol>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
+<table class="docutils footnote" frame="void" id="id12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>소프트웨어 suite에 대한 자세한 내용은 <a class="reference external" href="http://www.gnu.org/software/gettext/manual/gettext.html#Introduction">GNU gettext utilities</a>
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>소프트웨어 suite에 대한 자세한 내용은 <a class="reference external" href="http://www.gnu.org/software/gettext/manual/gettext.html#Introduction">GNU gettext utilities</a>
 을 참고하라.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
+<table class="docutils footnote" frame="void" id="id13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>아무도 스페인 종교 재판을 원하지 않기 때문이다!</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[2]</a></td><td>아무도 스페인 종교 재판을 원하지 않기 때문이다!</td></tr>
 </tbody>
 </table>
 </div>
@@ -448,7 +448,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/d91ef213a.
     </div>
   </body>
 </html>

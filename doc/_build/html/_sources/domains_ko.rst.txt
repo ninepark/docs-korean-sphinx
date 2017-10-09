@@ -24,7 +24,7 @@ Sphinx 도메인
 
 .. _basic-domain-markup:
 
-Basic Markup
+기본 마크업
 ------------
 
 대부분의 도메인은 많은 :dfn:`object description directives` 를 제공하고, 이러한 것들은 모듈에 의해 제공된 구체적인 object를 설명하기 위해 사용되어 진다. 
@@ -71,7 +71,7 @@ Basic Markup
    Reference to :func:`pyfunc`.
 
 
-Cross-referencing syntax
+상호 레퍼런스 문법
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 도메인에 의해 제공된 상호 참조 role의 경우, 일반적인 상호 참조를 위해 같은 기능이 존재한다. :ref:`xref-syntax` 를 보자.
@@ -86,7 +86,7 @@ Cross-referencing syntax
 * ``~`` 가 있는 컨텐츠를 앞에 놓는다면, 연결문은 단지 타겟의 마지막 구성요소일 것이다. 예를 들면, ``:py:meth:`~Queue.Queue.get`` 는 ``Queue.Queue.get`` 를 참조할 것이지만, 단지 연결문으로서 ``get`` 을 보여준다.
 
 
-The Python Domain
+파이썬 도메인
 -----------------
 
 파이썬 도메인(name **py**)은 모듈 선언을 위해 다음의 directives를 제공한다.:
@@ -224,7 +224,7 @@ The Python Domain
 
 .. _signatures:
 
-Python Signatures
+파이썬 시그니처
 ~~~~~~~~~~~~~~~~~
 
 함수, 메소드와 클래스 constuctor의 Signatures는 그들이 파이썬에서 쓰여지는 것처럼 주어질 수 있다.
@@ -242,8 +242,8 @@ Python Signatures
 
 .. _info-field-lists:
 
-Info field lists
-~~~~~~~~~~~~~~~~
+정보 필드 리스트
+~~~~~~~~~~~~~~~~~~
 
 .. versionadded:: 0.4
 
@@ -322,7 +322,7 @@ The field names은 이러한 키워드 중 하나와 argument(argument를 필요
 
 .. _python-roles:
 
-Cross-referencing Python objects
+상호 레퍼런스 파이썬 객체
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 다음의 role은 모듈 내에서 object를 참조하고 매칭이 되는 식별자를 발견한다면 하이퍼링크의 기능도 할 수 있다.:
@@ -387,7 +387,7 @@ Cross-referencing Python objects
 
 .. _c-domain:
 
-The C Domain
+C 도메인
 ------------
 
 C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
@@ -431,7 +431,7 @@ C 도메인 (이름 **c**)은 C API의 문서화에 적합하다.
 
 .. _c-roles:
 
-Cross-referencing C constructs
+상호 레퍼런스 C 구조
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 다음의 role은 문서에서 정의되어졌다면,  C 언어 구조에서 상호 참조를 생성한다.:
@@ -454,13 +454,13 @@ Cross-referencing C constructs
 
 .. _cpp-domain:
 
-The C++ Domain
+C++ 도메인
 --------------
 
 C++ 도메인 (name **cpp**)은 C++ 프로젝트를 문서화 하는 것을 지원한다.
 
 
-Directives
+명령어
 ~~~~~~~~~~
 
 다음의 directive가 가능하다. 모든 선언은 ``public``, ``private`` 또는 ``protected``와 함께 시작할 수 있다.
@@ -681,7 +681,7 @@ Directives
 
       :cpp:concept:`Iterator` s 를 통해 접근할 수 있는 요소의 Holder.
 
-Options
+옵션
 .......
 
 몇몇의 directive는 옵션을 지원한다.:
@@ -690,7 +690,7 @@ Options
 - ``:tparam-line-spec:``, 템플릿 선언에 대해,
   템플릿 파라미터가 지정되어지면, 각각의 템플릿 파라미터는 별도의 줄에서 렌더링이 될 것이다.
 
-Constrained Templates
+제한된 템플릿
 ~~~~~~~~~~~~~~~~~~~~~
 
 .. 경고:: 제한된 템플릿에 대한 지원은 실험적이고 Concepts Technical Specification에 기초를 둔다. 
@@ -698,7 +698,7 @@ Constrained Templates
 
 .. note:: 스핑크스는 현재 ``requires`` clauses 를 지원하지 않는다.
 
-Placeholders
+자리 표시자
 ............
 
 선언은 제한된 템플릿 파라미터를 소개하기 위해 컨셉의 이름을 사용할 수도 있다. 또는 제한되지 않은 템플릿 파라미터를 소개하기 위해 ``auto`` 키워드를 사용할 수도 있다. ::
@@ -711,7 +711,7 @@ Placeholders
 
       Iterator 컨셉에 의해 제한된 하나의 템플릿 파라미터를 가진 함수 템플릿.
 
-Template Introductions
+템플릿 도입
 ......................
 
 간단한 제한된 함수 또는 클래스 템플릿은 `템플릿 도입` 대신에 템플릿 파라미터 리스트를 사용해 선언되어질 수 있다. ::
@@ -738,12 +738,12 @@ Note 파라미터 호환성에 대한 체크가 수행되지는 않는다.
  예, ``Iterator{A, B, C}`` 는 도입에서는 받아 들여질 것이지만, C++에서는 유효하지 않을 것이다.
 
 
-Inline Expressions and Tpes
+인라인 표현과 타입
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rst:role:: cpp:expr
 
-   inline 텍스트로써 C++ 표헌 또는 타입을 삽입하는 role.
+   inline 텍스트로써 C++ 표현 또는 타입을 삽입하는 role.
    예를 들면 ::
 
       .. cpp:var:: int a = 42
@@ -762,7 +762,7 @@ Inline Expressions and Tpes
   An expression: :cpp:expr:`a * f(a)`.
   A type: :cpp:expr:`const MySortedContainer<int>&`.
 
-Namespacing
+네임 스페이스
 ~~~~~~~~~~~~~~~~~
 
 C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
@@ -838,7 +838,7 @@ C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
       .. cpp:namespace-push:: A::B
 
 
-Info field lists
+정보 필드 리스트
 ~~~~~~~~~~~~~~~~~
 
 C++ directive는 다음의 info fields 를 지원한다.( :ref:`info-field-lists` 를 보자.):
@@ -851,7 +851,7 @@ C++ directive는 다음의 info fields 를 지원한다.( :ref:`info-field-lists
 
 .. _cpp-roles:
 
-Cross-referencing
+상호 레퍼런스
 ~~~~~~~~~~~~~~~~~
 
 이러한 roles은 주어진 선언 타입에 연결한다.:
@@ -891,7 +891,7 @@ Cross-referencing
 템플릿이 없는 선언에 연결하기 위해 이름은 중첩된 이름이어야 한다.
 예, ``f`` 또는 ``MyClass::f``.
 
-Templated declarations
+템플릿화 선언
 ......................
 
 다음의 선언을 가정하자.
@@ -954,13 +954,13 @@ Partial Template Specialisations
 템플릿 파라미터 식별자가 문자열과 같다면 단지 조회만 성공된다.
 
 
-Configuration Variables
+환경 변수
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :ref:`cpp-config` 를 보자.
 
 
-The Standard Domain
+표준 도메인
 -------------------
 
 이른바 "표준" 도메인은 스스로의 도메인을 보장하지 않는 모든 마크업을 모은다.
@@ -1040,7 +1040,7 @@ The Standard Domain
          페이퍼 사이즈를 선택하기 위해 이 변수를 설정할 수 있다.
 
 
-The JavaScript Domain
+자바스크립트 도메인
 ---------------------
 
 자바스크립트 도메인 (name **js**) 은 다음의 directives를 제공한다.:
@@ -1136,7 +1136,7 @@ The JavaScript Domain
           js:attr
 
 
-The reStructuredText domain
+reStructuredText 도메인
 ---------------------------
 
 reStructuredText 도메인 (name **rst**) 은 다음의 directives를 제공한다. :
@@ -1187,7 +1187,7 @@ reStructuredText 도메인 (name **rst**) 은 다음의 directives를 제공한�
               rst:role
 
 
-More domains
+기타 도메인
 ------------
 
 The sphinx-contrib_ repository 확장으로 이용가능한 더 많은 도메인을 포함한다.;

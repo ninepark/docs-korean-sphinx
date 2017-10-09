@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Sphinx Domains &#8212; Sphinx 1.7+ documentation</title>
+    <title>Sphinx Domains &#8212; Sphinx 1.7+/d91ef213a documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+',
+        VERSION:     '1.7+/d91ef213a',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Sphinx 1.7+ documentation에서 찾기"
+          title="Sphinx 1.7+/d91ef213a documentation에서 찾기"
           href="_static/opensearch.xml"/>
     <link rel="index" title="색인" href="genindex.html" />
     <link rel="search" title="검색" href="search.html" />
@@ -310,7 +310,7 @@ location has the <a class="reference internal" href="domains_ko.html#directive-p
 <dt id="directive-py:function">
 <code class="descname">.. py:function::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="정의 주소">¶</a></dt>
 <dd><p>Describes a module-level function.  The signature should include the
-parameters as given in the Python function definition, see <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a>.
+parameters as given in the Python function definition, see <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">파이썬 시그니처</span></a>.
 For example:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> Timer.repeat(repeat=3, number=1000000)
 </pre></div>
@@ -320,7 +320,7 @@ For example:</p>
 and how they are used (especially whether mutable objects passed as
 parameters are modified), side effects, and possible exceptions.</p>
 <p>This information can (in any <code class="docutils literal"><span class="pre">py</span></code> directive) optionally be given in a
-structured form, see <a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+structured form, see <a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a>.</p>
 </dd></dl>
 
 <dl class="directive">
@@ -345,7 +345,7 @@ parentheses with constructor arguments.</p>
 <code class="descname">.. py:class::</code><code class="descclassname"> name(parameters)</code></dt>
 <dd><p>Describes a class.  The signature can optionally include parentheses with
 parameters which will be shown as the constructor arguments.  See also
-<a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a>.</p>
+<a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">파이썬 시그니처</span></a>.</p>
 <p>Methods and attributes belonging to the class should be placed in this
 directive's body.  If they are placed outside, the supplied name should
 contain the class name so that cross-references still work.  Example:</p>
@@ -376,8 +376,8 @@ changed directly.</p>
 <code class="descname">.. py:method::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="정의 주소">¶</a></dt>
 <dd><p>Describes an object method.  The parameters should not include the <code class="docutils literal"><span class="pre">self</span></code>
 parameter.  The description should include similar information to that
-described for <code class="docutils literal"><span class="pre">function</span></code>.  See also <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">Python Signatures</span></a> and
-<a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>.</p>
+described for <code class="docutils literal"><span class="pre">function</span></code>.  See also <a class="reference internal" href="domains_ko.html#signatures"><span class="std std-ref">파이썬 시그니처</span></a> and
+<a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a>.</p>
 </dd></dl>
 
 <dl class="directive">
@@ -888,7 +888,7 @@ or simply the name of a type with unspecified type, e.g.,:</p>
 
 <dl class="type">
 <dt id="_CPPv3I0E11MyContainer">
-<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;<a class="reference internal" href="#_CPPv3I0E11MyContainer" title="MyContainer::T">T</a>&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;T&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -979,14 +979,14 @@ indirected, or incremented.</p>
 <p><strong>Notation</strong></p>
 <dl class="var">
 <dt id="_CPPv3NSt8Iterator1rE">
-<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span><a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It">It</a> <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span>It <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
 <dd><p>An lvalue.</p>
 </dd></dl>
 
 <p><strong>Valid Expressions</strong></p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">*</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is dereferenceable.</li>
-<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It"><span class="pre">It</span></a><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
+<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><span class="pre">It</span><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
 </ul>
 </dd></dl>
 
@@ -1003,7 +1003,7 @@ indirected, or incremented.</p>
 <h4>Options<a class="headerlink" href="#options" title="제목 주소">¶</a></h4>
 <p>Some directives support options:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">:noindex:</span></code>, see <a class="reference internal" href="domains_ko.html#basic-domain-markup"><span class="std std-ref">Basic Markup</span></a>.</li>
+<li><code class="docutils literal"><span class="pre">:noindex:</span></code>, see <a class="reference internal" href="domains_ko.html#basic-domain-markup"><span class="std std-ref">기본 마크</span></a>.</li>
 <li><code class="docutils literal"><span class="pre">:tparam-line-spec:</span></code>, for templated declarations.
 If specified, each template parameter will be rendered on a separate line.</li>
 </ul>
@@ -1051,7 +1051,7 @@ parameters, or the keyword <code class="docutils literal"><span class="pre">auto
 <p>They are rendered as follows.</p>
 <dl class="function">
 <dt id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It">
-<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="advance::It">It</a> &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span>It &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
 <dd><p>A function template with a template parameter constrained to be an Iterator.</p>
 </dd></dl>
 
@@ -1184,7 +1184,7 @@ That is, <code class="docutils literal"><span class="pre">..</span> <span class=
 </div>
 <div class="section" id="id3">
 <h3>Info field lists<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
-<p>The C++ directives support the following info fields (see also <a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">Info field lists</span></a>):</p>
+<p>The C++ directives support the following info fields (see also <a class="reference internal" href="domains_ko.html#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a>):</p>
 <ul class="simple">
 <li><cite>param</cite>, <cite>parameter</cite>, <cite>arg</cite>, <cite>argument</cite>: Description of a parameter.</li>
 <li><cite>tparam</cite>: Description of a template parameter.</li>
@@ -1313,7 +1313,7 @@ and <code class="docutils literal"><span class="pre">Outer\&lt;int&gt;::Inner\&l
 <p>Assume the following declaration.</p>
 <dl class="class">
 <dt id="_CPPv3I0E5OuterIP1TE">
-<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;<a class="reference internal" href="#_CPPv3I0E5OuterIP1TE" title="Outer&lt;T *&gt;::T">T</a> *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;T *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>References to partial specialisations must always include the template parameter lists, e.g.,
@@ -1646,7 +1646,7 @@ domains. Also available are domains for <a class="reference external" href="http
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/d91ef213a.
     </div>
   </body>
 </html>
