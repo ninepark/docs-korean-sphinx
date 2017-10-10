@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Sphinx 도메인 &#8212; Sphinx 1.7+ documentation</title>
+    <title>Sphinx 도메인 &#8212; Sphinx 1.7+/d91ef213a documentation</title>
     <link rel="stylesheet" href="_static/sphinx13.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.7+',
+        VERSION:     '1.7+/d91ef213a',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -23,12 +23,12 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Sphinx 1.7+ documentation에서 찾기"
+          title="Sphinx 1.7+/d91ef213a documentation에서 찾기"
           href="_static/opensearch.xml"/>
     <link rel="index" title="색인" href="genindex.html" />
     <link rel="search" title="검색" href="search.html" />
     <link rel="next" title="사용가능한 빌더" href="builders_ko.html" />
-    <link rel="prev" title="Miscellaneous markup" href="markup/misc.html" />
+    <link rel="prev" title="기타 마크업" href="markup/misc_ko.html" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'
           rel='stylesheet' type='text/css' />
  
@@ -95,7 +95,7 @@
           <a href="builders_ko.html" title="사용가능한 빌더"
              accesskey="N">다음</a> |</li>
         <li class="right" >
-          <a href="markup/misc.html" title="Miscellaneous markup"
+          <a href="markup/misc_ko.html" title="기타 마크업"
              accesskey="P">이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
@@ -108,54 +108,54 @@
   <ul>
 <li><a class="reference internal" href="#">Sphinx 도메인</a><ul>
 <li><a class="reference internal" href="#id1">도메인이란 무엇인가?</a></li>
-<li><a class="reference internal" href="#basic-markup">Basic Markup</a><ul>
-<li><a class="reference internal" href="#cross-referencing-syntax">Cross-referencing syntax</a></li>
+<li><a class="reference internal" href="#basic-domain-markup">기본 마크업</a><ul>
+<li><a class="reference internal" href="#id3">상호 레퍼런스 문법</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-python-domain">The Python Domain</a><ul>
-<li><a class="reference internal" href="#python-signatures">Python Signatures</a></li>
-<li><a class="reference internal" href="#info-field-lists">Info field lists</a></li>
-<li><a class="reference internal" href="#cross-referencing-python-objects">Cross-referencing Python objects</a></li>
+<li><a class="reference internal" href="#id4">파이썬 도메인</a><ul>
+<li><a class="reference internal" href="#signatures">파이썬 시그니처</a></li>
+<li><a class="reference internal" href="#info-field-lists">정보 필드 리스트</a></li>
+<li><a class="reference internal" href="#python-roles">상호 레퍼런스 파이썬 객체</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-c-domain">The C Domain</a><ul>
-<li><a class="reference internal" href="#cross-referencing-c-constructs">Cross-referencing C constructs</a></li>
+<li><a class="reference internal" href="#c">C 도메인</a><ul>
+<li><a class="reference internal" href="#c-roles">상호 레퍼런스 C 구조</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#cpp-domain">The C++ Domain</a><ul>
-<li><a class="reference internal" href="#directives">Directives</a><ul>
-<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#cpp-domain">C++ 도메인</a><ul>
+<li><a class="reference internal" href="#id12">명령어</a><ul>
+<li><a class="reference internal" href="#id15">옵션</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#constrained-templates">Constrained Templates</a><ul>
-<li><a class="reference internal" href="#placeholders">Placeholders</a></li>
-<li><a class="reference internal" href="#template-introductions">Template Introductions</a></li>
+<li><a class="reference internal" href="#id18">제한된 템플릿</a><ul>
+<li><a class="reference internal" href="#id19">자리 표시자</a></li>
+<li><a class="reference internal" href="#id20">템플릿 도입</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#inline-expressions-and-tpes">Inline Expressions and Tpes</a></li>
-<li><a class="reference internal" href="#namespacing">Namespacing</a></li>
-<li><a class="reference internal" href="#id10">Info field lists</a></li>
-<li><a class="reference internal" href="#cross-referencing">Cross-referencing</a><ul>
+<li><a class="reference internal" href="#id21">인라인 표현과 타입</a></li>
+<li><a class="reference internal" href="#id22">네임 스페이스</a></li>
+<li><a class="reference internal" href="#id23">정보 필드 리스트</a></li>
+<li><a class="reference internal" href="#cpp-roles">상호 레퍼런스</a><ul>
 <li><a class="reference internal" href="#argument">템플릿 파라미터와 템플릿 argument 없이 선언하기</a></li>
-<li><a class="reference internal" href="#templated-declarations">Templated declarations</a></li>
+<li><a class="reference internal" href="#id25">템플릿화 선언</a></li>
 <li><a class="reference internal" href="#full-template-specialisations">(Full) Template Specialisations</a></li>
 <li><a class="reference internal" href="#partial-template-specialisations">Partial Template Specialisations</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configuration-variables">Configuration Variables</a></li>
+<li><a class="reference internal" href="#id26">환경 변수</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-standard-domain">The Standard Domain</a></li>
-<li><a class="reference internal" href="#the-javascript-domain">The JavaScript Domain</a></li>
-<li><a class="reference internal" href="#the-restructuredtext-domain">The reStructuredText domain</a></li>
-<li><a class="reference internal" href="#more-domains">More domains</a></li>
+<li><a class="reference internal" href="#id27">표준 도메인</a></li>
+<li><a class="reference internal" href="#id28">자바스크립트 도메인</a></li>
+<li><a class="reference internal" href="#restructuredtext">reStructuredText 도메인</a></li>
+<li><a class="reference internal" href="#id33">기타 도메인</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>이전 항목</h4>
-  <p class="topless"><a href="markup/misc.html"
-                        title="이전 장">Miscellaneous markup</a></p>
+  <p class="topless"><a href="markup/misc_ko.html"
+                        title="이전 장">기타 마크업</a></p>
   <h4>다음 항목</h4>
   <p class="topless"><a href="builders_ko.html"
                         title="다음 장">사용가능한 빌더</a></p>
@@ -198,8 +198,8 @@
 <p>도메인을 가지는 것은 예를 들어 문서화된 한 세트가 C++, 파이썬 클래스를 참조하고자 할 때, 네이밍 문제가 없다는 것을 의미한다. 또한 새로운 언어의 문서화를 지원해주는 확장을 작성하기가 훨씬 더 쉬워졌다는 것을 의미한다.</p>
 <p>이 섹션은 스핑크스에 포함된 도메인이 무엇을 제공하는지를 설명해준다. 도메인 API는 문서화가 잘되어있다 <a class="reference internal" href="extdev/domainapi.html#domain-api"><span class="std std-ref">Domain API</span></a>.</p>
 </div>
-<div class="section" id="basic-markup">
-<span id="basic-domain-markup"></span><h2>Basic Markup<a class="headerlink" href="#basic-markup" title="제목 주소">¶</a></h2>
+<div class="section" id="basic-domain-markup">
+<span id="id2"></span><h2>기본 마크업<a class="headerlink" href="#basic-domain-markup" title="제목 주소">¶</a></h2>
 <p>대부분의 도메인은 많은 <em class="dfn">object description directives</em> 를 제공하고, 이러한 것들은 모듈에 의해 제공된 구체적인 object를 설명하기 위해 사용되어 진다.
 각각의 directive는 설명할 것들에 대해 기본적인 정보를 제공하기 위해 하나 이상의 signature를 요구한다. 그리고 내용을 설명해야 한다. 기본 버젼은 일반적인 인덱스 내에서 엔트리를 만든다. 인덱스가 없는 엔트리가 요구되면, directive option flag 인 <code class="docutils literal"><span class="pre">:noindex:</span></code> 를 줄 수 있다. 아래는 파이썬 도메인 directive를 사용한 예이다.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> spam(eggs)
@@ -239,9 +239,9 @@
 Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 </pre></div>
 </div>
-<div class="section" id="cross-referencing-syntax">
-<h3>Cross-referencing syntax<a class="headerlink" href="#cross-referencing-syntax" title="제목 주소">¶</a></h3>
-<p>도메인에 의해 제공된 상호 참조 role의 경우, 일반적인 상호 참조를 위해 같은 기능이 존재한다. <a class="reference internal" href="markup/inline_ko.html#xref-syntax"><span class="std std-ref">Cross-referencing syntax</span></a> 를 보자.</p>
+<div class="section" id="id3">
+<h3>상호 레퍼런스 문법<a class="headerlink" href="#id3" title="제목 주소">¶</a></h3>
+<p>도메인에 의해 제공된 상호 참조 role의 경우, 일반적인 상호 참조를 위해 같은 기능이 존재한다. <a class="reference internal" href="markup/inline_ko.html#xref-syntax"><span class="std std-ref">상호 레퍼런스 문법</span></a> 를 보자.</p>
 <p>간략하게 :</p>
 <ul class="simple">
 <li>명시적인 제목과 참조 타겟을 제공할 수도 있다. : <code class="docutils literal"><span class="pre">:role:`title</span>
@@ -251,8 +251,8 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 </ul>
 </div>
 </div>
-<div class="section" id="the-python-domain">
-<h2>The Python Domain<a class="headerlink" href="#the-python-domain" title="제목 주소">¶</a></h2>
+<div class="section" id="id4">
+<h2>파이썬 도메인<a class="headerlink" href="#id4" title="제목 주소">¶</a></h2>
 <p>파이썬 도메인(name <strong>py</strong>)은 모듈 선언을 위해 다음의 directives를 제공한다.:</p>
 <dl class="directive">
 <dt id="directive-py:module">
@@ -281,14 +281,14 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 <dl class="directive">
 <dt id="directive-py:function">
 <code class="descname">.. py:function::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:function" title="정의 주소">¶</a></dt>
-<dd><p>모듈 레벨의 함수를 설명한다. signature는 파이썬 함수 정의에서 주어진 파라미터를 포함 해야한다. <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 를 보자.
+<dd><p>모듈 레벨의 함수를 설명한다. signature는 파이썬 함수 정의에서 주어진 파라미터를 포함 해야한다. <a class="reference internal" href="#signatures"><span class="std std-ref">파이썬 시그니처</span></a> 를 보자.
 예시:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> Timer.repeat(repeat=3, number=1000000)
 </pre></div>
 </div>
 <p>사용해야하는 메소드의 경우 <a class="reference internal" href="#directive-py:method" title="py:method directive"><code class="xref rst rst-dir docutils literal"><span class="pre">py:method</span></code></a>.</p>
 <p>일반적으로 설명은 요구되어지는 파라미터, 어떻게 그들이 사용 되어지는지, 부작용 그리고 가능한 예외에 대한 정보를 포함해야 한다.</p>
-<p>이 정보는 (in any <code class="docutils literal"><span class="pre">py</span></code> directive) 선택적으로 구조화된 형태로 주어진다. <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 봐라.</p>
+<p>이 정보는 (in any <code class="docutils literal"><span class="pre">py</span></code> directive) 선택적으로 구조화된 형태로 주어진다. <a class="reference internal" href="#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a> 를 봐라.</p>
 </dd></dl>
 
 <dl class="directive">
@@ -312,7 +312,7 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 <dt>
 <code class="descname">.. py:class::</code><code class="descclassname"> name(parameters)</code></dt>
 <dd><p>클래스를 설명한다. Signature는 선택적으로 constructor arguments로 보여지는 파라미터를 가진 괄호를 포함할 수 있다.
-<a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 를 보자.</p>
+<a class="reference internal" href="#signatures"><span class="std std-ref">파이썬 시그니처</span></a> 를 보자.</p>
 <p>클래스에 속하는 메소드와 특성은 directive의body에 위치 해야한다. 그들이 바깥에 위치한다면,
 제공되어진 이름은 상호 참조가 여전히 작동하게 하기 위해서 클래스 이름을 포함 해야한다.
 예:</p>
@@ -339,7 +339,7 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 <dl class="directive">
 <dt id="directive-py:method">
 <code class="descname">.. py:method::</code><code class="descclassname"> name(parameters)</code><a class="headerlink" href="#directive-py:method" title="정의 주소">¶</a></dt>
-<dd><p>Object 메소드를 설명한다. 파라미터는 <code class="docutils literal"><span class="pre">self</span></code> 를 포함하지 않아도 된다. 설명은 <a href="#id2"><span class="problematic" id="id3">``</span></a>function``에 대한 설명과 유사한 정보를 포함해야한다.  <a class="reference internal" href="#signatures"><span class="std std-ref">Python Signatures</span></a> 와 <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 보자.</p>
+<dd><p>Object 메소드를 설명한다. 파라미터는 <code class="docutils literal"><span class="pre">self</span></code> 를 포함하지 않아도 된다. 설명은 <a href="#id5"><span class="problematic" id="id6">``</span></a>function``에 대한 설명과 유사한 정보를 포함해야한다.  <a class="reference internal" href="#signatures"><span class="std std-ref">파이썬 시그니처</span></a> 와 <a class="reference internal" href="#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a> 를 보자.</p>
 </dd></dl>
 
 <dl class="directive">
@@ -400,8 +400,8 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 <p><a class="reference internal" href="#role-py:meth" title="py:meth role"><code class="xref rst rst-role docutils literal"><span class="pre">py:meth</span></code></a> role를 사용해서 decorator 메소드를 참조해라.</p>
 </dd></dl>
 
-<div class="section" id="python-signatures">
-<span id="signatures"></span><h3>Python Signatures<a class="headerlink" href="#python-signatures" title="제목 주소">¶</a></h3>
+<div class="section" id="signatures">
+<span id="id7"></span><h3>파이썬 시그니처<a class="headerlink" href="#signatures" title="제목 주소">¶</a></h3>
 <p>함수, 메소드와 클래스 constuctor의 Signatures는 그들이 파이썬에서 쓰여지는 것처럼 주어질 수 있다.</p>
 <p>선택적인 argument에 대한 기본값은 주어질 수 있다.(하지만 콤마를 포함한다면, signature parser를 혼동할 것이다. 파이썬의 3가지 스타일의 주석 또한 주어질 것이고 또한 타입 주석을 리턴할 수 있다.:</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">py:function</span><span class="p">::</span> compile(source : string, filename, symbol=&#39;file&#39;) -&gt; ast object
@@ -418,7 +418,7 @@ Reference to <span class="na">:func:</span><span class="nv">`pyfunc`</span>.
 <p>콤마 전에 여는 괄호를 넣는 것이 일반적인 관례이다.</p>
 </div>
 <div class="section" id="info-field-lists">
-<span id="id4"></span><h3>Info field lists<a class="headerlink" href="#info-field-lists" title="제목 주소">¶</a></h3>
+<span id="id8"></span><h3>정보 필드 리스트<a class="headerlink" href="#info-field-lists" title="제목 주소">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified">버전 0.4에 추가.</span></p>
 </div>
@@ -513,8 +513,8 @@ are recognized and formatted nicely:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="cross-referencing-python-objects">
-<span id="python-roles"></span><h3>Cross-referencing Python objects<a class="headerlink" href="#cross-referencing-python-objects" title="제목 주소">¶</a></h3>
+<div class="section" id="python-roles">
+<span id="id9"></span><h3>상호 레퍼런스 파이썬 객체<a class="headerlink" href="#python-roles" title="제목 주소">¶</a></h3>
 <p>다음의 role은 모듈 내에서 object를 참조하고 매칭이 되는 식별자를 발견한다면 하이퍼링크의 기능도 할 수 있다.:</p>
 <dl class="role">
 <dt id="role-py:mod">
@@ -590,8 +590,8 @@ are recognized and formatted nicely:</p>
 메소드를 참조할 것이다. 하지만 눈에 보이는 링크 캡션은 단지 <code class="docutils literal"><span class="pre">close()</span></code> 일 것이다.</p>
 </div>
 </div>
-<div class="section" id="the-c-domain">
-<span id="c-domain"></span><h2>The C Domain<a class="headerlink" href="#the-c-domain" title="제목 주소">¶</a></h2>
+<div class="section" id="c">
+<span id="c-domain"></span><h2>C 도메인<a class="headerlink" href="#c" title="제목 주소">¶</a></h2>
 <p>C 도메인 (이름 <strong>c</strong>)은 C API의 문서화에 적합하다.</p>
 <dl class="directive">
 <dt id="directive-c:function">
@@ -639,8 +639,8 @@ are recognized and formatted nicely:</p>
 </div>
 </dd></dl>
 
-<div class="section" id="cross-referencing-c-constructs">
-<span id="c-roles"></span><h3>Cross-referencing C constructs<a class="headerlink" href="#cross-referencing-c-constructs" title="제목 주소">¶</a></h3>
+<div class="section" id="c-roles">
+<span id="id10"></span><h3>상호 레퍼런스 C 구조<a class="headerlink" href="#c-roles" title="제목 주소">¶</a></h3>
 <p>다음의 role은 문서에서 정의되어졌다면,  C 언어 구조에서 상호 참조를 생성한다.:</p>
 <dl class="role">
 <dt id="role-c:data">
@@ -669,11 +669,11 @@ are recognized and formatted nicely:</p>
 </div>
 </div>
 <div class="section" id="cpp-domain">
-<span id="id5"></span><h2>The C++ Domain<a class="headerlink" href="#cpp-domain" title="제목 주소">¶</a></h2>
+<span id="id11"></span><h2>C++ 도메인<a class="headerlink" href="#cpp-domain" title="제목 주소">¶</a></h2>
 <p>C++ 도메인 (name <strong>cpp</strong>)은 C++ 프로젝트를 문서화 하는 것을 지원한다.</p>
-<div class="section" id="directives">
-<h3>Directives<a class="headerlink" href="#directives" title="제목 주소">¶</a></h3>
-<p>다음의 directive가 가능하다. 모든 선언은 <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> 또는 <a href="#id6"><span class="problematic" id="id7">``</span></a>protected``와 함께 시작할 수 있다.</p>
+<div class="section" id="id12">
+<h3>명령어<a class="headerlink" href="#id12" title="제목 주소">¶</a></h3>
+<p>다음의 directive가 가능하다. 모든 선언은 <code class="docutils literal"><span class="pre">public</span></code>, <code class="docutils literal"><span class="pre">private</span></code> 또는 <a href="#id13"><span class="problematic" id="id14">``</span></a>protected``와 함께 시작할 수 있다.</p>
 <dl class="directive">
 <dt id="directive-cpp:class">
 <code class="descname">.. cpp:class::</code><code class="descclassname"> class specifier</code><a class="headerlink" href="#directive-cpp:class" title="정의 주소">¶</a></dt>
@@ -817,7 +817,7 @@ are recognized and formatted nicely:</p>
 
 <dl class="type">
 <dt id="_CPPv3I0E11MyContainer">
-<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;<a class="reference internal" href="domains.html#_CPPv3I0E11MyContainer" title="MyContainer::T">T</a>&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0E11MyContainer"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">using </em><code class="descclassname"></code><code class="descname">MyContainer</code> = std::vector&lt;T&gt;<a class="headerlink" href="#_CPPv3I0E11MyContainer" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -900,14 +900,14 @@ are recognized and formatted nicely:</p>
 <p><strong>Notation</strong></p>
 <dl class="var">
 <dt id="_CPPv3NSt8Iterator1rE">
-<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span><a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It">It</a> <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2NSt8Iterator1rE"></span><span id="std::Iterator::r__It"></span>It <code class="descclassname"></code><code class="descname">r</code><a class="headerlink" href="#_CPPv3NSt8Iterator1rE" title="정의 주소">¶</a><br /></dt>
 <dd><p>An lvalue.</p>
 </dd></dl>
 
 <p><strong>Valid Expressions</strong></p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">*</span><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, when <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is dereferenceable.</li>
-<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator::It"><span class="pre">It</span></a><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
+<li><code class="docutils literal"><span class="pre">++</span><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code>, with return type <code class="docutils literal"><span class="pre">It</span><span class="pre">&amp;</span></code>, when <code class="docutils literal"><a class="reference internal" href="domains.html#_CPPv3NSt8Iterator1rE" title="std::Iterator::r"><span class="pre">r</span></a></code> is incrementable.</li>
 </ul>
 </dd></dl>
 
@@ -919,24 +919,24 @@ are recognized and formatted nicely:</p>
 
 </dd></dl>
 
-<div class="section" id="options">
-<h4>Options<a class="headerlink" href="#options" title="제목 주소">¶</a></h4>
+<div class="section" id="id15">
+<h4>옵션<a class="headerlink" href="#id15" title="제목 주소">¶</a></h4>
 <p>몇몇의 directive는 옵션을 지원한다.:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">:noindex:</span></code>, :ref:<a href="#id8"><span class="problematic" id="id9">`</span></a>basic-domain-markup`를 보자.</li>
+<li><code class="docutils literal"><span class="pre">:noindex:</span></code>, :ref:<a href="#id16"><span class="problematic" id="id17">`</span></a>basic-domain-markup`를 보자.</li>
 <li><code class="docutils literal"><span class="pre">:tparam-line-spec:</span></code>, 템플릿 선언에 대해,
 템플릿 파라미터가 지정되어지면, 각각의 템플릿 파라미터는 별도의 줄에서 렌더링이 될 것이다.</li>
 </ul>
 </div>
 </div>
-<div class="section" id="constrained-templates">
-<h3>Constrained Templates<a class="headerlink" href="#constrained-templates" title="제목 주소">¶</a></h3>
+<div class="section" id="id18">
+<h3>제한된 템플릿<a class="headerlink" href="#id18" title="제목 주소">¶</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
 <p class="last">스핑크스는 현재 <code class="docutils literal"><span class="pre">requires</span></code> clauses 를 지원하지 않는다.</p>
 </div>
-<div class="section" id="placeholders">
-<h4>Placeholders<a class="headerlink" href="#placeholders" title="제목 주소">¶</a></h4>
+<div class="section" id="id19">
+<h4>자리 표시자<a class="headerlink" href="#id19" title="제목 주소">¶</a></h4>
 <p>선언은 제한된 템플릿 파라미터를 소개하기 위해 컨셉의 이름을 사용할 수도 있다. 또는 제한되지 않은 템플릿 파라미터를 소개하기 위해 <code class="docutils literal"><span class="pre">auto</span></code> 키워드를 사용할 수도 있다.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> void f(auto &amp;&amp;arg)
 
@@ -948,8 +948,8 @@ are recognized and formatted nicely:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="template-introductions">
-<h4>Template Introductions<a class="headerlink" href="#template-introductions" title="제목 주소">¶</a></h4>
+<div class="section" id="id20">
+<h4>템플릿 도입<a class="headerlink" href="#id20" title="제목 주소">¶</a></h4>
 <p>간단한 제한된 함수 또는 클래스 템플릿은 <cite>템플릿 도입</cite> 대신에 템플릿 파라미터 리스트를 사용해 선언되어질 수 있다.</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:function</span><span class="p">::</span> std::Iterator{It} void advance(It &amp;it)
 
@@ -963,7 +963,7 @@ are recognized and formatted nicely:</p>
 <p>다음과 같이 렌더링 된다.</p>
 <dl class="function">
 <dt id="_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It">
-<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span><a class="reference internal" href="domains.html#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="advance::It">It</a> &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0EXNSt8IteratorEI2ItEE7advanceR2It"></span>std::<a class="reference internal" href="domains.html#_CPPv3I0ENSt8IteratorE" title="std::Iterator">Iterator</a>{<code class="descname">It</code>}<br />void <code class="descclassname"></code><code class="descname">advance</code><span class="sig-paren">(</span>It &amp;<em>it</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3I0EXNSt8IteratorEI2ItEE7advanceR2It" title="정의 주소">¶</a><br /></dt>
 <dd><p>Iterator로 제한된 템플릿 파라미터를 가진 함수 템플릿.</p>
 </dd></dl>
 
@@ -979,13 +979,13 @@ are recognized and formatted nicely:</p>
 </dl>
 </div>
 </div>
-<div class="section" id="inline-expressions-and-tpes">
-<h3>Inline Expressions and Tpes<a class="headerlink" href="#inline-expressions-and-tpes" title="제목 주소">¶</a></h3>
+<div class="section" id="id21">
+<h3>인라인 표현과 타입<a class="headerlink" href="#id21" title="제목 주소">¶</a></h3>
 <dl class="role">
 <dt id="role-cpp:expr">
 <code class="descname">:cpp:expr:</code><a class="headerlink" href="#role-cpp:expr" title="정의 주소">¶</a></dt>
 <dd><blockquote>
-<div><p>inline 텍스트로써 C++ 표헌 또는 타입을 삽입하는 role.
+<div><p>inline 텍스트로써 C++ 표현 또는 타입을 삽입하는 role.
 예를 들면</p>
 <div class="highlight-rst"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">cpp:var</span><span class="p">::</span> int a = 42
 
@@ -1012,8 +1012,8 @@ A type: <code class="docutils literal"><em class="property"><span class="pre">co
 </dd></dl>
 
 </div>
-<div class="section" id="namespacing">
-<h3>Namespacing<a class="headerlink" href="#namespacing" title="제목 주소">¶</a></h3>
+<div class="section" id="id22">
+<h3>네임 스페이스<a class="headerlink" href="#id22" title="제목 주소">¶</a></h3>
 <p>C++ 도메인 내에서의 선언은 기본으로 전역 scope에 위치한다.
 현재 scope는 3개의 namespace directives에 의해 변경될 수 있다.
 그들은 stack 선언을 관리하고 이는 <code class="docutils literal"><span class="pre">cpp:namespace</span></code> 가 stack을 재설정하고 주어진 scope를 변경시키는 곳이다.
@@ -1090,9 +1090,9 @@ namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의
 </dd></dl>
 
 </div>
-<div class="section" id="id10">
-<h3>Info field lists<a class="headerlink" href="#id10" title="제목 주소">¶</a></h3>
-<p>C++ directive는 다음의 info fields 를 지원한다.( <a class="reference internal" href="#info-field-lists"><span class="std std-ref">Info field lists</span></a> 를 보자.):</p>
+<div class="section" id="id23">
+<h3>정보 필드 리스트<a class="headerlink" href="#id23" title="제목 주소">¶</a></h3>
+<p>C++ directive는 다음의 info fields 를 지원한다.( <a class="reference internal" href="#info-field-lists"><span class="std std-ref">정보 필드 리스트</span></a> 를 보자.):</p>
 <ul class="simple">
 <li><cite>param</cite>, <cite>parameter</cite>, <cite>arg</cite>, <cite>argument</cite>: 파라미터에 대한 설명.</li>
 <li><cite>tparam</cite>: 템플릿 파라미터에 대한 설명.</li>
@@ -1100,8 +1100,8 @@ namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의
 <li><cite>throws</cite>, <cite>throw</cite>, <cite>exception</cite>: 일어날 수 있는 예외에 대한 설명.</li>
 </ul>
 </div>
-<div class="section" id="cross-referencing">
-<span id="cpp-roles"></span><h3>Cross-referencing<a class="headerlink" href="#cross-referencing" title="제목 주소">¶</a></h3>
+<div class="section" id="cpp-roles">
+<span id="id24"></span><h3>상호 레퍼런스<a class="headerlink" href="#cpp-roles" title="제목 주소">¶</a></h3>
 <p>이러한 roles은 주어진 선언 타입에 연결한다.:</p>
 <dl class="role">
 <dt id="role-cpp:any">
@@ -1147,8 +1147,8 @@ namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의
 <p>템플릿이 없는 선언에 연결하기 위해 이름은 중첩된 이름이어야 한다.
 예, <code class="docutils literal"><span class="pre">f</span></code> 또는 <code class="docutils literal"><span class="pre">MyClass::f</span></code>.</p>
 </div>
-<div class="section" id="templated-declarations">
-<h4>Templated declarations<a class="headerlink" href="#templated-declarations" title="제목 주소">¶</a></h4>
+<div class="section" id="id25">
+<h4>템플릿화 선언<a class="headerlink" href="#id25" title="제목 주소">¶</a></h4>
 <p>다음의 선언을 가정하자.</p>
 <dl class="class">
 <dt id="_CPPv37Wrapper">
@@ -1213,7 +1213,7 @@ namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의
 <p>다음의 선언을 가정하자.</p>
 <dl class="class">
 <dt id="_CPPv3I0E5OuterIP1TE">
-<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;<a class="reference internal" href="domains.html#_CPPv3I0E5OuterIP1TE" title="Outer&lt;T *&gt;::T">T</a> *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
+<span id="_CPPv2I0E5OuterIP1TE"></span>template&lt;typename <code class="descname">T</code>&gt;<br /><em class="property">class </em><code class="descclassname"></code><code class="descname">Outer</code>&lt;T *&gt;<a class="headerlink" href="#_CPPv3I0E5OuterIP1TE" title="정의 주소">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>부분 전문화에 대한 참조는 항상 템플릿 파라미터 리스트를 포함해야한다. 예,
@@ -1221,13 +1221,13 @@ namespace는 C++ namespace에 상응할 필요는 없다. 그러나 클래스의
 템플릿 파라미터 식별자가 문자열과 같다면 단지 조회만 성공된다.</p>
 </div>
 </div>
-<div class="section" id="configuration-variables">
-<h3>Configuration Variables<a class="headerlink" href="#configuration-variables" title="제목 주소">¶</a></h3>
+<div class="section" id="id26">
+<h3>환경 변수<a class="headerlink" href="#id26" title="제목 주소">¶</a></h3>
 <p><a class="reference internal" href="config.html#cpp-config"><span class="std std-ref">Options for the C++ domain</span></a> 를 보자.</p>
 </div>
 </div>
-<div class="section" id="the-standard-domain">
-<h2>The Standard Domain<a class="headerlink" href="#the-standard-domain" title="제목 주소">¶</a></h2>
+<div class="section" id="id27">
+<h2>표준 도메인<a class="headerlink" href="#id27" title="제목 주소">¶</a></h2>
 <p>이른바 &quot;표준&quot; 도메인은 스스로의 도메인을 보장하지 않는 모든 마크업을 모은다.
 그들의 directive와 role은 도메인 이름보다 앞에 오지 않는다.</p>
 <p>표준 도메인은 또한
@@ -1306,8 +1306,8 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
 </dd></dl>
 
 </div>
-<div class="section" id="the-javascript-domain">
-<h2>The JavaScript Domain<a class="headerlink" href="#the-javascript-domain" title="제목 주소">¶</a></h2>
+<div class="section" id="id28">
+<h2>자바스크립트 도메인<a class="headerlink" href="#id28" title="제목 주소">¶</a></h2>
 <p>자바스크립트 도메인 (name <strong>js</strong>) 은 다음의 directives를 제공한다.:</p>
 <dl class="directive">
 <dt id="directive-js:module">
@@ -1426,7 +1426,7 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
 <dl class="directive">
 <dt id="directive-js:attribute">
 <code class="descname">.. js:attribute::</code><code class="descclassname"> object.name</code><a class="headerlink" href="#directive-js:attribute" title="정의 주소">¶</a></dt>
-<dd><p><a href="#id11"><span class="problematic" id="id12">*</span></a>object*의 <a href="#id13"><span class="problematic" id="id14">*</span></a>name*의 특성을 설명한다.</p>
+<dd><p><a href="#id29"><span class="problematic" id="id30">*</span></a>object*의 <a href="#id31"><span class="problematic" id="id32">*</span></a>name*의 특성을 설명한다.</p>
 </dd></dl>
 
 <p id="js-roles">이러한 role은 설명된 object를 참조하기 위해 제공된다.:</p>
@@ -1446,8 +1446,8 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
 <dd></dd></dl>
 
 </div>
-<div class="section" id="the-restructuredtext-domain">
-<h2>The reStructuredText domain<a class="headerlink" href="#the-restructuredtext-domain" title="제목 주소">¶</a></h2>
+<div class="section" id="restructuredtext">
+<h2>reStructuredText 도메인<a class="headerlink" href="#restructuredtext" title="제목 주소">¶</a></h2>
 <p>reStructuredText 도메인 (name <strong>rst</strong>) 은 다음의 directives를 제공한다. :</p>
 <dl class="directive">
 <dt id="directive-rst:directive">
@@ -1510,8 +1510,8 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
 <dd></dd></dl>
 
 </div>
-<div class="section" id="more-domains">
-<h2>More domains<a class="headerlink" href="#more-domains" title="제목 주소">¶</a></h2>
+<div class="section" id="id33">
+<h2>기타 도메인<a class="headerlink" href="#id33" title="제목 주소">¶</a></h2>
 <p>The <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/">sphinx-contrib</a> repository 확장으로 이용가능한 더 많은 도메인을 포함한다.;
 현재 <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-adadomain">Ada</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-coffee">CoffeeScript</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-erlangdomain">Erlang</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-httpdomain">HTTP</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-lassodomain">Lasso</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-matlabdomain">MATLAB</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-phpdomain">PHP</a>, and <a class="reference external" href="https://bitbucket.org/birkenfeld/sphinx-contrib/src/default/rubydomain">Ruby</a>
 도메인이 있고, 또한 <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-chapeldomain">Chapel</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-cldomain">Common Lisp</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-dqndomain">dqn</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinxcontrib-golangdomain">Go</a>,
@@ -1538,7 +1538,7 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
           <a href="builders_ko.html" title="사용가능한 빌더"
              >다음</a> |</li>
         <li class="right" >
-          <a href="markup/misc.html" title="Miscellaneous markup"
+          <a href="markup/misc_ko.html" title="기타 마크업"
              >이전</a> |</li>
         <li><a href="index.html">Sphinx home</a>&#160;|</li>
         <li><a href="contents.html">Documentation</a> &#187;</li>
@@ -1547,7 +1547,7 @@ like <code class="docutils literal"><span class="pre">:option:`dest_dir`</span><
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2007-2017, Georg Brandl and the Sphinx team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7+/d91ef213a.
     </div>
   </body>
 </html>
