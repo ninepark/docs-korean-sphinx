@@ -5,7 +5,7 @@
 
     Test i18n util.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 from __future__ import print_function
@@ -176,6 +176,8 @@ def test_format_date():
     datet = datetime.datetime(2016, 2, 7, 5, 11, 17, 0)
     assert i18n.format_date(format, date=datet) == 'February 07, 2016, 05:11:17 05 AM'
 
+    format = '%B %-d, %Y, %-H:%-M:%-S %-I %p'
+    assert i18n.format_date(format, date=datet) == 'February 7, 2016, 5:11:17 5 AM'
     format = '%x'
     assert i18n.format_date(format, date=datet) == 'Feb 7, 2016'
     format = '%X'

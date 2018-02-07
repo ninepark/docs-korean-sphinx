@@ -3,12 +3,12 @@
     sphinx.directives.code
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import sys
 import codecs
+import sys
 from difflib import unified_diff
 
 from docutils import nodes
@@ -311,11 +311,11 @@ class LiteralIncludeReader(object):
                             self.lineno_start += lineno
 
                         return lines[lineno:]
+
+            if inclusive is True:
+                raise ValueError('start-after pattern not found: %s' % start)
             else:
-                if inclusive is True:
-                    raise ValueError('start-after pattern not found: %s' % start)
-                else:
-                    raise ValueError('start-at pattern not found: %s' % start)
+                raise ValueError('start-at pattern not found: %s' % start)
 
         return lines
 
@@ -340,11 +340,10 @@ class LiteralIncludeReader(object):
                             return []
                         else:
                             return lines[:lineno]
+            if inclusive is True:
+                raise ValueError('end-at pattern not found: %s' % end)
             else:
-                if inclusive is True:
-                    raise ValueError('end-at pattern not found: %s' % end)
-                else:
-                    raise ValueError('end-before pattern not found: %s' % end)
+                raise ValueError('end-before pattern not found: %s' % end)
 
         return lines
 
@@ -365,6 +364,7 @@ class LiteralIncludeReader(object):
         return lines
 
     def dedent_filter(self, lines, location=None):
+        # type: (List[unicode], Any) -> List[unicode]
         if 'dedent' in self.options:
             return dedent_lines(lines, self.options.get('dedent'), location=location)
         else:

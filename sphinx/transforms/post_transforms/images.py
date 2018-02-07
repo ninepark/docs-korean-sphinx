@@ -5,20 +5,20 @@
 
     Docutils transforms used by Sphinx.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import os
-from math import ceil
 from hashlib import sha1
+from math import ceil
 
-from six import text_type
 from docutils import nodes
+from six import text_type
 
 from sphinx.transforms import SphinxTransform
-from sphinx.util import logging, requests
 from sphinx.util import epoch_to_rfc1123, rfc1123_to_epoch
+from sphinx.util import logging, requests
 from sphinx.util.images import guess_mimetype, get_image_extension, parse_data_uri
 from sphinx.util.osutil import ensuredir, movefile
 
@@ -70,7 +70,7 @@ class ImageDownloader(BaseImageConverter):
         if '?' in basename:
             basename = basename.split('?')[0]
         if basename == '':
-            basename = sha1(node['uri']).hexdigest()
+            basename = sha1(node['uri'].encode("utf-8")).hexdigest()
         dirname = node['uri'].replace('://', '/').translate({ord("?"): u"/",
                                                              ord("&"): u"/"})
         ensuredir(os.path.join(self.imagedir, dirname))
@@ -78,7 +78,7 @@ class ImageDownloader(BaseImageConverter):
         try:
             headers = {}
             if os.path.exists(path):
-                timestamp = ceil(os.stat(path).st_mtime)
+                timestamp = ceil(os.stat(path).st_mtime)  # type: float
                 headers['If-Modified-Since'] = epoch_to_rfc1123(timestamp)
 
             r = requests.get(node['uri'], headers=headers)

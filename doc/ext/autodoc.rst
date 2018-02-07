@@ -103,8 +103,10 @@ inserting them into the page source under a suitable :rst:dir:`py:module`,
      will document all non-private member functions and properties (that is,
      those whose name doesn't start with ``_``).
 
-     For modules, ``__all__`` will be respected when looking for members; the
-     order of the members will also be the order in ``__all__``.
+     For modules, ``__all__`` will be respected when looking for members unless
+     you give the ``ignore-module-all`` flag option.  Without
+     ``ignore-module-all``, the order of the members will also be the order in
+     ``__all__``.
 
      You can also give an explicit list of members; only these will then be
      documented::
@@ -339,7 +341,7 @@ There are also new config values that you can set:
    This value is a list of autodoc directive flags that should be automatically
    applied to all autodoc directives.  The supported flags are ``'members'``,
    ``'undoc-members'``, ``'private-members'``, ``'special-members'``,
-   ``'inherited-members'`` and ``'show-inheritance'``.
+   ``'inherited-members'``, ``'show-inheritance'`` and ``'ignore-module-all'``.
 
    If you set one of these flags in this config value, you can use a negated
    form, :samp:`'no-{flag}'`, in an autodoc directive, to disable it once.
@@ -392,6 +394,16 @@ There are also new config values that you can set:
    importing modules.
    If ``False`` is given, autodoc forcely suppresses the error if the imported
    module emits warnings.  By default, ``True``.
+
+.. confval:: autodoc_inherit_docstrings
+
+   This value controls the docstrings inheritance.
+   If set to True the cocstring for classes or methods, if not explicitly set,
+   is inherited form parents.
+
+   The default is ``True``.
+
+   .. versionadded:: 1.7
 
 Docstring preprocessing
 -----------------------

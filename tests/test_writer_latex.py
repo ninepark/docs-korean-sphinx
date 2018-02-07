@@ -5,7 +5,7 @@
 
     Test the LaTeX writer
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 from __future__ import print_function
@@ -27,7 +27,7 @@ def test_rstdim_to_latexdim():
     assert rstdim_to_latexdim('30%') == '0.300\\linewidth'
     assert rstdim_to_latexdim('160') == '160\\sphinxpxdimen'
 
-    # flaot values
+    # float values
     assert rstdim_to_latexdim('160.0em') == '160.0em'
     assert rstdim_to_latexdim('.5em') == '.5em'
 

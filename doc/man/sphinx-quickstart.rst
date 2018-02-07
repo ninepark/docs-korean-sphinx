@@ -20,7 +20,7 @@ Options
 
 .. option:: -q, --quiet
 
-   Quiet mode that will skips interactive wizard to specify options.
+   Quiet mode that will skip interactive wizard to specify options.
    This option requires `-p`, `-a` and `-v` options.
 
 .. option:: -h, --help, --version
@@ -120,7 +120,8 @@ Options
 
 .. option:: --use-make-mode, --no-use-make-mode
 
-   Makefile/make.bat uses (or not use) make-mode. Default is use.
+   :file:`Makefile/make.bat` uses (or doesn't use) :ref:`make-mode <make_mode>`.
+   Default is ``use``, which generates a more concise :file:`Makefile/make.bat`.
 
    .. versionchanged:: 1.5
       make-mode is default.
