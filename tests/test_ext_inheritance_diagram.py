@@ -5,14 +5,16 @@
 
     Test sphinx.ext.inheritance_diagram extension.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
 import sys
-from sphinx.ext.inheritance_diagram import InheritanceException, import_classes
+
 import pytest
+
+from sphinx.ext.inheritance_diagram import InheritanceException, import_classes
 
 
 @pytest.mark.sphinx('html', testroot='ext-inheritance_diagram')
@@ -43,6 +45,30 @@ def test_inheritance_diagram_latex(app, status, warning):
     assert re.search(pattern, content, re.M)
 
 
+@pytest.mark.sphinx('html', testroot='ext-inheritance_diagram',
+                    srcdir='ext-inheritance_diagram-alias')
+@pytest.mark.usefixtures('if_graphviz_found')
+def test_inheritance_diagram_latex_alias(app, status, warning):
+    app.config.inheritance_alias = {'test.Foo': 'alias.Foo'}
+    app.builder.build_all()
+
+    doc = app.env.get_and_resolve_doctree('index', app)
+    aliased_graph = doc.children[0].children[3]['graph'].class_info
+    assert len(aliased_graph) == 3
+    assert ('test.Baz', 'test.Baz', ['test.Bar'], None) in aliased_graph
+    assert ('test.Bar', 'test.Bar', ['alias.Foo'], None) in aliased_graph
+    assert ('alias.Foo', 'alias.Foo', [], None) in aliased_graph
+
+    content = (app.outdir / 'index.html').text()
+
+    pattern = ('<div class="figure" id="id1">\n'
+               '<img src="_images/inheritance-\\w+.png" alt="Inheritance diagram of test.Foo" '
+               'class="inheritance"/>\n<p class="caption"><span class="caption-text">'
+               'Test Foo!</span><a class="headerlink" href="#id1" '
+               'title="Permalink to this image">\xb6</a></p>')
+    assert re.search(pattern, content, re.M)
+
+
 def test_import_classes(rootdir):
     from sphinx.application import Sphinx, TemplateBridge
     from sphinx.util.i18n import CatalogInfo
@@ -56,6 +82,15 @@ def test_import_classes(rootdir):
             import_classes('unknown', None)
         with pytest.raises(InheritanceException):
             import_classes('unknown.Unknown', None)
+
+        # got exception InheritanceException for wrong class or module
+        # not AttributeError (refs: #4019)
+        with pytest.raises(InheritanceException):
+            import_classes('unknown', '.')
+        with pytest.raises(InheritanceException):
+            import_classes('unknown.Unknown', '.')
+        with pytest.raises(InheritanceException):
+            import_classes('.', None)
 
         # a module having no classes
         classes = import_classes('sphinx', None)

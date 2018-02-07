@@ -5,18 +5,18 @@
 
     docutils writers handling Sphinx' custom nodes.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
-import sys
-import posixpath
-import os
 import copy
+import os
+import posixpath
+import sys
 
-from six import string_types
 from docutils import nodes
 from docutils.writers.html4css1 import Writer, HTMLTranslator as BaseTranslator
+from six import string_types
 
 from sphinx import addnodes
 from sphinx.locale import admonitionlabels, _
@@ -79,6 +79,7 @@ class HTMLTranslator(BaseTranslator):
         self.highlightopts = builder.config.highlight_options
         self.highlightlinenothreshold = sys.maxsize
         self.docnames = [builder.current_docname]  # for singlehtml builder
+        self.manpages_url = builder.config.manpages_url
         self.protect_literal_text = 0
         self.permalink_text = builder.config.html_add_permalinks
         # support backwards-compatible setting to a bool
@@ -89,6 +90,7 @@ class HTMLTranslator(BaseTranslator):
         self.param_separator = ''
         self.optional_param_level = 0
         self._table_row_index = 0
+        self._fieldlist_row_index = 0
         self.required_params_left = 0
 
     def visit_start_of_file(self, node):
@@ -442,7 +444,7 @@ class HTMLTranslator(BaseTranslator):
             location=(self.builder.current_docname, node.line), **highlight_args
         )
         starttag = self.starttag(node, 'div', suffix='',
-                                 CLASS='highlight-%s' % lang)
+                                 CLASS='highlight-%s notranslate' % lang)
         self.body.append(starttag + highlighted + '</div>\n')
         raise nodes.SkipNode
 
@@ -490,14 +492,21 @@ class HTMLTranslator(BaseTranslator):
     # overwritten
     def visit_literal(self, node):
         # type: (nodes.Node) -> None
-        self.body.append(self.starttag(node, 'code', '',
-                                       CLASS='docutils literal'))
-        self.protect_literal_text += 1
+        if 'kbd' in node['classes']:
+            self.body.append(self.starttag(node, 'kbd', '',
+                                           CLASS='docutils literal notranslate'))
+        else:
+            self.body.append(self.starttag(node, 'code', '',
+                                           CLASS='docutils literal notranslate'))
+            self.protect_literal_text += 1
 
     def depart_literal(self, node):
         # type: (nodes.Node) -> None
-        self.protect_literal_text -= 1
-        self.body.append('</code>')
+        if 'kbd' in node['classes']:
+            self.body.append('</kbd>')
+        else:
+            self.protect_literal_text -= 1
+            self.body.append('</code>')
 
     def visit_productionlist(self, node):
         # type: (nodes.Node) -> None
@@ -680,6 +689,7 @@ class HTMLTranslator(BaseTranslator):
         self.body.append('</td>')
 
     def visit_option_group(self, node):
+        # type: (nodes.Node) -> None
         BaseTranslator.visit_option_group(self, node)
         self.context[-2] = self.context[-2].replace('&nbsp;', '&#160;')
 
@@ -808,9 +818,14 @@ class HTMLTranslator(BaseTranslator):
     def visit_manpage(self, node):
         # type: (nodes.Node) -> None
         self.visit_literal_emphasis(node)
+        if self.manpages_url:
+            node['refuri'] = self.manpages_url.format(**node.attributes)
+            self.visit_reference(node)
 
     def depart_manpage(self, node):
         # type: (nodes.Node) -> None
+        if self.manpages_url:
+            self.depart_reference(node)
         self.depart_literal_emphasis(node)
 
     # overwritten to add even/odd classes
@@ -831,6 +846,7 @@ class HTMLTranslator(BaseTranslator):
         node.column = 0
 
     def visit_entry(self, node):
+        # type: (nodes.Node) -> None
         BaseTranslator.visit_entry(self, node)
         if self.body[-1] == '&nbsp;':
             self.body[-1] = '&#160;'
@@ -850,6 +866,7 @@ class HTMLTranslator(BaseTranslator):
         self.body.append(self.starttag(node, 'tr', '', CLASS='field'))
 
     def visit_field_name(self, node):
+        # type: (nodes.Node) -> None
         context_count = len(self.context)
         BaseTranslator.visit_field_name(self, node)
         if context_count != len(self.context):

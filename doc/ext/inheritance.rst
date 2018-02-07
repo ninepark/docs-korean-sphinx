@@ -42,6 +42,54 @@ It adds this directive:
    .. versionchanged:: 1.5
       Added ``caption`` option
 
+   It also supports a ``top-classes`` option which requires one or more class
+   names separated by comma. If specified inheritance traversal will stop at the
+   specified class names. Given the following Python module::
+
+        """
+               A
+              / \
+             B   C
+            / \ / \
+           E   D   F
+        """
+
+        class A(object):
+            pass
+
+        class B(A):
+            pass
+
+        class C(A):
+            pass
+
+        class D(B, C):
+            pass
+
+        class E(B):
+            pass
+
+        class F(C):
+            pass
+
+   If you have specified a module in the inheritance diagram like this::
+
+        .. inheritance-diagram:: dummy.test
+           :top-classes: dummy.test.B, dummy.test.C
+
+   any base classes which are ancestors to ``top-classes`` and are also defined
+   in the same module will be rendered as stand alone nodes. In this example
+   class A will be rendered as stand alone node in the graph. This is a known
+   issue due to how this extension works internally.
+
+   If you don't want class A (or any other ancestors) to be visible then specify
+   only the classes you would like to generate the diagram for like this::
+
+        .. inheritance-diagram:: dummy.test.D dummy.test.E dummy.test.F
+           :top-classes: dummy.test.B, dummy.test.C
+
+   .. versionchanged:: 1.7
+      Added ``top-classes`` option to limit the scope of inheritance graphs.
 
 New config values are:
 
@@ -66,3 +114,13 @@ New config values are:
 .. confval:: inheritance_edge_attrs
 
    A dictionary of graphviz edge attributes for inheritance diagrams.
+
+.. confval:: inheritance_alias
+
+   Allows mapping the full qualified name of the class to custom values
+   (useful when exposing the underlying path of a class is not desirable,
+   e.g. it's a private class and should not be instantiated by the user).
+
+   For example::
+
+      inheritance_alias = {'_pytest.Magic': 'pytest.Magic'}

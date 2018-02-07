@@ -473,7 +473,7 @@ The C Domain
 
 The C domain (name **c**) is suited for documentation of C API.
 
-.. rst:directive:: .. c:function:: type name(signature)
+.. rst:directive:: .. c:function:: function prototype
 
    Describes a C function. The signature should be given as in C, e.g.::
 
@@ -485,7 +485,7 @@ The C domain (name **c**) is suited for documentation of C API.
    Note that you don't have to backslash-escape asterisks in the signature, as
    it is not parsed by the reST inliner.
 
-.. rst:directive:: .. c:member:: type name
+.. rst:directive:: .. c:member:: declaration
 
    Describes a C struct member. Example signature::
 
@@ -508,7 +508,7 @@ The C domain (name **c**) is suited for documentation of C API.
    Describes a C type (whether defined by a typedef or struct). The signature
    should just be the type name.
 
-.. rst:directive:: .. c:var:: type name
+.. rst:directive:: .. c:var:: declaration
 
    Describes a global C variable.  The signature should include the type, such
    as::
@@ -524,13 +524,13 @@ Cross-referencing C constructs
 The following roles create cross-references to C-language constructs if they are
 defined in the documentation:
 
-.. rst:role:: c:data
-
-   Reference a C-language variable.
-
 .. rst:role:: c:func
 
    Reference a C-language function. Should include trailing parentheses.
+
+.. rst:role:: c:member
+
+   Reference a C-language member of a struct.
 
 .. rst:role:: c:macro
 
@@ -539,6 +539,10 @@ defined in the documentation:
 .. rst:role:: c:type
 
    Reference a C-language type.
+
+.. rst:role:: c:data
+
+   Reference a C-language variable.
 
 .. _cpp-domain:
 
@@ -716,13 +720,13 @@ a visibility statement (``public``, ``private`` or ``protected``).
 
 
 .. rst:directive:: .. cpp:concept:: template-parameter-list name
-                   .. cpp:concept:: template-parameter-list name()
 
    .. warning:: The support for concepts is experimental. It is based on the
-      Concepts Technical Specification, and the features may change as the TS evolves.
+      current draft standard and the Concepts Technical Specification.
+      The features may change as they evolve.
 
-   Describe a variable concept or a function concept. Both must have exactly 1
-   template parameter list. The name may be a nested name. Examples::
+   Describe a concept. It must have exactly 1 template parameter list. The name may be a
+   nested name. Example::
 
       .. cpp:concept:: template<typename It> std::Iterator
 
@@ -740,12 +744,7 @@ a visibility statement (``public``, ``private`` or ``protected``).
          - :cpp:expr:`*r`, when :cpp:expr:`r` is dereferenceable.
          - :cpp:expr:`++r`, with return type :cpp:expr:`It&`, when :cpp:expr:`r` is incrementable.
 
-      .. cpp:concept:: template<typename Cont> std::Container()
-
-         Holder of elements, to which it can provide access via
-         :cpp:concept:`Iterator` s.
-
-   They will render as follows:
+   This will render as follows:
 
    .. cpp:concept:: template<typename It> std::Iterator
 
@@ -763,11 +762,6 @@ a visibility statement (``public``, ``private`` or ``protected``).
       - :cpp:expr:`*r`, when :cpp:expr:`r` is dereferenceable.
       - :cpp:expr:`++r`, with return type :cpp:expr:`It&`, when :cpp:expr:`r` is incrementable.
 
-   .. cpp:concept:: template<typename Cont> std::Container()
-
-      Holder of elements, to which it can provide access via
-      :cpp:concept:`Iterator` s.
-
 Options
 .......
 
@@ -781,8 +775,9 @@ Some directives support options:
 Constrained Templates
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: The support for constrained templates is experimental. It is based on the
-  Concepts Technical Specification, and the features may change as the TS evolves.
+.. warning:: The support for concepts is experimental. It is based on the
+  current draft standard and the Concepts Technical Specification.
+  The features may change as they evolve.
 
 .. note:: Sphinx does not currently support ``requires`` clauses.
 

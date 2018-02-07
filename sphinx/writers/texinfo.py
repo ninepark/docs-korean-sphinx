@@ -5,7 +5,7 @@
 
     Custom docutils writer for Texinfo.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -13,10 +13,9 @@ import re
 import textwrap
 from os import path
 
+from docutils import nodes, writers
 from six import itervalues
 from six.moves import range
-
-from docutils import nodes, writers
 
 from sphinx import addnodes, __display_version__
 from sphinx.errors import ExtensionError

@@ -6,27 +6,36 @@
     Set up everything for use of JSMath to display math in HTML
     via JavaScript.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 from docutils import nodes
 
 import sphinx
-from sphinx.locale import _
 from sphinx.application import ExtensionError
+from sphinx.ext.mathbase import get_node_equation_number
 from sphinx.ext.mathbase import setup_math as mathbase_setup
+from sphinx.locale import _
+
+
+if False:
+    # For type annotation
+    from typing import Any, Dict  # NOQA
+    from sphinx.application import Sphinx  # NOQA
 
 
 def html_visit_math(self, node):
-    self.body.append(self.starttag(node, 'span', '', CLASS='math'))
+    # type: (nodes.NodeVisitor, nodes.Node) -> None
+    self.body.append(self.starttag(node, 'span', '', CLASS='math notranslate'))
     self.body.append(self.encode(node['latex']) + '</span>')
     raise nodes.SkipNode
 
 
 def html_visit_displaymath(self, node):
+    # type: (nodes.NodeVisitor, nodes.Node) -> None
     if node['nowrap']:
-        self.body.append(self.starttag(node, 'div', CLASS='math'))
+        self.body.append(self.starttag(node, 'div', CLASS='math notranslate'))
         self.body.append(self.encode(node['latex']))
         self.body.append('</div>')
         raise nodes.SkipNode
@@ -35,10 +44,11 @@ def html_visit_displaymath(self, node):
         if i == 0:
             # necessary to e.g. set the id property correctly
             if node['number']:
-                self.body.append('<span class="eqno">(%s)' % node['number'])
+                number = get_node_equation_number(self, node)
+                self.body.append('<span class="eqno">(%s)' % number)
                 self.add_permalink_ref(node, _('Permalink to this equation'))
                 self.body.append('</span>')
-            self.body.append(self.starttag(node, 'div', CLASS='math'))
+            self.body.append(self.starttag(node, 'div', CLASS='math notranslate'))
         else:
             # but only once!
             self.body.append('<div class="math">')
@@ -51,6 +61,7 @@ def html_visit_displaymath(self, node):
 
 
 def builder_inited(app):
+    # type: (Sphinx) -> None
     if not app.config.jsmath_path:
         raise ExtensionError('jsmath_path config value must be set for the '
                              'jsmath extension to work')
@@ -58,6 +69,7 @@ def builder_inited(app):
 
 
 def setup(app):
+    # type: (Sphinx) -> Dict[unicode, Any]
     try:
         mathbase_setup(app, (html_visit_math, None), (html_visit_displaymath, None))
     except ExtensionError:

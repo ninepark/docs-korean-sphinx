@@ -13,7 +13,6 @@ templates_path = ['_templates']
 
 master_doc = 'contents'
 source_suffix = ['.txt', '.add', '.foo']
-source_parsers = {'.foo': 'parsermod.Parser'}
 
 project = 'Sphinx <Tests>'
 copyright = '2010-2016, Georg Brandl & Team'
@@ -29,15 +28,11 @@ numfig = True
 
 rst_epilog = '.. |subst| replace:: global substitution'
 
-html_theme = 'testtheme'
-html_theme_path = ['.']
-html_theme_options = {'testopt': 'testoverride'}
-html_sidebars = {'**': 'customsb.html',
+html_sidebars = {'**': ['localtoc.html', 'relations.html', 'sourcelink.html',
+                        'customsb.html', 'searchbox.html'],
                  'contents': ['contentssb.html', 'localtoc.html',
                               'globaltoc.html']}
 html_style = 'default.css'
-html_static_path = ['_static', 'templated.css_t']
-html_extra_path = ['robots.txt']
 html_last_updated_fmt = '%b %d, %Y'
 html_context = {'hckey': 'hcval', 'hckey_co': 'wrong_hcval_co'}
 
@@ -73,9 +68,10 @@ extlinks = {'issue': ('http://bugs.python.org/issue%s', 'issue '),
 
 autodoc_mock_imports = [
     'missing_module',
-    'missing_package1.missing_module1',
-    'missing_package2.missing_module2',
-    'missing_package3.missing_module3',
+    'missing_package1',
+    'missing_package2',
+    'missing_package3',
+    'sphinx.missing_module4',
 ]
 
 # modify tags from conf.py
@@ -109,9 +105,12 @@ class ClassDirective(Directive):
 
 
 def setup(app):
+    import parsermod
+
     app.add_config_value('value_from_conf_py', 42, False)
     app.add_directive('funcdir', functional_directive, opt=lambda x: x)
     app.add_directive('clsdir', ClassDirective)
     app.add_object_type('userdesc', 'userdescrole', '%s (userdesc)',
                         userdesc_parse, objname='user desc')
     app.add_javascript('file://moo.js')
+    app.add_source_parser('.foo', parsermod.Parser)

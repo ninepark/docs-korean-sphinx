@@ -5,16 +5,15 @@
 
     Docutils node-related utility functions for Sphinx.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 from __future__ import absolute_import
 
 import re
 
-from six import text_type
-
 from docutils import nodes
+from six import text_type
 
 from sphinx import addnodes
 from sphinx.locale import pairindextypes
@@ -353,6 +352,8 @@ def is_smartquotable(node):
     # type: (nodes.Node) -> bool
     """Check the node is smart-quotable or not."""
     if isinstance(node.parent, NON_SMARTQUOTABLE_PARENT_NODES):
+        return False
+    elif node.parent.get('support_smartquotes', None) is False:
         return False
     elif getattr(node, 'support_smartquotes', None) is False:
         return False

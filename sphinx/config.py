@@ -5,15 +5,17 @@
 
     Build configuration file handling.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
 import re
+import traceback
+from collections import OrderedDict
 from os import path, getenv
+from typing import Any, NamedTuple, Union
 
 from six import PY2, PY3, iteritems, string_types, binary_type, text_type, integer_types
-from typing import Any, NamedTuple, Union
 
 from sphinx.errors import ConfigError
 from sphinx.locale import l_, __
@@ -24,7 +26,8 @@ from sphinx.util.pycompat import execfile_, NoneType
 
 if False:
     # For type annotation
-    from typing import Any, Callable, Dict, Iterable, Iterator, List, Tuple  # NOQA
+    from typing import Any, Callable, Dict, Iterable, Iterator, List, Tuple, Union  # NOQA
+    from sphinx.application import Sphinx  # NOQA
     from sphinx.util.tags import Tags  # NOQA
 
 logger = logging.getLogger(__name__)
@@ -35,6 +38,7 @@ copyright_year_re = re.compile(r'^((\d{4}-)?)(\d{4})(?=[ ,])')
 CONFIG_SYNTAX_ERROR = "There is a syntax error in your configuration file: %s"
 if PY3:
     CONFIG_SYNTAX_ERROR += "\nDid you change the syntax from 2.x to 3.x?"
+CONFIG_ERROR = "There is a programable error in your configuration file:\n\n%s"
 CONFIG_EXIT_ERROR = "The configuration file (or one of the modules it imports) " \
                     "called sys.exit()"
 CONFIG_ENUM_WARNING = "The config value `{name}` has to be a one of {candidates}, " \
@@ -52,6 +56,10 @@ ConfigValue = NamedTuple('ConfigValue', [('name', str),
                                          ('rebuild', Union[bool, unicode])])
 
 
+#: represents the config value accepts any type of value.
+Any = object()
+
+
 class ENUM(object):
     """represents the config value should be a one of candidates.
 
@@ -63,8 +71,11 @@ class ENUM(object):
         self.candidates = candidates
 
     def match(self, value):
-        # type: (unicode) -> bool
-        return value in self.candidates
+        # type: (Union[unicode,List,Tuple]) -> bool
+        if isinstance(value, (list, tuple)):
+            return all(item in self.candidates for item in value)
+        else:
+            return value in self.candidates
 
 
 string_classes = [text_type]  # type: List
@@ -73,8 +84,15 @@ if PY2:
 
 
 class Config(object):
-    """
-    Configuration file abstraction.
+    """Configuration file abstraction.
+
+    The config object makes the values of all config values available as
+    attributes.
+
+    It is exposed via the :py:attr:`sphinx.application.Application.config` and
+    :py:attr:`sphinx.environment.Environment.config` attributes. For example,
+    to get the value of :confval:`language`, use either ``app.config.language``
+    or ``env.config.language``.
     """
 
     # the values are: (default, what needs to be rebuilt if changed)
@@ -85,6 +103,7 @@ class Config(object):
     config_values = dict(
         # general options
         project = ('Python', 'env'),
+        author = ('unknown', 'env'),
         copyright = ('', 'html'),
         version = ('', 'env'),
         release = ('', 'env'),
@@ -97,7 +116,7 @@ class Config(object):
         figure_language_filename = (u'{root}.{language}{ext}', 'env', [str]),
 
         master_doc = ('contents', 'env'),
-        source_suffix = (['.rst'], 'env'),
+        source_suffix = ({'.rst': 'restructuredtext'}, 'env', Any),
         source_encoding = ('utf-8-sig', 'env'),
         source_parsers = ({}, 'env'),
         exclude_patterns = ([], 'env'),
@@ -120,6 +139,7 @@ class Config(object):
         primary_domain = ('py', 'env', [NoneType]),
         needs_sphinx = (None, None, string_classes),
         needs_extensions = ({}, None),
+        manpages_url = (None, 'env'),
         nitpicky = (False, None),
         nitpick_ignore = ([], None),
         numfig = (False, 'env'),
@@ -132,6 +152,11 @@ class Config(object):
 
         tls_verify = (True, 'env'),
         tls_cacerts = (None, 'env'),
+        smartquotes = (True, 'env'),
+        smartquotes_action = ('qDe', 'env'),
+        smartquotes_excludes = ({'languages': ['ja'],
+                                 'builders': ['man', 'text']},
+                                'env'),
     )  # type: Dict[unicode, Tuple]
 
     def __init__(self, dirname, filename, overrides, tags):
@@ -152,6 +177,8 @@ class Config(object):
                     raise ConfigError(CONFIG_SYNTAX_ERROR % err)
                 except SystemExit:
                     raise ConfigError(CONFIG_EXIT_ERROR)
+                except Exception:
+                    raise ConfigError(CONFIG_ERROR % traceback.format_exc())
 
         self._raw_config = config
         # these two must be preinitialized because extensions can add their
@@ -192,7 +219,10 @@ class Config(object):
             if default is None and not permitted:
                 continue  # neither inferrable nor expliclitly permitted types
             current = self[name]
-            if isinstance(permitted, ENUM):
+            if permitted is Any:
+                # any type of value is accepted
+                pass
+            elif isinstance(permitted, ENUM):
                 if not permitted.match(current):
                     logger.warning(CONFIG_ENUM_WARNING.format(
                         name=name, current=current, candidates=permitted.candidates))
@@ -232,7 +262,9 @@ class Config(object):
             return value
         else:
             defvalue = self.values[name][0]
-            if isinstance(defvalue, dict):
+            if self.values[name][-1] == Any:
+                return value
+            elif isinstance(defvalue, dict):
                 raise ValueError(__('cannot override dictionary config setting %r, '
                                     'ignoring (use %r to set individual elements)') %
                                  (name, name + '.key=value'))
@@ -288,9 +320,7 @@ class Config(object):
                 logger.warning("%s", exc)
         for name in config:
             if name in self.values:
-                self.__dict__[name] = config[name]
-        if isinstance(self.source_suffix, string_types):  # type: ignore
-            self.source_suffix = [self.source_suffix]  # type: ignore
+                self.__dict__[name] = config[name]  # type: ignore
 
     def __getattr__(self, name):
         # type: (unicode) -> Any
@@ -329,5 +359,44 @@ class Config(object):
         self.values[name] = (default, rebuild, types)
 
     def filter(self, rebuild):
-        # type: (str) -> Iterator[ConfigValue]
-        return (value for value in self if value.rebuild == rebuild)  # type: ignore
+        # type: (Union[unicode, List[unicode]]) -> Iterator[ConfigValue]
+        if isinstance(rebuild, string_types):
+            rebuild = [rebuild]
+        return (value for value in self if value.rebuild in rebuild)  # type: ignore
+
+
+def convert_source_suffix(app, config):
+    # type: (Sphinx, Config) -> None
+    """This converts old styled source_suffix to new styled one.
+
+    * old style: str or list
+    * new style: a dict which maps from fileext to filetype
+    """
+    source_suffix = config.source_suffix
+    if isinstance(source_suffix, string_types):
+        # if str, considers as default filetype (None)
+        #
+        # The default filetype is determined on later step.
+        # By default, it is considered as restructuredtext.
+        config.source_suffix = OrderedDict({source_suffix: None})  # type: ignore
+    elif isinstance(source_suffix, (list, tuple)):
+        # if list, considers as all of them are default filetype
+        config.source_suffix = OrderedDict([(s, None) for s in source_suffix])  # type: ignore  # NOQA
+    elif isinstance(source_suffix, dict):
+        # if dict, convert it to OrderedDict
+        config.source_suffix = OrderedDict(config.source_suffix)  # type: ignore
+    else:
+        logger.warning(__("The config value `source_suffix' expected to "
+                          "a string, list of strings or dictionary. "
+                          "But `%r' is given." % source_suffix))
+
+
+def setup(app):
+    # type: (Sphinx) -> Dict[unicode, Any]
+    app.connect('config-inited', convert_source_suffix)
+
+    return {
+        'version': 'builtin',
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }

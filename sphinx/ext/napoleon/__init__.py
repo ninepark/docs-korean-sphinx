@@ -5,7 +5,7 @@
 
     Support for NumPy and Google style docstrings.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -27,13 +27,12 @@ class Config(object):
 
     Listed below are all the settings used by napoleon and their default
     values. These settings can be changed in the Sphinx `conf.py` file. Make
-    sure that both "sphinx.ext.autodoc" and "sphinx.ext.napoleon" are
-    enabled in `conf.py`::
+    sure that "sphinx.ext.napoleon" is enabled in `conf.py`::
 
         # conf.py
 
         # Add any Sphinx extension module names here, as strings
-        extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
+        extensions = ['sphinx.ext.napoleon']
 
         # Napoleon settings
         napoleon_google_docstring = True
@@ -50,7 +49,7 @@ class Config(object):
         napoleon_use_keyword = True
 
     .. _Google style:
-       http://google.github.io/styleguide/pyguide.html
+       https://google.github.io/styleguide/pyguide.html
     .. _NumPy style:
        https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 
@@ -294,6 +293,7 @@ def setup(app):
 
     _patch_python_domain()
 
+    app.setup_extension('sphinx.ext.autodoc')
     app.connect('autodoc-process-docstring', _process_docstring)
     app.connect('autodoc-skip-member', _skip_member)
 

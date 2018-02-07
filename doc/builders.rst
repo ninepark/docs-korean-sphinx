@@ -207,16 +207,10 @@ The builder's "name" must be given to the **-b** command-line option of
    .. autoattribute:: supported_image_types
 
 Note that a direct PDF builder is being provided by `rinohtype`_. The builder's
-name is ``rinoh``. Refer to the `rinohtype manual`_ for details. There is also
-PDF builder using ReportLab in `rst2pdf`_ version 0.12 or greater. However,
-rst2pdf is no longer being actively maintained and suffers from some problems
-when used with recent Sphinx versions.  See the `rst2pdf manual`_ for usage
-instructions.
+name is ``rinoh``. Refer to the `rinohtype manual`_ for details.
 
 .. _rinohtype: https://github.com/brechtm/rinohtype
 .. _rinohtype manual: http://www.mos6581.org/rinohtype/quickstart.html#sphinx-builder
-.. _rst2pdf: https://github.com/rst2pdf/rst2pdf
-.. _rst2pdf manual: http://ralsina.me/static/manual.pdf
 
 .. module:: sphinx.builders.text
 .. class:: TextBuilder
@@ -403,14 +397,18 @@ instructions.
 .. class:: CheckExternalLinksBuilder
 
    This builder scans all documents for external links, tries to open them with
-   :mod:`urllib2`, and writes an overview which ones are broken and redirected
-   to standard output and to :file:`output.txt` in the output directory.
+   ``requests``, and writes an overview which ones are broken and redirected to
+   standard output and to :file:`output.txt` in the output directory.
 
    .. autoattribute:: name
 
    .. autoattribute:: format
 
    .. autoattribute:: supported_image_types
+
+   .. versionchanged:: 1.5
+
+      Since Sphinx-1.5, the linkcheck builder comes to use requests module.
 
 .. module:: sphinx.builders.xml
 .. class:: XMLBuilder

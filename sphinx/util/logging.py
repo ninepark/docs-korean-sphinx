@@ -5,19 +5,19 @@
 
     Logging utility functions for Sphinx.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 from __future__ import absolute_import
 
 import logging
 import logging.handlers
-from contextlib import contextmanager
 from collections import defaultdict
+from contextlib import contextmanager
 
-from six import PY2, StringIO
 from docutils import nodes
 from docutils.utils import get_source_line
+from six import PY2, StringIO
 
 from sphinx.errors import SphinxWarning
 from sphinx.util.console import colorize
@@ -29,6 +29,7 @@ if False:
     from sphinx.application import Sphinx  # NOQA
 
 
+NAMESPACE = 'sphinx'
 VERBOSE = 15
 
 LEVEL_NAMES = defaultdict(lambda: logging.WARNING)  # type: Dict[str, int]
@@ -52,15 +53,32 @@ VERBOSITY_MAP.update({
 COLOR_MAP = defaultdict(lambda: 'blue')  # type: Dict[int, unicode]
 COLOR_MAP.update({
     logging.ERROR: 'darkred',
-    logging.WARNING: 'darkred',
+    logging.WARNING: 'red',
     logging.DEBUG: 'darkgray',
 })
 
 
 def getLogger(name):
     # type: (str) -> SphinxLoggerAdapter
-    """Get logger wrapped by SphinxLoggerAdapter."""
-    return SphinxLoggerAdapter(logging.getLogger(name), {})
+    """Get logger wrapped by :class:`sphinx.util.logging.SphinxLoggerAdapter`.
+
+    Sphinx logger always uses ``sphinx.*`` namesapce to be independent from
+    settings of root logger.  It ensure logging is consistent even if a
+    third-party extension or imported application resets logger settings.
+
+    Example usage::
+
+        >>> from sphinx.utils import logging
+        >>> logger = logging.getLogger(__name__)
+        >>> logger.info('Hello, this is an extension!')
+        Hello, this is an extension!
+    """
+    # add sphinx prefix to name forcely
+    logger = logging.getLogger(NAMESPACE + '.' + name)
+    # Forcely enable logger
+    logger.disabled = False
+    # wrap logger by SphinxLoggerAdapter
+    return SphinxLoggerAdapter(logger, {})
 
 
 def convert_serializable(records):
@@ -70,6 +88,10 @@ def convert_serializable(records):
         # extract arguments to a message and clear them
         r.msg = r.getMessage()
         r.args = ()
+
+        location = getattr(r, 'location', None)
+        if isinstance(location, nodes.Node):
+            r.location = get_node_location(location)  # type: ignore
 
 
 class SphinxWarningLogRecord(logging.LogRecord):
@@ -136,7 +158,7 @@ class NewLineStreamHandlerPY2(logging.StreamHandler):
         # type: (logging.LogRecord) -> None
         try:
             self.acquire()
-            stream = self.stream  # type: ignore
+            stream = self.stream
             if getattr(record, 'nonl', False):
                 # remove return code forcely when nonl=True
                 self.stream = StringIO()
@@ -202,8 +224,11 @@ class MemoryHandler(logging.handlers.BufferingHandler):
 @contextmanager
 def pending_warnings():
     # type: () -> Generator
-    """contextmanager to pend logging warnings temporary."""
-    logger = logging.getLogger()
+    """Contextmanager to pend logging warnings temporary.
+
+    Similar to :func:`pending_logging`.
+    """
+    logger = logging.getLogger(NAMESPACE)
     memhandler = MemoryHandler()
     memhandler.setLevel(logging.WARNING)
 
@@ -228,8 +253,17 @@ def pending_warnings():
 @contextmanager
 def pending_logging():
     # type: () -> Generator
-    """contextmanager to pend logging all logs temporary."""
-    logger = logging.getLogger()
+    """Contextmanager to pend logging all logs temporary.
+
+    For example::
+
+        >>> with pending_logging():
+        >>>     logger.warning('Warning message!')  # not flushed yet
+        >>>     some_long_process()
+        >>>
+        Warning message!  # the warning is flushed here
+    """
+    logger = logging.getLogger(NAMESPACE)
     memhandler = MemoryHandler()
 
     try:
@@ -253,7 +287,7 @@ def pending_logging():
 def skip_warningiserror(skip=True):
     # type: (bool) -> Generator
     """contextmanager to skip WarningIsErrorFilter for a while."""
-    logger = logging.getLogger()
+    logger = logging.getLogger(NAMESPACE)
 
     if skip is False:
         yield
@@ -356,10 +390,15 @@ class WarningIsErrorFilter(logging.Filter):
             return True
         elif self.app.warningiserror:
             location = getattr(record, 'location', '')
+            try:
+                message = record.msg % record.args
+            except TypeError:
+                message = record.msg  # use record.msg itself
+
             if location:
-                raise SphinxWarning(location + ":" + record.msg % record.args)
+                raise SphinxWarning(location + ":" + message)
             else:
-                raise SphinxWarning(record.msg % record.args)
+                raise SphinxWarning(message)
         else:
             return True
 
@@ -399,19 +438,24 @@ class WarningLogRecordTranslator(logging.Filter):
             else:
                 record.location = None
         elif isinstance(location, nodes.Node):
-            (source, line) = get_source_line(location)
-            if source and line:
-                record.location = "%s:%s" % (source, line)
-            elif source:
-                record.location = "%s:" % source
-            elif line:
-                record.location = "<unknown>:%s" % line
-            else:
-                record.location = None
+            record.location = get_node_location(location)
         elif location and ':' not in location:
             record.location = '%s' % self.app.env.doc2path(location)
 
         return True
+
+
+def get_node_location(node):
+    # type: (nodes.Node) -> str
+    (source, line) = get_source_line(node)
+    if source and line:
+        return "%s:%s" % (source, line)
+    elif source:
+        return "%s:" % source
+    elif line:
+        return "<unknown>:%s" % line
+    else:
+        return None
 
 
 class ColorizeFormatter(logging.Formatter):
@@ -464,8 +508,9 @@ class LastMessagesWriter(object):
 def setup(app, status, warning):
     # type: (Sphinx, IO, IO) -> None
     """Setup root logger for Sphinx"""
-    logger = logging.getLogger()
-    logger.setLevel(logging.NOTSET)
+    logger = logging.getLogger(NAMESPACE)
+    logger.setLevel(logging.DEBUG)
+    logger.propagate = False
 
     # clear all handlers
     for handler in logger.handlers[:]:

@@ -5,7 +5,7 @@
 
     Theming support for HTML builders.
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -157,7 +157,7 @@ def is_archived_theme(filename):
     try:
         with ZipFile(filename) as f:  # type: ignore
             return THEMECONF in f.namelist()
-    except:
+    except Exception:
         return False
 
 

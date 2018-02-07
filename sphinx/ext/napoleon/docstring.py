@@ -7,7 +7,7 @@
     Classes for docstring parsing and formatting.
 
 
-    :copyright: Copyright 2007-2017 by the Sphinx team, see AUTHORS.
+    :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -194,7 +194,7 @@ class GoogleDocstring(UnicodeMixin):
         line = self._line_iter.peek()
         while(not self._is_section_break() and
               (not line or self._is_indented(line, indent))):
-            lines.append(next(self._line_iter))  # type: ignore
+            lines.append(next(self._line_iter))
             line = self._line_iter.peek()
         return lines
 
@@ -204,7 +204,7 @@ class GoogleDocstring(UnicodeMixin):
         while (self._line_iter.has_next() and
                self._line_iter.peek() and
                not self._is_section_header()):
-            lines.append(next(self._line_iter))  # type: ignore
+            lines.append(next(self._line_iter))
         return lines
 
     def _consume_empty(self):
@@ -212,13 +212,13 @@ class GoogleDocstring(UnicodeMixin):
         lines = []
         line = self._line_iter.peek()
         while self._line_iter.has_next() and not line:
-            lines.append(next(self._line_iter))  # type: ignore
+            lines.append(next(self._line_iter))
             line = self._line_iter.peek()
         return lines
 
     def _consume_field(self, parse_type=True, prefer_type=False):
         # type: (bool, bool) -> Tuple[unicode, unicode, List[unicode]]
-        line = next(self._line_iter)  # type: ignore
+        line = next(self._line_iter)
 
         before, colon, after = self._partition_field_on_colon(line)
         _name, _type, _desc = before, '', after  # type: unicode, unicode, unicode
@@ -250,7 +250,7 @@ class GoogleDocstring(UnicodeMixin):
 
     def _consume_inline_attribute(self):
         # type: () -> Tuple[unicode, List[unicode]]
-        line = next(self._line_iter)  # type: ignore
+        line = next(self._line_iter)
         _type, colon, _desc = self._partition_field_on_colon(line)
         if not colon:
             _type, _desc = _desc, _type
@@ -285,7 +285,7 @@ class GoogleDocstring(UnicodeMixin):
 
     def _consume_section_header(self):
         # type: () -> unicode
-        section = next(self._line_iter)  # type: ignore
+        section = next(self._line_iter)
         stripped_section = section.strip(':')
         if stripped_section.lower() in self._sections:
             section = stripped_section
@@ -295,7 +295,7 @@ class GoogleDocstring(UnicodeMixin):
         # type: () -> List[unicode]
         lines = []
         while self._line_iter.has_next():
-            lines.append(next(self._line_iter))  # type: ignore
+            lines.append(next(self._line_iter))
         return lines
 
     def _consume_to_next_section(self):
@@ -303,7 +303,7 @@ class GoogleDocstring(UnicodeMixin):
         self._consume_empty()
         lines = []
         while not self._is_section_break():
-            lines.append(next(self._line_iter))  # type: ignore
+            lines.append(next(self._line_iter))
         return lines + self._consume_empty()
 
     def _dedent(self, lines, full=False):
@@ -553,7 +553,10 @@ class GoogleDocstring(UnicodeMixin):
     def _parse_attribute_docstring(self):
         # type: () -> List[unicode]
         _type, _desc = self._consume_inline_attribute()
-        return self._format_field('', _type, _desc)
+        lines = self._format_field('', '', _desc)
+        if _type:
+            lines.extend(['', ':type: %s' % _type])
+        return lines
 
     def _parse_attributes_section(self, section):
         # type: (unicode) -> List[unicode]
@@ -566,8 +569,11 @@ class GoogleDocstring(UnicodeMixin):
                     lines.append(':vartype %s: %s' % (_name, _type))
             else:
                 lines.extend(['.. attribute:: ' + _name, ''])
-                fields = self._format_field('', _type, _desc)
+                fields = self._format_field('', '', _desc)
                 lines.extend(self._indent(fields, 3))
+                if _type:
+                    lines.append('')
+                    lines.extend(self._indent([':type: %s' % _type], 3))
                 lines.append('')
         if self._config.napoleon_use_ivar:
             lines.append('')
@@ -886,7 +892,7 @@ class NumpyDocstring(GoogleDocstring):
 
     def _consume_field(self, parse_type=True, prefer_type=False):
         # type: (bool, bool) -> Tuple[unicode, unicode, List[unicode]]
-        line = next(self._line_iter)  # type: ignore
+        line = next(self._line_iter)
         if parse_type:
             _name, _, _type = self._partition_field_on_colon(line)
         else:
@@ -907,10 +913,10 @@ class NumpyDocstring(GoogleDocstring):
 
     def _consume_section_header(self):
         # type: () -> unicode
-        section = next(self._line_iter)  # type: ignore
+        section = next(self._line_iter)
         if not _directive_regex.match(section):
             # Consume the header underline
-            next(self._line_iter)  # type: ignore
+            next(self._line_iter)
         return section
 
     def _is_section_break(self):
@@ -963,8 +969,9 @@ class NumpyDocstring(GoogleDocstring):
         items = []
 
         def parse_item_name(text):
+            # type: (unicode) -> Tuple[unicode, unicode]
             """Match ':role:`name`' or 'name'"""
-            m = self._name_rgx.match(text)
+            m = self._name_rgx.match(text)  # type: ignore
             if m:
                 g = m.groups()
                 if g[1] is None:
@@ -974,6 +981,7 @@ class NumpyDocstring(GoogleDocstring):
             raise ValueError("%s is not a item name" % text)
 
         def push_item(name, rest):
+            # type: (unicode, List[unicode]) -> None
             if not name:
                 return
             name, role = parse_item_name(name)
