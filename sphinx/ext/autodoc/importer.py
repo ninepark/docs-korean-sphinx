@@ -14,26 +14,36 @@ import sys
 import traceback
 import warnings
 from collections import namedtuple
+from importlib.abc import Loader, MetaPathFinder
+from importlib.machinery import ModuleSpec
 from types import FunctionType, MethodType, ModuleType
 
-from six import PY2
-
+from sphinx.deprecation import RemovedInSphinx30Warning
 from sphinx.util import logging
 from sphinx.util.inspect import isenumclass, safe_getattr
 
 if False:
     # For type annotation
-    from typing import Any, Callable, Dict, Generator, List, Optional  # NOQA
+    from typing import Any, Callable, Dict, Generator, Iterator, List, Optional, Sequence, Tuple, Union  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 logger = logging.getLogger(__name__)
 
 
-class _MockObject(object):
+class _MockObject:
     """Used by autodoc_mock_imports."""
+
+    def __new__(cls, *args, **kwargs):
+        # type: (Any, Any) -> Any
+        if len(args) == 3 and isinstance(args[1], tuple) and args[1][-1].__class__ is cls:
+            # subclassing MockObject
+            return type(args[0], (_MockObject,), args[2], **kwargs)  # type: ignore
+        else:
+            return super(_MockObject, cls).__new__(cls)
 
     def __init__(self, *args, **kwargs):
         # type: (Any, Any) -> None
-        pass
+        self.__qualname__ = ''
 
     def __len__(self):
         # type: () -> int
@@ -44,8 +54,12 @@ class _MockObject(object):
         return False
 
     def __iter__(self):
-        # type: () -> None
-        pass
+        # type: () -> Iterator
+        return iter([])
+
+    def __mro_entries__(self, bases):
+        # type: (Tuple) -> Tuple
+        return bases
 
     def __getitem__(self, key):
         # type: (str) -> _MockObject
@@ -67,12 +81,15 @@ class _MockModule(ModuleType):
     """Used by autodoc_mock_imports."""
     __file__ = '/dev/null'
 
-    def __init__(self, name, loader):
+    def __init__(self, name, loader=None):
         # type: (str, _MockImporter) -> None
-        self.__name__ = self.__package__ = name
-        self.__loader__ = loader
+        super(_MockModule, self).__init__(name)
         self.__all__ = []  # type: List[str]
         self.__path__ = []  # type: List[str]
+
+        if loader is not None:
+            warnings.warn('The loader argument for _MockModule is deprecated.',
+                          RemovedInSphinx30Warning)
 
     def __getattr__(self, name):
         # type: (str) -> _MockObject
@@ -81,13 +98,16 @@ class _MockModule(ModuleType):
         return o
 
 
-class _MockImporter(object):
+class _MockImporter:
     def __init__(self, names):
         # type: (List[str]) -> None
         self.names = names
         self.mocked_modules = []  # type: List[str]
         # enable hook by adding itself to meta_path
         sys.meta_path.insert(0, self)
+
+        warnings.warn('_MockImporter is now deprecated.',
+                      RemovedInSphinx30Warning)
 
     def disable(self):
         # type: () -> None
@@ -120,14 +140,66 @@ class _MockImporter(object):
             return module
 
 
+class MockLoader(Loader):
+    """A loader for mocking."""
+    def __init__(self, finder):
+        # type: (MockFinder) -> None
+        super(MockLoader, self).__init__()
+        self.finder = finder
+
+    def create_module(self, spec):
+        # type: (ModuleSpec) -> ModuleType
+        logger.debug('[autodoc] adding a mock module as %s!', spec.name)
+        self.finder.mocked_modules.append(spec.name)
+        return _MockModule(spec.name)
+
+    def exec_module(self, module):
+        # type: (ModuleType) -> None
+        pass  # nothing to do
+
+
+class MockFinder(MetaPathFinder):
+    """A finder for mocking."""
+
+    def __init__(self, modnames):
+        # type: (List[str]) -> None
+        super(MockFinder, self).__init__()
+        self.modnames = modnames
+        self.loader = MockLoader(self)
+        self.mocked_modules = []  # type: List[str]
+
+    def find_spec(self, fullname, path, target=None):
+        # type: (str, Sequence[Union[bytes, str]], ModuleType) -> ModuleSpec
+        for modname in self.modnames:
+            # check if fullname is (or is a descendant of) one of our targets
+            if modname == fullname or fullname.startswith(modname + '.'):
+                return ModuleSpec(fullname, self.loader)
+
+        return None
+
+    def invalidate_caches(self):
+        # type: () -> None
+        """Invalidate mocked modules on sys.modules."""
+        for modname in self.mocked_modules:
+            sys.modules.pop(modname, None)
+
+
 @contextlib.contextmanager
-def mock(names):
-    # type: (List[str]) -> Generator
+def mock(modnames):
+    # type: (List[str]) -> Generator[None, None, None]
+    """Insert mock modules during context::
+
+        with mock(['target.module.name']):
+            # mock modules are enabled here
+            ...
+    """
     try:
-        importer = _MockImporter(names)
+        finder = MockFinder(modnames)
+        sys.meta_path.insert(0, finder)
         yield
     finally:
-        importer.disable()
+        sys.meta_path.remove(finder)
+        finder.invalidate_caches()
 
 
 def import_module(modname, warningiserror=False):
@@ -155,8 +227,23 @@ def import_object(modname, objpath, objtype='', attrgetter=safe_getattr, warning
         logger.debug('[autodoc] import %s', modname)
 
     try:
-        module = import_module(modname, warningiserror=warningiserror)
-        logger.debug('[autodoc] => %r', module)
+        module = None
+        exc_on_importing = None
+        objpath = list(objpath)
+        while module is None:
+            try:
+                module = import_module(modname, warningiserror=warningiserror)
+                logger.debug('[autodoc] import %s => %r', modname, module)
+            except ImportError as exc:
+                logger.debug('[autodoc] import %s => failed', modname)
+                exc_on_importing = exc
+                if '.' in modname:
+                    # retry with parent module
+                    modname, name = modname.rsplit('.', 1)
+                    objpath.insert(0, name)
+                else:
+                    raise
+
         obj = module
         parent = None
         object_name = None
@@ -168,6 +255,10 @@ def import_object(modname, objpath, objtype='', attrgetter=safe_getattr, warning
             object_name = attrname
         return [module, parent, object_name, obj]
     except (AttributeError, ImportError) as exc:
+        if isinstance(exc, AttributeError) and exc_on_importing:
+            # restore ImportError
+            exc = exc_on_importing
+
         if objpath:
             errmsg = ('autodoc: failed to import %s %r from module %r' %
                       (objtype, '.'.join(objpath), modname))
@@ -181,15 +272,13 @@ def import_object(modname, objpath, objtype='', attrgetter=safe_getattr, warning
             if isinstance(real_exc, SystemExit):
                 errmsg += ('; the module executes module level statement '
                            'and it might call sys.exit().')
-            elif isinstance(real_exc, ImportError):
+            elif isinstance(real_exc, ImportError) and real_exc.args:
                 errmsg += '; the following exception was raised:\n%s' % real_exc.args[0]
             else:
                 errmsg += '; the following exception was raised:\n%s' % traceback_msg
         else:
             errmsg += '; the following exception was raised:\n%s' % traceback.format_exc()
 
-        if PY2:
-            errmsg = errmsg.decode('utf-8')  # type: ignore
         logger.debug(errmsg)
         raise ImportError(errmsg)
 
@@ -203,18 +292,26 @@ def get_object_members(subject, objpath, attrgetter, analyzer=None):
     # the members directly defined in the class
     obj_dict = attrgetter(subject, '__dict__', {})
 
-    # Py34 doesn't have enum members in __dict__.
-    if sys.version_info[:2] == (3, 4) and isenumclass(subject):
-        obj_dict = dict(obj_dict)
-        for name, value in subject.__members__.items():
-            obj_dict[name] = value
+    members = {}  # type: Dict[str, Attribute]
 
-    members = {}
+    # enum members
+    if isenumclass(subject):
+        for name, value in subject.__members__.items():
+            if name not in members:
+                members[name] = Attribute(name, True, value)
+
+        superclass = subject.__mro__[1]
+        for name, value in obj_dict.items():
+            if name not in superclass.__dict__:
+                members[name] = Attribute(name, True, value)
+
+    # other members
     for name in dir(subject):
         try:
             value = attrgetter(subject, name)
             directly_defined = name in obj_dict
-            members[name] = Attribute(name, directly_defined, value)
+            if name not in members:
+                members[name] = Attribute(name, directly_defined, value)
         except AttributeError:
             continue
 

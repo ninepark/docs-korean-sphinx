@@ -9,14 +9,15 @@
     :license: BSD, see LICENSE for details.
 """
 
-import pytest
 import os
+
+import pytest
 
 from sphinx.config import Config
 from sphinx.directives.code import LiteralIncludeReader
 from sphinx.testing.util import etree_parse
 
-DUMMY_CONFIG = Config(None, None, {}, '')
+DUMMY_CONFIG = Config({}, {})
 
 
 @pytest.fixture(scope='module')

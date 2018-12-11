@@ -9,17 +9,16 @@
     :license: BSD, see LICENSE for details.
 """
 
-from six import itervalues
-
 if False:
     # For type annotation
     from typing import Dict, List, Set  # NOQA
     from docutils import nodes  # NOQA
     from sphinx.sphinx import Sphinx  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
-class EnvironmentCollector(object):
+class EnvironmentCollector:
     """An EnvironmentCollector is a specific data collector from each document.
 
     It gathers data and stores :py:class:`BuildEnvironment
@@ -44,7 +43,7 @@ class EnvironmentCollector(object):
     def disable(self, app):
         # type: (Sphinx) -> None
         assert self.listener_ids is not None
-        for listener_id in itervalues(self.listener_ids):
+        for listener_id in self.listener_ids.values():
             app.disconnect(listener_id)
         self.listener_ids = None
 
@@ -62,7 +61,7 @@ class EnvironmentCollector(object):
         raise NotImplementedError
 
     def process_doc(self, app, doctree):
-        # type: (Sphinx, nodes.Node) -> None
+        # type: (Sphinx, nodes.document) -> None
         """Process a document and gather specific data from it.
 
         This method is called after the document is read."""

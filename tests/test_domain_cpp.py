@@ -10,18 +10,19 @@
 """
 
 import re
+import sys
 
-from six import text_type
 import pytest
+from six import text_type
 
+import sphinx.domains.cpp as cppDomain
 from sphinx import addnodes
 from sphinx.domains.cpp import DefinitionParser, DefinitionError, NoOldIdError
 from sphinx.domains.cpp import Symbol, _max_id, _id_prefix
-import sphinx.domains.cpp as cppDomain
 
 
 def parse(name, string):
-    class Config(object):
+    class Config:
         cpp_id_attributes = ["id_attr"]
         cpp_paren_attributes = ["paren_attr"]
     parser = DefinitionParser(string, None, Config())
@@ -85,7 +86,7 @@ def check(name, input, idDict, output=None):
 
 
 def test_fundamental_types():
-    # see http://en.cppreference.com/w/cpp/language/types
+    # see https://en.cppreference.com/w/cpp/language/types
     for t, id_v2 in cppDomain._id_fundamental_v2.items():
         def makeIdV1():
             if t == 'decltype(auto)':
@@ -126,7 +127,22 @@ def test_expressions():
         expr = '5.0' + suffix
         exprCheck(expr, 'L' + expr + 'E')
     exprCheck('"abc\\"cba"', 'LA8_KcE')  # string
-    # TODO: test the rest
+    exprCheck('this', 'fpT')
+    # character literals
+    for p, t in [('', 'c'), ('u8', 'c'), ('u', 'Ds'), ('U', 'Di'), ('L', 'w')]:
+        exprCheck(p + "'a'", t + "97")
+        exprCheck(p + "'\\n'", t + "10")
+        exprCheck(p + "'\\012'", t + "10")
+        exprCheck(p + "'\\0'", t + "0")
+        exprCheck(p + "'\\x0a'", t + "10")
+        exprCheck(p + "'\\x0A'", t + "10")
+        exprCheck(p + "'\\u0a42'", t + "2626")
+        exprCheck(p + "'\\u0A42'", t + "2626")
+        if sys.maxunicode > 65535:
+            exprCheck(p + "'\\U0001f34c'", t + "127820")
+            exprCheck(p + "'\\U0001F34C'", t + "127820")
+
+    # TODO: user-defined lit
     exprCheck('(... + Ns)', '(... + Ns)')
     exprCheck('(5)', 'L5E')
     exprCheck('C', '1C')
@@ -137,7 +153,12 @@ def test_expressions():
     exprCheck('a->b->c', 'ptpt1a1b1c')
     exprCheck('i++', 'pp1i')
     exprCheck('i--', 'mm1i')
-    # TODO, those with prefixes
+    exprCheck('dynamic_cast<T&>(i)++', 'ppdcR1T1i')
+    exprCheck('static_cast<T&>(i)++', 'ppscR1T1i')
+    exprCheck('reinterpret_cast<T&>(i)++', 'pprcR1T1i')
+    exprCheck('const_cast<T&>(i)++', 'ppccR1T1i')
+    exprCheck('typeid(T).name', 'dtti1T4name')
+    exprCheck('typeid(a + b).name', 'dttepl1a1b4name')
     # unary
     exprCheck('++5', 'pp_L5E')
     exprCheck('--5', 'mm_L5E')
@@ -152,6 +173,17 @@ def test_expressions():
     exprCheck('sizeof -42', 'szngL42E')
     exprCheck('alignof(T)', 'at1T')
     exprCheck('noexcept(-42)', 'nxngL42E')
+    # new-expression
+    exprCheck('new int', 'nw_iE')
+    exprCheck('new volatile int', 'nw_ViE')
+    exprCheck('new int[42]', 'nw_AL42E_iE')
+    exprCheck('new int()', 'nw_ipiE')
+    exprCheck('new int(5, 42)', 'nw_ipiL5EL42EE')
+    # delete-expression
+    exprCheck('delete p', 'dl1p')
+    exprCheck('delete [] p', 'da1p')
+    exprCheck('::delete p', 'dl1p')
+    exprCheck('::delete [] p', 'da1p')
     # cast
     exprCheck('(int)2', 'cviL2E')
     # binary op
@@ -207,6 +239,9 @@ def test_expressions():
 
     exprCheck('operator()()', 'clclE')
     exprCheck('operator()<int>()', 'clclIiEE')
+
+    # pack expansion
+    exprCheck('a(b(c, 1 + d...)..., e(f..., g))', 'cl1aspcl1b1cspplL1E1dEcl1esp1f1gEE')
 
 
 def test_type_definitions():
@@ -405,7 +440,7 @@ def test_function_definitions():
     # TODO: make tests for functions in a template, e.g., Test<int&&()>
     # such that the id generation for function type types is correct.
 
-    check('function', 'friend std::ostream &f(std::ostream&, int)',
+    check('function', 'friend std::ostream &f(std::ostream &s, int i)',
           {1: 'f__osR.i', 2: '1fRNSt7ostreamEi'})
 
     # from breathe#223
@@ -485,6 +520,10 @@ def test_class_definitions():
           {2: 'I0E7has_varI1TNSt6void_tIDTadN1T3varEEEEE'})
 
 
+def test_union_definitions():
+    check('union', 'A', {2: "1A"})
+
+
 def test_enum_definitions():
     check('enum', 'A', {2: "1A"})
     check('enum', 'A : std::underlying_type<B>::type', {2: "1A"})
@@ -494,6 +533,13 @@ def test_enum_definitions():
 
     check('enumerator', 'A', {2: "1A"})
     check('enumerator', 'A = std::numeric_limits<unsigned long>::max()', {2: "1A"})
+
+
+def test_anon_definitions():
+    check('class', '@a', {3: "Ut1_a"})
+    check('union', '@a', {3: "Ut1_a"})
+    check('enum', '@a', {3: "Ut1_a"})
+    check('class', '@1', {3: "Ut1_1"})
 
 
 def test_templates():
@@ -632,6 +678,12 @@ def test_attributes():
     check('function', 'static inline __attribute__(()) void f()',
           {1: 'f', 2: '1fv'},
           output='__attribute__(()) static inline void f()')
+    # position: declarator
+    check('member', 'int *[[attr]] i', {1: 'i__iP', 2:'1i'})
+    check('member', 'int *const [[attr]] volatile i', {1: 'i__iPVC', 2: '1i'},
+          output='int *[[attr]] volatile const i')
+    check('member', 'int &[[attr]] i', {1: 'i__iR', 2: '1i'})
+    check('member', 'int *[[attr]] *i', {1: 'i__iPP', 2: '1i'})
 
 
 # def test_print():
@@ -729,3 +781,68 @@ def test_build_domain_cpp_with_add_function_parentheses_is_False(app, status, wa
     t = (app.outdir / f).text()
     for s in parenPatterns:
         check(s, t, f)
+
+
+@pytest.mark.sphinx(testroot='domain-cpp')
+def test_xref_consistency(app, status, warning):
+    app.builder.build_all()
+
+    test = 'xref_consistency.html'
+    output = (app.outdir / test).text()
+
+    def classes(role, tag):
+        pattern = (r'{role}-role:.*?'
+                   r'<(?P<tag>{tag}) .*?class=["\'](?P<classes>.*?)["\'].*?>'
+                   r'.*'
+                   r'</(?P=tag)>').format(role=role, tag=tag)
+        result = re.search(pattern, output)
+        expect = '''\
+Pattern for role `{role}` with tag `{tag}`
+\t{pattern}
+not found in `{test}`
+'''.format(role=role, tag=tag, pattern=pattern, test=test)
+        assert result, expect
+        return set(result.group('classes').split())
+
+    class RoleClasses:
+        """Collect the classes from the layout that was generated for a given role."""
+
+        def __init__(self, role, root, contents):
+            self.name = role
+            self.classes = classes(role, root)
+            self.content_classes = dict()
+            for tag in contents:
+                self.content_classes[tag] = classes(role, tag)
+
+    # not actually used as a reference point
+    # code_role = RoleClasses('code', 'code', [])
+    any_role = RoleClasses('any', 'a', ['code'])
+    cpp_any_role = RoleClasses('cpp-any', 'a', ['code'])
+    # NYI: consistent looks
+    # texpr_role = RoleClasses('cpp-texpr', 'span', ['a', 'code'])
+    expr_role = RoleClasses('cpp-expr', 'code', ['a'])
+    texpr_role = RoleClasses('cpp-texpr', 'span', ['a', 'span'])
+
+    # XRefRole-style classes
+
+    # any and cpp:any do not put these classes at the root
+
+    # n.b. the generic any machinery finds the specific 'cpp-class' object type
+    expect = 'any uses XRefRole classes'
+    assert {'xref', 'any', 'cpp', 'cpp-class'} <= any_role.content_classes['code'], expect
+
+    expect = 'cpp:any uses XRefRole classes'
+    assert {'xref', 'cpp-any', 'cpp'} <= cpp_any_role.content_classes['code'], expect
+
+    for role in (expr_role, texpr_role):
+        name = role.name
+        expect = '`{name}` puts the domain and role classes at its root'.format(name=name)
+        # NYI: xref should go in the references
+        assert {'xref', 'cpp', name} <= role.classes, expect
+
+    # reference classes
+
+    expect = 'the xref roles use the same reference classes'
+    assert any_role.classes == cpp_any_role.classes, expect
+    assert any_role.classes == expr_role.content_classes['a'], expect
+    assert any_role.classes == texpr_role.content_classes['a'], expect

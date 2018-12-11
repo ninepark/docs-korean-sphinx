@@ -127,7 +127,7 @@ own extensions.
 .. _NumPy style: https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt
 .. _hyphenator: https://github.com/mnater/hyphenator
 .. _exceltable: https://pythonhosted.org/sphinxcontrib-exceltable/
-.. _YouTube: http://www.youtube.com/
+.. _YouTube: https://www.youtube.com/
 .. _ClearQuest: https://www.ibm.com/us-en/marketplace/rational-clearquest
 .. _Zope interfaces: https://zopeinterface.readthedocs.io/en/latest/README.html
 .. _slideshare: https://www.slideshare.net/
@@ -141,5 +141,5 @@ own extensions.
 .. _inlinesyntaxhighlight: https://sphinxcontrib-inlinesyntaxhighlight.readthedocs.io/
 .. _CMake: https://cmake.org
 .. _domaintools: https://bitbucket.org/klorenz/sphinxcontrib-domaintools
-.. _restbuilder: https://pypi.python.org/pypi/sphinxcontrib-restbuilder
+.. _restbuilder: https://pypi.org/project/sphinxcontrib-restbuilder/
 .. _Lasso: http://www.lassosoft.com/

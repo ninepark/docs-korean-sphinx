@@ -19,7 +19,7 @@ from sphinx.util.images import (
 GIF_FILENAME = 'img.gif'
 PNG_FILENAME = 'img.png'
 PDF_FILENAME = 'img.pdf'
-TXT_FILENAME = 'contents.txt'
+TXT_FILENAME = 'index.txt'
 
 
 @pytest.fixture(scope='module')
@@ -34,6 +34,7 @@ def test_get_image_size(testroot):
     assert get_image_size(testroot / TXT_FILENAME) is None
 
 
+@pytest.mark.filterwarnings('ignore:The content argument')
 def test_guess_mimetype(testroot):
     # guess by filename
     assert guess_mimetype('img.png') == 'image/png'

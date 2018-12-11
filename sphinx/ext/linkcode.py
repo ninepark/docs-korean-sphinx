@@ -20,6 +20,7 @@ if False:
     # For type annotation
     from typing import Any, Dict, Set  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 class LinkcodeError(SphinxError):
@@ -35,12 +36,12 @@ def doctree_read(app, doctree):
         raise LinkcodeError(
             "Function `linkcode_resolve` is not given in conf.py")
 
-    domain_keys = dict(
-        py=['module', 'fullname'],
-        c=['names'],
-        cpp=['names'],
-        js=['object', 'fullname'],
-    )
+    domain_keys = {
+        'py': ['module', 'fullname'],
+        'c': ['names'],
+        'cpp': ['names'],
+        'js': ['object', 'fullname'],
+    }
 
     for objnode in doctree.traverse(addnodes.desc):
         domain = objnode.get('domain')
@@ -70,10 +71,9 @@ def doctree_read(app, doctree):
                 continue
             uris.add(uri)
 
+            inline = nodes.inline('', _('[source]'), classes=['viewcode-link'])
             onlynode = addnodes.only(expr='html')
-            onlynode += nodes.reference('', '', internal=False, refuri=uri)
-            onlynode[0] += nodes.inline('', _('[source]'),
-                                        classes=['viewcode-link'])
+            onlynode += nodes.reference('', '', inline, internal=False, refuri=uri)
             signode += onlynode
 
 

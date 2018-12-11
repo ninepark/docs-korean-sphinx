@@ -8,15 +8,18 @@
     :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import pickle
 import re
+import warnings
 from os import path
 
-from six import iteritems, itervalues, text_type, string_types
-from six.moves import cPickle as pickle
+from six import text_type
 
-from docutils.nodes import raw, comment, title, Text, NodeVisitor, SkipNode
+from docutils import nodes
 
-import sphinx
+from sphinx import addnodes
+from sphinx import package_dir
+from sphinx.deprecation import RemovedInSphinx40Warning
 from sphinx.util import jsdump, rpartition
 from sphinx.util.pycompat import htmlescape
 from sphinx.search.jssplitter import splitter_code
@@ -26,9 +29,10 @@ if False:
     from typing import Any, Dict, IO, Iterable, List, Tuple, Type, Set  # NOQA
     from docutils import nodes  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
-class SearchLanguage(object):
+class SearchLanguage:
     """
     This class is the base class for search natural language preprocessors.  If
     you want to add support for a new language, you should override the methods
@@ -85,7 +89,7 @@ var Stemmer = function() {
         at white spaces, which should be enough for most languages except CJK
         languages.
         """
-        return self._word_re.findall(input)  # type: ignore
+        return self._word_re.findall(input)
 
     def stem(self, word):
         # type: (unicode) -> unicode
@@ -126,7 +130,7 @@ def parse_stop_word(source):
 
     * http://snowball.tartarus.org/algorithms/finnish/stop.txt
     """
-    result = set()
+    result = set()  # type: Set[unicode]
     for line in source.splitlines():
         line = line.split('|')[0]  # remove comment
         result.update(line.split())
@@ -155,7 +159,7 @@ languages = {
 }   # type: Dict[unicode, Any]
 
 
-class _JavaScriptIndex(object):
+class _JavaScriptIndex:
     """
     The search index as javascript file that calls a function
     on the documentation search object to register the index.
@@ -188,21 +192,25 @@ class _JavaScriptIndex(object):
 js_index = _JavaScriptIndex()
 
 
-class WordCollector(NodeVisitor):
+class WordCollector(nodes.NodeVisitor):
     """
     A special visitor that collects words for the `IndexBuilder`.
     """
 
     def __init__(self, document, lang):
-        # type: (nodes.Node, SearchLanguage) -> None
-        NodeVisitor.__init__(self, document)
+        # type: (nodes.document, SearchLanguage) -> None
+        super(WordCollector, self).__init__(document)
         self.found_words = []           # type: List[unicode]
         self.found_title_words = []     # type: List[unicode]
         self.lang = lang
 
-    def is_meta_keywords(self, node, nodetype):
-        # type: (nodes.Node, Type) -> bool
-        if isinstance(node, sphinx.addnodes.meta) and node.get('name') == 'keywords':
+    def is_meta_keywords(self, node, nodetype=None):
+        # type: (addnodes.meta, Any) -> bool
+        if nodetype is not None:
+            warnings.warn('"nodetype" argument for WordCollector.is_meta_keywords() '
+                          'is deprecated.', RemovedInSphinx40Warning)
+
+        if isinstance(node, addnodes.meta) and node.get('name') == 'keywords':
             meta_lang = node.get('lang')
             if meta_lang is None:  # lang not specified
                 return True
@@ -213,10 +221,9 @@ class WordCollector(NodeVisitor):
 
     def dispatch_visit(self, node):
         # type: (nodes.Node) -> None
-        nodetype = type(node)
-        if issubclass(nodetype, comment):
-            raise SkipNode
-        if issubclass(nodetype, raw):
+        if isinstance(node, nodes.comment):
+            raise nodes.SkipNode
+        elif isinstance(node, nodes.raw):
             if 'html' in node.get('format', '').split():
                 # Some people might put content in raw HTML that should be searched,
                 # so we just amateurishly strip HTML tags and index the remaining
@@ -225,18 +232,18 @@ class WordCollector(NodeVisitor):
                 nodetext = re.sub(r'(?is)<script.*?</script>', '', nodetext)
                 nodetext = re.sub(r'<[^<]+?>', '', nodetext)
                 self.found_words.extend(self.lang.split(nodetext))
-            raise SkipNode
-        if issubclass(nodetype, Text):
+            raise nodes.SkipNode
+        elif isinstance(node, nodes.Text):
             self.found_words.extend(self.lang.split(node.astext()))
-        elif issubclass(nodetype, title):
+        elif isinstance(node, nodes.title):
             self.found_title_words.extend(self.lang.split(node.astext()))
-        elif self.is_meta_keywords(node, nodetype):
+        elif isinstance(node, addnodes.meta) and self.is_meta_keywords(node):
             keywords = node['content']
             keywords = [keyword.strip() for keyword in keywords.split(',')]
             self.found_words.extend(keywords)
 
 
-class IndexBuilder(object):
+class IndexBuilder:
     """
     Helper class that creates a searchindex based on the doctrees
     passed to the `feed` method.
@@ -291,7 +298,7 @@ class IndexBuilder(object):
     def load(self, stream, format):
         # type: (IO, Any) -> None
         """Reconstruct from frozen data."""
-        if isinstance(format, string_types):
+        if isinstance(format, str):
             format = self.formats[format]
         frozen = format.load(stream)
         # if an old index is present, we treat it as not existing.
@@ -305,7 +312,7 @@ class IndexBuilder(object):
         def load_terms(mapping):
             # type: (Dict[unicode, Any]) -> Dict[unicode, Set[unicode]]
             rv = {}
-            for k, v in iteritems(mapping):
+            for k, v in mapping.items():
                 if isinstance(v, int):
                     rv[k] = set([index2fn[v]])
                 else:
@@ -319,7 +326,7 @@ class IndexBuilder(object):
     def dump(self, stream, format):
         # type: (IO, Any) -> None
         """Dump the frozen index to a stream."""
-        if isinstance(format, string_types):
+        if isinstance(format, str):
             format = self.formats[format]
         format.dump(self.freeze(), stream)
 
@@ -328,16 +335,16 @@ class IndexBuilder(object):
         rv = {}  # type: Dict[unicode, Dict[unicode, Tuple[int, int, int, unicode]]]
         otypes = self._objtypes
         onames = self._objnames
-        for domainname, domain in sorted(iteritems(self.env.domains)):
+        for domainname, domain in sorted(self.env.domains.items()):
             for fullname, dispname, type, docname, anchor, prio in \
                     sorted(domain.get_objects()):
-                # XXX use dispname?
                 if docname not in fn2index:
                     continue
                 if prio < 0:
                     continue
                 fullname = htmlescape(fullname)
-                prefix, name = rpartition(fullname, '.')
+                dispname = htmlescape(dispname)
+                prefix, name = rpartition(dispname, '.')
                 pdict = rv.setdefault(prefix, {})
                 try:
                     typeindex = otypes[domainname, type]
@@ -364,7 +371,7 @@ class IndexBuilder(object):
         # type: (Dict) -> Tuple[Dict[unicode, List[unicode]], Dict[unicode, List[unicode]]]
         rvs = {}, {}  # type: Tuple[Dict[unicode, List[unicode]], Dict[unicode, List[unicode]]]
         for rv, mapping in zip(rvs, (self._mapping, self._title_mapping)):
-            for k, v in iteritems(mapping):
+            for k, v in mapping.items():
                 if len(v) == 1:
                     fn, = v
                     if fn in fn2index:
@@ -383,7 +390,7 @@ class IndexBuilder(object):
 
         objects = self.get_objects(fn2index)  # populates _objtypes
         objtypes = dict((v, k[0] + ':' + k[1])
-                        for (k, v) in iteritems(self._objtypes))
+                        for (k, v) in self._objtypes.items())
         objnames = self._objnames
         return dict(docnames=docnames, filenames=filenames, titles=titles, terms=terms,
                     objects=objects, objtypes=objtypes, objnames=objnames,
@@ -404,13 +411,13 @@ class IndexBuilder(object):
                 new_filenames[docname] = self._filenames[docname]
         self._titles = new_titles
         self._filenames = new_filenames
-        for wordnames in itervalues(self._mapping):
+        for wordnames in self._mapping.values():
             wordnames.intersection_update(docnames)
-        for wordnames in itervalues(self._title_mapping):
+        for wordnames in self._title_mapping.values():
             wordnames.intersection_update(docnames)
 
     def feed(self, docname, filename, title, doctree):
-        # type: (unicode, unicode, unicode, nodes.Node) -> None
+        # type: (unicode, unicode, unicode, nodes.document) -> None
         """Feed a doctree to the index."""
         self._titles[docname] = title
         self._filenames[docname] = filename
@@ -446,20 +453,17 @@ class IndexBuilder(object):
 
     def context_for_searchtool(self):
         # type: () -> Dict[unicode, Any]
-        return dict(
-            search_language_stemming_code = self.lang.js_stemmer_code,
-            search_language_stop_words = jsdump.dumps(sorted(self.lang.stopwords)),
-            search_scorer_tool = self.js_scorer_code,
-            search_word_splitter_code = self.js_splitter_code,
-        )
+        return {
+            'search_language_stemming_code': self.lang.js_stemmer_code,
+            'search_language_stop_words': jsdump.dumps(sorted(self.lang.stopwords)),
+            'search_scorer_tool': self.js_scorer_code,
+            'search_word_splitter_code': self.js_splitter_code,
+        }
 
     def get_js_stemmer_rawcode(self):
         # type: () -> unicode
         if self.lang.js_stemmer_rawcode:
-            return path.join(
-                sphinx.package_dir, 'search',
-                'non-minified-js',
-                self.lang.js_stemmer_rawcode
-            )
+            return path.join(package_dir, 'search', 'non-minified-js',
+                             self.lang.js_stemmer_rawcode)
         else:
             return None

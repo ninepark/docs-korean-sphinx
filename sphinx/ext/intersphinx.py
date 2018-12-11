@@ -31,15 +31,15 @@ import posixpath
 import sys
 import time
 from os import path
+from urllib.parse import urlsplit, urlunsplit
 
 from docutils import nodes
 from docutils.utils import relative_path
-from six import PY3, iteritems, string_types
-from six.moves.urllib.parse import urlsplit, urlunsplit
+from six import text_type
 
 import sphinx
 from sphinx.builders.html import INVENTORY_FILENAME
-from sphinx.locale import _
+from sphinx.locale import _, __
 from sphinx.util import requests, logging
 from sphinx.util.inventory import InventoryFile
 
@@ -49,16 +49,14 @@ if False:
     from sphinx.application import Sphinx  # NOQA
     from sphinx.config import Config  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
-    if PY3:
-        unicode = str
-
-    Inventory = Dict[unicode, Dict[unicode, Tuple[unicode, unicode, unicode, unicode]]]
+    Inventory = Dict[text_type, Dict[text_type, Tuple[text_type, text_type, text_type, text_type]]]  # NOQA
 
 logger = logging.getLogger(__name__)
 
 
-class InventoryAdapter(object):
+class InventoryAdapter:
     """Inventory adapter for environment"""
 
     def __init__(self, env):
@@ -212,7 +210,7 @@ def load_mappings(app):
     cache_time = now - app.config.intersphinx_cache_limit * 86400
     inventories = InventoryAdapter(app.builder.env)
     update = False
-    for key, value in iteritems(app.config.intersphinx_mapping):
+    for key, value in app.config.intersphinx_mapping.items():
         name = None  # type: unicode
         uri = None   # type: unicode
         inv = None   # type: Union[unicode, Tuple[unicode, ...]]
@@ -220,8 +218,8 @@ def load_mappings(app):
         if isinstance(value, (list, tuple)):
             # new format
             name, (uri, inv) = key, value
-            if not isinstance(name, string_types):
-                logger.warning('intersphinx identifier %r is not string. Ignored', name)
+            if not isinstance(name, str):
+                logger.warning(__('intersphinx identifier %r is not string. Ignored'), name)
                 continue
         else:
             # old format, no name
@@ -263,8 +261,8 @@ def load_mappings(app):
             for fail in failures:
                 logger.info(*fail)
         else:
-            logger.warning("failed to reach any of the inventories "
-                           "with the following issues:")
+            logger.warning(__("failed to reach any of the inventories "
+                              "with the following issues:"))
             for fail in failures:
                 logger.warning(*fail)
 
@@ -284,12 +282,12 @@ def load_mappings(app):
         for name, _x, invdata in named_vals + unnamed_vals:
             if name:
                 inventories.named_inventory[name] = invdata
-            for type, objects in iteritems(invdata):
+            for type, objects in invdata.items():
                 inventories.main_inventory.setdefault(type, {}).update(objects)
 
 
 def missing_reference(app, env, node, contnode):
-    # type: (Sphinx, BuildEnvironment, nodes.Node, nodes.Node) -> None
+    # type: (Sphinx, BuildEnvironment, nodes.Element, nodes.TextElement) -> nodes.reference
     """Attempt to resolve a missing reference via intersphinx references."""
     target = node['reftarget']
     inventories = InventoryAdapter(env)
@@ -304,10 +302,10 @@ def missing_reference(app, env, node, contnode):
         domain = node.get('refdomain')
         if not domain:
             # only objects in domains are in the inventory
-            return
+            return None
         objtypes = env.get_domain(domain).objtypes_for_role(node['reftype'])
         if not objtypes:
-            return
+            return None
         objtypes = ['%s:%s' % (domain, objtype) for objtype in objtypes]
     if 'std:cmdoption' in objtypes:
         # until Sphinx-1.6, cmdoptions are stored as std:option
@@ -363,6 +361,8 @@ def missing_reference(app, env, node, contnode):
         if len(contnode) and isinstance(contnode[0], nodes.Text):
             contnode[0] = nodes.Text(newtarget, contnode[0].rawsource)
 
+    return None
+
 
 def setup(app):
     # type: (Sphinx) -> Dict[unicode, Any]
@@ -378,20 +378,20 @@ def setup(app):
     }
 
 
-def debug(argv):
+def inspect_main(argv):
     # type: (List[unicode]) -> None
     """Debug functionality to print out an inventory"""
-    if len(argv) < 2:
+    if len(argv) < 1:
         print("Print out an inventory file.\n"
               "Error: must specify local path or URL to an inventory file.",
               file=sys.stderr)
         sys.exit(1)
 
-    class MockConfig(object):
+    class MockConfig:
         intersphinx_timeout = None  # type: int
         tls_verify = False
 
-    class MockApp(object):
+    class MockApp:
         srcdir = ''
         config = MockConfig()
 
@@ -399,18 +399,23 @@ def debug(argv):
             # type: (unicode) -> None
             print(msg, file=sys.stderr)
 
-    filename = argv[1]
-    invdata = fetch_inventory(MockApp(), '', filename)  # type: ignore
-    for key in sorted(invdata or {}):
-        print(key)
-        for entry, einfo in sorted(invdata[key].items()):
-            print('\t%-40s %s%s' % (entry,
-                                    einfo[3] != '-' and '%-40s: ' % einfo[3] or '',
-                                    einfo[2]))
+    try:
+        filename = argv[0]
+        invdata = fetch_inventory(MockApp(), '', filename)  # type: ignore
+        for key in sorted(invdata or {}):
+            print(key)
+            for entry, einfo in sorted(invdata[key].items()):
+                print('\t%-40s %s%s' % (entry,
+                                        einfo[3] != '-' and '%-40s: ' % einfo[3] or '',
+                                        einfo[2]))
+    except ValueError as exc:
+        print(exc.args[0] % exc.args[1:])
+    except Exception as exc:
+        print('Unknown error: %r' % exc)
 
 
 if __name__ == '__main__':
     import logging  # type: ignore
-    logging.basicConfig()
+    logging.basicConfig()  # type: ignore
 
-    debug(argv=sys.argv[1:])  # type: ignore
+    inspect_main(argv=sys.argv[1:])  # type: ignore

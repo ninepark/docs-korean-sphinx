@@ -13,11 +13,10 @@ from __future__ import absolute_import
 
 import warnings
 from contextlib import contextmanager
+from urllib.parse import urlsplit
 
 import pkg_resources
 import requests
-from six import string_types
-from six.moves.urllib.parse import urlsplit
 
 try:
     from requests.packages.urllib3.exceptions import SSLError
@@ -34,7 +33,7 @@ except ImportError:
         from urllib3.exceptions import InsecureRequestWarning  # type: ignore
     except ImportError:
         # for requests < 2.4.0
-        InsecureRequestWarning = None
+        InsecureRequestWarning = None  # type: ignore
 
 try:
     from requests.packages.urllib3.exceptions import InsecurePlatformWarning
@@ -44,7 +43,7 @@ except ImportError:
         from urllib3.exceptions import InsecurePlatformWarning  # type: ignore
     except ImportError:
         # for requests < 2.4.0
-        InsecurePlatformWarning = None
+        InsecurePlatformWarning = None  # type: ignore
 
 # try to load requests[security] (but only if SSL is available)
 try:
@@ -79,6 +78,7 @@ if False:
     # For type annotation
     from typing import Any, Generator, Union  # NOQA
     from sphinx.config import Config  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 useragent_header = [('User-Agent',
                      'Mozilla/5.0 (X11; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/25.0')]
@@ -120,7 +120,7 @@ def _get_tls_cacert(url, config):
     certs = getattr(config, 'tls_cacerts', None)
     if not certs:
         return True
-    elif isinstance(certs, (string_types, tuple)):
+    elif isinstance(certs, (str, tuple)):
         return certs  # type: ignore
     else:
         hostname = urlsplit(url)[1]

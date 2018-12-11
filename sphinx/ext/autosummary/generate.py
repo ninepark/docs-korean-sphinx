@@ -20,7 +20,7 @@
 from __future__ import print_function
 
 import argparse
-import codecs
+import locale
 import os
 import pydoc
 import re
@@ -29,10 +29,12 @@ import sys
 from jinja2 import FileSystemLoader, TemplateNotFound
 from jinja2.sandbox import SandboxedEnvironment
 
+import sphinx.locale
 from sphinx import __display_version__
 from sphinx import package_dir
 from sphinx.ext.autosummary import import_by_name, get_documenter
 from sphinx.jinja2glue import BuiltinTemplateLoader
+from sphinx.locale import __
 from sphinx.registry import SphinxComponentRegistry
 from sphinx.util.inspect import safe_getattr
 from sphinx.util.osutil import ensuredir
@@ -40,14 +42,15 @@ from sphinx.util.rst import escape as rst_escape
 
 if False:
     # For type annotation
-    from typing import Any, Callable, Dict, Tuple, List  # NOQA
-    from jinja2 import BaseLoader  # NOQA
+    from typing import Any, Callable, Dict, List, Tuple, Type, Union  # NOQA
     from sphinx import addnodes  # NOQA
     from sphinx.builders import Builder  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.ext.autodoc import Documenter  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
-class DummyApplication(object):
+class DummyApplication:
     """Dummy Application class for sphinx-autogen command."""
 
     def __init__(self):
@@ -66,7 +69,7 @@ def setup_documenters(app):
         ModuleDocumenter, ClassDocumenter, ExceptionDocumenter, DataDocumenter,
         FunctionDocumenter, MethodDocumenter, AttributeDocumenter,
         InstanceAttributeDocumenter
-    ]
+    ]  # type: List[Type[Documenter]]
     for documenter in documenters:
         app.registry.add_documenter(documenter.objtype, documenter)
 
@@ -99,11 +102,11 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
     showed_sources = list(sorted(sources))
     if len(showed_sources) > 20:
         showed_sources = showed_sources[:10] + ['...'] + showed_sources[-10:]
-    info('[autosummary] generating autosummary for: %s' %
+    info(__('[autosummary] generating autosummary for: %s') %
          ', '.join(showed_sources))
 
     if output_dir:
-        info('[autosummary] writing to %s' % output_dir)
+        info(__('[autosummary] writing to %s') % output_dir)
 
     if base_path is not None:
         sources = [os.path.join(base_path, filename) for filename in sources]
@@ -113,7 +116,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
     template_dirs = [os.path.join(package_dir, 'ext',
                                   'autosummary', 'templates')]
 
-    template_loader = None  # type: BaseLoader
+    template_loader = None  # type: Union[BuiltinTemplateLoader, FileSystemLoader]
     if builder is not None:
         # allow the user to override the templates
         template_loader = BuiltinTemplateLoader()
@@ -121,7 +124,7 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
     else:
         if template_dir:
             template_dirs.insert(0, template_dir)
-        template_loader = FileSystemLoader(template_dirs)  # type: ignore
+        template_loader = FileSystemLoader(template_dirs)
     template_env = SandboxedEnvironment(loader=template_loader)
     template_env.filters['underline'] = _underline
 
@@ -200,6 +203,8 @@ def generate_autosummary_docs(sources, output_dir=None, suffix='.rst',
                     get_members(obj, 'exception', imported=imported_members)
             elif doc.objtype == 'class':
                 ns['members'] = dir(obj)
+                ns['inherited_members'] = \
+                    set(dir(obj)) - set(obj.__dict__.keys())
                 ns['methods'], ns['all_methods'] = \
                     get_members(obj, 'method', ['__init__'])
                 ns['attributes'], ns['all_attributes'] = \
@@ -243,8 +248,8 @@ def find_autosummary_in_files(filenames):
     """
     documented = []  # type: List[Tuple[unicode, unicode, unicode]]
     for filename in filenames:
-        with codecs.open(filename, 'r', encoding='utf-8',  # type: ignore
-                         errors='ignore') as f:
+        with open(filename, 'r', encoding='utf-8',  # type: ignore
+                  errors='ignore') as f:
             lines = f.read().splitlines()
             documented.extend(find_autosummary_in_lines(lines, filename=filename))
     return documented
@@ -264,7 +269,7 @@ def find_autosummary_in_docstring(name, module=None, filename=None):
         pass
     except ImportError as e:
         print("Failed to import '%s': %s" % (name, e))
-    except SystemExit as e:
+    except SystemExit:
         print("Failed to import '%s'; the module executes module level "
               "statement and it might call sys.exit()." % name)
     return []
@@ -297,11 +302,11 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
     template = None
     current_module = module
     in_autosummary = False
-    base_indent = ""
+    base_indent = ""  # type: unicode
 
     for line in lines:
         if in_autosummary:
-            m = toctree_arg_re.match(line)  # type: ignore
+            m = toctree_arg_re.match(line)
             if m:
                 toctree = m.group(1)
                 if filename:
@@ -309,7 +314,7 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
                                            toctree)
                 continue
 
-            m = template_arg_re.match(line)  # type: ignore
+            m = template_arg_re.match(line)
             if m:
                 template = m.group(1).strip()
                 continue
@@ -317,7 +322,7 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
             if line.strip().startswith(':'):
                 continue  # skip options
 
-            m = autosummary_item_re.match(line)  # type: ignore
+            m = autosummary_item_re.match(line)
             if m:
                 name = m.group(1).strip()
                 if name.startswith('~'):
@@ -333,7 +338,7 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
 
             in_autosummary = False
 
-        m = autosummary_re.match(line)  # type: ignore
+        m = autosummary_re.match(line)
         if m:
             in_autosummary = True
             base_indent = m.group(1)
@@ -341,7 +346,7 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
             template = None
             continue
 
-        m = automodule_re.search(line)  # type: ignore
+        m = automodule_re.search(line)
         if m:
             current_module = m.group(1).strip()
             # recurse into the automodule docstring
@@ -349,7 +354,7 @@ def find_autosummary_in_lines(lines, module=None, filename=None):
                 current_module, filename=filename))
             continue
 
-        m = module_re.match(line)  # type: ignore
+        m = module_re.match(line)
         if m:
             current_module = m.group(2)
             continue
@@ -361,8 +366,8 @@ def get_parser():
     # type: () -> argparse.ArgumentParser
     parser = argparse.ArgumentParser(
         usage='%(prog)s [OPTIONS] <SOURCE_FILE>...',
-        epilog='For more information, visit <http://sphinx-doc.org/>.',
-        description="""
+        epilog=__('For more information, visit <http://sphinx-doc.org/>.'),
+        description=__("""
 Generate ReStructuredText using autosummary directives.
 
 sphinx-autogen is a frontend to sphinx.ext.autosummary.generate. It generates
@@ -373,35 +378,38 @@ The format of the autosummary directive is documented in the
 ``sphinx.ext.autosummary`` Python module and can be read using::
 
   pydoc sphinx.ext.autosummary
-""")
+"""))
 
     parser.add_argument('--version', action='version', dest='show_version',
                         version='%%(prog)s %s' % __display_version__)
 
     parser.add_argument('source_file', nargs='+',
-                        help='source files to generate rST files for')
+                        help=__('source files to generate rST files for'))
 
     parser.add_argument('-o', '--output-dir', action='store',
                         dest='output_dir',
-                        help='directory to place all output in')
+                        help=__('directory to place all output in'))
     parser.add_argument('-s', '--suffix', action='store', dest='suffix',
                         default='rst',
-                        help='default suffix for files (default: '
-                              '%(default)s)')
+                        help=__('default suffix for files (default: '
+                                '%(default)s)'))
     parser.add_argument('-t', '--templates', action='store', dest='templates',
                         default=None,
-                        help='custom template directory (default: '
-                              '%(default)s)')
+                        help=__('custom template directory (default: '
+                                '%(default)s)'))
     parser.add_argument('-i', '--imported-members', action='store_true',
                         dest='imported_members', default=False,
-                        help='document imported members (default: '
-                              '%(default)s)')
+                        help=__('document imported members (default: '
+                                '%(default)s)'))
 
     return parser
 
 
 def main(argv=sys.argv[1:]):
     # type: (List[str]) -> None
+    locale.setlocale(locale.LC_ALL, '')
+    sphinx.locale.init_console(os.path.join(package_dir, 'locale'), 'sphinx')
+
     app = DummyApplication()
     setup_documenters(app)
     args = get_parser().parse_args(argv)

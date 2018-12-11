@@ -12,9 +12,8 @@
 import sys
 import time
 
-from six import PY2, text_type, StringIO
-from six.moves import input
 import pytest
+from six import text_type, StringIO
 
 from sphinx import application
 from sphinx.cmd import quickstart as qs
@@ -37,12 +36,7 @@ def mock_input(answers, needanswer=False):
             raise AssertionError('answer for %r missing and no default '
                                  'present' % prompt)
         called.add(prompt)
-        if PY2:
-            prompt = str(prompt)  # Python2.x raw_input emulation
-            # `raw_input` encode `prompt` by default encoding to print.
-        else:
-            prompt = text_type(prompt)  # Python3.x input emulation
-            # `input` decode prompt by default encoding before print.
+        prompt = text_type(prompt)
         for question in answers:
             if prompt.startswith(qs.PROMPT_PREFIX + question):
                 return answers[question]
@@ -197,14 +191,6 @@ def test_quickstart_all_answers(tempdir):
     assert ns['latex_documents'] == [
         ('contents', 'STASI.tex', u'STASI™ Documentation',
          u'Wolfgang Schäuble \\& G\'Beckstein', 'manual')]
-    assert ns['epub_author'] == u'Wolfgang Schäuble & G\'Beckstein'
-    assert ns['man_pages'] == [
-        ('contents', 'stasi', u'STASI™ Documentation',
-         [u'Wolfgang Schäuble & G\'Beckstein'], 1)]
-    assert ns['texinfo_documents'] == [
-        ('contents', 'STASI', u'STASI™ Documentation',
-         u'Wolfgang Schäuble & G\'Beckstein', 'STASI',
-         'One line description of project.', 'Miscellaneous')]
 
     assert (tempdir / 'build').isdir()
     assert (tempdir / 'source' / '.static').isdir()
@@ -225,7 +211,7 @@ def test_generated_files_eol(tempdir):
     qs.generate(d)
 
     def assert_eol(filename, eol):
-        content = filename.bytes().decode('unicode-escape')
+        content = filename.bytes().decode()
         assert all([l[-len(eol):] == eol for l in content.splitlines(True)])
 
     assert_eol(tempdir / 'make.bat', '\r\n')
@@ -274,8 +260,6 @@ def test_default_filename(tempdir):
     ns = {}
     execfile_(conffile, ns)
     assert ns['latex_documents'][0][1] == 'sphinx.tex'
-    assert ns['man_pages'][0][1] == 'sphinx'
-    assert ns['texinfo_documents'][0][1] == 'sphinx'
 
 
 def test_extensions(tempdir):

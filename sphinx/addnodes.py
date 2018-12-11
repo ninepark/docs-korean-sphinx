@@ -9,14 +9,20 @@
     :license: BSD, see LICENSE for details.
 """
 
+import warnings
+
 from docutils import nodes
+
+from sphinx.deprecation import RemovedInSphinx30Warning
 
 if False:
     # For type annotation
-    from typing import List, Sequence  # NOQA
+    from typing import Any, Dict, List, Sequence  # NOQA
+    from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
-class translatable(object):
+class translatable(nodes.Node):
     """Node which supports translation.
 
     The translation goes forward with following steps:
@@ -49,7 +55,7 @@ class translatable(object):
         raise NotImplementedError
 
 
-class not_smartquotable(object):
+class not_smartquotable:
     """A node which does not support smart-quotes."""
     support_smartquotes = False
 
@@ -102,6 +108,7 @@ class desc_signature_line(nodes.Part, nodes.Inline, nodes.FixedTextElement):
     It should only be used in a ``desc_signature`` with ``is_multiline`` set.
     Set ``add_permalink = True`` for the line that should get the permalink.
     """
+    sphinx_cpp_tagname = ''
 
 
 # nodes to use within a desc_signature or desc_signature_line
@@ -122,7 +129,7 @@ class desc_returns(desc_type):
     """Node for a "returns" annotation (a la -> in Python)."""
     def astext(self):
         # type: () -> unicode
-        return ' -> ' + nodes.TextElement.astext(self)
+        return ' -> ' + super(desc_returns, self).astext()
 
 
 class desc_name(nodes.Part, nodes.Inline, nodes.FixedTextElement):
@@ -144,7 +151,7 @@ class desc_optional(nodes.Part, nodes.Inline, nodes.FixedTextElement):
 
     def astext(self):
         # type: () -> unicode
-        return '[' + nodes.TextElement.astext(self) + ']'
+        return '[' + super(desc_optional, self).astext() + ']'
 
 
 class desc_annotation(nodes.Part, nodes.Inline, nodes.FixedTextElement):
@@ -181,6 +188,59 @@ class productionlist(nodes.Admonition, nodes.Element):
 
 class production(nodes.Part, nodes.Inline, nodes.FixedTextElement):
     """Node for a single grammar production rule."""
+
+
+# math nodes
+
+
+class math(nodes.math):
+    """Node for inline equations.
+
+    .. warning:: This node is provided to keep compatibility only.
+                 It will be removed in nearly future.  Don't use this from your extension.
+
+    .. deprecated:: 1.8
+       Use ``docutils.nodes.math`` instead.
+    """
+
+    def __getitem__(self, key):
+        """Special accessor for supporting ``node['latex']``."""
+        if key == 'latex' and 'latex' not in self.attributes:
+            warnings.warn("math node for Sphinx was replaced by docutils'. "
+                          "Therefore please use ``node.astext()`` to get an equation instead.",
+                          RemovedInSphinx30Warning, stacklevel=2)
+            return self.astext()
+        else:
+            return super(math, self).__getitem__(key)
+
+
+class math_block(nodes.math_block):
+    """Node for block level equations.
+
+    .. warning:: This node is provided to keep compatibility only.
+                 It will be removed in nearly future.  Don't use this from your extension.
+
+    .. deprecated:: 1.8
+    """
+
+    def __getitem__(self, key):
+        if key == 'latex' and 'latex' not in self.attributes:
+            warnings.warn("displaymath node for Sphinx was replaced by docutils'. "
+                          "Therefore please use ``node.astext()`` to get an equation instead.",
+                          RemovedInSphinx30Warning, stacklevel=2)
+            return self.astext()
+        else:
+            return super(math_block, self).__getitem__(key)
+
+
+class displaymath(math_block):
+    """Node for block level equations.
+
+    .. warning:: This node is provided to keep compatibility only.
+                 It will be removed in nearly future.  Don't use this from your extension.
+
+    .. deprecated:: 1.8
+    """
 
 
 # other directive-level nodes
@@ -250,6 +310,7 @@ class meta(nodes.Special, nodes.PreBibliographic, nodes.Element):
     """Node for meta directive -- same as docutils' standard meta node,
     but pickleable.
     """
+    rawcontent = None
 
 
 # inline nodes
@@ -291,7 +352,48 @@ class manpage(nodes.Inline, nodes.FixedTextElement):
     """Node for references to manpages."""
 
 
-# make the new nodes known to docutils; needed because the HTML writer will
-# choke at some point if these are not added
-nodes._add_node_class_names(k for k in globals().keys()
-                            if k != 'nodes' and k[0] != '_')
+def setup(app):
+    # type: (Sphinx) -> Dict[unicode, Any]
+    app.add_node(toctree)
+    app.add_node(desc)
+    app.add_node(desc_signature)
+    app.add_node(desc_signature_line)
+    app.add_node(desc_addname)
+    app.add_node(desc_type)
+    app.add_node(desc_returns)
+    app.add_node(desc_name)
+    app.add_node(desc_parameterlist)
+    app.add_node(desc_parameter)
+    app.add_node(desc_optional)
+    app.add_node(desc_annotation)
+    app.add_node(desc_content)
+    app.add_node(versionmodified)
+    app.add_node(seealso)
+    app.add_node(productionlist)
+    app.add_node(production)
+    app.add_node(displaymath)
+    app.add_node(index)
+    app.add_node(centered)
+    app.add_node(acks)
+    app.add_node(hlist)
+    app.add_node(hlistcol)
+    app.add_node(compact_paragraph)
+    app.add_node(glossary)
+    app.add_node(only)
+    app.add_node(start_of_file)
+    app.add_node(highlightlang)
+    app.add_node(tabular_col_spec)
+    app.add_node(meta)
+    app.add_node(pending_xref)
+    app.add_node(number_reference)
+    app.add_node(download_reference)
+    app.add_node(literal_emphasis)
+    app.add_node(literal_strong)
+    app.add_node(abbreviation, override=True)
+    app.add_node(manpage)
+
+    return {
+        'version': 'builtin',
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }

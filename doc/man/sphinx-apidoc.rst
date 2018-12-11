@@ -15,8 +15,10 @@ style of other automatic API documentation tools.
 
 *MODULE_PATH* is the path to a Python package to document, and *OUTPUT_PATH* is
 the directory where the generated sources are placed. Any *EXCLUDE_PATTERN*\s
-given are `fnmatch-style <fnmatch>`_ file and/or directory patterns that will
-be excluded from generation.
+given are `fnmatch-style`_ file and/or directory patterns that will be excluded
+from generation.
+
+.. _fnmatch-style: https://docs.python.org/3/library/fnmatch.html
 
 .. warning::
 
@@ -55,6 +57,10 @@ Options
 .. option:: -d <MAXDEPTH>
 
    Maximum depth for the generated table of contents file.
+
+.. option:: --tocfile
+
+   Filename for a table of contents file. Defaults to ``modules``.
 
 .. option:: -T, --no-toc
 

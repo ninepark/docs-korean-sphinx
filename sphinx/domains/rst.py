@@ -11,12 +11,10 @@
 
 import re
 
-from six import iteritems
-
 from sphinx import addnodes
 from sphinx.directives import ObjectDescription
 from sphinx.domains import Domain, ObjType
-from sphinx.locale import l_, _
+from sphinx.locale import _
 from sphinx.roles import XRefRole
 from sphinx.util.nodes import make_refnode
 
@@ -27,6 +25,7 @@ if False:
     from sphinx.application import Sphinx  # NOQA
     from sphinx.builders import Builder  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 dir_sig_re = re.compile(r'\.\. (.+?)::(.*)$')
@@ -79,7 +78,7 @@ def parse_directive(d):
     if not dir.startswith('.'):
         # Assume it is a directive without syntax
         return (dir, '')
-    m = dir_sig_re.match(dir)  # type: ignore
+    m = dir_sig_re.match(dir)
     if not m:
         return (dir, '')
     parsed_dir, parsed_args = m.groups()
@@ -116,8 +115,8 @@ class ReSTDomain(Domain):
     label = 'reStructuredText'
 
     object_types = {
-        'directive': ObjType(l_('directive'), 'dir'),
-        'role':      ObjType(l_('role'),      'role'),
+        'directive': ObjType(_('directive'), 'dir'),
+        'role':      ObjType(_('role'),      'role'),
     }
     directives = {
         'directive': ReSTDirective,
@@ -144,9 +143,8 @@ class ReSTDomain(Domain):
             if doc in docnames:
                 self.data['objects'][typ, name] = doc
 
-    def resolve_xref(self, env, fromdocname, builder, typ, target, node,
-                     contnode):
-        # type: (BuildEnvironment, unicode, Builder, unicode, unicode, nodes.Node, nodes.Node) -> nodes.Node  # NOQA
+    def resolve_xref(self, env, fromdocname, builder, typ, target, node, contnode):
+        # type: (BuildEnvironment, unicode, Builder, unicode, unicode, addnodes.pending_xref, nodes.Element) -> nodes.Element  # NOQA
         objects = self.data['objects']
         objtypes = self.objtypes_for_role(typ)
         for objtype in objtypes:
@@ -155,12 +153,12 @@ class ReSTDomain(Domain):
                                     objects[objtype, target],
                                     objtype + '-' + target,
                                     contnode, target + ' ' + objtype)
+        return None
 
-    def resolve_any_xref(self, env, fromdocname, builder, target,
-                         node, contnode):
-        # type: (BuildEnvironment, unicode, Builder, unicode, nodes.Node, nodes.Node) -> List[nodes.Node]  # NOQA
+    def resolve_any_xref(self, env, fromdocname, builder, target, node, contnode):
+        # type: (BuildEnvironment, unicode, Builder, unicode, addnodes.pending_xref, nodes.Element) -> List[Tuple[unicode, nodes.Element]]  # NOQA
         objects = self.data['objects']
-        results = []
+        results = []  # type: List[Tuple[unicode, nodes.Element]]
         for objtype in self.object_types:
             if (objtype, target) in self.data['objects']:
                 results.append(('rst:' + self.role_for_objtype(objtype),
@@ -172,7 +170,7 @@ class ReSTDomain(Domain):
 
     def get_objects(self):
         # type: () -> Iterator[Tuple[unicode, unicode, unicode, unicode, unicode, int]]
-        for (typ, name), docname in iteritems(self.data['objects']):
+        for (typ, name), docname in self.data['objects'].items():
             yield name, name, typ, docname, typ + '-' + name, 1
 
 

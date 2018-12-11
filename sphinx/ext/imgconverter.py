@@ -8,6 +8,7 @@
     :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import locale
 import subprocess
 
 from sphinx.errors import ExtensionError
@@ -20,6 +21,7 @@ if False:
     # For type annotation
     from typing import Any, Dict  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 logger = logging.getLogger(__name__)
@@ -38,16 +40,28 @@ class ImagemagickConverter(ImageConverter):
         try:
             args = [self.config.image_converter, '-version']
             logger.debug('Invoking %r ...', args)
-            ret = subprocess.call(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-            if ret == 0:
-                return True
-            else:
-                return False
+            p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except (OSError, IOError):
             logger.warning(__('convert command %r cannot be run.'
                               'check the image_converter setting'),
                            self.config.image_converter)
             return False
+
+        try:
+            stdout, stderr = p.communicate()
+        except (OSError, IOError) as err:
+            if err.errno not in (EPIPE, EINVAL):
+                raise
+            stdout, stderr = p.stdout.read(), p.stderr.read()
+            p.wait()
+        if p.returncode != 0:
+            encoding = locale.getpreferredencoding()
+            logger.warning(__('convert exited with error:\n'
+                              '[stderr]\n%s\n[stdout]\n%s'),
+                           stderr.decode(encoding), stdout.decode(encoding))
+            return False
+
+        return True
 
     def convert(self, _from, _to):
         # type: (unicode, unicode) -> bool
@@ -61,7 +75,7 @@ class ImagemagickConverter(ImageConverter):
                     self.config.image_converter_args +
                     [_from, _to])
             logger.debug('Invoking %r ...', args)
-            p = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         except OSError as err:
             if err.errno != ENOENT:  # No such file or directory
                 raise

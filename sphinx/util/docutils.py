@@ -10,19 +10,23 @@
 """
 from __future__ import absolute_import
 
+import os
 import re
 import types
+import warnings
 from contextlib import contextmanager
 from copy import copy
 from distutils.version import LooseVersion
+from os import path
 
 import docutils
 from docutils import nodes
-from docutils.languages import get_language
-from docutils.parsers.rst import directives, roles, convert_directive_function
+from docutils.io import FileOutput
+from docutils.parsers.rst import Directive, directives, roles, convert_directive_function
 from docutils.statemachine import StateMachine
 from docutils.utils import Reporter
 
+from sphinx.deprecation import RemovedInSphinx30Warning
 from sphinx.errors import ExtensionError
 from sphinx.locale import __
 from sphinx.util import logging
@@ -32,18 +36,23 @@ report_re = re.compile('^(.+?:(?:\\d+)?): \\((DEBUG|INFO|WARNING|ERROR|SEVERE)/(
 
 if False:
     # For type annotation
-    from typing import Any, Callable, Generator, Iterator, List, Tuple  # NOQA
-    from docutils.statemachine import State, ViewList  # NOQA
+    from types import ModuleType  # NOQA
+    from typing import Any, Callable, Generator, List, Set, Tuple, Type  # NOQA
+    from docutils.statemachine import State, StringList  # NOQA
+    from sphinx.builders import Builder  # NOQA
+    from sphinx.config import Config  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
     from sphinx.io import SphinxFileInput  # NOQA
+    from sphinx.util.typing import RoleFunction, unicode  # NOQA
 
 
 __version_info__ = tuple(LooseVersion(docutils.__version__).version)
+additional_nodes = set()  # type: Set[Type[nodes.Element]]
 
 
 @contextmanager
 def docutils_namespace():
-    # type: () -> Iterator[None]
+    # type: () -> Generator[None, None, None]
     """Create namespace for reST parsers."""
     try:
         _directives = copy(directives._directives)
@@ -54,35 +63,132 @@ def docutils_namespace():
         directives._directives = _directives
         roles._roles = _roles
 
+        for node in list(additional_nodes):
+            unregister_node(node)
+            additional_nodes.discard(node)
 
-def patched_get_language(language_code, reporter=None):
-    # type: (unicode, Reporter) -> Any
-    """A wrapper for docutils.languages.get_language().
+
+def is_directive_registered(name):
+    # type: (unicode) -> bool
+    """Check the *name* directive is already registered."""
+    return name in directives._directives
+
+
+def register_directive(name, directive):
+    # type: (unicode, Type[Directive]) -> None
+    """Register a directive to docutils.
+
+    This modifies global state of docutils.  So it is better to use this
+    inside ``docutils_namespace()`` to prevent side-effects.
+    """
+    directives.register_directive(name, directive)
+
+
+def is_role_registered(name):
+    # type: (unicode) -> bool
+    """Check the *name* role is already registered."""
+    return name in roles._roles
+
+
+def register_role(name, role):
+    # type: (unicode, RoleFunction) -> None
+    """Register a role to docutils.
+
+    This modifies global state of docutils.  So it is better to use this
+    inside ``docutils_namespace()`` to prevent side-effects.
+    """
+    roles.register_local_role(name, role)
+
+
+def unregister_role(name):
+    # type: (unicode) -> None
+    """Unregister a role from docutils."""
+    roles._roles.pop(name, None)
+
+
+def is_node_registered(node):
+    # type: (Type[nodes.Element]) -> bool
+    """Check the *node* is already registered."""
+    return hasattr(nodes.GenericNodeVisitor, 'visit_' + node.__name__)
+
+
+def register_node(node):
+    # type: (Type[nodes.Element]) -> None
+    """Register a node to docutils.
+
+    This modifies global state of some visitors.  So it is better to use this
+    inside ``docutils_namespace()`` to prevent side-effects.
+    """
+    if not hasattr(nodes.GenericNodeVisitor, 'visit_' + node.__name__):
+        nodes._add_node_class_names([node.__name__])
+        additional_nodes.add(node)
+
+
+def unregister_node(node):
+    # type: (Type[nodes.Element]) -> None
+    """Unregister a node from docutils.
+
+    This is inverse of ``nodes._add_nodes_class_names()``.
+    """
+    if hasattr(nodes.GenericNodeVisitor, 'visit_' + node.__name__):
+        delattr(nodes.GenericNodeVisitor, "visit_" + node.__name__)
+        delattr(nodes.GenericNodeVisitor, "depart_" + node.__name__)
+        delattr(nodes.SparseNodeVisitor, 'visit_' + node.__name__)
+        delattr(nodes.SparseNodeVisitor, 'depart_' + node.__name__)
+
+
+@contextmanager
+def patched_get_language():
+    # type: () -> Generator[None, None, None]
+    """Patch docutils.languages.get_language() temporarily.
 
     This ignores the second argument ``reporter`` to suppress warnings.
     refs: https://github.com/sphinx-doc/sphinx/issues/3788
     """
-    return get_language(language_code)
+    from docutils.languages import get_language
 
+    def patched_get_language(language_code, reporter=None):
+        # type: (unicode, Reporter) -> Any
+        return get_language(language_code)
 
-@contextmanager
-def patch_docutils():
-    # type: () -> Iterator[None]
-    """Patch to docutils temporarily."""
     try:
         docutils.languages.get_language = patched_get_language
-
         yield
     finally:
         # restore original implementations
         docutils.languages.get_language = get_language
 
 
+@contextmanager
+def using_user_docutils_conf(confdir):
+    # type: (unicode) -> Generator[None, None, None]
+    """Let docutils know the location of ``docutils.conf`` for Sphinx."""
+    try:
+        docutilsconfig = os.environ.get('DOCUTILSCONFIG', None)
+        if confdir:
+            os.environ['DOCUTILSCONFIG'] = path.join(path.abspath(confdir), 'docutils.conf')  # type: ignore  # NOQA
+
+        yield
+    finally:
+        if docutilsconfig is None:
+            os.environ.pop('DOCUTILSCONFIG')
+        else:
+            os.environ['DOCUTILSCONFIG'] = docutilsconfig
+
+
+@contextmanager
+def patch_docutils(confdir=None):
+    # type: (unicode) -> Generator[None, None, None]
+    """Patch to docutils temporarily."""
+    with patched_get_language(), using_user_docutils_conf(confdir):
+        yield
+
+
 class ElementLookupError(Exception):
     pass
 
 
-class sphinx_domains(object):
+class sphinx_domains:
     """Monkey-patch directive and role dispatch, so that domain-specific
     markup takes precedence.
     """
@@ -114,7 +220,7 @@ class sphinx_domains(object):
         roles.role = self.role_func
 
     def lookup_domain_element(self, type, name):
-        # type: (unicode, unicode) -> Tuple[Any, List]
+        # type: (unicode, unicode) -> Any
         """Lookup a markup element (directive or role), given its name which can
         be a full name (with domain).
         """
@@ -143,30 +249,30 @@ class sphinx_domains(object):
         raise ElementLookupError
 
     def lookup_directive(self, name, lang_module, document):
-        # type: (unicode, unicode, nodes.document) -> Tuple[Any, List]
+        # type: (unicode, ModuleType, nodes.document) -> Tuple[Type[Directive], List[nodes.system_message]]  # NOQA
         try:
             return self.lookup_domain_element('directive', name)
         except ElementLookupError:
             return self.directive_func(name, lang_module, document)
 
     def lookup_role(self, name, lang_module, lineno, reporter):
-        # type: (unicode, unicode, int, Any) -> Tuple[Any, List]
+        # type: (unicode, ModuleType, int, Reporter) -> Tuple[RoleFunction, List[nodes.system_message]]  # NOQA
         try:
             return self.lookup_domain_element('role', name)
         except ElementLookupError:
             return self.role_func(name, lang_module, lineno, reporter)
 
 
-class WarningStream(object):
+class WarningStream:
     def write(self, text):
         # type: (unicode) -> None
-        matched = report_re.search(text)  # type: ignore
+        matched = report_re.search(text)
         if not matched:
             logger.warning(text.rstrip("\r\n"))
         else:
             location, type, level = matched.groups()
-            message = report_re.sub('', text).rstrip()  # type: ignore
-            logger.log(type, message, location=location)
+            message = report_re.sub('', text).rstrip()
+            logger.log(type, message, location=location)  # type: ignore
 
 
 class LoggingReporter(Reporter):
@@ -177,12 +283,21 @@ class LoggingReporter(Reporter):
         return cls(reporter.source, reporter.report_level, reporter.halt_level,
                    reporter.debug_flag, reporter.error_handler)
 
-    def __init__(self, source, report_level, halt_level,
-                 debug=False, error_handler='backslashreplace'):
+    def __init__(self, source, report_level=Reporter.WARNING_LEVEL,
+                 halt_level=Reporter.SEVERE_LEVEL, debug=False,
+                 error_handler='backslashreplace'):
         # type: (unicode, int, int, bool, unicode) -> None
         stream = WarningStream()
-        Reporter.__init__(self, source, report_level, halt_level,
-                          stream, debug, error_handler=error_handler)
+        super(LoggingReporter, self).__init__(source, report_level, halt_level,
+                                              stream, debug, error_handler=error_handler)
+
+
+class NullReporter(Reporter):
+    """A dummy reporter; write nothing."""
+
+    def __init__(self):
+        # type: () -> None
+        super(NullReporter, self).__init__('', 999, 4)
 
 
 def is_html5_writer_available():
@@ -192,6 +307,10 @@ def is_html5_writer_available():
 
 def directive_helper(obj, has_content=None, argument_spec=None, **option_spec):
     # type: (Any, bool, Tuple[int, int, bool], Any) -> Any
+    warnings.warn('function based directive support is now deprecated. '
+                  'Use class based directive instead.',
+                  RemovedInSphinx30Warning)
+
     if isinstance(obj, (types.FunctionType, types.MethodType)):
         obj.content = has_content                       # type: ignore
         obj.arguments = argument_spec or (0, 0, False)  # type: ignore
@@ -206,7 +325,7 @@ def directive_helper(obj, has_content=None, argument_spec=None, **option_spec):
 
 @contextmanager
 def switch_source_input(state, content):
-    # type: (State, ViewList) -> Generator
+    # type: (State, StringList) -> Generator[None, None, None]
     """Switch current source input of state temporarily."""
     try:
         # remember the original ``get_source_and_line()`` method
@@ -221,6 +340,74 @@ def switch_source_input(state, content):
     finally:
         # restore the method
         state.memo.reporter.get_source_and_line = get_source_and_line
+
+
+class SphinxFileOutput(FileOutput):
+    """Better FileOutput class for Sphinx."""
+
+    def __init__(self, **kwargs):
+        # type: (Any) -> None
+        self.overwrite_if_changed = kwargs.pop('overwrite_if_changed', False)
+        super(SphinxFileOutput, self).__init__(**kwargs)
+
+    def write(self, data):
+        # type: (unicode) -> unicode
+        if (self.destination_path and self.autoclose and 'b' not in self.mode and
+                self.overwrite_if_changed and os.path.exists(self.destination_path)):
+            with open(self.destination_path, encoding=self.encoding) as f:  # type: ignore
+                # skip writing: content not changed
+                if f.read() == data:
+                    return data
+
+        return super(SphinxFileOutput, self).write(data)
+
+
+class SphinxDirective(Directive):
+    """A base class for Sphinx directives.
+
+    This class provides helper methods for Sphinx directives.
+
+    .. note:: The subclasses of this class might not work with docutils.
+              This class is strongly coupled with Sphinx.
+    """
+
+    @property
+    def env(self):
+        # type: () -> BuildEnvironment
+        """Reference to the :class:`.BuildEnvironment` object."""
+        return self.state.document.settings.env
+
+    @property
+    def config(self):
+        # type: () -> Config
+        """Reference to the :class:`.Config` object."""
+        return self.env.config
+
+
+class SphinxTranslator(nodes.NodeVisitor):
+    """A base class for Sphinx translators.
+
+    This class provides helper methods for Sphinx translators.
+
+    .. note:: The subclasses of this class might not work with docutils.
+              This class is strongly coupled with Sphinx.
+    """
+
+    def __init__(self, builder, document):
+        # type: (Builder, nodes.document) -> None
+        super(SphinxTranslator, self).__init__(document)
+        self.builder = builder
+        self.config = builder.config
+
+    def get_settings(self):
+        # type: () -> Any
+        """Get settings object with type safe.
+
+        .. note:: It is hard to check types for settings object because it's attributes
+                  are added dynamically.  This method avoids the type errors through
+                  imitating it's type as Any.
+        """
+        return self.document.settings
 
 
 # cache a vanilla instance of nodes.document

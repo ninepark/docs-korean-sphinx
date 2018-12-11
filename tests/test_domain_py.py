@@ -10,13 +10,12 @@
 """
 
 import pytest
+from docutils import nodes
 from mock import Mock
 from six import text_type
-from docutils import nodes
 
 from sphinx import addnodes
 from sphinx.domains.python import py_sig_re, _pseudo_parse_arglist, PythonDomain
-
 from sphinx.testing.util import assert_node
 
 
@@ -114,7 +113,10 @@ def test_domain_py_xrefs(app, status, warning):
     assert_refnode(refnodes[9], False, False, 'str', 'class')
     assert_refnode(refnodes[10], False, False, 'float', 'class')
     assert_refnode(refnodes[11], False, False, 'list', 'class')
-    assert len(refnodes) == 12
+    assert_refnode(refnodes[11], False, False, 'list', 'class')
+    assert_refnode(refnodes[12], False, False, 'ModTopLevel', 'class')
+    assert_refnode(refnodes[13], False, False, 'index', 'doc', domain='std')
+    assert len(refnodes) == 14
 
     doctree = app.env.get_doctree('module_option')
     refnodes = list(doctree.traverse(addnodes.pending_xref))

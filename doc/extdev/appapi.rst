@@ -71,9 +71,9 @@ package.
 
 .. automethod:: Sphinx.add_post_transform(transform)
 
-.. automethod:: Sphinx.add_javascript(filename)
+.. automethod:: Sphinx.add_js_file(filename, **kwargs)
 
-.. automethod:: Sphinx.add_stylesheet(filename, alternate=None, title=None)
+.. automethod:: Sphinx.add_css_file(filename, **kwargs)
 
 .. automethod:: Sphinx.add_latex_package(packagename, options=None)
 
@@ -85,11 +85,17 @@ package.
 
 .. automethod:: Sphinx.add_search_language(cls)
 
-.. automethod:: Sphinx.add_source_parser(suffix, parser)
+.. automethod:: Sphinx.add_source_suffix(suffix, filetype)
+
+.. automethod:: Sphinx.add_source_parser(parser)
 
 .. automethod:: Sphinx.add_env_collector(collector)
 
 .. automethod:: Sphinx.add_html_theme(name, theme_path)
+
+.. automethod:: Sphinx.add_html_math_renderer(name, inline_renderers, block_renderers)
+
+.. automethod:: Sphinx.add_message_catalog(catalog, locale_dir)
 
 .. automethod:: Sphinx.is_parallel_allowed(typ)
 
@@ -109,50 +115,28 @@ Emitting events
    .. automethod:: emit_firstresult(event, \*arguments)
 
 
-Producing messages / logging
-----------------------------
-
-The application object also provides support for emitting leveled messages.
-
-.. note::
-
-   There is no "error" call: in Sphinx, errors are defined as things that stop
-   the build; just raise an exception (:exc:`sphinx.errors.SphinxError` or a
-   custom subclass) to do that.
-
-.. deprecated:: 1.6
-
-   Please use :ref:`logging-api` instead.
-
-.. automethod:: Sphinx.warn
-
-.. automethod:: Sphinx.info
-
-.. automethod:: Sphinx.verbose
-
-.. automethod:: Sphinx.debug
-
-.. automethod:: Sphinx.debug2
-
-
 Sphinx runtime information
 --------------------------
 
 The application object also provides runtime information as attributes.
 
-.. attribute:: srcdir
+.. attribute:: Sphinx.project
+
+   Target project.  See :class:`.Project`.
+
+.. attribute:: Sphinx.srcdir
 
    Source directory.
 
-.. attribute:: confdir
+.. attribute:: Sphinx.confdir
 
    Directory containing ``conf.py``.
 
-.. attribute:: doctreedir
+.. attribute:: Sphinx.doctreedir
 
    Directory for storing pickled doctrees.
 
-.. attribute:: outdir
+.. attribute:: Sphinx.outdir
 
    Directory for storing built document.
 
@@ -265,7 +249,7 @@ handlers to the events.  Example:
    Here is the place to replace custom nodes that don't have visitor methods in
    the writers, so that they don't cause errors when the writers encounter them.
 
-.. event:: env-merge-info (env, docnames, other)
+.. event:: env-merge-info (app, env, docnames, other)
 
    This event is only emitted when parallel reading of documents is enabled.  It
    is emitted once for every subprocess that has read some documents.
@@ -299,7 +283,7 @@ handlers to the events.  Example:
    .. versionchanged:: 1.3
       The handlers' return value is now used.
 
-.. event:: env-check-consistency (env)
+.. event:: env-check-consistency (app, env)
 
    Emitted when Consistency checks phase.  You can check consistency of
    metadata for whole of documents.

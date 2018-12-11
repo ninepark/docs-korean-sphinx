@@ -11,8 +11,9 @@
 .ropeproject/
 TAGS
 .tags
-.tox
-.venv
+.tox/
+.tx/
+.venv/
 .coverage
 htmlcov
 .DS_Store
@@ -28,3 +29,5 @@ doc/locale/
 tests/.coverage
 tests/build/
 utils/regression_test.js
+
+node_modules/

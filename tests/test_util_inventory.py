@@ -9,10 +9,9 @@
     :license: BSD, see LICENSE for details.
 """
 
-import zlib
 import posixpath
-
-from six import BytesIO
+import zlib
+from io import BytesIO
 
 from sphinx.ext.intersphinx import InventoryFile
 

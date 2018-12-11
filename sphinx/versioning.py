@@ -9,20 +9,23 @@
     :copyright: Copyright 2007-2018 by the Sphinx team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
+import pickle
+import warnings
 from itertools import product
 from operator import itemgetter
+from os import path
 from uuid import uuid4
 
-from six import iteritems
-from six.moves import cPickle as pickle
-from six.moves import range, zip_longest
+from six.moves import zip_longest
 
+from sphinx.deprecation import RemovedInSphinx30Warning
 from sphinx.transforms import SphinxTransform
 
 if False:
     # For type annotation
     from typing import Any, Iterator  # NOQA
     from docutils import nodes  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 try:
     import Levenshtein
@@ -100,7 +103,7 @@ def merge_doctrees(old, new, condition):
     # choose the old node with the best ratio for each new node and set the uid
     # as long as the ratio is under a certain value, in which case we consider
     # them not changed but different
-    ratios = sorted(iteritems(ratios), key=itemgetter(1))  # type: ignore
+    ratios = sorted(ratios.items(), key=itemgetter(1))  # type: ignore
     for (old_node, new_node), ratio in ratios:
         if new_node in seen:
             continue
@@ -141,7 +144,7 @@ def levenshtein_distance(a, b):
         a, b = b, a
     if not a:
         return len(b)
-    previous_row = range(len(b) + 1)
+    previous_row = list(range(len(b) + 1))
     for i, column1 in enumerate(a):
         current_row = [i + 1]
         for j, column2 in enumerate(b):
@@ -149,22 +152,25 @@ def levenshtein_distance(a, b):
             deletions = current_row[j] + 1
             substitutions = previous_row[j] + (column1 != column2)
             current_row.append(min(insertions, deletions, substitutions))
-        previous_row = current_row  # type: ignore
+        previous_row = current_row
     return previous_row[-1]
 
 
 class UIDTransform(SphinxTransform):
     """Add UIDs to doctree for versioning."""
-    default_priority = 100
+    default_priority = 880
 
-    def apply(self):
-        # type: () -> None
+    def apply(self, **kwargs):
+        # type: (Any) -> None
         env = self.env
         old_doctree = None
+        if not env.versioning_condition:
+            return
+
         if env.versioning_compare:
             # get old doctree
             try:
-                filename = env.doc2path(env.docname, env.doctreedir, '.doctree')
+                filename = path.join(env.doctreedir, env.docname + '.doctree')
                 with open(filename, 'rb') as f:
                     old_doctree = pickle.load(f)
             except EnvironmentError:
@@ -178,7 +184,9 @@ class UIDTransform(SphinxTransform):
 
 
 def prepare(document):
-    # type: (nodes.Node) -> None
+    # type: (nodes.document) -> None
     """Simple wrapper for UIDTransform."""
+    warnings.warn('versioning.prepare() is deprecated. Use UIDTransform instead.',
+                  RemovedInSphinx30Warning, stacklevel=2)
     transform = UIDTransform(document)
     transform.apply()

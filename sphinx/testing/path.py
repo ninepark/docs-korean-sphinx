@@ -9,13 +9,14 @@
 import os
 import shutil
 import sys
-from io import open
 
-from six import PY2, text_type
+from six import text_type
 
 if False:
     # For type annotation
+    import builtins  # NOQA
     from typing import Any, Callable, IO, List  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 FILESYSTEMENCODING = sys.getfilesystemencoding() or sys.getdefaultencoding()
@@ -25,13 +26,6 @@ class path(text_type):
     """
     Represents a path which behaves like a string.
     """
-    if PY2:
-        def __new__(cls, s, encoding=FILESYSTEMENCODING, errors='strict'):
-            # type: (unicode, unicode, unicode) -> path
-            if isinstance(s, str):
-                s = s.decode(encoding, errors)
-                return text_type.__new__(cls, s)
-            return text_type.__new__(cls, s)  # type: ignore
 
     @property
     def parent(self):
@@ -161,7 +155,7 @@ class path(text_type):
         """
         if isinstance(text, bytes):
             text = text.decode(encoding)
-        with open(self, 'w', encoding=encoding, **kwargs) as f:
+        with open(self, 'w', encoding=encoding, **kwargs) as f:  # type: ignore
             f.write(text)
 
     def text(self, encoding='utf-8', **kwargs):
@@ -169,12 +163,11 @@ class path(text_type):
         """
         Returns the text in the file.
         """
-        mode = 'rU' if PY2 else 'r'
-        with open(self, mode=mode, encoding=encoding, **kwargs) as f:
+        with open(self, mode='r', encoding=encoding, **kwargs) as f:  # type: ignore
             return f.read()
 
     def bytes(self):
-        # type: () -> str
+        # type: () -> builtins.bytes
         """
         Returns the bytes in the file.
         """
@@ -211,19 +204,19 @@ class path(text_type):
         """
         return os.path.lexists(self)
 
-    def makedirs(self, mode=0o777):
-        # type: (int) -> None
+    def makedirs(self, mode=0o777, exist_ok=False):
+        # type: (int, bool) -> None
         """
         Recursively create directories.
         """
-        os.makedirs(self, mode)
+        os.makedirs(self, mode, exist_ok=exist_ok)  # type: ignore
 
     def joinpath(self, *args):
         # type: (Any) -> path
         """
         Joins the path with the argument given and returns the result.
         """
-        return self.__class__(os.path.join(self, *map(self.__class__, args)))  # type: ignore  # NOQA
+        return self.__class__(os.path.join(self, *map(self.__class__, args)))
 
     def listdir(self):
         # type: () -> List[unicode]

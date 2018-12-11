@@ -14,14 +14,13 @@ from __future__ import print_function
 
 from collections import OrderedDict, defaultdict
 
-from six import itervalues
-
 from sphinx.errors import ExtensionError
 from sphinx.locale import __
 
 if False:
     # For type annotation
     from typing import Any, Callable, Dict, List  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 # List of all known core events. Maps name to arguments description.
@@ -45,7 +44,7 @@ core_events = {
 }  # type: Dict[unicode, unicode]
 
 
-class EventManager(object):
+class EventManager:
     def __init__(self):
         # type: () -> None
         self.events = core_events.copy()
@@ -70,13 +69,13 @@ class EventManager(object):
 
     def disconnect(self, listener_id):
         # type: (int) -> None
-        for event in itervalues(self.listeners):
+        for event in self.listeners.values():
             event.pop(listener_id, None)
 
     def emit(self, name, *args):
         # type: (unicode, Any) -> List
         results = []
-        for callback in itervalues(self.listeners[name]):
+        for callback in self.listeners[name].values():
             results.append(callback(*args))
         return results
 

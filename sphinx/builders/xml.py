@@ -9,7 +9,6 @@
     :license: BSD, see LICENSE for details.
 """
 
-import codecs
 from os import path
 
 from docutils import nodes
@@ -17,14 +16,17 @@ from docutils.io import StringOutput
 from docutils.writers.docutils_xml import XMLTranslator
 
 from sphinx.builders import Builder
+from sphinx.locale import __
 from sphinx.util import logging
 from sphinx.util.osutil import ensuredir, os_path
 from sphinx.writers.xml import XMLWriter, PseudoXMLWriter
 
 if False:
     # For type annotation
-    from typing import Any, Dict, Iterator, Set  # NOQA
+    from typing import Any, Dict, Iterator, Set, Type  # NOQA
+    from docutils.writers.xml import BaseXMLWriter  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 logger = logging.getLogger(__name__)
 
@@ -35,12 +37,12 @@ class XMLBuilder(Builder):
     """
     name = 'xml'
     format = 'xml'
-    epilog = 'The XML files are in %(outdir)s.'
+    epilog = __('The XML files are in %(outdir)s.')
 
     out_suffix = '.xml'
     allow_parallel = True
 
-    _writer_class = XMLWriter
+    _writer_class = XMLWriter  # type: Type[BaseXMLWriter]
     default_translator_class = XMLTranslator
 
     def init(self):
@@ -53,8 +55,7 @@ class XMLBuilder(Builder):
             if docname not in self.env.all_docs:
                 yield docname
                 continue
-            targetname = self.env.doc2path(docname, self.outdir,
-                                           self.out_suffix)
+            targetname = path.join(self.outdir, docname + self.out_suffix)
             try:
                 targetmtime = path.getmtime(targetname)
             except Exception:
@@ -94,10 +95,10 @@ class XMLBuilder(Builder):
         outfilename = path.join(self.outdir, os_path(docname) + self.out_suffix)
         ensuredir(path.dirname(outfilename))
         try:
-            with codecs.open(outfilename, 'w', 'utf-8') as f:  # type: ignore
+            with open(outfilename, 'w', encoding='utf-8') as f:  # type: ignore
                 f.write(self.writer.output)
         except (IOError, OSError) as err:
-            logger.warning("error writing file %s: %s", outfilename, err)
+            logger.warning(__("error writing file %s: %s"), outfilename, err)
 
     def finish(self):
         # type: () -> None
@@ -110,7 +111,7 @@ class PseudoXMLBuilder(XMLBuilder):
     """
     name = 'pseudoxml'
     format = 'pseudoxml'
-    epilog = 'The pseudo-XML files are in %(outdir)s.'
+    epilog = __('The pseudo-XML files are in %(outdir)s.')
 
     out_suffix = '.pseudoxml'
 

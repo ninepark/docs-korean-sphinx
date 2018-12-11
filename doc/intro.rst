@@ -29,7 +29,7 @@ This section is intended to collect helpful hints for those wanting to migrate
 to reStructuredText/Sphinx from other documentation systems.
 
 * Gerard Flanagan has written a script to convert pure HTML to reST; it can be
-  found at the `Python Package Index <https://pypi.python.org/pypi/html2rest>`_.
+  found at the `Python Package Index <https://pypi.org/project/html2rest/>`_.
 
 * For converting the old Python docs to Sphinx, a converter was written which
   can be found at `the Python SVN repository
@@ -40,7 +40,7 @@ to reStructuredText/Sphinx from other documentation systems.
   markup; it is at `GitHub <https://github.com/wojdyr/db2rst>`_.
 
 * Christophe de Vienne wrote a tool to convert from Open/LibreOffice documents
-  to Sphinx: `odt2sphinx <https://pypi.python.org/pypi/odt2sphinx/>`_.
+  to Sphinx: `odt2sphinx <https://pypi.org/project/odt2sphinx/>`_.
 
 * To convert different markups, `Pandoc <https://pandoc.org/>`_ is
   a very helpful tool.
@@ -55,19 +55,17 @@ See the :ref:`pertinent section in the FAQ list <usingwith>`.
 Prerequisites
 -------------
 
-Sphinx needs at least **Python 2.7** or **Python 3.4** to run, as well as the
-docutils_ and Jinja2_ libraries.  Sphinx should work with docutils version 0.10
-or some (not broken) SVN trunk snapshot.  If you like to have source code
-highlighting support, you must also install the Pygments_ library.
+Sphinx needs at least **Python 3.5** to run, as well as the docutils_ and
+Jinja2_ libraries. Sphinx should work with docutils version 0.12 or some (not
+broken) SVN trunk snapshot.
 
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
 .. _docutils: http://docutils.sourceforge.net/
 .. _Jinja2: http://jinja.pocoo.org/
-.. _Pygments: http://pygments.org/
 
 
 Usage
 -----
 
-See :doc:`tutorial` for an introduction.  It also contains links to more
-advanced sections in this manual for the topics it discusses.
+See :doc:`/usage/quickstart` for an introduction.  It also contains links to
+more advanced sections in this manual for the topics it discusses.

@@ -10,13 +10,14 @@
 """
 from __future__ import print_function
 
-import os
 import datetime
+import os
 
 import pytest
 from babel.messages.mofile import read_mo
-from sphinx.util import i18n
+
 from sphinx.errors import SphinxError
+from sphinx.util import i18n
 
 
 def test_catalog_info_for_file_and_path():
@@ -143,6 +144,7 @@ def test_get_catalogs_from_multiple_locale_dirs(tempdir):
     assert domains == ['test1', 'test1', 'test2']
 
 
+@pytest.mark.filterwarnings('ignore:gettext_compact argument')
 def test_get_catalogs_with_compact(tempdir):
     (tempdir / 'loc1' / 'xx' / 'LC_MESSAGES').makedirs()
     (tempdir / 'loc1' / 'xx' / 'LC_MESSAGES' / 'test1.po').write_text('#')
@@ -153,7 +155,18 @@ def test_get_catalogs_with_compact(tempdir):
 
     catalogs = i18n.find_catalog_source_files([tempdir / 'loc1'], 'xx', gettext_compact=True)
     domains = set(c.domain for c in catalogs)
-    assert domains == set(['test1', 'test2', 'sub'])
+    assert domains == set(['test1', 'test2', 'sub/test3', 'sub/test4'])
+
+
+def test_get_catalogs_excluded(tempdir):
+    (tempdir / 'loc1' / 'en' / 'LC_MESSAGES' / '.git').makedirs()
+    (tempdir / 'loc1' / 'en' / 'LC_MESSAGES' / 'en_dom.po').write_text('#')
+    (tempdir / 'loc1' / 'en' / 'LC_MESSAGES' / '.git' / 'no_no.po').write_text('#')
+
+    catalogs = i18n.find_catalog_source_files(
+        [tempdir / 'loc1'], 'en', force_all=False, excluded=lambda path: '.git' in path)
+    domains = set(c.domain for c in catalogs)
+    assert domains == set(['en_dom'])
 
 
 def test_format_date():

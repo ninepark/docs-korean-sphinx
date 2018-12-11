@@ -9,13 +9,11 @@
     :license: BSD, see LICENSE for details.
 """
 
-from six import iteritems, StringIO
-
-from sphinx.ext.autosummary import mangle_signature, import_by_name
-
-from sphinx.testing.util import etree_parse
-
 import pytest
+from six import StringIO
+
+from sphinx.ext.autosummary import mangle_signature, import_by_name, extract_summary
+from sphinx.testing.util import etree_parse
 
 html_warnfile = StringIO()
 
@@ -57,6 +55,45 @@ def test_mangle_signature():
         assert res == outp, (u"'%s' -> '%s' != '%s'" % (inp, res, outp))
 
 
+def test_extract_summary(capsys):
+    from sphinx.util.docutils import new_document
+    from mock import Mock
+    settings = Mock(language_code='',
+                    id_prefix='',
+                    auto_id_prefix='',
+                    pep_reference=False,
+                    rfc_reference=False)
+    document = new_document('', settings)
+
+    # normal case
+    doc = ['',
+           'This is a first sentence. And second one.',
+           '',
+           'Second block is here']
+    assert extract_summary(doc, document) == 'This is a first sentence.'
+
+    # inliner case
+    doc = ['This sentence contains *emphasis text having dots.*,',
+           'it does not break sentence.']
+    assert extract_summary(doc, document) == ' '.join(doc)
+
+    # abbreviations
+    doc = ['Blabla, i.e. bla.']
+    assert extract_summary(doc, document) == 'Blabla, i.e.'
+
+    # literal
+    doc = ['blah blah::']
+    assert extract_summary(doc, document) == 'blah blah.'
+
+    # heading
+    doc = ['blah blah',
+           '=========']
+    assert extract_summary(doc, document) == 'blah blah'
+
+    _, err = capsys.readouterr()
+    assert err == ''
+
+
 @pytest.mark.sphinx('dummy', **default_kw)
 def test_get_items_summary(make_app, app_params):
     import sphinx.ext.autosummary
@@ -95,7 +132,7 @@ def test_get_items_summary(make_app, app_params):
 
     expected_values = {
         'withSentence': 'I have a sentence which spans multiple lines.',
-        'noSentence': "this doesn't start with a",
+        'noSentence': "this doesn't start with a capital.",
         'emptyLine': "This is the real summary",
         'module_attr': 'This is a module attribute',
         'C.class_attr': 'This is a class attribute',
@@ -103,7 +140,7 @@ def test_get_items_summary(make_app, app_params):
         'C.prop_attr2': 'This is a attribute docstring',
         'C.C2': 'This is a nested inner class docstring',
     }
-    for key, expected in iteritems(expected_values):
+    for key, expected in expected_values.items():
         assert autosummary_items[key][2] == expected, 'Summary for %s was %r -'\
             ' expected %r' % (key, autosummary_items[key], expected)
 
@@ -158,6 +195,16 @@ def test_autosummary_generate(app, status, warning):
             '   \n'
             '      ~Foo.baz\n'
             '   \n' in Foo)
+
+
+@pytest.mark.sphinx('latex', **default_kw)
+def test_autosummary_latex_table_colspec(app, status, warning):
+    app.builder.build_all()
+    result = (app.outdir / 'Python.tex').text(encoding='utf8')
+    print(status.getvalue())
+    print(warning.getvalue())
+    assert r'\begin{longtable}{\X{1}{2}\X{1}{2}}' in result
+    assert r'p{0.5\linewidth}' not in result
 
 
 def test_import_by_name():

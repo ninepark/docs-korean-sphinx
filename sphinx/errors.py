@@ -13,6 +13,7 @@
 if False:
     # For type annotation
     from typing import Any  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 class SphinxError(Exception):
@@ -54,7 +55,8 @@ class ExtensionError(SphinxError):
 
     def __init__(self, message, orig_exc=None):
         # type: (unicode, Exception) -> None
-        SphinxError.__init__(self, message)
+        super(ExtensionError, self).__init__(message)
+        self.message = message
         self.orig_exc = orig_exc
 
     def __repr__(self):
@@ -66,15 +68,25 @@ class ExtensionError(SphinxError):
 
     def __str__(self):
         # type: () -> str
-        parent_str = SphinxError.__str__(self)
+        parent_str = super(ExtensionError, self).__str__()
         if self.orig_exc:
             return '%s (exception: %s)' % (parent_str, self.orig_exc)
         return parent_str
 
 
+class BuildEnvironmentError(SphinxError):
+    """BuildEnvironment error."""
+    category = 'BuildEnvironment error'
+
+
 class ConfigError(SphinxError):
     """Configuration error."""
     category = 'Configuration error'
+
+
+class DocumentError(SphinxError):
+    """Document error."""
+    category = 'Document error'
 
 
 class ThemeError(SphinxError):

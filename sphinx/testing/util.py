@@ -16,17 +16,19 @@ from xml.etree import ElementTree
 
 from docutils import nodes
 from docutils.parsers.rst import directives, roles
-from six import string_types
 
-from sphinx import application
+from sphinx import application, locale
 from sphinx.builders.latex import LaTeXBuilder
-from sphinx.ext.autodoc import AutoDirective
+from sphinx.deprecation import RemovedInSphinx40Warning
 from sphinx.pycode import ModuleAnalyzer
 from sphinx.testing.path import path
+from sphinx.util.osutil import relpath
 
 if False:
     # For type annotation
+    from typing import List  # NOQA
     from typing import Any, Dict, Generator, IO, List, Pattern  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 __all__ = [
@@ -63,25 +65,34 @@ def assert_node(node, cls=None, xpath="", **kwargs):
                 if isinstance(cls[1], tuple):
                     assert_node(node, cls[1], xpath=xpath, **kwargs)
                 else:
+                    assert isinstance(node, nodes.Element), \
+                        'The node%s does not have any children' % xpath
                     assert len(node) == 1, \
                         'The node%s has %d child nodes, not one' % (xpath, len(node))
                     assert_node(node[0], cls[1:], xpath=xpath + "[0]", **kwargs)
         elif isinstance(cls, tuple):
+            assert isinstance(node, nodes.Element), \
+                'The node%s does not have any items' % xpath
             assert len(node) == len(cls), \
                 'The node%s has %d child nodes, not %r' % (xpath, len(node), len(cls))
             for i, nodecls in enumerate(cls):
                 path = xpath + "[%d]" % i
                 assert_node(node[i], nodecls, xpath=path, **kwargs)
-        elif isinstance(cls, string_types):
+        elif isinstance(cls, str):
             assert node == cls, 'The node %r is not %r: %r' % (xpath, cls, node)
         else:
             assert isinstance(node, cls), \
                 'The node%s is not subclass of %r: %r' % (xpath, cls, node)
 
-    for key, value in kwargs.items():
-        assert key in node, 'The node%s does not have %r attribute: %r' % (xpath, key, node)
-        assert node[key] == value, \
-            'The node%s[%s] is not %r: %r' % (xpath, key, value, node[key])
+    if kwargs:
+        assert isinstance(node, nodes.Element), \
+            'The node%s does not have any attributes' % xpath
+
+        for key, value in kwargs.items():
+            assert key in node, \
+                'The node%s does not have %r attribute: %r' % (xpath, key, node)
+            assert node[key] == value, \
+                'The node%s[%s] is not %r: %r' % (xpath, key, value, node[key])
 
 
 def etree_parse(path):
@@ -91,7 +102,7 @@ def etree_parse(path):
         return ElementTree.parse(path)  # type: ignore
 
 
-class Struct(object):
+class Struct:
     def __init__(self, **kwds):
         # type: (Any) -> None
         self.__dict__.update(kwds)
@@ -106,25 +117,19 @@ class SphinxTestApp(application.Sphinx):
     def __init__(self, buildername='html', srcdir=None,
                  freshenv=False, confoverrides=None, status=None, warning=None,
                  tags=None, docutilsconf=None):
-        # type: (unicode, path, bool, Dict, IO, IO, unicode, unicode) -> None
+        # type: (unicode, path, bool, Dict, IO, IO, List[unicode], unicode) -> None
 
         if docutilsconf is not None:
             (srcdir / 'docutils.conf').write_text(docutilsconf)
 
         builddir = srcdir / '_build'
-#        if confdir is None:
         confdir = srcdir
-#        if outdir is None:
         outdir = builddir.joinpath(buildername)
-        if not outdir.isdir():
-            outdir.makedirs()
-#        if doctreedir is None:
+        outdir.makedirs(exist_ok=True)
         doctreedir = builddir.joinpath('doctrees')
-        if not doctreedir.isdir():
-            doctreedir.makedirs()
+        doctreedir.makedirs(exist_ok=True)
         if confoverrides is None:
             confoverrides = {}
-#        if warningiserror is None:
         warningiserror = False
 
         self._saved_path = sys.path[:]
@@ -135,18 +140,18 @@ class SphinxTestApp(application.Sphinx):
                                       if v.startswith('visit_'))
 
         try:
-            application.Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,  # type: ignore  # NOQA
-                                        buildername, confoverrides, status, warning,
-                                        freshenv, warningiserror, tags)
+            super(SphinxTestApp, self).__init__(srcdir, confdir, outdir, doctreedir,
+                                                buildername, confoverrides, status, warning,
+                                                freshenv, warningiserror, tags)
         except Exception:
             self.cleanup()
             raise
 
     def cleanup(self, doctrees=False):
         # type: (bool) -> None
-        AutoDirective._registry.clear()
         ModuleAnalyzer.cache.clear()
         LaTeXBuilder.usepackages = []
+        locale.translators.clear()
         sys.path[:] = self._saved_path
         sys.modules.pop('autodoc_fodder', None)
         directives._directives = self._saved_directives
@@ -162,7 +167,7 @@ class SphinxTestApp(application.Sphinx):
         return '<%s buildername=%r>' % (self.__class__.__name__, self.builder.name)
 
 
-class SphinxTestAppWrapperForSkipBuilding(object):
+class SphinxTestAppWrapperForSkipBuilding:
     """
     This class is a wrapper for SphinxTestApp to speed up the test by skipping
     `app.build` process if it is already built and there is even one output
@@ -190,7 +195,9 @@ _unicode_literals_re = re.compile(r'u(".*?")|u(\'.*?\')')
 
 def remove_unicode_literals(s):
     # type: (unicode) -> unicode
-    return _unicode_literals_re.sub(lambda x: x.group(1) or x.group(2), s)  # type: ignore
+    warnings.warn('remove_unicode_literals() is deprecated.',
+                  RemovedInSphinx40Warning)
+    return _unicode_literals_re.sub(lambda x: x.group(1) or x.group(2), s)
 
 
 def find_files(root, suffix=None):
@@ -199,7 +206,7 @@ def find_files(root, suffix=None):
         dirpath = path(dirpath)
         for f in [f for f in files if not suffix or f.endswith(suffix)]:  # type: ignore
             fpath = dirpath / f
-            yield os.path.relpath(fpath, root)
+            yield relpath(fpath, root)
 
 
 def strip_escseq(text):

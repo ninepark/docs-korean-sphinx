@@ -11,6 +11,7 @@
 
 import os
 
+import alabaster
 import pytest
 
 from sphinx.theming import ThemeError
@@ -23,11 +24,14 @@ from sphinx.theming import ThemeError
 def test_theme_api(app, status, warning):
     cfg = app.config
 
+    themes = ['basic', 'default', 'scrolls', 'agogo', 'sphinxdoc', 'haiku',
+              'traditional', 'epub', 'nature', 'pyramid', 'bizstyle', 'classic', 'nonav',
+              'test-theme', 'ziptheme', 'staticfiles', 'parent', 'child']
+    if alabaster.version.__version_info__ >= (0, 7, 11):
+        themes.append('alabaster')
+
     # test Theme class API
-    assert set(app.html_themes.keys()) == \
-        set(['basic', 'default', 'scrolls', 'agogo', 'sphinxdoc', 'haiku',
-             'traditional', 'epub', 'nature', 'pyramid', 'bizstyle', 'classic', 'nonav',
-             'test-theme', 'ziptheme', 'staticfiles', 'parent', 'child'])
+    assert set(app.html_themes.keys()) == set(themes)
     assert app.html_themes['test-theme'] == app.srcdir / 'test_theme' / 'test-theme'
     assert app.html_themes['ziptheme'] == app.srcdir / 'ziptheme.zip'
     assert app.html_themes['staticfiles'] == app.srcdir / 'test_theme' / 'staticfiles'
@@ -120,7 +124,7 @@ def test_theme_sidebars(app, status, warning):
 
     # test-theme specifies globaltoc and searchbox as default sidebars
     result = (app.outdir / 'index.html').text(encoding='utf8')
-    assert '<h3><a href="#">Table Of Contents</a></h3>' in result
+    assert '<h3><a href="#">Table of Contents</a></h3>' in result
     assert '<h3>Related Topics</h3>' not in result
     assert '<h3>This Page</h3>' not in result
     assert '<h3>Quick search</h3>' in result

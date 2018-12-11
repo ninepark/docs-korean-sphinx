@@ -14,6 +14,7 @@ import re
 if False:
     # For type annotation
     from typing import Callable, Dict, List, Match, Pattern  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 def _translate_pattern(pat):
@@ -68,7 +69,7 @@ def compile_matchers(patterns):
     return [re.compile(_translate_pattern(pat)).match for pat in patterns]
 
 
-class Matcher(object):
+class Matcher:
     """A pattern matcher for Multiple shell-style glob patterns.
 
     Note: this modifies the patterns to work with copy_asset().

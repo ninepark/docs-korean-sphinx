@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import enum
+
 from six import StringIO, add_metaclass
-from sphinx.ext.autodoc import add_documenter  # NOQA
 
 
 __all__ = ['Class']

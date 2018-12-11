@@ -36,27 +36,33 @@ r"""
     :license: BSD, see LICENSE for details.
 """
 
+import builtins
 import inspect
 import re
 import sys
 from hashlib import md5
+from typing import Iterable, cast
 
 from docutils import nodes
-from docutils.parsers.rst import Directive, directives
-from six import text_type
-from six.moves import builtins
+from docutils.parsers.rst import directives
 
 import sphinx
-from sphinx.ext.graphviz import render_dot_html, render_dot_latex, \
-    render_dot_texinfo, figure_wrapper
-from sphinx.pycode import ModuleAnalyzer
-from sphinx.util import force_decode
+from sphinx import addnodes
+from sphinx.ext.graphviz import (
+    graphviz, figure_wrapper,
+    render_dot_html, render_dot_latex, render_dot_texinfo
+)
+from sphinx.util.docutils import SphinxDirective
 
 if False:
     # For type annotation
     from typing import Any, Dict, List, Tuple, Dict, Optional  # NOQA
     from sphinx.application import Sphinx  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
+    from sphinx.writers.html import HTMLTranslator  # NOQA
+    from sphinx.writers.latex import LaTeXTranslator  # NOQA
+    from sphinx.writers.texinfo import TexinfoTranslator  # NOQA
 
 
 module_sig_re = re.compile(r'''^(?:([\w.]*)\.)?  # module names
@@ -75,8 +81,8 @@ def try_import(objname):
     try:
         __import__(objname)
         return sys.modules.get(objname)  # type: ignore
-    except (ImportError, ValueError):  # ValueError,py27 -> ImportError,py3
-        matched = module_sig_re.match(objname)  # type: ignore
+    except ImportError:
+        matched = module_sig_re.match(objname)
 
         if not matched:
             return None
@@ -87,8 +93,8 @@ def try_import(objname):
             return None
         try:
             __import__(modname)
-            return getattr(sys.modules.get(modname), attrname, None)
-        except (ImportError, ValueError):  # ValueError,py27 -> ImportError,py3
+            return getattr(sys.modules.get(modname), attrname, None)  # type: ignore
+        except ImportError:
             return None
 
 
@@ -128,7 +134,7 @@ class InheritanceException(Exception):
     pass
 
 
-class InheritanceGraph(object):
+class InheritanceGraph:
     """
     Given a list of classes, determines the set of classes that they inherit
     from all the way to the root "object", and then is able to generate a
@@ -136,7 +142,7 @@ class InheritanceGraph(object):
     """
     def __init__(self, class_names, currmodule, show_builtins=False,
                  private_bases=False, parts=0, aliases=None, top_classes=[]):
-        # type: (unicode, str, bool, bool, int, Optional[Dict[unicode, unicode]], List[Any]) -> None  # NOQA
+        # type: (List[unicode], str, bool, bool, int, Optional[Dict[unicode, unicode]], List[Any]) -> None  # NOQA
         """*class_names* is a list of child classes to show bases from.
 
         If *show_builtins* is True, then Python builtins will be shown
@@ -151,7 +157,7 @@ class InheritanceGraph(object):
                                        'inheritance diagram')
 
     def _import_classes(self, class_names, currmodule):
-        # type: (unicode, str) -> List[Any]
+        # type: (List[unicode], str) -> List[Any]
         """Import a list of classes."""
         classes = []  # type: List[Any]
         for name in class_names:
@@ -186,10 +192,7 @@ class InheritanceGraph(object):
             tooltip = None
             try:
                 if cls.__doc__:
-                    enc = ModuleAnalyzer.for_module(cls.__module__).encoding
                     doc = cls.__doc__.strip().split("\n")[0]
-                    if not isinstance(doc, text_type):
-                        doc = force_decode(doc, enc)
                     if doc:
                         tooltip = '"%s"' % doc.replace('"', '\\"')
             except Exception:  # might raise AttributeError for strange classes
@@ -239,7 +242,7 @@ class InheritanceGraph(object):
     def get_all_class_names(self):
         # type: () -> List[unicode]
         """Get all of the class names involved in the graph."""
-        return [fullname for (_, fullname, _, _) in self.class_info]  # type: ignore
+        return [fullname for (_, fullname, _, _) in self.class_info]
 
     # These are the default attrs for graphviz
     default_graph_attrs = {
@@ -315,14 +318,14 @@ class InheritanceGraph(object):
         return ''.join(res)
 
 
-class inheritance_diagram(nodes.General, nodes.Element):
+class inheritance_diagram(graphviz):
     """
     A docutils node to use as a placeholder for the inheritance diagram.
     """
     pass
 
 
-class InheritanceDiagram(Directive):
+class InheritanceDiagram(SphinxDirective):
     """
     Run when the inheritance_diagram directive is first encountered.
     """
@@ -341,9 +344,8 @@ class InheritanceDiagram(Directive):
         # type: () -> List[nodes.Node]
         node = inheritance_diagram()
         node.document = self.state.document
-        env = self.state.document.settings.env
         class_names = self.arguments[0].split()
-        class_role = env.get_domain('py').role('class')
+        class_role = self.env.get_domain('py').role('class')
         # Store the original content for use as a hash
         node['parts'] = self.options.get('parts', 0)
         node['content'] = ', '.join(class_names)
@@ -356,10 +358,10 @@ class InheritanceDiagram(Directive):
         # Create a graph starting with the list of classes
         try:
             graph = InheritanceGraph(
-                class_names, env.ref_context.get('py:module'),
+                class_names, self.env.ref_context.get('py:module'),
                 parts=node['parts'],
                 private_bases='private-bases' in self.options,
-                aliases=env.config.inheritance_alias,
+                aliases=self.config.inheritance_alias,
                 top_classes=node['top-classes'])
         except InheritanceException as err:
             return [node.document.reporter.warning(err.args[0],
@@ -370,18 +372,20 @@ class InheritanceDiagram(Directive):
         # references to real URLs later.  These nodes will eventually be
         # removed from the doctree after we're done with them.
         for name in graph.get_all_class_names():
-            refnodes, x = class_role(
+            refnodes, x = class_role(  # type: ignore
                 'class', ':class:`%s`' % name, name, 0, self.state)
             node.extend(refnodes)
         # Store the graph object so we can use it to generate the
         # dot file later
         node['graph'] = graph
 
-        # wrap the result in figure node
-        caption = self.options.get('caption')
-        if caption:
-            node = figure_wrapper(self, node, caption)
-        return [node]
+        if 'caption' not in self.options:
+            self.add_name(node)
+            return [node]
+        else:
+            figure = figure_wrapper(self, node, self.options['caption'])
+            self.add_name(figure)
+            return [figure]
 
 
 def get_graph_hash(node):
@@ -391,7 +395,7 @@ def get_graph_hash(node):
 
 
 def html_visit_inheritance_diagram(self, node):
-    # type: (nodes.NodeVisitor, inheritance_diagram) -> None
+    # type: (HTMLTranslator, inheritance_diagram) -> None
     """
     Output the graph for HTML.  This will insert a PNG with clickable
     image map.
@@ -405,7 +409,8 @@ def html_visit_inheritance_diagram(self, node):
     graphviz_output_format = self.builder.env.config.graphviz_output_format.upper()
     current_filename = self.builder.current_docname + self.builder.out_suffix
     urls = {}
-    for child in node:
+    pending_xrefs = cast(Iterable[addnodes.pending_xref], node)
+    for child in pending_xrefs:
         if child.get('refuri') is not None:
             if graphviz_output_format == 'SVG':
                 urls[child['reftitle']] = "../" + child.get('refuri')
@@ -424,7 +429,7 @@ def html_visit_inheritance_diagram(self, node):
 
 
 def latex_visit_inheritance_diagram(self, node):
-    # type: (nodes.NodeVisitor, inheritance_diagram) -> None
+    # type: (LaTeXTranslator, inheritance_diagram) -> None
     """
     Output the graph for LaTeX.  This will insert a PDF.
     """
@@ -440,7 +445,7 @@ def latex_visit_inheritance_diagram(self, node):
 
 
 def texinfo_visit_inheritance_diagram(self, node):
-    # type: (nodes.NodeVisitor, inheritance_diagram) -> None
+    # type: (TexinfoTranslator, inheritance_diagram) -> None
     """
     Output the graph for Texinfo.  This will insert a PNG.
     """

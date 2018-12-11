@@ -10,12 +10,15 @@
 """
 
 import re
+from typing import List, cast
 
 from docutils import nodes
-from docutils.parsers.rst import Directive, directives, roles
+from docutils.parsers.rst import directives, roles
 
 from sphinx import addnodes
+from sphinx.util import docutils
 from sphinx.util.docfields import DocFieldTransformer
+from sphinx.util.docutils import SphinxDirective
 
 # import all directives sphinx provides
 from sphinx.directives.code import (  # noqa
@@ -31,9 +34,12 @@ from sphinx.directives.patches import (  # noqa
 
 if False:
     # For type annotation
-    from typing import Any, Dict, List  # NOQA
+    from typing import Any, Dict  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.config import Config  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.docfields import Field  # NOQA
+    from sphinx.util.typing import DirectiveOption, unicode  # NOQA
 
 
 # RE to strip backslash escapes
@@ -41,7 +47,7 @@ nl_escape_re = re.compile(r'\\\n')
 strip_backslash_re = re.compile(r'\\(.)')
 
 
-class ObjectDescription(Directive):
+class ObjectDescription(SphinxDirective):
     """
     Directive to describe a class, function or similar object.  Not used
     directly, but subclassed (in domain-specific directives) to add custom
@@ -54,10 +60,10 @@ class ObjectDescription(Directive):
     final_argument_whitespace = True
     option_spec = {
         'noindex': directives.flag,
-    }
+    }  # type: Dict[str, DirectiveOption]
 
     # types of doc fields that this directive handles, see sphinx.util.docfields
-    doc_field_types = []    # type: List[Any]
+    doc_field_types = []    # type: List[Field]
     domain = None           # type: unicode
     objtype = None          # type: unicode
     indexnode = None        # type: addnodes.index
@@ -135,7 +141,6 @@ class ObjectDescription(Directive):
             self.domain, self.objtype = self.name.split(':', 1)
         else:
             self.domain, self.objtype = '', self.name
-        self.env = self.state.document.settings.env  # type: BuildEnvironment
         self.indexnode = addnodes.index(entries=[])
 
         node = addnodes.desc()
@@ -187,7 +192,7 @@ class ObjectDescription(Directive):
 DescDirective = ObjectDescription
 
 
-class DefaultRole(Directive):
+class DefaultRole(SphinxDirective):
     """
     Set the default interpreted text role.  Overridden from docutils.
     """
@@ -198,25 +203,25 @@ class DefaultRole(Directive):
     def run(self):
         # type: () -> List[nodes.Node]
         if not self.arguments:
-            if '' in roles._roles:
-                # restore the "default" default role
-                del roles._roles['']
+            docutils.unregister_role('')
             return []
         role_name = self.arguments[0]
         role, messages = roles.role(role_name, self.state_machine.language,
                                     self.lineno, self.state.reporter)
-        if role is None:
-            error = self.state.reporter.error(
-                'Unknown interpreted text role "%s".' % role_name,
-                nodes.literal_block(self.block_text, self.block_text),
-                line=self.lineno)
-            return messages + [error]
-        roles._roles[''] = role
-        self.state.document.settings.env.temp_data['default_role'] = role_name
-        return messages
+        if role:
+            docutils.register_role('', role)
+            self.env.temp_data['default_role'] = role_name
+        else:
+            literal_block = nodes.literal_block(self.block_text, self.block_text)
+            reporter = self.state.reporter
+            error = reporter.error('Unknown interpreted text role "%s".' % role_name,
+                                   literal_block, line=self.lineno)
+            messages += [error]
+
+        return cast(List[nodes.Node], messages)
 
 
-class DefaultDomain(Directive):
+class DefaultDomain(SphinxDirective):
     """
     Directive to (re-)set the default domain for this source file.
     """
@@ -229,15 +234,14 @@ class DefaultDomain(Directive):
 
     def run(self):
         # type: () -> List[nodes.Node]
-        env = self.state.document.settings.env
         domain_name = self.arguments[0].lower()
         # if domain_name not in env.domains:
         #     # try searching by label
-        #     for domain in itervalues(env.domains):
+        #     for domain in env.domains.values():
         #         if domain.label.lower() == domain_name:
         #             domain_name = domain.name
         #             break
-        env.temp_data['default_domain'] = env.domains.get(domain_name)
+        self.env.temp_data['default_domain'] = self.env.domains.get(domain_name)
         return []
 
 

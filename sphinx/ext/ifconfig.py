@@ -21,22 +21,23 @@
 """
 
 from docutils import nodes
-from docutils.parsers.rst import Directive
 
 import sphinx
+from sphinx.util.docutils import SphinxDirective
 from sphinx.util.nodes import set_source_info
 
 if False:
     # For type annotation
     from typing import Any, Dict, List  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 class ifconfig(nodes.Element):
     pass
 
 
-class IfConfig(Directive):
+class IfConfig(SphinxDirective):
 
     has_content = True
     required_arguments = 1
@@ -51,13 +52,13 @@ class IfConfig(Directive):
         set_source_info(self, node)
         node['expr'] = self.arguments[0]
         self.state.nested_parse(self.content, self.content_offset,
-                                node, match_titles=1)
+                                node, match_titles=True)
         return [node]
 
 
 def process_ifconfig_nodes(app, doctree, docname):
-    # type: (Sphinx, nodes.Node, unicode) -> None
-    ns = dict((confval.name, confval.value) for confval in app.config)  # type: ignore
+    # type: (Sphinx, nodes.document, unicode) -> None
+    ns = dict((confval.name, confval.value) for confval in app.config)
     ns.update(app.config.__dict__.copy())
     ns['builder'] = app.builder.name
     for node in doctree.traverse(ifconfig):

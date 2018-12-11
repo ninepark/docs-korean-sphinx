@@ -16,6 +16,7 @@ import snowballstemmer
 if False:
     # For type annotation
     from typing import Any
+    from sphinx.util.typing import unicode  # NOQA
 
 swedish_stopwords = parse_stop_word(u'''
 | source: http://snowball.tartarus.org/algorithms/swedish/stop.txt
@@ -154,4 +155,4 @@ class SearchSwedish(SearchLanguage):
 
     def stem(self, word):
         # type: (unicode) -> unicode
-        return self.stemmer.stemWord(word)
+        return self.stemmer.stemWord(word.lower())

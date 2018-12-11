@@ -3,10 +3,10 @@
 ========
 
 .. image:: https://img.shields.io/pypi/v/sphinx.svg
-   :target: https://pypi.python.org/pypi/Sphinx
-   :alt: Package on PyPi
+   :target: https://pypi.org/project/Sphinx/
+   :alt: Package on PyPI
 
-.. image:: https://readthedocs.org/projects/sphinx/badge/
+.. image:: https://readthedocs.org/projects/sphinx/badge/?version=master
    :target: http://www.sphinx-doc.org/
    :alt: Documentation Status
 
@@ -71,8 +71,8 @@ We also publish beta releases::
 If you wish to install `Sphinx` for development purposes, refer to `the
 contributors guide`__.
 
-__ https://pypi.python.org/pypi/Sphinx
-__ CONTRIBUTING.rst
+__ https://pypi.org/project/Sphinx/
+__ http://www.sphinx-doc.org/en/master/devguide.html
 
 Documentation
 =============
@@ -80,6 +80,15 @@ Documentation
 Documentation is available from `sphinx-doc.org`__.
 
 __ http://www.sphinx-doc.org/
+
+Get in touch
+============
+
+- Report bugs, suggest features or view the source code `on GitHub`_.
+- For less well defined questions or ideas, use the `mailing list`_.
+
+.. _on GitHub: https://github.com/sphinx-doc/sphinx
+.. _mailing list: https://groups.google.com/forum/#!forum/sphinx-users
 
 Testing
 =======
@@ -93,14 +102,14 @@ For information on running tests locally, refer to `the contributors guide`__.
 __ https://travis-ci.org/sphinx-doc/sphinx
 __ https://ci.appveyor.com/project/sphinxdoc/sphinx
 __ https://circleci.com/gh/sphinx-doc/sphinx
-__ CONTRIBUTING.rst
+__ http://www.sphinx-doc.org/en/master/devguide.html
 
 Contributing
 ============
 
 Refer to `the contributors guide`__.
 
-__ CONTRIBUTING.rst
+__ http://www.sphinx-doc.org/en/master/devguide.html
 
 Release signatures
 ==================

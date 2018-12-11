@@ -9,12 +9,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import os
 from os import path
 
 from docutils.utils import relative_path
 
 from sphinx.environment.collectors import EnvironmentCollector
-from sphinx.util.osutil import getcwd, fs_encoding
+from sphinx.util.osutil import fs_encoding
 
 if False:
     # For type annotation
@@ -22,6 +23,7 @@ if False:
     from docutils import nodes  # NOQA
     from sphinx.sphinx import Sphinx  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 class DependenciesCollector(EnvironmentCollector):
@@ -38,9 +40,9 @@ class DependenciesCollector(EnvironmentCollector):
                 env.dependencies[docname] = other.dependencies[docname]
 
     def process_doc(self, app, doctree):
-        # type: (Sphinx, nodes.Node) -> None
+        # type: (Sphinx, nodes.document) -> None
         """Process docutils-generated dependency info."""
-        cwd = getcwd()
+        cwd = os.getcwd()
         frompath = path.join(path.normpath(app.srcdir), 'dummy')
         deps = doctree.settings.record_dependencies
         if not deps:

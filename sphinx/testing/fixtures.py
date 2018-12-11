@@ -17,7 +17,7 @@ from collections import namedtuple
 from tempfile import gettempdir
 
 import pytest
-from six import StringIO, string_types
+from six import StringIO
 
 from . import util
 
@@ -42,7 +42,10 @@ def app_params(request, test_params, shared_result, sphinx_test_tempdir, rootdir
 
     # ##### process pytest.mark.sphinx
 
-    markers = request.node.get_marker("sphinx")
+    if hasattr(request.node, 'iter_markers'):  # pytest-3.6.0 or newer
+        markers = request.node.iter_markers("sphinx")
+    else:
+        markers = request.node.get_marker("sphinx")
     pargs = {}
     kwargs = {}  # type: Dict[str, str]
 
@@ -89,15 +92,17 @@ def test_params(request):
        have same 'shared_result' value.
        **NOTE**: You can not specify shared_result and srcdir in same time.
     """
-    env = request.node.get_marker('test_params')
+    if hasattr(request.node, 'get_closest_marker'):  # pytest-3.6.0 or newer
+        env = request.node.get_closest_marker('test_params')
+    else:
+        env = request.node.get_marker('test_params')
     kwargs = env.kwargs if env else {}
     result = {
         'shared_result': None,
     }
     result.update(kwargs)
 
-    if (result['shared_result'] and
-            not isinstance(result['shared_result'], string_types)):
+    if (result['shared_result'] and not isinstance(result['shared_result'], str)):
         raise pytest.Exception('You can only provide a string type of value '
                                'for "shared_result" ')
     return result
@@ -163,11 +168,11 @@ def make_app(test_params, monkeypatch):
     yield make
 
     sys.path[:] = syspath
-    for app_ in apps:
+    for app_ in reversed(apps):  # clean up applications from the new ones
         app_.cleanup()
 
 
-class SharedResult(object):
+class SharedResult:
     cache = {}  # type: Dict[str, Dict[str, str]]
 
     def store(self, key, app_):

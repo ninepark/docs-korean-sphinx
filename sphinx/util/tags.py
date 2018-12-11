@@ -17,6 +17,7 @@ env = Environment()
 if False:
     # For type annotation
     from typing import Iterator, List  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 class BooleanParser(Parser):
@@ -46,7 +47,7 @@ class BooleanParser(Parser):
         return node
 
 
-class Tags(object):
+class Tags:
     def __init__(self, tags=None):
         # type: (List[unicode]) -> None
         self.tags = dict.fromkeys(tags or [], True)

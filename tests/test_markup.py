@@ -9,21 +9,21 @@
     :license: BSD, see LICENSE for details.
 """
 
-import re
 import pickle
+import re
 
+import pytest
 from docutils import frontend, utils, nodes
 from docutils.parsers.rst import Parser as RstParser
 from docutils.transforms.universal import SmartQuotes
 
 from sphinx import addnodes
+from sphinx.builders.latex import LaTeXBuilder
+from sphinx.testing.util import assert_node
 from sphinx.util import texescape
 from sphinx.util.docutils import sphinx_domains
 from sphinx.writers.html import HTMLWriter, HTMLTranslator
 from sphinx.writers.latex import LaTeXWriter, LaTeXTranslator
-import pytest
-
-from sphinx.testing.util import assert_node
 
 
 @pytest.fixture
@@ -35,6 +35,7 @@ def settings(app):
     settings.smart_quotes = True
     settings.env = app.builder.env
     settings.env.temp_data['docname'] = 'dummy'
+    settings.contentsname = 'dummy'
     domain_context = sphinx_domains(settings.env)
     domain_context.enable()
     yield settings
@@ -88,6 +89,9 @@ def verify_re_html(app, parse):
 def verify_re_latex(app, parse):
     def verify(rst, latex_expected):
         document = parse(rst)
+        app.builder = LaTeXBuilder(app)
+        app.builder.set_environment(app.env)
+        app.builder.init_context()
         latex_translator = ForgivingLaTeXTranslator(document, app.builder)
         latex_translator.first_document = -1  # don't write \begin{document}
         document.walkabout(latex_translator)
@@ -163,12 +167,20 @@ def get_verifier(verify, verify_re):
         '\\sphinxmenuselection{a \\(\\rightarrow\\) b}',
     ),
     (
-        # interpolation of ampersands in guilabel/menuselection
+        # interpolation of ampersands in menuselection
+        'verify',
+        ':menuselection:`&Foo -&&- &Bar`',
+        (u'<p><span class="menuselection"><span class="accelerator">F</span>oo '
+         '-&amp;- <span class="accelerator">B</span>ar</span></p>'),
+        r'\sphinxmenuselection{\sphinxaccelerator{F}oo -\&- \sphinxaccelerator{B}ar}',
+    ),
+    (
+        # interpolation of ampersands in guilabel
         'verify',
         ':guilabel:`&Foo -&&- &Bar`',
         (u'<p><span class="guilabel"><span class="accelerator">F</span>oo '
          '-&amp;- <span class="accelerator">B</span>ar</span></p>'),
-        r'\sphinxmenuselection{\sphinxaccelerator{F}oo -\&- \sphinxaccelerator{B}ar}',
+        r'\sphinxguilabel{\sphinxaccelerator{F}oo -\&- \sphinxaccelerator{B}ar}',
     ),
     (
         # non-interpolation of dashes in option role
@@ -205,7 +217,7 @@ def get_verifier(verify, verify_re):
         'verify',
         u'Γ\\\\∞$',
         None,
-        r'\(\Gamma\)\textbackslash{}\(\infty\)\$',
+        u'Γ\\textbackslash{}\\(\\infty\\)\\$',
     ),
     (
         # in verbatim code fragments
@@ -214,7 +226,7 @@ def get_verifier(verify, verify_re):
         None,
         (u'\\fvset{hllines={, ,}}%\n'
          u'\\begin{sphinxVerbatim}[commandchars=\\\\\\{\\}]\n'
-         u'@\\(\\Gamma\\)\\PYGZbs{}\\(\\infty\\)\\PYGZdl{}\\PYGZob{}\\PYGZcb{}\n'
+         u'@Γ\\PYGZbs{}\\(\\infty\\)\\PYGZdl{}\\PYGZob{}\\PYGZcb{}\n'
          u'\\end{sphinxVerbatim}'),
     ),
     (

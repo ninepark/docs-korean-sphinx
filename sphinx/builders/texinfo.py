@@ -17,79 +17,30 @@ from docutils.frontend import OptionParser
 from docutils.io import FileOutput
 
 from sphinx import addnodes
+from sphinx import package_dir
 from sphinx.builders import Builder
 from sphinx.environment import NoUri
 from sphinx.environment.adapters.asset import ImageAdapter
-from sphinx.locale import _
+from sphinx.locale import _, __
 from sphinx.util import logging
 from sphinx.util import status_iterator
 from sphinx.util.console import bold, darkgreen  # type: ignore
 from sphinx.util.docutils import new_document
 from sphinx.util.fileutil import copy_asset_file
 from sphinx.util.nodes import inline_all_toctrees
-from sphinx.util.osutil import SEP, make_filename
+from sphinx.util.osutil import SEP, make_filename_from_project
 from sphinx.writers.texinfo import TexinfoWriter, TexinfoTranslator
 
 if False:
     # For type annotation
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.config import Config  # NOQA
     from typing import Any, Dict, Iterable, List, Tuple, Union  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 logger = logging.getLogger(__name__)
-
-TEXINFO_MAKEFILE = '''\
-# Makefile for Sphinx Texinfo output
-
-infodir ?= /usr/share/info
-
-MAKEINFO = makeinfo --no-split
-MAKEINFO_html = makeinfo --no-split --html
-MAKEINFO_plaintext = makeinfo --no-split --plaintext
-TEXI2PDF = texi2pdf --batch --expand
-INSTALL_INFO = install-info
-
-ALLDOCS = $(basename $(wildcard *.texi))
-
-all: info
-info: $(addsuffix .info,$(ALLDOCS))
-plaintext: $(addsuffix .txt,$(ALLDOCS))
-html: $(addsuffix .html,$(ALLDOCS))
-pdf: $(addsuffix .pdf,$(ALLDOCS))
-
-install-info: info
-\tfor f in *.info; do \\
-\t  cp -t $(infodir) "$$f" && \\
-\t  $(INSTALL_INFO) --info-dir=$(infodir) "$$f" ; \\
-\tdone
-
-uninstall-info: info
-\tfor f in *.info; do \\
-\t  rm -f "$(infodir)/$$f"  ; \\
-\t  $(INSTALL_INFO) --delete --info-dir=$(infodir) "$$f" ; \\
-\tdone
-
-%.info: %.texi
-\t$(MAKEINFO) -o '$@' '$<'
-
-%.txt: %.texi
-\t$(MAKEINFO_plaintext) -o '$@' '$<'
-
-%.html: %.texi
-\t$(MAKEINFO_html) -o '$@' '$<'
-
-%.pdf: %.texi
-\t-$(TEXI2PDF) '$<'
-\t-$(TEXI2PDF) '$<'
-\t-$(TEXI2PDF) '$<'
-
-clean:
-\trm -f *.info *.pdf *.txt *.html
-\trm -f *.log *.ind *.aux *.toc *.syn *.idx *.out *.ilg *.pla *.ky *.pg
-\trm -f *.vr *.tp *.fn *.fns *.def *.defs *.cp *.cps *.ge *.ges *.mo
-
-.PHONY: all info plaintext html pdf install-info uninstall-info clean
-'''
+template_dir = os.path.join(package_dir, 'templates', 'texinfo')
 
 
 class TexinfoBuilder(Builder):
@@ -98,11 +49,11 @@ class TexinfoBuilder(Builder):
     """
     name = 'texinfo'
     format = 'texinfo'
-    epilog = 'The Texinfo files are in %(outdir)s.'
+    epilog = __('The Texinfo files are in %(outdir)s.')
     if os.name == 'posix':
-        epilog += ("\nRun 'make' in that directory to run these through "
-                   "makeinfo\n"
-                   "(use 'make info' here to do that automatically).")
+        epilog += __("\nRun 'make' in that directory to run these through "
+                     "makeinfo\n"
+                     "(use 'make info' here to do that automatically).")
 
     supported_image_types = ['image/png', 'image/jpeg',
                              'image/gif']
@@ -133,16 +84,16 @@ class TexinfoBuilder(Builder):
         # type: () -> None
         preliminary_document_data = [list(x) for x in self.config.texinfo_documents]
         if not preliminary_document_data:
-            logger.warning('no "texinfo_documents" config value found; no documents '
-                           'will be written')
+            logger.warning(__('no "texinfo_documents" config value found; no documents '
+                              'will be written'))
             return
         # assign subdirs to titles
         self.titles = []  # type: List[Tuple[unicode, unicode]]
         for entry in preliminary_document_data:
             docname = entry[0]
             if docname not in self.env.all_docs:
-                logger.warning('"texinfo_documents" config value references unknown '
-                               'document %s', docname)
+                logger.warning(__('"texinfo_documents" config value references unknown '
+                                  'document %s'), docname)
                 continue
             self.document_data.append(entry)  # type: ignore
             if docname.endswith(SEP + 'index'):
@@ -164,17 +115,17 @@ class TexinfoBuilder(Builder):
             destination = FileOutput(
                 destination_path=path.join(self.outdir, targetname),
                 encoding='utf-8')
-            logger.info("processing " + targetname + "... ", nonl=1)
+            logger.info(__("processing %s..."), targetname, nonl=1)
             doctree = self.assemble_doctree(
                 docname, toctree_only,
                 appendices=(self.config.texinfo_appendices or []))
-            logger.info("writing... ", nonl=1)
+            logger.info(__("writing... "), nonl=1)
             self.post_process_images(doctree)
             docwriter = TexinfoWriter(self)
             settings = OptionParser(
                 defaults=self.env.settings,
                 components=(docwriter,),
-                read_config_files=True).get_default_values()
+                read_config_files=True).get_default_values()  # type: Any
             settings.author = author
             settings.title = title
             settings.texinfo_filename = targetname[:-5] + '.info'
@@ -185,10 +136,10 @@ class TexinfoBuilder(Builder):
             settings.docname = docname
             doctree.settings = settings
             docwriter.write(doctree, destination)
-            logger.info("done")
+            logger.info(__("done"))
 
     def assemble_doctree(self, indexfile, toctree_only, appendices):
-        # type: (unicode, bool, List[unicode]) -> nodes.Node
+        # type: (unicode, bool, List[unicode]) -> nodes.document
         self.docnames = set([indexfile] + appendices)
         logger.info(darkgreen(indexfile) + " ", nonl=1)
         tree = self.env.get_doctree(indexfile)
@@ -212,13 +163,13 @@ class TexinfoBuilder(Builder):
             appendix['docname'] = docname
             largetree.append(appendix)
         logger.info('')
-        logger.info("resolving references...")
+        logger.info(__("resolving references..."))
         self.env.resolve_references(largetree, indexfile, self)
         # TODO: add support for external :ref:s
         for pendingnode in largetree.traverse(addnodes.pending_xref):
             docname = pendingnode['refdocname']
             sectname = pendingnode['refsectname']
-            newnodes = [nodes.emphasis(sectname, sectname)]
+            newnodes = [nodes.emphasis(sectname, sectname)]  # type: List[nodes.Node]
             for subdir, title in self.titles:
                 if docname.startswith(subdir):
                     newnodes.append(nodes.Text(_(' (in '), _(' (in ')))
@@ -234,22 +185,21 @@ class TexinfoBuilder(Builder):
         # type: () -> None
         self.copy_image_files()
 
-        logger.info(bold('copying Texinfo support files... '), nonl=True)
+        logger.info(bold(__('copying Texinfo support files... ')), nonl=True)
         # copy Makefile
         fn = path.join(self.outdir, 'Makefile')
         logger.info(fn, nonl=1)
         try:
-            with open(fn, 'w') as mkfile:
-                mkfile.write(TEXINFO_MAKEFILE)
+            copy_asset_file(os.path.join(template_dir, 'Makefile'), fn)
         except (IOError, OSError) as err:
-            logger.warning("error writing file %s: %s", fn, err)
-        logger.info(' done')
+            logger.warning(__("error writing file %s: %s"), fn, err)
+        logger.info(__(' done'))
 
     def copy_image_files(self):
         # type: () -> None
         if self.images:
             stringify_func = ImageAdapter(self.app.env).get_original_image_uri
-            for src in status_iterator(self.images, 'copying images... ', "brown",
+            for src in status_iterator(self.images, __('copying images... '), "brown",
                                        len(self.images), self.app.verbosity,
                                        stringify_func=stringify_func):
                 dest = self.images[src]
@@ -257,21 +207,23 @@ class TexinfoBuilder(Builder):
                     copy_asset_file(path.join(self.srcdir, src),
                                     path.join(self.outdir, dest))
                 except Exception as err:
-                    logger.warning('cannot copy image file %r: %s',
+                    logger.warning(__('cannot copy image file %r: %s'),
                                    path.join(self.srcdir, src), err)
+
+
+def default_texinfo_documents(config):
+    # type: (Config) -> List[Tuple[unicode, unicode, unicode, unicode, unicode, unicode, unicode]]  # NOQA
+    """ Better default texinfo_documents settings. """
+    filename = make_filename_from_project(config.project)
+    return [(config.master_doc, filename, config.project, config.author, filename,
+             'One line description of project', 'Miscellaneous')]
 
 
 def setup(app):
     # type: (Sphinx) -> Dict[unicode, Any]
     app.add_builder(TexinfoBuilder)
 
-    app.add_config_value('texinfo_documents',
-                         lambda self: [(self.master_doc, make_filename(self.project).lower(),
-                                        self.project, '', make_filename(self.project),
-                                        'The %s reference manual.' %
-                                        make_filename(self.project),
-                                        'Python')],
-                         None)
+    app.add_config_value('texinfo_documents', default_texinfo_documents, None)
     app.add_config_value('texinfo_appendices', [], None)
     app.add_config_value('texinfo_elements', {}, None)
     app.add_config_value('texinfo_domain_indices', True, None, [list])

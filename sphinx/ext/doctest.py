@@ -11,49 +11,46 @@
 """
 from __future__ import absolute_import
 
-import codecs
 import doctest
 import re
 import sys
 import time
+import warnings
 from os import path
 
 from docutils import nodes
-from docutils.parsers.rst import Directive, directives
+from docutils.parsers.rst import directives
 from packaging.specifiers import SpecifierSet, InvalidSpecifier
 from packaging.version import Version
-from six import itervalues, StringIO, binary_type, text_type, PY2
+from six import StringIO
 
 import sphinx
 from sphinx.builders import Builder
-from sphinx.locale import _
-from sphinx.util import force_decode, logging
+from sphinx.deprecation import RemovedInSphinx40Warning
+from sphinx.locale import __
+from sphinx.util import logging
 from sphinx.util.console import bold  # type: ignore
+from sphinx.util.docutils import SphinxDirective
 from sphinx.util.nodes import set_source_info
-from sphinx.util.osutil import fs_encoding
+from sphinx.util.osutil import relpath
 
 if False:
     # For type annotation
-    from typing import Any, Callable, Dict, IO, Iterable, List, Sequence, Set, Tuple  # NOQA
+    from typing import Any, Callable, Dict, IO, Iterable, List, Optional, Sequence, Set, Tuple, Type  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 logger = logging.getLogger(__name__)
 
 blankline_re = re.compile(r'^\s*<BLANKLINE>', re.MULTILINE)
 doctestopt_re = re.compile(r'#\s*doctest:.+$', re.MULTILINE)
 
-if PY2:
-    def doctest_encode(text, encoding):
-        # type: (str, unicode) -> unicode
-        if isinstance(text, text_type):
-            text = text.encode(encoding)
-            if text.startswith(codecs.BOM_UTF8):
-                text = text[len(codecs.BOM_UTF8):]
-        return text
-else:
-    def doctest_encode(text, encoding):
-        # type: (unicode, unicode) -> unicode
-        return text
+
+def doctest_encode(text, encoding):
+    # type: (unicode, unicode) -> unicode
+    warnings.warn('doctest_encode() is deprecated.',
+                  RemovedInSphinx40Warning)
+    return text
 
 
 def is_allowed_version(spec, version):
@@ -77,7 +74,7 @@ def is_allowed_version(spec, version):
 
 # set up the necessary directives
 
-class TestDirective(Directive):
+class TestDirective(SphinxDirective):
     """
     Base class for doctest-related directives.
     """
@@ -89,6 +86,16 @@ class TestDirective(Directive):
 
     def run(self):
         # type: () -> List[nodes.Node]
+        if 'skipif' in self.options:
+            condition = self.options['skipif']
+            context = {}  # type: Dict[str, Any]
+            if self.config.doctest_global_setup:
+                exec(self.config.doctest_global_setup, context)
+            should_skip = eval(condition, context)
+            if self.config.doctest_global_cleanup:
+                exec(self.config.doctest_global_cleanup, context)
+            if should_skip:
+                return []
         # use ordinary docutils nodes for test code: they get special attributes
         # so that our builder recognizes them, and the other builders are happy.
         code = '\n'.join(self.content)
@@ -102,7 +109,7 @@ class TestDirective(Directive):
                 if not test:
                     test = code
                 code = doctestopt_re.sub('', code)
-        nodetype = nodes.literal_block
+        nodetype = nodes.literal_block  # type: Type[nodes.TextElement]
         if self.name in ('testsetup', 'testcleanup') or 'hide' in self.options:
             nodetype = nodes.comment
         if self.arguments:
@@ -129,12 +136,12 @@ class TestDirective(Directive):
                 prefix, option_name = option[0], option[1:]
                 if prefix not in '+-':
                     self.state.document.reporter.warning(
-                        _("missing '+' or '-' in '%s' option.") % option,
+                        __("missing '+' or '-' in '%s' option.") % option,
                         line=self.lineno)
                     continue
                 if option_name not in doctest.OPTIONFLAGS_BY_NAME:
                     self.state.document.reporter.warning(
-                        _("'%s' is not a valid option.") % option_name,
+                        __("'%s' is not a valid option.") % option_name,
                         line=self.lineno)
                     continue
                 flag = doctest.OPTIONFLAGS_BY_NAME[option[1:]]
@@ -142,23 +149,23 @@ class TestDirective(Directive):
         if self.name == 'doctest' and 'pyversion' in self.options:
             try:
                 spec = self.options['pyversion']
-                python_version = '.'.join(str(v) for v in sys.version_info[:3])
+                python_version = '.'.join([str(v) for v in sys.version_info[:3]])
                 if not is_allowed_version(spec, python_version):
                     flag = doctest.OPTIONFLAGS_BY_NAME['SKIP']
                     node['options'][flag] = True  # Skip the test
             except InvalidSpecifier:
                 self.state.document.reporter.warning(
-                    _("'%s' is not a valid pyversion option") % spec,
+                    __("'%s' is not a valid pyversion option") % spec,
                     line=self.lineno)
         return [node]
 
 
 class TestsetupDirective(TestDirective):
-    option_spec = {}  # type: Dict
+    option_spec = {'skipif': directives.unchanged_required}  # type: Dict
 
 
 class TestcleanupDirective(TestDirective):
-    option_spec = {}  # type: Dict
+    option_spec = {'skipif': directives.unchanged_required}  # type: Dict
 
 
 class DoctestDirective(TestDirective):
@@ -166,6 +173,7 @@ class DoctestDirective(TestDirective):
         'hide': directives.flag,
         'options': directives.unchanged,
         'pyversion': directives.unchanged_required,
+        'skipif': directives.unchanged_required,
     }
 
 
@@ -173,6 +181,7 @@ class TestcodeDirective(TestDirective):
     option_spec = {
         'hide': directives.flag,
         'pyversion': directives.unchanged_required,
+        'skipif': directives.unchanged_required,
     }
 
 
@@ -181,6 +190,7 @@ class TestoutputDirective(TestDirective):
         'hide': directives.flag,
         'options': directives.unchanged,
         'pyversion': directives.unchanged_required,
+        'skipif': directives.unchanged_required,
     }
 
 
@@ -189,7 +199,7 @@ parser = doctest.DocTestParser()
 
 # helper classes
 
-class TestGroup(object):
+class TestGroup:
     def __init__(self, name):
         # type: (unicode) -> None
         self.name = name
@@ -214,7 +224,7 @@ class TestGroup(object):
             if self.tests and len(self.tests[-1]) == 2:
                 self.tests[-1][1] = code
         else:
-            raise RuntimeError('invalid TestCode type')
+            raise RuntimeError(__('invalid TestCode type'))
 
     def __repr__(self):  # type: ignore
         # type: () -> unicode
@@ -222,18 +232,19 @@ class TestGroup(object):
             self.name, self.setup, self.cleanup, self.tests)
 
 
-class TestCode(object):
-    def __init__(self, code, type, lineno, options=None):
-        # type: (unicode, unicode, int, Dict) -> None
+class TestCode:
+    def __init__(self, code, type, filename, lineno, options=None):
+        # type: (unicode, unicode, Optional[str], int, Optional[Dict]) -> None
         self.code = code
         self.type = type
+        self.filename = filename
         self.lineno = lineno
         self.options = options or {}
 
     def __repr__(self):  # type: ignore
         # type: () -> unicode
-        return 'TestCode(%r, %r, %r, options=%r)' % (
-            self.code, self.type, self.lineno, self.options)
+        return 'TestCode(%r, %r, filename=%r, lineno=%r, options=%r)' % (
+            self.code, self.type, self.filename, self.lineno, self.options)
 
 
 class SphinxDocTestRunner(doctest.DocTestRunner):
@@ -243,7 +254,7 @@ class SphinxDocTestRunner(doctest.DocTestRunner):
         old_stdout = sys.stdout
         sys.stdout = string_io
         try:
-            res = doctest.DocTestRunner.summarize(self, verbose)
+            res = super(SphinxDocTestRunner, self).summarize(verbose)
         finally:
             sys.stdout = old_stdout
         out(string_io.getvalue())
@@ -274,8 +285,8 @@ class DocTestBuilder(Builder):
     Runs test snippets in the documentation.
     """
     name = 'doctest'
-    epilog = ('Testing of doctests in the sources finished, look at the '
-              'results in %(outdir)s/output.txt.')
+    epilog = __('Testing of doctests in the sources finished, look at the '
+                'results in %(outdir)s/output.txt.')
 
     def init(self):
         # type: () -> None
@@ -303,8 +314,8 @@ class DocTestBuilder(Builder):
         date = time.strftime('%Y-%m-%d %H:%M:%S')
 
         self.outfile = None  # type: IO
-        self.outfile = codecs.open(path.join(self.outdir, 'output.txt'),  # type: ignore
-                                   'w', encoding='utf-8')
+        self.outfile = open(path.join(self.outdir, 'output.txt'),  # type: ignore
+                            'w', encoding='utf-8')
         self.outfile.write(('Results of doctest builder run on %s\n'
                             '==================================%s\n') %
                            (date, '=' * len(date)))
@@ -320,8 +331,6 @@ class DocTestBuilder(Builder):
             logger.warning(text)
         else:
             logger.info(text, nonl=True)
-        if isinstance(text, binary_type):
-            text = force_decode(text, None)
         self.outfile.write(text)
 
     def get_target_uri(self, docname, typ=None):
@@ -366,6 +375,34 @@ Doctest summary
             doctree = self.env.get_doctree(docname)
             self.test_doc(docname, doctree)
 
+    def get_filename_for_node(self, node, docname):
+        # type: (nodes.Node, unicode) -> unicode
+        """Try to get the file which actually contains the doctest, not the
+        filename of the document it's included in."""
+        try:
+            filename = relpath(node.source, self.env.srcdir)\
+                .rsplit(':docstring of ', maxsplit=1)[0]
+        except Exception:
+            filename = self.env.doc2path(docname, base=None)
+        return filename
+
+    @staticmethod
+    def get_line_number(node):
+        # type: (nodes.Node) -> Optional[int]
+        """Get the real line number or admit we don't know."""
+        # TODO:  Work out how to store or calculate real (file-relative)
+        #       line numbers for doctest blocks in docstrings.
+        if ':docstring of ' in path.basename(node.source or ''):
+            # The line number is given relative to the stripped docstring,
+            # not the file.  This is correct where it is set, in
+            # `docutils.nodes.Node.setup_child`, but Sphinx should report
+            # relative to the file, not the docstring.
+            return None
+        if node.line is not None:
+            # TODO: find the root cause of this off by one error.
+            return node.line - 1
+        return None
+
     def test_doc(self, docname, doctree):
         # type: (unicode, nodes.Node) -> None
         groups = {}  # type: Dict[unicode, TestGroup]
@@ -391,14 +428,18 @@ Doctest summary
                 # type: (nodes.Node) -> bool
                 return isinstance(node, (nodes.literal_block, nodes.comment)) \
                     and 'testnodetype' in node
-        for node in doctree.traverse(condition):
-            source = 'test' in node and node['test'] or node.astext()
+
+        for node in doctree.traverse(condition):  # type: nodes.Element
+            source = node['test'] if 'test' in node else node.astext()
+            filename = self.get_filename_for_node(node, docname)
+            line_number = self.get_line_number(node)
             if not source:
-                logger.warning('no code/output in %s block at %s:%s',
+                logger.warning(__('no code/output in %s block at %s:%s'),
                                node.get('testnodetype', 'doctest'),
-                               self.env.doc2path(docname), node.line)
-            code = TestCode(source, type=node.get('testnodetype', 'doctest'),
-                            lineno=node.line, options=node.get('options'))
+                               filename, line_number)
+            code = TestCode(source, type=node.get('testnodetype', 'doctest'),  # type: ignore
+                            filename=filename, lineno=line_number,
+                            options=node.get('options'))
             node_groups = node.get('groups', ['default'])
             if '*' in node_groups:
                 add_to_all_groups.append(code)
@@ -408,25 +449,25 @@ Doctest summary
                     groups[groupname] = TestGroup(groupname)
                 groups[groupname].add_code(code)
         for code in add_to_all_groups:
-            for group in itervalues(groups):
+            for group in groups.values():
                 group.add_code(code)
         if self.config.doctest_global_setup:
             code = TestCode(self.config.doctest_global_setup,
-                            'testsetup', lineno=0)
-            for group in itervalues(groups):
+                            'testsetup', filename=None, lineno=0)
+            for group in groups.values():
                 group.add_code(code, prepend=True)
         if self.config.doctest_global_cleanup:
             code = TestCode(self.config.doctest_global_cleanup,
-                            'testcleanup', lineno=0)
-            for group in itervalues(groups):
+                            'testcleanup', filename=None, lineno=0)
+            for group in groups.values():
                 group.add_code(code)
         if not groups:
             return
 
         self._out('\nDocument: %s\n----------%s\n' %
                   (docname, '-' * len(docname)))
-        for group in itervalues(groups):
-            self.test_group(group, self.env.doc2path(docname, base=None))
+        for group in groups.values():
+            self.test_group(group)
         # Separately count results from setup code
         res_f, res_t = self.setup_runner.summarize(self._out, verbose=False)
         self.setup_failures += res_f
@@ -445,28 +486,23 @@ Doctest summary
         # type: (unicode, unicode, unicode, Any, bool) -> Any
         return compile(code, name, self.type, flags, dont_inherit)
 
-    def test_group(self, group, filename):
-        # type: (TestGroup, unicode) -> None
-        if PY2:
-            filename_str = filename.encode(fs_encoding)
-        else:
-            filename_str = filename
-
+    def test_group(self, group):
+        # type: (TestGroup) -> None
         ns = {}  # type: Dict
 
         def run_setup_cleanup(runner, testcodes, what):
             # type: (Any, List[TestCode], Any) -> bool
             examples = []
             for testcode in testcodes:
-                examples.append(doctest.Example(  # type: ignore
-                    doctest_encode(testcode.code, self.env.config.source_encoding), '',  # type: ignore  # NOQA
-                    lineno=testcode.lineno))
+                example = doctest.Example(testcode.code, '',  # type: ignore
+                                          lineno=testcode.lineno)
+                examples.append(example)
             if not examples:
                 return True
             # simulate a doctest with the code
             sim_doctest = doctest.DocTest(examples, {},
                                           '%s (%s code)' % (group.name, what),
-                                          filename_str, 0, None)
+                                          testcodes[0].filename, 0, None)
             sim_doctest.globs = ns
             old_f = runner.failures
             self.type = 'exec'  # the snippet may contain multiple statements
@@ -485,12 +521,11 @@ Doctest summary
             if len(code) == 1:
                 # ordinary doctests (code/output interleaved)
                 try:
-                    test = parser.get_doctest(  # type: ignore
-                        doctest_encode(code[0].code, self.env.config.source_encoding), {},  # type: ignore  # NOQA
-                        group.name, filename_str, code[0].lineno)
+                    test = parser.get_doctest(code[0].code, {}, group.name,  # type: ignore
+                                              code[0].filename, code[0].lineno)
                 except Exception:
-                    logger.warning('ignoring invalid doctest code: %r', code[0].code,
-                                   location=(filename, code[0].lineno))
+                    logger.warning(__('ignoring invalid doctest code: %r'), code[0].code,
+                                   location=(code[0].filename, code[0].lineno))
                     continue
                 if not test.examples:
                     continue
@@ -512,13 +547,12 @@ Doctest summary
                     exc_msg = m.group('msg')
                 else:
                     exc_msg = None
-                example = doctest.Example(  # type: ignore
-                    doctest_encode(code[0].code, self.env.config.source_encoding), output,  # type: ignore  # NOQA
-                    exc_msg=exc_msg,
-                    lineno=code[0].lineno,
-                    options=options)
+                example = doctest.Example(code[0].code, output,  # type: ignore
+                                          exc_msg=exc_msg,
+                                          lineno=code[0].lineno,
+                                          options=options)
                 test = doctest.DocTest([example], {}, group.name,  # type: ignore
-                                       filename_str, code[0].lineno, None)
+                                       code[0].filename, code[0].lineno, None)
                 self.type = 'exec'  # multiple statements again
             # DocTest.__init__ copies the globs namespace, which we don't want
             test.globs = ns

@@ -15,10 +15,10 @@ from os import path
 
 from docutils import nodes
 from docutils.utils import relative_path
-from six import iteritems, itervalues
 
 from sphinx import addnodes
 from sphinx.environment.collectors import EnvironmentCollector
+from sphinx.locale import __
 from sphinx.util import logging
 from sphinx.util.i18n import get_image_filename_for_language, search_image_for_language
 from sphinx.util.images import guess_mimetype
@@ -29,6 +29,7 @@ if False:
     from docutils import nodes  # NOQA
     from sphinx.sphinx import Sphinx  # NOQA
     from sphinx.environment import BuildEnvironment  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class ImageCollector(EnvironmentCollector):
         env.images.merge_other(docnames, other.images)
 
     def process_doc(self, app, doctree):
-        # type: (Sphinx, nodes.Node) -> None
+        # type: (Sphinx, nodes.document) -> None
         """Process and rewrite image URIs."""
         docname = app.env.docname
 
@@ -86,10 +87,10 @@ class ImageCollector(EnvironmentCollector):
 
             # map image paths to unique image names (so that they can be put
             # into a single directory)
-            for imgpath in itervalues(candidates):
+            for imgpath in candidates.values():
                 app.env.dependencies[docname].add(imgpath)
                 if not os.access(path.join(app.srcdir, imgpath), os.R_OK):
-                    logger.warning('image file not readable: %s' % imgpath,
+                    logger.warning(__('image file not readable: %s') % imgpath,
                                    location=node, type='image', subtype='not_readable')
                     continue
                 app.env.images.add_file(docname, imgpath)
@@ -105,9 +106,9 @@ class ImageCollector(EnvironmentCollector):
                 if mimetype not in candidates:
                     globbed.setdefault(mimetype, []).append(new_imgpath)
             except (OSError, IOError) as err:
-                logger.warning('image file %s not readable: %s' % (filename, err),
+                logger.warning(__('image file %s not readable: %s') % (filename, err),
                                location=node, type='image', subtype='not_readable')
-        for key, files in iteritems(globbed):
+        for key, files in globbed.items():
             candidates[key] = sorted(files, key=len)[0]  # select by similarity
 
 
@@ -123,17 +124,20 @@ class DownloadFileCollector(EnvironmentCollector):
         env.dlfiles.merge_other(docnames, other.dlfiles)
 
     def process_doc(self, app, doctree):
-        # type: (Sphinx, nodes.Node) -> None
+        # type: (Sphinx, nodes.document) -> None
         """Process downloadable file paths. """
         for node in doctree.traverse(addnodes.download_reference):
             targetname = node['reftarget']
-            rel_filename, filename = app.env.relfn2path(targetname, app.env.docname)
-            app.env.dependencies[app.env.docname].add(rel_filename)
-            if not os.access(filename, os.R_OK):
-                logger.warning('download file not readable: %s' % filename,
-                               location=node, type='download', subtype='not_readable')
-                continue
-            node['filename'] = app.env.dlfiles.add_file(app.env.docname, filename)
+            if '://' in targetname:
+                node['refuri'] = targetname
+            else:
+                rel_filename, filename = app.env.relfn2path(targetname, app.env.docname)
+                app.env.dependencies[app.env.docname].add(rel_filename)
+                if not os.access(filename, os.R_OK):
+                    logger.warning(__('download file not readable: %s') % filename,
+                                   location=node, type='download', subtype='not_readable')
+                    continue
+                node['filename'] = app.env.dlfiles.add_file(app.env.docname, filename)
 
 
 def setup(app):

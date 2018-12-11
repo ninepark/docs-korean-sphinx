@@ -9,12 +9,12 @@
     :license: BSD, see LICENSE for details.
 """
 
-import codecs
 from os import path
 
 from docutils.io import StringOutput
 
 from sphinx.builders import Builder
+from sphinx.locale import __
 from sphinx.util import logging
 from sphinx.util.osutil import ensuredir, os_path
 from sphinx.writers.text import TextWriter, TextTranslator
@@ -24,6 +24,7 @@ if False:
     from typing import Any, Dict, Iterator, Set, Tuple  # NOQA
     from docutils import nodes  # NOQA
     from sphinx.application import Sphinx  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,7 @@ logger = logging.getLogger(__name__)
 class TextBuilder(Builder):
     name = 'text'
     format = 'text'
-    epilog = 'The text files are in %(outdir)s.'
+    epilog = __('The text files are in %(outdir)s.')
 
     out_suffix = '.txt'
     allow_parallel = True
@@ -50,8 +51,7 @@ class TextBuilder(Builder):
             if docname not in self.env.all_docs:
                 yield docname
                 continue
-            targetname = self.env.doc2path(docname, self.outdir,
-                                           self.out_suffix)
+            targetname = path.join(self.outdir, docname + self.out_suffix)
             try:
                 targetmtime = path.getmtime(targetname)
             except Exception:
@@ -81,10 +81,10 @@ class TextBuilder(Builder):
         outfilename = path.join(self.outdir, os_path(docname) + self.out_suffix)
         ensuredir(path.dirname(outfilename))
         try:
-            with codecs.open(outfilename, 'w', 'utf-8') as f:  # type: ignore
+            with open(outfilename, 'w', encoding='utf-8') as f:  # type: ignore
                 f.write(self.writer.output)
         except (IOError, OSError) as err:
-            logger.warning("error writing file %s: %s", outfilename, err)
+            logger.warning(__("error writing file %s: %s"), outfilename, err)
 
     def finish(self):
         # type: () -> None

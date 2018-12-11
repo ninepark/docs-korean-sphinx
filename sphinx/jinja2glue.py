@@ -17,9 +17,9 @@ from jinja2 import FileSystemLoader, BaseLoader, TemplateNotFound, \
     contextfunction
 from jinja2.sandbox import SandboxedEnvironment
 from jinja2.utils import open_if_exists
-from six import string_types
 
 from sphinx.application import TemplateBridge
+from sphinx.util import logging
 from sphinx.util.osutil import mtimes_of_files
 
 if False:
@@ -28,11 +28,12 @@ if False:
     from jinja2.environment import Environment  # NOQA
     from sphinx.builders import Builder  # NOQA
     from sphinx.theming import Theme  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 
 def _tobool(val):
     # type: (unicode) -> bool
-    if isinstance(val, string_types):
+    if isinstance(val, str):
         return val.lower() in ('true', '1', 'yes', 'on')
     return bool(val)
 
@@ -97,7 +98,7 @@ def accesskey(context, key):
     return ''
 
 
-class idgen(object):
+class idgen:
     def __init__(self):
         # type: () -> None
         self.id = 0
@@ -111,6 +112,17 @@ class idgen(object):
         self.id += 1
         return self.id
     next = __next__  # Python 2/Jinja compatibility
+
+
+@contextfunction
+def warning(context, message, *args, **kwargs):
+    # type: (Dict, unicode, Any, Any) -> unicode
+    if 'pagename' in context:
+        filename = context.get('pagename') + context.get('file_suffix', '')
+        message = 'in rendering %s: %s' % (filename, message)
+    logger = logging.getLogger('sphinx.themes')
+    logger.warning(message, *args, **kwargs)
+    return ''  # return empty string not to output any values
 
 
 class SphinxFileSystemLoader(FileSystemLoader):
@@ -186,6 +198,7 @@ class BuiltinTemplateLoader(TemplateBridge, BaseLoader):
         self.environment.filters['todim'] = _todim
         self.environment.filters['slice_index'] = _slice_index
         self.environment.globals['debug'] = contextfunction(pformat)
+        self.environment.globals['warning'] = warning
         self.environment.globals['accesskey'] = contextfunction(accesskey)
         self.environment.globals['idgen'] = idgen
         if use_i18n:

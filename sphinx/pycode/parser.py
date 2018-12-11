@@ -12,19 +12,41 @@ import ast
 import inspect
 import itertools
 import re
+import sys
 import tokenize
 from token import NAME, NEWLINE, INDENT, DEDENT, NUMBER, OP, STRING
 from tokenize import COMMENT, NL
 
-from six import PY2, text_type
+from six import text_type
 
 if False:
     # For type annotation
     from typing import Any, Dict, IO, List, Tuple  # NOQA
+    from sphinx.util.typing import unicode  # NOQA
 
 comment_re = re.compile(u'^\\s*#: ?(.*)\r?\n?$')
 indent_re = re.compile(u'^\\s*$')
 emptyline_re = re.compile(u'^\\s*(#.*)?$')
+
+
+if sys.version_info >= (3, 6):
+    ASSIGN_NODES = (ast.Assign, ast.AnnAssign)
+else:
+    ASSIGN_NODES = (ast.Assign)
+
+
+def filter_whitespace(code):
+    # type: (unicode) -> unicode
+    return code.replace('\f', ' ')  # replace FF (form feed) with whitespace
+
+
+def get_assign_targets(node):
+    # type: (ast.AST) -> List[ast.expr]
+    """Get list of targets from Assign and AnnAssign node."""
+    if isinstance(node, ast.Assign):
+        return node.targets
+    else:
+        return [node.target]  # type: ignore
 
 
 def get_lvar_names(node, self=None):
@@ -38,10 +60,7 @@ def get_lvar_names(node, self=None):
         # => TypeError
     """
     if self:
-        if PY2:
-            self_id = self.id  # type: ignore
-        else:
-            self_id = self.arg
+        self_id = self.arg  # type: ignore
 
     node_name = node.__class__.__name__
     if node_name in ('Index', 'Num', 'Slice', 'Str', 'Subscript'):
@@ -86,7 +105,7 @@ def dedent_docstring(s):
     return docstring.lstrip("\r\n").rstrip("\r\n")
 
 
-class Token(object):
+class Token:
     """Better token wrapper for tokenize module."""
 
     def __init__(self, kind, value, start, end, source):
@@ -110,10 +129,6 @@ class Token(object):
         else:
             raise ValueError('Unknown value: %r' % other)
 
-    def __ne__(self, other):
-        # type: (Any) -> bool
-        return not (self == other)
-
     def match(self, *conditions):
         # type: (Any) -> bool
         return any(self == candidate for candidate in conditions)
@@ -124,12 +139,12 @@ class Token(object):
                                              self.value.strip())
 
 
-class TokenProcessor(object):
+class TokenProcessor:
     def __init__(self, buffers):
         # type: (List[unicode]) -> None
         lines = iter(buffers)
         self.buffers = buffers
-        self.tokens = tokenize.generate_tokens(lambda: next(lines))  # type: ignore  # NOQA
+        self.tokens = tokenize.generate_tokens(lambda: next(lines))  # type: ignore
         self.current = None     # type: Token
         self.previous = None    # type: Token
 
@@ -209,12 +224,13 @@ class AfterCommentParser(TokenProcessor):
     def parse(self):
         # type: () -> None
         """Parse the code and obtain comment after assignment."""
-        # skip lvalue (until '=' operator)
-        while self.fetch_token() != [OP, '=']:
+        # skip lvalue (or whole of AnnAssign)
+        while not self.fetch_token().match([OP, '='], NEWLINE, COMMENT):
             assert self.current
 
-        # skip rvalue
-        self.fetch_rvalue()
+        # skip rvalue (if exists)
+        if self.current == [OP, '=']:
+            self.fetch_rvalue()
 
         if self.current == COMMENT:
             self.comment = self.current.value
@@ -285,7 +301,8 @@ class VariableCommentPicker(ast.NodeVisitor):
         # type: (ast.Assign) -> None
         """Handles Assign node and pick up a variable comment."""
         try:
-            varnames = sum([get_lvar_names(t, self=self.get_self()) for t in node.targets], [])
+            targets = get_assign_targets(node)
+            varnames = sum([get_lvar_names(t, self=self.get_self()) for t in targets], [])
             current_line = self.get_line(node.lineno)
         except TypeError:
             return  # this assignment is not new definition!
@@ -321,12 +338,18 @@ class VariableCommentPicker(ast.NodeVisitor):
         for varname in varnames:
             self.add_entry(varname)
 
+    def visit_AnnAssign(self, node):
+        # type: (ast.AST) -> None
+        """Handles AnnAssign node and pick up a variable comment."""
+        self.visit_Assign(node)  # type: ignore
+
     def visit_Expr(self, node):
         # type: (ast.Expr) -> None
         """Handles Expr node and pick up a comment if string."""
-        if (isinstance(self.previous, ast.Assign) and isinstance(node.value, ast.Str)):
+        if (isinstance(self.previous, ASSIGN_NODES) and isinstance(node.value, ast.Str)):
             try:
-                varnames = get_lvar_names(self.previous.targets[0], self.get_self())
+                targets = get_assign_targets(self.previous)
+                varnames = get_lvar_names(targets[0], self.get_self())
                 for varname in varnames:
                     if isinstance(node.value.s, text_type):
                         docstring = node.value.s
@@ -435,7 +458,7 @@ class DefinitionFinder(TokenProcessor):
             self.context.pop()
 
 
-class Parser(object):
+class Parser:
     """Python source code parser to pick up variable comments.
 
     This is a better wrapper for ``VariableCommentPicker``.
@@ -443,7 +466,7 @@ class Parser(object):
 
     def __init__(self, code, encoding='utf-8'):
         # type: (unicode, unicode) -> None
-        self.code = code
+        self.code = filter_whitespace(code)
         self.encoding = encoding
         self.comments = {}          # type: Dict[Tuple[unicode, unicode], unicode]
         self.deforders = {}         # type: Dict[unicode, int]
