@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1.8.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-18 15:36+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../extdev/logging.rst:4
+msgid "Logging API"
+msgstr ""
+
+#: of sphinx.util.logging.getLogger:1
+msgid "Get logger wrapped by :class:`sphinx.util.logging.SphinxLoggerAdapter`."
+msgstr ""
+
+#: of sphinx.util.logging.getLogger:3
+msgid ""
+"Sphinx logger always uses ``sphinx.*`` namespace to be independent from "
+"settings of root logger.  It ensures logging is consistent even if a "
+"third-party extension or imported application resets logger settings."
+msgstr ""
+
+#: of sphinx.util.logging.getLogger:7
+msgid "Example usage::"
+msgstr ""
+
+#: of sphinx.util.logging.SphinxLoggerAdapter:1
+msgid "LoggerAdapter allowing ``type`` and ``subtype`` keywords."
+msgstr ""
+
+#: ../../extdev/logging.rst:16
+msgid ""
+"Logs a message on this logger with the specified level. Basically, the "
+"arguments are as with python's logging module."
+msgstr ""
+
+#: ../../extdev/logging.rst:19 ../../extdev/logging.rst:48
+msgid "In addition, Sphinx logger supports following keyword arguments:"
+msgstr ""
+
+#: ../../extdev/logging.rst:23
+msgid "**type**, ***subtype***"
+msgstr ""
+
+#: ../../extdev/logging.rst:22
+msgid ""
+"Categories of warning logs.  It is used to suppress warnings by "
+":confval:`suppress_warnings` setting."
+msgstr ""
+
+#: ../../extdev/logging.rst:33 ../../extdev/logging.rst:56
+msgid "**location**"
+msgstr ""
+
+#: ../../extdev/logging.rst:26
+msgid ""
+"Where the warning happened.  It is used to include the path and line "
+"number in each log.  It allows docname, tuple of docname and line number "
+"and nodes::"
+msgstr ""
+
+#: ../../extdev/logging.rst:37 ../../extdev/logging.rst:59
+msgid "**color**"
+msgstr ""
+
+#: ../../extdev/logging.rst:36
+msgid ""
+"The color of logs.  By default, error level logs are colored as "
+"``\"darkred\"``, critical level ones is not colored, and warning level "
+"ones are colored as ``\"red\"``."
+msgstr ""
+
+#: ../../extdev/logging.rst:45
+msgid ""
+"Logs a message to this logger with the specified level. Basically, the "
+"arguments are as with python's logging module."
+msgstr ""
+
+#: ../../extdev/logging.rst:52
+msgid "**nonl**"
+msgstr ""
+
+#: ../../extdev/logging.rst:51
+msgid ""
+"If true, the logger does not fold lines at the end of the log message. "
+"The default is ``False``."
+msgstr ""
+
+#: ../../extdev/logging.rst:55
+msgid ""
+"Where the message emitted.  For more detail, see "
+":meth:`SphinxLoggerAdapter.warning`."
+msgstr ""
+
+#: ../../extdev/logging.rst:59
+msgid ""
+"The color of logs.  By default, info and verbose level logs are not "
+"colored, and deug level ones are colored as ``\"darkgray\"``."
+msgstr ""
+
+#: of sphinx.util.logging.pending_logging:1
+msgid "Contextmanager to pend logging all logs temporary."
+msgstr ""
+
+#: of sphinx.util.logging.pending_logging:3
+msgid "For example::"
+msgstr ""
+
+#: of sphinx.util.logging.pending_warnings:1
+msgid "Contextmanager to pend logging warnings temporary."
+msgstr ""
+
+#: of sphinx.util.logging.pending_warnings:3
+msgid "Similar to :func:`pending_logging`."
+msgstr ""
+

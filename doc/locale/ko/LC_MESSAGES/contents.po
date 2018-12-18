@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, Georg Brandl and the Sphinx team
+# This file is distributed under the same license as the Sphinx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx 1.8.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-18 15:36+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../contents.rst:5
+msgid "Sphinx documentation contents"
+msgstr ""
+
+#: ../../contents.rst:39
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../contents.rst:43
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../contents.rst:44 ../../contents.rst:50
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../../contents.rst:45
+msgid ":ref:`search`"
+msgstr ""
+
+#: ../../contents.rst:46 ../../contents.rst:51
+msgid ":ref:`glossary`"
+msgstr ""
+
