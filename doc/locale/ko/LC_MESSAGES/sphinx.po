@@ -35,9 +35,9 @@ msgid ""
 "<b>want</b>\n"
 "      to write documentation!&#8220;"
 msgstr ""
-"&#8220;프로그래머들이 도큐먼테이션을 "
-"<b>만들고 싶도록</b> "
-"하는 훌륭한 툴입니다!&#8220;"
+"&#8220;프로그래머들이 문서화를  "
+"<b>하고 싶도록</b> "
+"만드는 훌륭한 도구다!&#8220;"
 
 #: ../../_templates/index.html:12
 msgid ""
@@ -48,8 +48,8 @@ msgid ""
 "license."
 msgstr ""
 "\n"
-"    Sphinx는 Georg Brnadl이 제작한 툴이다. Sphinx를 쓰면 스마트하고 아름다운 문서를 쉽게 만들 수 있다. "
-"    라이센스는 BSD이다. "
+"    Sphinx는 Georg Brnadl이 제작한 문서화 도구다. Sphinx를 쓰면 스마트하고 아름다운 문서를 쉽게 만들 수 있다. "
+"    BSD 라이선스이다. "
 
 #: ../../_templates/index.html:15
 msgid ""
@@ -60,12 +60,19 @@ msgid ""
 "\n"
 "    Sphinx!  The following features should be highlighted:"
 msgstr ""
+"원래는 <a href="https://docs.python.org/">파이썬 문서화</a>용으로 위해 개발되었으나 "
+"다양한 언어로 된 소프트웨어 프로젝트의 문서화 기능도 있다. "
+"물론 이 사이트도 reStructuredText 소스로부터 스핑크스를 사용해 제작하였다!"
+"\n"
+"    아래는 Sphinx의 기능들이다\n"
 
 #: ../../_templates/index.html:22
 msgid ""
 "<b>Output formats:</b> HTML (including Windows HTML Help), LaTeX (for\n"
 "      printable PDF versions), ePub, Texinfo, manual pages, plain text"
 msgstr ""
+"<b>출력 포맷:</b> HTML (윈도우 HTML 도움말 포함), LaTeX (프린트 가능한 PDF 버전 용), "
+"ePub, Texinfo, 매뉴얼 페이지, 일반 문서"
 
 #: ../../_templates/index.html:24
 msgid ""
