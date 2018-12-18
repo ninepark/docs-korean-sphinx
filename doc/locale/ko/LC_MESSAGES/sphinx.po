@@ -19,15 +19,15 @@ msgstr ""
 
 #: ../../_templates/index.html:2
 msgid "Overview"
-msgstr ""
+msgstr "개괄"
 
 #: ../../_templates/index.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "환영합니다"
 
 #: ../../_templates/index.html:7
 msgid "What users say:"
-msgstr ""
+msgstr "사용자 평가:"
 
 #: ../../_templates/index.html:8
 msgid ""
@@ -35,6 +35,9 @@ msgid ""
 "<b>want</b>\n"
 "      to write documentation!&#8220;"
 msgstr ""
+"&#8220;프로그래머들이 도큐먼테이션을 "
+"<b>만들고 싶도록</b> "
+"하는 훌륭한 툴입니다!&#8220;"
 
 #: ../../_templates/index.html:12
 msgid ""
@@ -44,6 +47,9 @@ msgid ""
 "    documentation, written by Georg Brandl and licensed under the BSD "
 "license."
 msgstr ""
+"\n"
+"    Sphinx는 Georg Brnadl이 제작한 툴이다. Sphinx를 쓰면 스마트하고 아름다운 문서를 쉽게 만들 수 있다. "
+"    라이센스는 BSD이다. "
 
 #: ../../_templates/index.html:15
 msgid ""
