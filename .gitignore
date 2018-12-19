@@ -31,3 +31,5 @@ utils/regression_test.js
 
 node_modules/
 *.mo
+!_build/
+!env/
