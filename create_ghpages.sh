@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+python -m venv env
+env/bin/python -m pip install -r requirements.txt
+
 git add . -A
 git commit -m "automatic commit"
 git push origin korean
@@ -13,7 +16,7 @@ echo '!_build/' >> .gitignore
 echo '!env/' >> .gitignore
 
 cd doc
-make -e SPHINXOPTS="-D language='ko'" html
+../env/bin/make -e SPHINXOPTS="-D language='ko'" html
 cd ..
 
 git add . -A
