@@ -3,134 +3,154 @@
 # This file is distributed under the same license as the Sphinx package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Sphinx 1.8.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-18 15:36+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2018-12-20 17:15+0900\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2\n"
 
 #: ../../usage/restructuredtext/basics.rst:7
 msgid "reStructuredText Primer"
-msgstr ""
+msgstr "reStructuredText 입문"
 
 #: ../../usage/restructuredtext/basics.rst:9
 msgid ""
-"reStructuredText is the default plaintext markup language used by Sphinx."
-"  This section is a brief introduction to reStructuredText (reST) "
-"concepts and syntax, intended to provide authors with enough information "
-"to author documents productively.  Since reST was designed to be a "
-"simple, unobtrusive markup language, this will not take too long."
+"reStructuredText is the default plaintext markup language used by Sphinx.  "
+"This section is a brief introduction to reStructuredText (reST) concepts and "
+"syntax, intended to provide authors with enough information to author "
+"documents productively.  Since reST was designed to be a simple, unobtrusive "
+"markup language, this will not take too long."
 msgstr ""
+"reStructuredText는 스핑크스에서 사용하는 기본 평문 마크업 언어이다.  이 장에"
+"서는 reStructuredText의 개념과 문법에 대한 간단한 소개로, 작성자가 생산적으"
+"로 문서화할 수 있도록 충분한 정보를 제공하고자 한다.  reST는 간단하고, 과하"
+"지 않은 마크업 언어로 설계되었기 때문에, 이 장을 살펴보는데 오래 걸리지 않을 "
+"것이다."
 
 #: ../../usage/restructuredtext/basics.rst:17
 msgid ""
-"The authoritative `reStructuredText User Documentation "
-"<http://docutils.sourceforge.net/rst.html>`_.  The \"ref\" links in this "
-"document link to the description of the individual constructs in the reST"
-" reference."
+"The authoritative `reStructuredText User Documentation <http://docutils."
+"sourceforge.net/rst.html>`_.  The \"ref\" links in this document link to the "
+"description of the individual constructs in the reST reference."
 msgstr ""
+"권위있는 `reStructuredText 사용 문서 <http://docutils.sourceforge.net/rst."
+"html>`이다.  이 문서의 \"참고\" 링크는 reST 참고에 있는 개별적인 구조의 설명"
+"문과 연결되어 있다."
 
 #: ../../usage/restructuredtext/basics.rst:24
 msgid "Paragraphs"
-msgstr ""
+msgstr "문단"
 
 #: ../../usage/restructuredtext/basics.rst:26
 msgid ""
-"The paragraph (:duref:`ref <paragraphs>`) is the most basic block in a "
-"reST document.  Paragraphs are simply chunks of text separated by one or "
-"more blank lines.  As in Python, indentation is significant in reST, so "
-"all lines of the same paragraph must be left-aligned to the same level of"
-" indentation."
+"The paragraph (:duref:`ref <paragraphs>`) is the most basic block in a reST "
+"document.  Paragraphs are simply chunks of text separated by one or more "
+"blank lines.  As in Python, indentation is significant in reST, so all lines "
+"of the same paragraph must be left-aligned to the same level of indentation."
 msgstr ""
+"문단(:duref:`참고 <paragraphs>`)은 reST 문서에서 가장 기본적인 단위이다.  문"
+"단은 하나 또는 여러 개의 빈 줄로 본문 덩어리를 간단하게 구분한다.  파이썬처"
+"럼 reST에서는 들여쓰기가 중요해서 같은 문단의 모든 줄은 반드시 동일한 수준의 "
+"들여쓰기 상태에서 왼쪽 정렬하여야 한다."
 
 #: ../../usage/restructuredtext/basics.rst:35
 msgid "Inline markup"
-msgstr ""
+msgstr "인라인 마크업"
 
 #: ../../usage/restructuredtext/basics.rst:37
 msgid "The standard reST inline markup is quite simple: use"
-msgstr ""
+msgstr "표준 reST 인라인 마크업은 다소 간단하다: 사용법"
 
 #: ../../usage/restructuredtext/basics.rst:39
 msgid "one asterisk: ``*text*`` for emphasis (italics),"
-msgstr ""
+msgstr "별 표시 한 개: ``*문서*`` 강조할 때 (이탤릭체),"
 
 #: ../../usage/restructuredtext/basics.rst:40
 msgid "two asterisks: ``**text**`` for strong emphasis (boldface), and"
-msgstr ""
+msgstr "별 표시 두 개: ``**문서**`` 강한 강조(볼드체), 그리고"
 
 #: ../../usage/restructuredtext/basics.rst:41
 msgid "backquotes: ````text```` for code samples."
-msgstr ""
+msgstr "역따옴표: ````문서```` 코드 일부를 쓸 때 사용한다."
 
 #: ../../usage/restructuredtext/basics.rst:43
 msgid ""
-"If asterisks or backquotes appear in running text and could be confused "
-"with inline markup delimiters, they have to be escaped with a backslash."
+"If asterisks or backquotes appear in running text and could be confused with "
+"inline markup delimiters, they have to be escaped with a backslash."
 msgstr ""
+"만약 별 표시나 역따옴표가 실행중인 문서에 있고 인라인 마크업의 구획 문자와 혼"
+"동된다면, 역슬래쉬를 이용하여 해결한다."
 
 #: ../../usage/restructuredtext/basics.rst:46
 msgid "Be aware of some restrictions of this markup:"
-msgstr ""
+msgstr "이 마크업에서 알아두어야 할 몇 가지 제약 사항:"
 
 #: ../../usage/restructuredtext/basics.rst:48
 msgid "it may not be nested,"
-msgstr ""
+msgstr "중첩되지 않아야 하고,"
 
 #: ../../usage/restructuredtext/basics.rst:49
 msgid "content may not start or end with whitespace: ``* text*`` is wrong,"
-msgstr ""
+msgstr "내용이 공백으로 시작하거나 끝나지 않아야 한다: ``*문서``는 잘못되었다,"
 
 #: ../../usage/restructuredtext/basics.rst:50
 msgid ""
-"it must be separated from surrounding text by non-word characters.  Use a"
-" backslash escaped space to work around that: ``thisis\\ *one*\\ word``."
+"it must be separated from surrounding text by non-word characters.  Use a "
+"backslash escaped space to work around that: ``thisis\\ *one*\\ word``."
 msgstr ""
+"양 옆을 감싸고 있는 단어가 아닌 글자로 된 텍스트로 부터 분리되어야만 한다.  "
+"역슬래쉬 공백을 사용해서 해결한다: ``이것은\\ *하나의* 단어이다``."
 
 #: ../../usage/restructuredtext/basics.rst:53
 msgid "These restrictions may be lifted in future versions of the docutils."
-msgstr ""
+msgstr "이 제약 사항은 docutils의 다음 버전에 포함될 수 있다."
 
 #: ../../usage/restructuredtext/basics.rst:55
 msgid ""
 "It is also possible to replace or expand upon some of this inline markup "
 "with roles. Refer to :ref:`rst-roles-alt` for more information."
 msgstr ""
+"또한, 몇가지 인라인 마크업 기능으로 대체되거나 확장될 가능성도 있다. 보다 많"
+"은 정보를 보려면 :ref:`기능` 참고."
 
 #: ../../usage/restructuredtext/basics.rst:60
 msgid "Lists and Quote-like blocks"
-msgstr ""
+msgstr "리스트와 인용 문구"
 
 #: ../../usage/restructuredtext/basics.rst:62
 msgid ""
-"List markup (:duref:`ref <bullet-lists>`) is natural: just place an "
-"asterisk at the start of a paragraph and indent properly.  The same goes "
-"for numbered lists; they can also be autonumbered using a ``#`` sign::"
+"List markup (:duref:`ref <bullet-lists>`) is natural: just place an asterisk "
+"at the start of a paragraph and indent properly.  The same goes for numbered "
+"lists; they can also be autonumbered using a ``#`` sign::"
 msgstr ""
+"리스트 마크업 (:duref:`참고 <bullet-lists>`)은 일반적이다 . 별 표시를 문단의 "
+"시잠점에 붙이고 들여쓰기를 적절하게 하면 된다. 비슷한 것이 번호가 있는 리스트"
+"이다; # 표시를 사용하여 자동으로 번호가 붙는다::"
 
 #: ../../usage/restructuredtext/basics.rst:76
 msgid ""
-"Nested lists are possible, but be aware that they must be separated from "
-"the parent list items by blank lines::"
+"Nested lists are possible, but be aware that they must be separated from the "
+"parent list items by blank lines::"
 msgstr ""
+"중첩된 리스트가 가능하지만, 중첩된 자식 리스트는 빈 줄을 이용해 부모 리스트"
+"의 요소와 반드시 분리해야 하는 점을 알아두자::"
 
 #: ../../usage/restructuredtext/basics.rst:87
 msgid ""
-"Definition lists (:duref:`ref <definition-lists>`) are created as "
-"follows::"
-msgstr ""
+"Definition lists (:duref:`ref <definition-lists>`) are created as follows::"
+msgstr "리스트의 정의 (:duref:`참고 <definition-lists>`) 는 다음과 같다::"
 
 #: ../../usage/restructuredtext/basics.rst:97
 msgid "Note that the term cannot have more than one line of text."
-msgstr ""
+msgstr "한 줄 이상의 텍스트."
 
 #: ../../usage/restructuredtext/basics.rst:99
 msgid ""
@@ -172,10 +192,10 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:122
 msgid ""
-"Literal code blocks (:duref:`ref <literal-blocks>`) are introduced by "
-"ending a paragraph with the special marker ``::``.  The literal block "
-"must be indented (and, like all paragraphs, separated from the "
-"surrounding ones by blank lines)::"
+"Literal code blocks (:duref:`ref <literal-blocks>`) are introduced by ending "
+"a paragraph with the special marker ``::``.  The literal block must be "
+"indented (and, like all paragraphs, separated from the surrounding ones by "
+"blank lines)::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:136
@@ -184,8 +204,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:138
 msgid ""
-"If it occurs as a paragraph of its own, that paragraph is completely left"
-" out of the document."
+"If it occurs as a paragraph of its own, that paragraph is completely left "
+"out of the document."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:140
@@ -200,17 +220,17 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:144
 msgid ""
-"That way, the second sentence in the above example's first paragraph "
-"would be rendered as \"The next paragraph is a code sample:\"."
+"That way, the second sentence in the above example's first paragraph would "
+"be rendered as \"The next paragraph is a code sample:\"."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:147
 msgid ""
-"Code highlighting can be enabled for these literal blocks on a document-"
-"wide basis using the :rst:dir:`highlight` directive and on a project-wide"
-" basis using the :confval:`highlight_language` configuration option. The "
-":rst:dir:`code-block` directive can be used to set highlighting on a "
-"block-by-block basis. These directives are discussed later."
+"Code highlighting can be enabled for these literal blocks on a document-wide "
+"basis using the :rst:dir:`highlight` directive and on a project-wide basis "
+"using the :confval:`highlight_language` configuration option. The :rst:dir:"
+"`code-block` directive can be used to set highlighting on a block-by-block "
+"basis. These directives are discussed later."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:157
@@ -220,9 +240,9 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:159
 msgid ""
 "Doctest blocks (:duref:`ref <doctest-blocks>`) are interactive Python "
-"sessions cut-and-pasted into docstrings. They do not require the "
-":ref:`literal blocks <rst-literal-blocks>` syntax. The doctest block must"
-" end with a blank line and should *not* end with with an unused prompt::"
+"sessions cut-and-pasted into docstrings. They do not require the :ref:"
+"`literal blocks <rst-literal-blocks>` syntax. The doctest block must end "
+"with a blank line and should *not* end with with an unused prompt::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:170
@@ -231,8 +251,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:172
 msgid ""
-"For *grid tables* (:duref:`ref <grid-tables>`), you have to \"paint\" the"
-" cell grid yourself.  They look like this::"
+"For *grid tables* (:duref:`ref <grid-tables>`), you have to \"paint\" the "
+"cell grid yourself.  They look like this::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:184
@@ -244,8 +264,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:197
 msgid ""
-"Two more syntaxes are supported: *CSV tables* and *List tables*. They use"
-" an *explicit markup block*. Refer to :ref:`table-directives` for more "
+"Two more syntaxes are supported: *CSV tables* and *List tables*. They use an "
+"*explicit markup block*. Refer to :ref:`table-directives` for more "
 "information."
 msgstr ""
 
@@ -259,15 +279,14 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:207
 msgid ""
-"Use ```Link text <https://domain.invalid/>`_`` for inline web links.  If "
-"the link text should be the web address, you don't need special markup at"
-" all, the parser finds links and mail addresses in ordinary text."
+"Use ```Link text <https://domain.invalid/>`_`` for inline web links.  If the "
+"link text should be the web address, you don't need special markup at all, "
+"the parser finds links and mail addresses in ordinary text."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:211
 msgid ""
-"There must be a space between the link text and the opening \\< for the "
-"URL."
+"There must be a space between the link text and the opening \\< for the URL."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:213
@@ -282,8 +301,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:223
 msgid ""
-"Internal linking is done via a special reST role provided by Sphinx, see "
-"the section on specific markup, :ref:`ref-role`."
+"Internal linking is done via a special reST role provided by Sphinx, see the "
+"section on specific markup, :ref:`ref-role`."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:228
@@ -292,18 +311,17 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:230
 msgid ""
-"Section headers (:duref:`ref <sections>`) are created by underlining (and"
-" optionally overlining) the section title with a punctuation character, "
-"at least as long as the text::"
+"Section headers (:duref:`ref <sections>`) are created by underlining (and "
+"optionally overlining) the section title with a punctuation character, at "
+"least as long as the text::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:238
 msgid ""
-"Normally, there are no heading levels assigned to certain characters as "
-"the structure is determined from the succession of headings.  However, "
-"this convention is used in `Python's Style Guide for documenting "
-"<https://docs.python.org/devguide/documenting.html#style-guide>`_ which "
-"you may follow:"
+"Normally, there are no heading levels assigned to certain characters as the "
+"structure is determined from the succession of headings.  However, this "
+"convention is used in `Python's Style Guide for documenting <https://docs."
+"python.org/devguide/documenting.html#style-guide>`_ which you may follow:"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:244
@@ -333,8 +351,8 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:251
 msgid ""
 "Of course, you are free to use your own marker characters (see the reST "
-"documentation), and use a deeper nesting level, but keep in mind that "
-"most target formats (HTML, LaTeX) have a limited supported nesting depth."
+"documentation), and use a deeper nesting level, but keep in mind that most "
+"target formats (HTML, LaTeX) have a limited supported nesting depth."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:259
@@ -343,8 +361,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:261
 msgid ""
-"Field lists (:duref:`ref <field-lists>`) are sequences of fields marked "
-"up like this::"
+"Field lists (:duref:`ref <field-lists>`) are sequences of fields marked up "
+"like this::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:266
@@ -354,8 +372,8 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:277
 msgid ""
 "Sphinx extends standard docutils behavior and intercepts field lists "
-"specified at the beginning of documents.  Refer to :doc:`field-lists` for"
-" more information."
+"specified at the beginning of documents.  Refer to :doc:`field-lists` for "
+"more information."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:288
@@ -365,10 +383,10 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:290
 msgid ""
 "A role or \"custom interpreted text role\" (:duref:`ref <roles>`) is an "
-"inline piece of explicit markup. It signifies that that the enclosed text"
-" should be interpreted in a specific way.  Sphinx uses this to provide "
-"semantic markup and cross-referencing of identifiers, as described in the"
-" appropriate section.  The general syntax is ``:rolename:`content```."
+"inline piece of explicit markup. It signifies that that the enclosed text "
+"should be interpreted in a specific way.  Sphinx uses this to provide "
+"semantic markup and cross-referencing of identifiers, as described in the "
+"appropriate section.  The general syntax is ``:rolename:`content```."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:296
@@ -411,17 +429,17 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:312
 msgid ""
-"\"Explicit markup\" (:duref:`ref <explicit-markup-blocks>`) is used in "
-"reST for most constructs that need special handling, such as footnotes, "
-"specially-highlighted paragraphs, comments, and generic directives."
+"\"Explicit markup\" (:duref:`ref <explicit-markup-blocks>`) is used in reST "
+"for most constructs that need special handling, such as footnotes, specially-"
+"highlighted paragraphs, comments, and generic directives."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:316
 msgid ""
-"An explicit markup block begins with a line starting with ``..`` followed"
-" by whitespace and is terminated by the next paragraph at the same level "
-"of indentation.  (There needs to be a blank line between explicit markup "
-"and normal paragraphs.  This may all sound a bit complicated, but it is "
+"An explicit markup block begins with a line starting with ``..`` followed by "
+"whitespace and is terminated by the next paragraph at the same level of "
+"indentation.  (There needs to be a blank line between explicit markup and "
+"normal paragraphs.  This may all sound a bit complicated, but it is "
 "intuitive enough when you write it.)"
 msgstr ""
 
@@ -432,8 +450,8 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:328
 msgid ""
 "A directive (:duref:`ref <directives>`) is a generic block of explicit "
-"markup. Along with roles, it is one of the extension mechanisms of reST, "
-"and Sphinx makes heavy use of it."
+"markup. Along with roles, it is one of the extension mechanisms of reST, and "
+"Sphinx makes heavy use of it."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:332
@@ -442,11 +460,10 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:334
 msgid ""
-"Admonitions: :dudir:`attention`, :dudir:`caution`, :dudir:`danger`, "
-":dudir:`error`, :dudir:`hint`, :dudir:`important`, :dudir:`note`, "
-":dudir:`tip`, :dudir:`warning` and the generic :dudir:`admonition "
-"<admonitions>`.  (Most themes style only \"note\" and \"warning\" "
-"specially.)"
+"Admonitions: :dudir:`attention`, :dudir:`caution`, :dudir:`danger`, :dudir:"
+"`error`, :dudir:`hint`, :dudir:`important`, :dudir:`note`, :dudir:`tip`, :"
+"dudir:`warning` and the generic :dudir:`admonition <admonitions>`.  (Most "
+"themes style only \"note\" and \"warning\" specially.)"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:340
@@ -467,14 +484,14 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:347
 msgid ""
-":dudir:`contents <table-of-contents>` (a local, i.e. for the current file"
-" only, table of contents)"
+":dudir:`contents <table-of-contents>` (a local, i.e. for the current file "
+"only, table of contents)"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:349
 msgid ""
-":dudir:`container` (a container with a custom class, useful to generate "
-"an outer ``<div>`` in HTML)"
+":dudir:`container` (a container with a custom class, useful to generate an "
+"outer ``<div>`` in HTML)"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:351
@@ -495,8 +512,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:355
 msgid ""
-":dudir:`highlights`, :dudir:`pull-quote` (block quotes with their own "
-"class attribute)"
+":dudir:`highlights`, :dudir:`pull-quote` (block quotes with their own class "
+"attribute)"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:357
@@ -529,9 +546,9 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:368
 msgid ""
-":dudir:`include` (include reStructuredText from another file) -- in "
-"Sphinx, when given an absolute include file path, this directive takes it"
-" as relative to the source directory"
+":dudir:`include` (include reStructuredText from another file) -- in Sphinx, "
+"when given an absolute include file path, this directive takes it as "
+"relative to the source directory"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:371
@@ -564,14 +581,14 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:383
 msgid ""
-"Since these are only per-file, better use Sphinx's facilities for setting"
-" the :confval:`default_role`."
+"Since these are only per-file, better use Sphinx's facilities for setting "
+"the :confval:`default_role`."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:388
 msgid ""
-"Do *not* use the directives :dudir:`sectnum`, :dudir:`header` and "
-":dudir:`footer`."
+"Do *not* use the directives :dudir:`sectnum`, :dudir:`header` and :dudir:"
+"`footer`."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:391
@@ -580,9 +597,9 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:393
 msgid ""
-"Basically, a directive consists of a name, arguments, options and "
-"content. (Keep this terminology in mind, it is used in the next chapter "
-"describing custom directives.)  Looking at this example, ::"
+"Basically, a directive consists of a name, arguments, options and content. "
+"(Keep this terminology in mind, it is used in the next chapter describing "
+"custom directives.)  Looking at this example, ::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:403
@@ -596,8 +613,8 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:409
 msgid ""
-"The directive content follows after a blank line and is indented relative"
-" to the directive start."
+"The directive content follows after a blank line and is indented relative to "
+"the directive start."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:414
@@ -610,11 +627,11 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:421
 msgid ""
-"When used within Sphinx, the file name given (here ``gnu.png``) must "
-"either be relative to the source file, or absolute which means that they "
-"are relative to the top source directory.  For example, the file "
-"``sketch/spam.rst`` could refer to the image ``images/spam.png`` as "
-"``../images/spam.png`` or ``/images/spam.png``."
+"When used within Sphinx, the file name given (here ``gnu.png``) must either "
+"be relative to the source file, or absolute which means that they are "
+"relative to the top source directory.  For example, the file ``sketch/spam."
+"rst`` could refer to the image ``images/spam.png`` as ``../images/spam.png`` "
+"or ``/images/spam.png``."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:427
@@ -627,28 +644,27 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:430
 msgid ""
 "Interpretation of image size options (``width`` and ``height``) is as "
-"follows: if the size has no unit or the unit is pixels, the given size "
-"will only be respected for output channels that support pixels. Other "
-"units (like ``pt`` for points) will be used for HTML and LaTeX output "
-"(the latter replaces ``pt`` by ``bp`` as this is the TeX unit such that "
-"``72bp=1in``)."
+"follows: if the size has no unit or the unit is pixels, the given size will "
+"only be respected for output channels that support pixels. Other units (like "
+"``pt`` for points) will be used for HTML and LaTeX output (the latter "
+"replaces ``pt`` by ``bp`` as this is the TeX unit such that ``72bp=1in``)."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:436
 msgid ""
-"Sphinx extends the standard docutils behavior by allowing an asterisk for"
-" the extension::"
+"Sphinx extends the standard docutils behavior by allowing an asterisk for "
+"the extension::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:441
 msgid ""
 "Sphinx then searches for all images matching the provided pattern and "
 "determines their type.  Each builder then chooses the best image out of "
-"these candidates.  For instance, if the file name ``gnu.*`` was given and"
-" two files :file:`gnu.pdf` and :file:`gnu.png` existed in the source "
-"tree, the LaTeX builder would choose the former, while the HTML builder "
-"would prefer the latter.  Supported image types and choosing priority are"
-" defined at :doc:`/usage/builders/index`."
+"these candidates.  For instance, if the file name ``gnu.*`` was given and "
+"two files :file:`gnu.pdf` and :file:`gnu.png` existed in the source tree, "
+"the LaTeX builder would choose the former, while the HTML builder would "
+"prefer the latter.  Supported image types and choosing priority are defined "
+"at :doc:`/usage/builders/index`."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:449
@@ -675,14 +691,14 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:464
 msgid ""
 "For footnotes (:duref:`ref <footnotes>`), use ``[#name]_`` to mark the "
-"footnote location, and add the footnote body at the bottom of the "
-"document after a \"Footnotes\" rubric heading, like so::"
+"footnote location, and add the footnote body at the bottom of the document "
+"after a \"Footnotes\" rubric heading, like so::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:475
 msgid ""
-"You can also explicitly number the footnotes (``[1]_``) or use auto-"
-"numbered footnotes without names (``[#]_``)."
+"You can also explicitly number the footnotes (``[1]_``) or use auto-numbered "
+"footnotes without names (``[#]_``)."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:480
@@ -691,15 +707,15 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:482
 msgid ""
-"Standard reST citations (:duref:`ref <citations>`) are supported, with "
-"the additional feature that they are \"global\", i.e. all citations can "
-"be referenced from all files.  Use them like so::"
+"Standard reST citations (:duref:`ref <citations>`) are supported, with the "
+"additional feature that they are \"global\", i.e. all citations can be "
+"referenced from all files.  Use them like so::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:490
 msgid ""
-"Citation usage is similar to footnote usage, but with a label that is not"
-" numeric or begins with ``#``."
+"Citation usage is similar to footnote usage, but with a label that is not "
+"numeric or begins with ``#``."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:495
@@ -708,10 +724,9 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:497
 msgid ""
-"reST supports \"substitutions\" (:duref:`ref <substitution-"
-"definitions>`), which are pieces of text and/or markup referred to in the"
-" text by ``|name|``.  They are defined like footnotes with explicit "
-"markup blocks, like this::"
+"reST supports \"substitutions\" (:duref:`ref <substitution-definitions>`), "
+"which are pieces of text and/or markup referred to in the text by ``|name|"
+"``.  They are defined like footnotes with explicit markup blocks, like this::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:503
@@ -720,24 +735,23 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:508
 msgid ""
-"See the :duref:`reST reference for substitutions <substitution-"
-"definitions>` for details."
+"See the :duref:`reST reference for substitutions <substitution-definitions>` "
+"for details."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:513
 msgid ""
-"If you want to use some substitutions for all documents, put them into "
-":confval:`rst_prolog` or :confval:`rst_epilog` or put them into a "
-"separate file and include it into all documents you want to use them in, "
-"using the :rst:dir:`include` directive.  (Be sure to give the include "
-"file a file name extension differing from that of other source files, to "
-"avoid Sphinx finding it as a standalone document.)"
+"If you want to use some substitutions for all documents, put them into :"
+"confval:`rst_prolog` or :confval:`rst_epilog` or put them into a separate "
+"file and include it into all documents you want to use them in, using the :"
+"rst:dir:`include` directive.  (Be sure to give the include file a file name "
+"extension differing from that of other source files, to avoid Sphinx finding "
+"it as a standalone document.)"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:520
 msgid ""
-"Sphinx defines some default substitutions, see :ref:`default-"
-"substitutions`."
+"Sphinx defines some default substitutions, see :ref:`default-substitutions`."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:524
@@ -746,9 +760,9 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:526
 msgid ""
-"Every explicit markup block which isn't a valid markup construct (like "
-"the footnotes above) is regarded as a comment (:duref:`ref <comments>`)."
-"  For example::"
+"Every explicit markup block which isn't a valid markup construct (like the "
+"footnotes above) is regarded as a comment (:duref:`ref <comments>`).  For "
+"example::"
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:532
@@ -762,10 +776,10 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:544
 msgid ""
 "Since the easiest way to include special characters like em dashes or "
-"copyright signs in reST is to directly write them as Unicode characters, "
-"one has to specify an encoding.  Sphinx assumes source files to be "
-"encoded in UTF-8 by default; you can change this with the "
-":confval:`source_encoding` config value."
+"copyright signs in reST is to directly write them as Unicode characters, one "
+"has to specify an encoding.  Sphinx assumes source files to be encoded in "
+"UTF-8 by default; you can change this with the :confval:`source_encoding` "
+"config value."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:551
@@ -780,10 +794,10 @@ msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:555
 msgid ""
-"**Separation of inline markup:** As said above, inline markup spans must "
-"be separated from the surrounding text by non-word characters, you have "
-"to use a backslash-escaped space to get around that.  See :duref:`the "
-"reference <substitution-definitions>` for the details."
+"**Separation of inline markup:** As said above, inline markup spans must be "
+"separated from the surrounding text by non-word characters, you have to use "
+"a backslash-escaped space to get around that.  See :duref:`the reference "
+"<substitution-definitions>` for the details."
 msgstr ""
 
 #: ../../usage/restructuredtext/basics.rst:560
@@ -795,7 +809,6 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:566
 msgid ""
 "When the default domain contains a :rst:dir:`class` directive, this "
-"directive will be shadowed.  Therefore, Sphinx re-exports it as :rst:dir"
-":`rst-class`."
+"directive will be shadowed.  Therefore, Sphinx re-exports it as :rst:dir:"
+"`rst-class`."
 msgstr ""
-
