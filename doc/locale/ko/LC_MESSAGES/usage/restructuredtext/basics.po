@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Sphinx 1.8.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-18 15:36+0900\n"
-"PO-Revision-Date: 2018-12-20 17:15+0900\n"
+"PO-Revision-Date: 2019-01-02 15:59+0900\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "X-Generator: Poedit 2.2\n"
+"Language: ko\n"
 
 #: ../../usage/restructuredtext/basics.rst:7
 msgid "reStructuredText Primer"
@@ -56,10 +57,10 @@ msgid ""
 "blank lines.  As in Python, indentation is significant in reST, so all lines "
 "of the same paragraph must be left-aligned to the same level of indentation."
 msgstr ""
-"문단(:duref:`참고 <paragraphs>`)은 reST 문서에서 가장 기본적인 단위이다.  문"
-"단은 하나 또는 여러 개의 빈 줄로 본문 덩어리를 간단하게 구분한다.  파이썬처"
-"럼 reST에서는 들여쓰기가 중요해서 같은 문단의 모든 줄은 반드시 동일한 수준의 "
-"들여쓰기 상태에서 왼쪽 정렬하여야 한다."
+"문단(:duref:`ref <paragraphs>`)은 reST 문서에서 가장 기본적인 단위이다.  문단"
+"은 하나 또는 여러 개의 빈 줄로 본문 덩어리를 간단하게 구분한다.  파이썬처럼 "
+"reST에서는 들여쓰기가 중요해서 같은 문단의 모든 줄은 반드시 동일한 수준의 들"
+"여쓰기 상태에서 왼쪽 정렬하여야 한다."
 
 #: ../../usage/restructuredtext/basics.rst:35
 msgid "Inline markup"
@@ -86,12 +87,12 @@ msgid ""
 "If asterisks or backquotes appear in running text and could be confused with "
 "inline markup delimiters, they have to be escaped with a backslash."
 msgstr ""
-"만약 별 표시나 역따옴표가 실행중인 문서에 있고 인라인 마크업의 구획 문자와 혼"
+"실행중인 문서에 만약 별 표시나 역따옴표가 있고 인라인 마크업의 구획 문자와 혼"
 "동된다면, 역슬래쉬를 이용하여 해결한다."
 
 #: ../../usage/restructuredtext/basics.rst:46
 msgid "Be aware of some restrictions of this markup:"
-msgstr "이 마크업에서 알아두어야 할 몇 가지 제약 사항:"
+msgstr "이 마크업에서 알아두어야 할 제약 사항:"
 
 #: ../../usage/restructuredtext/basics.rst:48
 msgid "it may not be nested,"
@@ -131,8 +132,8 @@ msgid ""
 "at the start of a paragraph and indent properly.  The same goes for numbered "
 "lists; they can also be autonumbered using a ``#`` sign::"
 msgstr ""
-"리스트 마크업 (:duref:`참고 <bullet-lists>`)은 일반적이다 . 별 표시를 문단의 "
-"시잠점에 붙이고 들여쓰기를 적절하게 하면 된다. 비슷한 것이 번호가 있는 리스트"
+"리스트 마크업 (:duref:`ref <bullet-lists>`)은 일반적이다 . 별 표시를 문단의 "
+"시작점에 붙이고 들여쓰기를 적절하게 하면 된다. 비슷한 것이 번호가 있는 리스트"
 "이다; # 표시를 사용하여 자동으로 번호가 붙는다::"
 
 #: ../../usage/restructuredtext/basics.rst:76
@@ -146,49 +147,55 @@ msgstr ""
 #: ../../usage/restructuredtext/basics.rst:87
 msgid ""
 "Definition lists (:duref:`ref <definition-lists>`) are created as follows::"
-msgstr "리스트의 정의 (:duref:`참고 <definition-lists>`) 는 다음과 같다::"
+msgstr "리스트의 정의 (:duref:`ref <definition-lists>`) 는 다음과 같다::"
 
 #: ../../usage/restructuredtext/basics.rst:97
 msgid "Note that the term cannot have more than one line of text."
-msgstr "한 줄 이상의 텍스트."
+msgstr "하나의 항목은 한 줄 이상의 텍스트를 가질 수 없다."
 
 #: ../../usage/restructuredtext/basics.rst:99
 msgid ""
 "Quoted paragraphs (:duref:`ref <block-quotes>`) are created by just "
 "indenting them more than the surrounding paragraphs."
 msgstr ""
+"인용된 문단은 (:duref:`ref <block-quotes>`) 주변의 다른 문단보다 더 들여쓰기"
+"를 해서 생성한다."
 
 #: ../../usage/restructuredtext/basics.rst:102
 msgid ""
 "Line blocks (:duref:`ref <line-blocks>`) are a way of preserving line "
 "breaks::"
 msgstr ""
+"라인 블록(:duref:`ref <line-blocks>`)은 줄 바꿈을 지키기 위한 하나의 방법이"
+"다::"
 
 #: ../../usage/restructuredtext/basics.rst:108
 msgid "There are also several more special blocks available:"
-msgstr ""
+msgstr "또한 사용 가능한 특별한 블록이 몇 가지 더 있다:"
 
 #: ../../usage/restructuredtext/basics.rst:110
 msgid ""
 "field lists (:duref:`ref <field-lists>`, with caveats noted in :ref:`rst-"
 "field-lists`)"
 msgstr ""
+"필드 리스트 (:duref:`ref <field-lists>`,:ref:`rst-field-lists`에 명시된 주의"
+"사항 포함)"
 
 #: ../../usage/restructuredtext/basics.rst:112
 msgid "option lists (:duref:`ref <option-lists>`)"
-msgstr ""
+msgstr "선택 사항 리스트 (:duref:`ref <option-lists>`)"
 
 #: ../../usage/restructuredtext/basics.rst:113
 msgid "quoted literal blocks (:duref:`ref <quoted-literal-blocks>`)"
-msgstr ""
+msgstr "인용된 문자 블록 (:duref:`ref <quoted-literal-blocks>`)"
 
 #: ../../usage/restructuredtext/basics.rst:114
 msgid "doctest blocks (:duref:`ref <doctest-blocks>`)"
-msgstr ""
+msgstr "독테스트 블록 (:duref:`ref <doctest-blocks>`)"
 
 #: ../../usage/restructuredtext/basics.rst:120
 msgid "Literal blocks"
-msgstr ""
+msgstr "문자 블록"
 
 #: ../../usage/restructuredtext/basics.rst:122
 msgid ""
@@ -197,32 +204,37 @@ msgid ""
 "indented (and, like all paragraphs, separated from the surrounding ones by "
 "blank lines)::"
 msgstr ""
+"문자 코드 블록 (:duref:`ref <literal-blocks>`)은 ``::`` 같은 특별한 마커로 끝"
+"나는 문단으로 시작된다.  문자 블록은 반드시 들여쓰기 해야 한다 (그리고, 모든 "
+"문단들이 그렇듯이, 빈 줄로 주변 문단들과 구분된다)::"
 
 #: ../../usage/restructuredtext/basics.rst:136
 msgid "The handling of the ``::`` marker is smart:"
-msgstr ""
+msgstr "마커 ``::``의 사용 방법은 똑똑하다:"
 
 #: ../../usage/restructuredtext/basics.rst:138
 msgid ""
 "If it occurs as a paragraph of its own, that paragraph is completely left "
 "out of the document."
-msgstr ""
+msgstr "마커가 문단 자체에서 발생한다면, 그 문단은 문서에서 완전히 제외된다."
 
 #: ../../usage/restructuredtext/basics.rst:140
 msgid "If it is preceded by whitespace, the marker is removed."
-msgstr ""
+msgstr "공백 문자가 앞에 있다면, 그 마커는 제거된다."
 
 #: ../../usage/restructuredtext/basics.rst:141
 msgid ""
 "If it is preceded by non-whitespace, the marker is replaced by a single "
 "colon."
-msgstr ""
+msgstr "공백이 아닌 문자가 앞에 온다면, 마커는 단일 콜론으로 대체된다."
 
 #: ../../usage/restructuredtext/basics.rst:144
 msgid ""
 "That way, the second sentence in the above example's first paragraph would "
 "be rendered as \"The next paragraph is a code sample:\"."
 msgstr ""
+"그런식으로, 위의 예시에서 첫 문단 속의 두번째 문장이 “다음 문단은 코드 샘플이"
+"다:”으로 보여질 것이다."
 
 #: ../../usage/restructuredtext/basics.rst:147
 msgid ""
@@ -232,10 +244,13 @@ msgid ""
 "`code-block` directive can be used to set highlighting on a block-by-block "
 "basis. These directives are discussed later."
 msgstr ""
+"코드 강조 표시는 문서 전반에서 :rst:dir:`highlight` 지시어를 통해 사용할 수 "
+"있고, :confval:`highlight_language` 구성 옵션을 통해 프로젝트 전반에서 사용"
+"할 수 있다."
 
 #: ../../usage/restructuredtext/basics.rst:157
 msgid "Doctest blocks"
-msgstr ""
+msgstr "독테스트 블록"
 
 #: ../../usage/restructuredtext/basics.rst:159
 msgid ""
@@ -244,16 +259,22 @@ msgid ""
 "`literal blocks <rst-literal-blocks>` syntax. The doctest block must end "
 "with a blank line and should *not* end with with an unused prompt::"
 msgstr ""
+"독테스트 블록(:duref:`ref <doctest-blocks>`)은 대화형 파이썬 세션을 독스트링"
+"으로 자르고 붙여넣기한 것이다. 독테스트 블록은  :ref:`literal blocks <rst-"
+"literal-blocks>` 의 문법을 따르지 않아도 된다. 독테스트 블록은 반드시 빈 줄"
+"로 끝나야 하고, 사용되지 않은 프롬프트로 끝나서는 안된다::"
 
 #: ../../usage/restructuredtext/basics.rst:170
 msgid "Tables"
-msgstr ""
+msgstr "표"
 
 #: ../../usage/restructuredtext/basics.rst:172
 msgid ""
 "For *grid tables* (:duref:`ref <grid-tables>`), you have to \"paint\" the "
 "cell grid yourself.  They look like this::"
 msgstr ""
+"*격자형 테이블* (:duref:`ref <grid-tables>`), 셀 그리드를 직접 “paint” 해야 "
+"한다.  그것은 이렇게 생겼다::"
 
 #: ../../usage/restructuredtext/basics.rst:184
 msgid ""
@@ -261,6 +282,9 @@ msgid ""
 "limited: they must contain more than one row, and the first column cells "
 "cannot contain multiple lines.  They look like this::"
 msgstr ""
+"*심플 테이블* (:duref:`ref <simple-tables>`)는 작성하기가 더 쉽지만, 제한적이"
+"다: 반드시 한 줄 이상을 담고 있어야 하고, 첫번째 열의 셀들은 여러 줄을 담을 "
+"수 없다. 심플 테이블은 이렇게 생겼다:"
 
 #: ../../usage/restructuredtext/basics.rst:197
 msgid ""
@@ -268,14 +292,16 @@ msgid ""
 "*explicit markup block*. Refer to :ref:`table-directives` for more "
 "information."
 msgstr ""
+"두 가지의 문법이 지원된다: CSV 테이블과 리스트 테이블. 이들은 명시적 마크업 "
+"블록을 사용한다. 자세한 정보는 :ref:`table-directives`를 참고하라."
 
 #: ../../usage/restructuredtext/basics.rst:202
 msgid "Hyperlinks"
-msgstr ""
+msgstr "하이퍼링크"
 
 #: ../../usage/restructuredtext/basics.rst:205
 msgid "External links"
-msgstr ""
+msgstr "외부 링크"
 
 #: ../../usage/restructuredtext/basics.rst:207
 msgid ""
@@ -283,31 +309,38 @@ msgid ""
 "link text should be the web address, you don't need special markup at all, "
 "the parser finds links and mail addresses in ordinary text."
 msgstr ""
+"인라인 웹 링크는 ```링크 문자 <https://domain.invalid/>`_`` 를 사용한다.  링"
+"크 문자가 웹 주소가 아닐 때는, 특별한 마크업이 필요하지 않으며, 파서는 일반"
+"적 텍스트에서 링크와 메일 주소를 찾는다."
 
 #: ../../usage/restructuredtext/basics.rst:211
 msgid ""
 "There must be a space between the link text and the opening \\< for the URL."
-msgstr ""
+msgstr "URL의 시작점 \\<과 링크 문자 사이에 반드시 공백이 있어야 한다."
 
 #: ../../usage/restructuredtext/basics.rst:213
 msgid ""
 "You can also separate the link and the target definition (:duref:`ref "
 "<hyperlink-targets>`), like this::"
 msgstr ""
+"링크와 타겟 정의(:duref:`ref <hyperlink-targets>`)를 다음과 같이 분리할 수도 "
+"있다::"
 
 #: ../../usage/restructuredtext/basics.rst:221
 msgid "Internal links"
-msgstr ""
+msgstr "내부 링크"
 
 #: ../../usage/restructuredtext/basics.rst:223
 msgid ""
 "Internal linking is done via a special reST role provided by Sphinx, see the "
 "section on specific markup, :ref:`ref-role`."
 msgstr ""
+"내부 링크는 스핑크스에서 제공되는 특별한 reST 역할을 통해 수행된다, 임의의 위"
+"치 교차 참조에 대한 특정 마크업 섹션을 확인하라."
 
 #: ../../usage/restructuredtext/basics.rst:228
 msgid "Sections"
-msgstr ""
+msgstr "섹션"
 
 #: ../../usage/restructuredtext/basics.rst:230
 msgid ""
@@ -315,6 +348,8 @@ msgid ""
 "optionally overlining) the section title with a punctuation character, at "
 "least as long as the text::"
 msgstr ""
+"섹션 헤더(:duref:`ref <sections>`)는 구두점 문자를 가진 섹션 제목의 문자 길"
+"이 만큼 밑줄 (그리고 선택적으로 윗줄)을 쳐서 만든다::"
 
 #: ../../usage/restructuredtext/basics.rst:238
 msgid ""
@@ -323,30 +358,34 @@ msgid ""
 "convention is used in `Python's Style Guide for documenting <https://docs."
 "python.org/devguide/documenting.html#style-guide>`_ which you may follow:"
 msgstr ""
+"일반적으로, 제목의 계승으로 구조가 결정되기 때문에 제목 수준에 대해 지정된 특"
+"정 문자는 없다.  하지만, 다음의 관례가 지금 우리가 따르고 있는 `문서 작성을 "
+"위한 파이썬 스타일 가이드 <https://docs.python.org/devguide/documenting."
+"html#style-guide>`_ 에서 사용되고 있다:"
 
 #: ../../usage/restructuredtext/basics.rst:244
 msgid "``#`` with overline, for parts"
-msgstr ""
+msgstr "일부 부분에서, ``#``로 윗줄긋기"
 
 #: ../../usage/restructuredtext/basics.rst:245
 msgid "``*`` with overline, for chapters"
-msgstr ""
+msgstr "장 에서, ``*``로 윗줄긋기"
 
 #: ../../usage/restructuredtext/basics.rst:246
 msgid "``=``, for sections"
-msgstr ""
+msgstr "섹션에서, ``=``"
 
 #: ../../usage/restructuredtext/basics.rst:247
 msgid "``-``, for subsections"
-msgstr ""
+msgstr "하위 섹션에서, ``-``"
 
 #: ../../usage/restructuredtext/basics.rst:248
 msgid "``^``, for subsubsections"
-msgstr ""
+msgstr "하위의 하위 센셕에서, ``^``"
 
 #: ../../usage/restructuredtext/basics.rst:249
 msgid "``\"``, for paragraphs"
-msgstr ""
+msgstr "문단에서, ``”``"
 
 #: ../../usage/restructuredtext/basics.rst:251
 msgid ""
@@ -354,20 +393,25 @@ msgid ""
 "documentation), and use a deeper nesting level, but keep in mind that most "
 "target formats (HTML, LaTeX) have a limited supported nesting depth."
 msgstr ""
+"당연히도, 자신만의 특정 마커 부호(reST 문서를 보라)를 사용하는 것은 자유이지"
+"만, 좀 더 깊게 중첩된 레벨을 사용할 때 대다수의 타겟 포멧(HTML, LaTeX)들은 제"
+"한된 중첩 깊이를 지원한다는 것을 명심하라."
 
 #: ../../usage/restructuredtext/basics.rst:259
 msgid "Field Lists"
-msgstr ""
+msgstr "필드 리스트"
 
 #: ../../usage/restructuredtext/basics.rst:261
 msgid ""
 "Field lists (:duref:`ref <field-lists>`) are sequences of fields marked up "
 "like this::"
 msgstr ""
+"필드 리스트 (:duref:`ref <field-lists>`)는 다음과 같이 마크업 된 필드의 순서"
+"이다::"
 
 #: ../../usage/restructuredtext/basics.rst:266
 msgid "They are commonly used in Python documentation::"
-msgstr ""
+msgstr "이것은 일반적으로 파이썬 문서에서 많이 사용된다::"
 
 #: ../../usage/restructuredtext/basics.rst:277
 msgid ""
@@ -375,10 +419,12 @@ msgid ""
 "specified at the beginning of documents.  Refer to :doc:`field-lists` for "
 "more information."
 msgstr ""
+"스핑크스는 표준 독유틸 사용을 확장하고, 문서의 시작 부분에 명시된 필드 목록"
+"을 차단한다.  더 많은 정보는 :doc:`field-lists`을 참고하라."
 
 #: ../../usage/restructuredtext/basics.rst:288
 msgid "Roles"
-msgstr ""
+msgstr "역할"
 
 #: ../../usage/restructuredtext/basics.rst:290
 msgid ""
@@ -388,6 +434,10 @@ msgid ""
 "semantic markup and cross-referencing of identifiers, as described in the "
 "appropriate section.  The general syntax is ``:rolename:`content```."
 msgstr ""
+"역할 또는 “사용자 정의 해석 텍스트 역할”(:duref:`ref <roles>`)은 명시적 마크"
+"업의 인라인 부분이다. 이것은 단절된 본문을 특정 방법으로 해석해야 함을 의미한"
+"다.  스핑크스는 적절한 섹션에서 설명된 것처럼 의미론적 마크업을 제공하거나 식"
+"별자의 교차 참조를 할 때 사용한다.  일반적인 문법은 :역할 이름:`내용`이다."
 
 #: ../../usage/restructuredtext/basics.rst:296
 msgid "Docutils supports the following roles:"
